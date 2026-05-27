@@ -4,16 +4,6 @@
 // ============================================================
 require_once __DIR__ . '/webhook_config.php';
 
-// Product → Notion template link mapping
-$TEMPLATE_LINKS = [
-    'Life OS Dashboard' => 'https://www.notion.so/Life-OS-Dashboard-36c0d96a912180d99db3fca490b0fed7',
-    'Project Manager'   => '',
-    'Budget Tracker'    => '',
-    'Content Calendar'  => '',
-    'Job Tracker'       => '',
-    'CRM Template'      => '',
-];
-
 // ── 1. Read raw payload ──────────────────────────────────────
 $rawPayload = file_get_contents('php://input');
 if (empty($rawPayload)) {
