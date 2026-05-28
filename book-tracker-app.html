@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Tracker — NotionTemplaFix</title>
+<meta name="description" content="Free personal book tracker. Log books, track reading progress, set goals, and manage your library — no account needed.">
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#191919;--surface:#222222;--surface2:#2a2a2a;--surface3:#313131;
+  --border:#333;--border2:#3d3d3d;
+  --accent:#6C47FF;--accent-h:#5a38e8;--accent-light:rgba(108,71,255,.14);--accent-glow:rgba(108,71,255,.3);
+  --text:#f0f0f0;--text-sub:#aaa;--text-dim:#666;
+  --green:#10B981;--yellow:#F59E0B;--blue:#3B82F6;--red:#EF4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#4a4a4a}
+
+/* ── NAVBAR ── */
+.navbar{position:sticky;top:0;z-index:200;height:58px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(25,25,25,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-mark{width:34px;height:34px;background:var(--accent);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 0 16px var(--accent-glow)}
+.logo-text{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.logo-text span{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:9px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .15s,transform .1s,box-shadow .15s;white-space:nowrap}
+.btn:active{transform:scale(.96)}
+.btn-primary{padding:9px 18px;background:var(--accent);color:#fff;border:none;box-shadow:0 2px 12px var(--accent-glow)}
+.btn-primary:hover{background:var(--accent-h);box-shadow:0 4px 20px var(--accent-glow)}
+.btn-ghost{padding:8px 14px;background:var(--surface2);color:var(--text-sub);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--surface3);color:var(--text);border-color:var(--border2)}
+.btn-danger-outline{padding:8px 14px;background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.25)}
+.btn-danger-outline:hover{background:rgba(239,68,68,.18)}
+
+/* ── MAIN WRAP ── */
+.wrap{max-width:1340px;margin:0 auto;padding:32px 24px 80px}
+
+/* ── STATS BAR ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px 20px;transition:border-color .2s}
+.stat-card:hover{border-color:var(--border2)}
+.stat-lbl{font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.stat-val{font-size:30px;font-weight:800;line-height:1;letter-spacing:-1px}
+.stat-sub{font-size:11px;color:var(--text-dim);margin-top:3px}
+.stat-card:nth-child(1) .stat-val{color:var(--green)}
+.stat-card:nth-child(2) .stat-val{color:var(--accent)}
+.stat-card:nth-child(3) .stat-val{color:var(--yellow)}
+.stat-card:nth-child(4) .stat-val{color:var(--blue)}
+
+/* ── GOAL SECTION ── */
+.goal-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px 22px;margin-bottom:20px}
+.goal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;gap:12px}
+.goal-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.goal-badge{font-size:12px;color:var(--text-sub);font-weight:500}
+.goal-edit-btn{padding:5px 11px;font-size:11px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text-sub);cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s;white-space:nowrap}
+.goal-edit-btn:hover{border-color:var(--border2);color:var(--text)}
+.track-wrap{background:var(--surface2);border-radius:100px;height:7px;overflow:hidden}
+.track-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),#9B6FFF);transition:width .6s cubic-bezier(.4,0,.2,1)}
+.goal-pct{font-size:11px;color:var(--text-dim);margin-top:7px}
+
+/* ── FILTERS ── */
+.filters-bar{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.search-wrap{position:relative;flex:1;min-width:180px}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-dim);pointer-events:none}
+.search-input{width:100%;padding:10px 12px 10px 36px;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:13px;font-family:inherit;transition:border-color .2s}
+.search-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+.search-input::placeholder{color:var(--text-dim)}
+.ftabs{display:flex;gap:6px;flex-wrap:wrap}
+.ftab{padding:8px 13px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .18s;white-space:nowrap}
+.ftab:hover{border-color:var(--border2);color:var(--text)}
+.ftab.on{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+.sort-sel{padding:9px 13px;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:12px;font-family:inherit;cursor:pointer;transition:border-color .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.sort-sel:focus{outline:none;border-color:var(--accent)}
+.sort-sel option{background:#2a2a2a}
+
+/* ── SECTION HEADER ── */
+.section-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.section-hd h2{font-size:15px;font-weight:700}
+.book-count-tag{font-size:12px;color:var(--text-dim);font-weight:500}
+
+/* ── BOOKS GRID ── */
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:18px}
+
+/* ── BOOK CARD ── */
+.book-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s;position:relative}
+.book-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.45);border-color:var(--border2)}
+.book-card{animation:cardIn .28s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.cover{height:148px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.cover::before{content:'';position:absolute;inset:0;background:linear-gradient(140deg,rgba(255,255,255,.13) 0%,transparent 55%,rgba(0,0,0,.12) 100%);z-index:1;pointer-events:none}
+.cover::after{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(0,0,0,.22);z-index:2;pointer-events:none}
+.cover-letter{position:relative;z-index:3;font-size:54px;font-weight:800;color:rgba(255,255,255,.88);text-shadow:0 3px 12px rgba(0,0,0,.22);letter-spacing:-1px;line-height:1;user-select:none}
+
+.sbadge{position:absolute;top:9px;right:9px;z-index:4;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;backdrop-filter:blur(6px)}
+.sbadge.reading{background:rgba(59,130,246,.88);color:#fff}
+.sbadge.completed{background:rgba(16,185,129,.88);color:#fff}
+.sbadge.want{background:rgba(245,158,11,.88);color:#fff}
+
+.cinfo{padding:13px 14px 15px}
+.ctitle{font-size:13px;font-weight:700;line-height:1.35;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--text)}
+.cauthor{font-size:11px;color:var(--text-sub);margin-bottom:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.prog-wrap{margin-bottom:9px}
+.prog-bar{background:var(--surface3);border-radius:100px;height:3px;overflow:hidden;margin-bottom:3px}
+.prog-fill{height:100%;border-radius:100px;background:var(--blue);transition:width .3s}
+.prog-txt{font-size:10px;color:var(--text-dim)}
+
+.cfooter{display:flex;align-items:center;justify-content:space-between}
+.stars-row{display:flex;gap:1px;line-height:1}
+.s{font-size:12px}
+.s.on{color:#F59E0B}
+.s.off{color:#3a3a3a}
+.no-rating{font-size:11px;color:var(--text-dim)}
+.pages-lbl{font-size:10px;color:var(--text-dim)}
+
+/* ── EMPTY STATE ── */
+.empty{grid-column:1/-1;text-align:center;padding:72px 24px}
+.empty-emoji{font-size:56px;margin-bottom:14px;display:block}
+.empty h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.empty p{font-size:13px;color:var(--text-sub);margin-bottom:20px}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;padding:26px 28px;transform:scale(.94) translateY(24px);transition:transform .24s cubic-bezier(.34,1.56,.64,1)}
+.overlay.open .modal{transform:scale(1) translateY(0)}
+
+.modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.modal-hd h3{font-size:17px;font-weight:800;letter-spacing:-.2px}
+.mclose{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text-sub);font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1;font-family:inherit}
+.mclose:hover{color:var(--text);border-color:var(--border2)}
+
+.frow{margin-bottom:16px}
+.frow label,.frow2 label{display:block;font-size:11px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.finput,.fselect,.ftextarea{width:100%;padding:10px 13px;background:var(--surface2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:13px;font-family:inherit;transition:border-color .2s,box-shadow .2s}
+.finput:focus,.fselect:focus,.ftextarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+.finput::placeholder,.ftextarea::placeholder{color:var(--text-dim)}
+.finput.err{border-color:var(--red)}
+.fselect{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
+.fselect option{background:#2a2a2a}
+.ftextarea{resize:vertical;min-height:66px;line-height:1.5}
+
+/* color picker */
+.cpicker{display:flex;gap:7px;flex-wrap:wrap}
+.cswatch{width:30px;height:30px;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:transform .14s,border-color .14s;position:relative;flex-shrink:0}
+.cswatch:hover{transform:scale(1.1)}
+.cswatch.sel{border-color:#fff;transform:scale(1.06)}
+.cswatch.sel::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:rgba(255,255,255,.9)}
+
+/* rating input */
+.rating-row{display:flex;gap:5px;align-items:center}
+.rstar{font-size:26px;cursor:pointer;color:#333;transition:color .12s,transform .1s;line-height:1}
+.rstar:hover{transform:scale(1.15)}
+.rstar.lit{color:#F59E0B}
+.rating-hint{font-size:11px;color:var(--text-dim);margin-left:4px}
+
+/* modal actions */
+.mactions{display:flex;align-items:center;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid var(--border)}
+.ml-auto{margin-left:auto}
+.mactions .ml-auto{display:flex;gap:8px}
+
+/* Toast */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a2a2a;border:1px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13px;font-weight:600;color:var(--text);box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+  .wrap{padding:20px 14px 64px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-val{font-size:24px}
+  .filters-bar{flex-direction:column;align-items:stretch}
+  .books-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .modal{padding:20px 18px}
+  .frow2{grid-template-columns:1fr;gap:0}
+  .frow2>div:first-child{margin-bottom:16px}
+  .navbar{padding:0 14px}
+  .logo-text{display:none}
+}
+@media(max-width:360px){.books-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="logo" href="#">
+    <div class="logo-mark">📚</div>
+    <div class="logo-text">Book<span>Shelf</span></div>
+  </a>
+  <div class="nav-right">
+    <button class="btn btn-primary" id="openAddBtn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Book
+    </button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-lbl">Books Read</div>
+      <div class="stat-val" id="sRead">0</div>
+      <div class="stat-sub">completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Pages Read</div>
+      <div class="stat-val" id="sPages">0</div>
+      <div class="stat-sub">total pages</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Avg Rating</div>
+      <div class="stat-val" id="sRating">—</div>
+      <div class="stat-sub">out of 5 ★</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">To Read</div>
+      <div class="stat-val" id="sWant">0</div>
+      <div class="stat-sub">in queue</div>
+    </div>
+  </div>
+
+  <!-- Goal -->
+  <div class="goal-card">
+    <div class="goal-top">
+      <div class="goal-title">🎯 2025 Reading Goal <span class="goal-badge" id="goalBadge">0 / 20 books</span></div>
+      <button class="goal-edit-btn" id="goalEditBtn">Edit Goal</button>
+    </div>
+    <div class="track-wrap"><div class="track-fill" id="goalFill" style="width:0%"></div></div>
+    <div class="goal-pct" id="goalPct">0% complete — keep going!</div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="search-wrap">
+      <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by title or author…">
+    </div>
+    <div class="ftabs">
+      <button class="ftab on" data-f="all">All</button>
+      <button class="ftab" data-f="reading">Reading</button>
+      <button class="ftab" data-f="completed">Completed</button>
+      <button class="ftab" data-f="want">Want to Read</button>
+    </div>
+    <select class="sort-sel" id="sortSel">
+      <option value="date">Recently Added</option>
+      <option value="title">Title A–Z</option>
+      <option value="rating">Top Rated</option>
+      <option value="progress">Most Progress</option>
+    </select>
+  </div>
+
+  <!-- Section header -->
+  <div class="section-hd">
+    <h2 id="sectionTitle">All Books</h2>
+    <span class="book-count-tag" id="bookCount"></span>
+  </div>
+
+  <!-- Grid -->
+  <div class="books-grid" id="booksGrid"></div>
+
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <h3 id="modalTitle">Add New Book</h3>
+      <button class="mclose" id="mClose">&#215;</button>
+    </div>
+
+    <div class="frow">
+      <label>Book Title *</label>
+      <input class="finput" type="text" id="fTitle" placeholder="e.g. Atomic Habits" autocomplete="off">
+    </div>
+    <div class="frow">
+      <label>Author *</label>
+      <input class="finput" type="text" id="fAuthor" placeholder="e.g. James Clear" autocomplete="off">
+    </div>
+    <div class="frow">
+      <label>Cover Color</label>
+      <div class="cpicker" id="cPicker"></div>
+    </div>
+    <div class="frow">
+      <label>Status</label>
+      <select class="fselect" id="fStatus">
+        <option value="want">Want to Read</option>
+        <option value="reading">Currently Reading</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+    <div class="frow">
+      <label>Your Rating</label>
+      <div class="rating-row">
+        <span class="rstar" data-v="1">★</span>
+        <span class="rstar" data-v="2">★</span>
+        <span class="rstar" data-v="3">★</span>
+        <span class="rstar" data-v="4">★</span>
+        <span class="rstar" data-v="5">★</span>
+        <span class="rating-hint" id="ratingHint">No rating</span>
+      </div>
+    </div>
+    <div class="frow2">
+      <div>
+        <label>Total Pages</label>
+        <input class="finput" type="number" id="fPages" placeholder="e.g. 320" min="1" max="99999">
+      </div>
+      <div>
+        <label>Current Page</label>
+        <input class="finput" type="number" id="fCurPage" placeholder="e.g. 150" min="0" max="99999">
+      </div>
+    </div>
+    <div class="frow">
+      <label>Notes / Thoughts</label>
+      <textarea class="ftextarea" id="fNotes" placeholder="Key takeaways, memorable quotes, your thoughts…"></textarea>
+    </div>
+    <div class="mactions">
+      <button class="btn btn-danger-outline" id="deleteBtn" style="display:none">Delete</button>
+      <div class="ml-auto">
+        <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveBtn">Save Book</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ─────────────────────────────────────────
+   CONSTANTS
+───────────────────────────────────────── */
+var COLORS=['#6C47FF','#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899','#14B8A6','#F97316','#84CC16','#06B6D4','#A855F7'];
+var LS='bt_v1',LS_GOAL='bt_goal_v1';
+
+var SEED=[
+  {id:'s1',title:'Atomic Habits',author:'James Clear',color:'#6C47FF',status:'completed',rating:5,pages:320,cur:320,date:'2025-01-15',notes:'The 1% better every day concept changed how I approach every habit. Brilliantly practical.'},
+  {id:'s2',title:'Deep Work',author:'Cal Newport',color:'#3B82F6',status:'completed',rating:4,pages:296,cur:296,date:'2025-02-08',notes:'A compelling case for distraction-free focus. Changed how I structure my work days.'},
+  {id:'s3',title:'Thinking, Fast and Slow',author:'Daniel Kahneman',color:'#EF4444',status:'reading',rating:4,pages:499,cur:234,date:'2025-03-20',notes:'System 1 vs System 2 is a framework I now apply everywhere. Dense but worth it.'},
+  {id:'s4',title:'The Pragmatic Programmer',author:'David Thomas & Andrew Hunt',color:'#14B8A6',status:'want',rating:0,pages:352,cur:0,date:'2025-04-10',notes:''},
+  {id:'s5',title:'Sapiens',author:'Yuval Noah Harari',color:'#F97316',status:'completed',rating:5,pages:443,cur:443,date:'2025-05-02',notes:'Mind-bending history of humankind. My perspective on civilization is completely different now.'}
+];
+
+/* ─────────────────────────────────────────
+   STORAGE
+───────────────────────────────────────── */
+function load(){var r=localStorage.getItem(LS);if(!r){localStorage.setItem(LS,JSON.stringify(SEED));return SEED.map(function(b){return Object.assign({},b)});}try{return JSON.parse(r);}catch(e){return [];}}
+function save(books){localStorage.setItem(LS,JSON.stringify(books));}
+function loadGoal(){return parseInt(localStorage.getItem(LS_GOAL)||'20',10);}
+function saveGoal(g){localStorage.setItem(LS_GOAL,String(g));}
+
+/* ─────────────────────────────────────────
+   STATE
+───────────────────────────────────────── */
+var books=load();
+var filter='all',query='',sortKey='date';
+var editId=null,selColor=COLORS[0],selRating=0;
+
+/* ─────────────────────────────────────────
+   DOM
+───────────────────────────────────────── */
+var $grid=document.getElementById('booksGrid');
+var $overlay=document.getElementById('overlay');
+var $fTitle=document.getElementById('fTitle');
+var $fAuthor=document.getElementById('fAuthor');
+var $fStatus=document.getElementById('fStatus');
+var $fPages=document.getElementById('fPages');
+var $fCurPage=document.getElementById('fCurPage');
+var $fNotes=document.getElementById('fNotes');
+var $deleteBtn=document.getElementById('deleteBtn');
+var $cpicker=document.getElementById('cPicker');
+var $ratingHint=document.getElementById('ratingHint');
+var $goalBadge=document.getElementById('goalBadge');
+var $goalFill=document.getElementById('goalFill');
+var $goalPct=document.getElementById('goalPct');
+
+/* ─────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────── */
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
+function genId(){return 'b'+Date.now()+Math.random().toString(36).slice(2,6);}
+
+/* ─────────────────────────────────────────
+   COLOR PICKER
+───────────────────────────────────────── */
+function renderCPicker(){
+  $cpicker.innerHTML='';
+  COLORS.forEach(function(c){
+    var el=document.createElement('div');
+    el.className='cswatch'+(c===selColor?' sel':'');
+    el.style.background=c;
+    el.title=c;
+    el.addEventListener('click',function(){
+      selColor=c;
+      document.querySelectorAll('.cswatch').forEach(function(s){s.classList.remove('sel');});
+      el.classList.add('sel');
+    });
+    $cpicker.appendChild(el);
+  });
+}
+
+/* ─────────────────────────────────────────
+   RATING
+───────────────────────────────────────── */
+function updateStars(){
+  var stars=document.querySelectorAll('.rstar');
+  stars.forEach(function(s,i){
+    s.classList.toggle('lit',i<selRating);
+  });
+  var labels=['No rating','1 star','2 stars','3 stars','4 stars','5 stars'];
+  $ratingHint.textContent=labels[selRating]||'No rating';
+}
+
+document.querySelectorAll('.rstar').forEach(function(s){
+  s.addEventListener('mouseenter',function(){
+    var v=parseInt(s.dataset.v);
+    document.querySelectorAll('.rstar').forEach(function(x,i){x.style.color=i<v?'#F59E0B':'#333';});
+  });
+  s.addEventListener('mouseleave',function(){
+    document.querySelectorAll('.rstar').forEach(function(x,i){x.style.color=i<selRating?'#F59E0B':'#333';});
+  });
+  s.addEventListener('click',function(){
+    var v=parseInt(s.dataset.v);
+    selRating=(selRating===v)?0:v;
+    updateStars();
+  });
+});
+
+/* ─────────────────────────────────────────
+   STATS
+───────────────────────────────────────── */
+function updateStats(){
+  var done=books.filter(function(b){return b.status==='completed';});
+  var reading=books.filter(function(b){return b.status==='reading';});
+  var want=books.filter(function(b){return b.status==='want';});
+  var rated=books.filter(function(b){return b.rating>0;});
+
+  var pgRead=done.reduce(function(s,b){return s+(b.pages||0);},0)
+    +reading.reduce(function(s,b){return s+(b.cur||0);},0);
+
+  var avg=rated.length?(rated.reduce(function(s,b){return s+b.rating;},0)/rated.length).toFixed(1):'—';
+
+  document.getElementById('sRead').textContent=done.length;
+  document.getElementById('sPages').textContent=pgRead.toLocaleString();
+  document.getElementById('sRating').textContent=avg;
+  document.getElementById('sWant').textContent=want.length;
+
+  var goal=loadGoal(),pct=goal>0?Math.min(100,Math.round(done.length/goal*100)):0;
+  $goalBadge.textContent=done.length+' / '+goal+' books';
+  $goalFill.style.width=pct+'%';
+  var msgs=['0% — start your journey!','Almost there!','Halfway!','Great progress!','So close!','Goal achieved! 🎉'];
+  var msgIdx=pct>=100?5:pct>=80?4:pct>=50?3:pct>=25?2:pct>0?1:0;
+  $goalPct.textContent=pct+'% complete — '+(pct>=100?'Goal achieved! 🎉':pct>=80?'Almost there!':pct>=50?'Great progress!':pct>0?'Keep reading!':'Start your 2025 reading journey!');
+}
+
+/* ─────────────────────────────────────────
+   RENDER BOOKS
+───────────────────────────────────────── */
+function starsHTML(r){
+  return [1,2,3,4,5].map(function(i){return '<span class="s '+(i<=r?'on':'off')+'">★</span>';}).join('');
+}
+
+function filtered(){
+  var res=books.slice();
+  if(filter!=='all') res=res.filter(function(b){return b.status===filter;});
+  if(query){var q=query.toLowerCase();res=res.filter(function(b){return b.title.toLowerCase().indexOf(q)>=0||b.author.toLowerCase().indexOf(q)>=0;});}
+  res.sort(function(a,b){
+    if(sortKey==='title') return a.title.localeCompare(b.title);
+    if(sortKey==='rating') return (b.rating||0)-(a.rating||0);
+    if(sortKey==='progress'){
+      var pa=a.pages?(a.cur||0)/a.pages:0,pb=b.pages?(b.cur||0)/b.pages:0;return pb-pa;
+    }
+    return (b.date||'').localeCompare(a.date||'');
+  });
+  return res;
+}
+
+var flabels={all:'All Books',reading:'Currently Reading',completed:'Completed',want:'Want to Read'};
+
+function render(){
+  var res=filtered();
+  document.getElementById('sectionTitle').textContent=flabels[filter]||'Books';
+  document.getElementById('bookCount').textContent=res.length+' book'+(res.length!==1?'s':'');
+
+  if(!res.length){
+    $grid.innerHTML='<div class="empty"><span class="empty-emoji">'+(books.length?'🔍':'📚')+'</span><h3>'+(books.length?'No books found':'Your shelf is empty')+'</h3><p>'+(books.length?'Try a different search or filter.':'Add your first book to start tracking your reading!')+'</p>'+(books.length?'':'<button class="btn btn-primary" onclick="window._openAdd()">Add Your First Book</button>')+'</div>';
+    return;
+  }
+
+  var slabels={reading:'Reading',completed:'Done',want:'To Read'};
+  $grid.innerHTML=res.map(function(b,i){
+    var pct=b.pages&&b.pages>0?Math.round((b.cur||0)/b.pages*100):0;
+    var showProg=b.status==='reading'&&b.pages>0;
+    var letter=(b.title||'?')[0].toUpperCase();
+    return '<div class="book-card" onclick="window._edit(\''+b.id+'\')" style="animation-delay:'+(Math.min(i*.04,.32))+'s">'
+      +'<div class="cover" style="background:'+(b.color||'#6C47FF')+'">'
+      +'<div class="cover-letter">'+letter+'</div>'
+      +'<span class="sbadge '+b.status+'">'+slabels[b.status]+'</span>'
+      +'</div>'
+      +'<div class="cinfo">'
+      +'<div class="ctitle">'+esc(b.title)+'</div>'
+      +'<div class="cauthor">'+esc(b.author)+'</div>'
+      +(showProg?'<div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-txt">Page '+(b.cur||0)+' of '+b.pages+' &middot; '+pct+'%</div></div>':'')
+      +'<div class="cfooter">'
+      +(b.rating?'<div class="stars-row">'+starsHTML(b.rating)+'</div>':'<span class="no-rating">No rating</span>')
+      +(b.pages?'<span class="pages-lbl">'+b.pages.toLocaleString()+' pp</span>':'<span></span>')
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+/* ─────────────────────────────────────────
+   MODAL
+───────────────────────────────────────── */
+function openModal(id){
+  editId=id||null;
+  var book=id?books.find(function(b){return b.id===id;}):null;
+  document.getElementById('modalTitle').textContent=id?'Edit Book':'Add New Book';
+  $fTitle.value=book?book.title:'';
+  $fAuthor.value=book?book.author:'';
+  $fStatus.value=book?book.status:'want';
+  $fPages.value=book&&book.pages?book.pages:'';
+  $fCurPage.value=book&&book.cur?book.cur:'';
+  $fNotes.value=book?book.notes||'':'';
+  selColor=book?book.color||COLORS[0]:COLORS[0];
+  selRating=book?book.rating||0:0;
+  $deleteBtn.style.display=id?'inline-flex':'none';
+  $fTitle.classList.remove('err');$fAuthor.classList.remove('err');
+  renderCPicker();
+  updateStars();
+  $overlay.classList.add('open');
+  setTimeout(function(){$fTitle.focus();},80);
+}
+
+function closeModal(){$overlay.classList.remove('open');}
+
+function saveBook(){
+  var title=$fTitle.value.trim(),author=$fAuthor.value.trim();
+  var valid=true;
+  if(!title){$fTitle.classList.add('err');$fTitle.focus();valid=false;}else $fTitle.classList.remove('err');
+  if(!author&&valid){$fAuthor.classList.add('err');$fAuthor.focus();valid=false;}else if(author)$fAuthor.classList.remove('err');
+  if(!valid)return;
+
+  var pages=Math.max(0,parseInt($fPages.value)||0);
+  var cur=Math.max(0,parseInt($fCurPage.value)||0);
+  var status=$fStatus.value;
+  if(status==='completed'&&pages>0) cur=pages;
+  if(status==='want') cur=0;
+  if(pages>0&&cur>pages) cur=pages;
+
+  if(editId){
+    var idx=books.findIndex(function(b){return b.id===editId;});
+    if(idx>=0) books[idx]=Object.assign(books[idx],{title:title,author:author,color:selColor,status:status,rating:selRating,pages:pages,cur:cur,notes:$fNotes.value.trim()});
+    toast('Book updated ✓');
+  } else {
+    books.unshift({id:genId(),title:title,author:author,color:selColor,status:status,rating:selRating,pages:pages,cur:cur,date:new Date().toISOString().slice(0,10),notes:$fNotes.value.trim()});
+    toast('Book added ✓');
+  }
+  save(books);closeModal();render();updateStats();
+}
+
+function deleteBook(){
+  if(!editId) return;
+  var book=books.find(function(b){return b.id===editId;});
+  if(!book||!confirm('Remove "'+book.title+'" from your library?')) return;
+  books=books.filter(function(b){return b.id!==editId;});
+  save(books);closeModal();render();updateStats();
+  toast('Book removed');
+}
+
+/* ─────────────────────────────────────────
+   GOAL
+───────────────────────────────────────── */
+document.getElementById('goalEditBtn').addEventListener('click',function(){
+  var cur=loadGoal();
+  var val=prompt('Set your 2025 reading goal (number of books):',cur);
+  if(val===null) return;
+  var n=parseInt(val);
+  if(isNaN(n)||n<1){alert('Please enter a number greater than 0.');return;}
+  saveGoal(n);updateStats();toast('Goal updated to '+n+' books');
+});
+
+/* ─────────────────────────────────────────
+   FILTER TABS
+───────────────────────────────────────── */
+document.querySelectorAll('.ftab').forEach(function(t){
+  t.addEventListener('click',function(){
+    filter=t.dataset.f;
+    document.querySelectorAll('.ftab').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+    render();
+  });
+});
+
+/* ─────────────────────────────────────────
+   SEARCH / SORT
+───────────────────────────────────────── */
+document.getElementById('searchInput').addEventListener('input',function(e){query=e.target.value;render();});
+document.getElementById('sortSel').addEventListener('change',function(e){sortKey=e.target.value;render();});
+
+/* ─────────────────────────────────────────
+   MODAL EVENTS
+───────────────────────────────────────── */
+document.getElementById('openAddBtn').addEventListener('click',function(){openModal(null);});
+document.getElementById('mClose').addEventListener('click',closeModal);
+document.getElementById('cancelBtn').addEventListener('click',closeModal);
+document.getElementById('saveBtn').addEventListener('click',saveBook);
+document.getElementById('deleteBtn').addEventListener('click',deleteBook);
+$overlay.addEventListener('click',function(e){if(e.target===$overlay)closeModal();});
+
+document.addEventListener('keydown',function(e){
+  if(!$overlay.classList.contains('open')) return;
+  if(e.key==='Escape') closeModal();
+  if(e.key==='Enter'&&document.activeElement.tagName!=='TEXTAREA'&&document.activeElement.tagName!=='SELECT') saveBook();
+});
+
+/* ─────────────────────────────────────────
+   GLOBAL HOOKS (for inline onclick)
+───────────────────────────────────────── */
+window._edit=function(id){openModal(id);};
+window._openAdd=function(){openModal(null);};
+
+/* ─────────────────────────────────────────
+   BOOT
+───────────────────────────────────────── */
+render();
+updateStats();
+
+})();
+</script>
+</body>
+</html>
