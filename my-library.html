@@ -189,6 +189,14 @@ button{cursor:pointer;font-family:inherit}
   </div>
   <div class="prod-grid" id="premiumGrid"></div>
 
+  <!-- NOTION TEMPLATES -->
+  <div class="sec-label" style="margin-top:12px">
+    <span class="sec-title">Notion Templates</span>
+    <span class="sec-badge premium">One-time purchase</span>
+    <span class="sec-divider"></span>
+  </div>
+  <div class="prod-grid" id="templatesGrid"></div>
+
 </div>
 
 <!-- SIGN IN MODAL -->
@@ -328,6 +336,81 @@ var PREMIUM_APPS = [
   }
 ];
 
+var NOTION_TEMPLATES = [
+  {
+    slug: 'personal-dashboard',
+    name: 'Personal Dashboard',
+    price: 9,
+    desc: 'All-in-one personal command center with calendar, tasks, notes, and quick links.',
+    thumb: '/images/previews/personal-dashboard.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/a9fcf35a-c307-44dd-9ca0-9ad3ddcb6584'
+  },
+  {
+    slug: 'weekly-planner',
+    name: 'Weekly Planner',
+    price: 9,
+    desc: 'Plan your week ahead with priorities, tasks, meals, and reflection notes.',
+    thumb: '/images/previews/weekly-planner.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/bd798ed2-554a-4de7-961c-30a107875c84'
+  },
+  {
+    slug: 'study-planner',
+    name: 'Study Planner',
+    price: 9,
+    desc: 'Organize courses, assignments, exams, and study sessions all in one place.',
+    thumb: '/images/previews/study-planner.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/4701313c-55d7-4984-b8e7-63179a5aa91b'
+  },
+  {
+    slug: 'meeting-notes',
+    name: 'Meeting Notes',
+    price: 9,
+    desc: 'Capture agendas, action items, and decisions to keep every meeting organized.',
+    thumb: '/images/previews/meeting-notes.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/0e693918-d7db-4a5b-a9a8-9cd46a5dac59'
+  },
+  {
+    slug: 'project-manager',
+    name: 'Project Manager',
+    price: 9,
+    desc: 'Full project management with milestones, tasks, timelines, and team views.',
+    thumb: '/images/previews/project-manager.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/1eb16d33-e975-45cc-bbc2-4d538ccbf34b'
+  },
+  {
+    slug: 'budget-tracker',
+    name: 'Budget Tracker',
+    price: 9,
+    desc: 'Track income, expenses, savings goals, and view monthly financial reports.',
+    thumb: '/images/previews/budget-tracker.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/c1195b2d-079e-4572-86e9-72be4b0920c9'
+  },
+  {
+    slug: 'content-calendar',
+    name: 'Content Calendar',
+    price: 9,
+    desc: 'Plan, schedule, and manage your content strategy with a visual calendar.',
+    thumb: '/images/previews/content-calendar.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/08216c91-848d-4696-9114-da346332f64d'
+  },
+  {
+    slug: 'job-tracker',
+    name: 'Job Tracker',
+    price: 9,
+    desc: 'Track job applications, interviews, offers, and follow-ups in one board.',
+    thumb: '/images/previews/job-tracker.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/d7139060-d38f-4bd1-b281-3f8f7f612a81'
+  },
+  {
+    slug: 'crm-template',
+    name: 'CRM Template',
+    price: 19,
+    desc: 'Manage clients, deals, contacts, and pipeline with a full CRM system.',
+    thumb: '/images/previews/crm-template.png',
+    buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/2e347777-7f62-4a5d-9d34-113a5b497a60'
+  }
+];
+
 var EMAIL_KEY = 'lib_email';
 
 // ===================== STATE =====================
@@ -340,6 +423,7 @@ function renderAll(){
   updateNav(email);
   renderFreeGrid();
   renderPremiumGrid(email);
+  renderTemplatesGrid();
 }
 
 function updateNav(email){
@@ -421,6 +505,23 @@ function renderPremiumGrid(email){
       +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
       +(locked?'<div class="prod-price">$'+p.price+'</div>':'')
       +'<div class="prod-actions">'+actions+'</div></div>';
+    grid.appendChild(card);
+  });
+}
+
+function renderTemplatesGrid(){
+  var grid = document.getElementById('templatesGrid');
+  grid.innerHTML = '';
+  NOTION_TEMPLATES.forEach(function(p){
+    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">'
+      +'<div class="lock-shade">🔒</div>'
+      +'<div class="corner-tag tag-paid">$'+p.price+'</div>';
+    var card = document.createElement('div');
+    card.className = 'prod-card locked-card';
+    card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
+      +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
+      +'<div class="prod-price">$'+p.price+'</div>'
+      +'<div class="prod-actions"><a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy Now — $'+p.price+'</a></div></div>';
     grid.appendChild(card);
   });
 }
