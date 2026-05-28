@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelancer Hub | NotionTemplaFix</title>
+<meta name="description" content="Free Freelancer Hub web app — manage clients, track time, and generate invoices. No sign-up required.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="canonical" href="https://notiontemplafix.com/freelancer-hub-app.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--sur:#1a1a1a;--sur2:#222;--bdr:#2a2a2a;--txt:#f0f0f0;--txt2:#a0a0a0;--acc:#6C47FF;--acc2:#8b6dff;--grn:#22c55e;--amb:#f59e0b;--red:#ef4444;--r:12px;--rs:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',sans-serif}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:0 24px;height:56px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr)}
+.back-btn{font-size:13px;color:var(--txt2);padding:5px 10px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.back-btn:hover{color:var(--txt);background:var(--sur2)}
+.app-brand{font-size:15px;font-weight:700;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;margin-left:auto}
+.tab{padding:6px 12px;border:none;background:transparent;color:var(--txt2);font-size:13px;font-weight:500;border-radius:var(--rs);transition:all .2s}
+.tab:hover{background:var(--sur2);color:var(--txt)} .tab.active{background:var(--acc);color:#fff}
+.main{padding:24px;max-width:1060px;margin:0 auto}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px}
+.slbl{font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sval{font-size:22px;font-weight:800;line-height:1} .ssub{font-size:11px;color:var(--txt2);margin-top:3px}
+.c-acc .sval{color:var(--acc2)} .c-grn .sval{color:var(--grn)} .c-amb .sval{color:var(--amb)} .c-red .sval{color:var(--red)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.st{font-size:15px;font-weight:700}
+.btn-p{padding:8px 15px;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-p:hover{background:var(--acc2)} .btn-sm{padding:5px 11px;font-size:12px}
+.btn-c{padding:8px 14px;background:transparent;color:var(--txt2);border:1px solid var(--bdr);border-radius:var(--rs);font-size:13px;font-weight:600;transition:all .2s}
+.btn-c:hover{border-color:var(--txt);color:var(--txt)}
+.btn-grn{padding:8px 15px;background:var(--grn);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-grn:hover{background:#16a34a}
+.btn-red{padding:8px 15px;background:var(--red);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-red:hover{background:#dc2626}
+.table{width:100%;border-collapse:collapse;background:var(--sur);border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);margin-bottom:16px}
+.table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt2);border-bottom:1px solid var(--bdr);background:var(--sur2)}
+.table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--bdr);vertical-align:middle}
+.table tr:last-child td{border-bottom:none} .table tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600}
+.b-active{background:#22c55e22;color:var(--grn)} .b-inactive{background:#2a2a2a;color:var(--txt2)} .b-onhold{background:#f59e0b22;color:var(--amb)}
+.b-paid{background:#22c55e22;color:var(--grn)} .b-sent{background:#6C47FF22;color:var(--acc2)} .b-draft{background:#2a2a2a;color:var(--txt2)} .b-overdue{background:#ef444422;color:var(--red)}
+.pbar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden}
+.pfill{height:100%;background:var(--acc);border-radius:3px;transition:width .4s}
+.pfill.grn{background:var(--grn)} .pfill.red{background:var(--red)}
+.bico{width:27px;height:27px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bico:hover{border-color:var(--acc);color:var(--acc2)} .bico.del:hover{border-color:var(--red);color:var(--red)}
+.act-row{display:flex;gap:5px}
+/* Timer */
+.timer-panel{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:32px;text-align:center;margin-bottom:24px}
+.timer-display{font-size:56px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-2px;margin-bottom:8px;color:var(--txt)}
+.timer-display.running{color:var(--grn)}
+.timer-project{font-size:14px;color:var(--txt2);margin-bottom:24px}
+.timer-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.timer-select{padding:9px 14px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;min-width:200px}
+.timer-select:focus{outline:none;border-color:var(--acc)}
+/* Calendar weekly view */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+.week-day{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px;min-height:80px}
+.week-day-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--txt2);margin-bottom:4px}
+.week-day-num{font-size:14px;font-weight:800;margin-bottom:6px}
+.week-day.today .week-day-num{color:var(--acc2)}
+.entry-chip{background:var(--acc);background:rgba(108,71,255,.2);border-radius:4px;padding:2px 5px;font-size:10px;font-weight:600;color:var(--acc2);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Invoice */
+.inv-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:10px}
+.inv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.inv-num{font-size:12px;color:var(--txt2);font-weight:600}
+.inv-amount{font-size:22px;font-weight:800;color:var(--grn)}
+.inv-meta{font-size:12px;color:var(--txt2)}
+/* Modal */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-ov.hidden{display:none}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-ttl{font-size:15px;font-weight:800;margin-bottom:16px}
+.fg{margin-bottom:12px} .flbl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+.finp,.fsel,.ftxt{width:100%;padding:9px 11px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.finp:focus,.fsel:focus,.ftxt:focus{outline:none;border-color:var(--acc)} .fsel option{background:var(--sur2)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
+@media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.timer-display{font-size:40px}.week-grid{grid-template-columns:repeat(4,1fr)}.frow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/my-library.html" class="back-btn">← Back to Library</a>
+  <div class="app-brand">💼 Freelancer Hub</div>
+  <div class="nav-tabs">
+    <button class="tab active" data-view="dashboard" onclick="sv('dashboard')">Dashboard</button>
+    <button class="tab" data-view="clients" onclick="sv('clients')">Clients</button>
+    <button class="tab" data-view="projects" onclick="sv('projects')">Projects</button>
+    <button class="tab" data-view="timer" onclick="sv('timer')">Time Tracker</button>
+    <button class="tab" data-view="invoices" onclick="sv('invoices')">Invoices</button>
+  </div>
+</div>
+<div class="main">
+  <div id="view-dashboard"></div>
+  <div id="view-clients" style="display:none"></div>
+  <div id="view-projects" style="display:none"></div>
+  <div id="view-timer" style="display:none"></div>
+  <div id="view-invoices" style="display:none"></div>
+</div>
+
+<!-- Client Modal -->
+<div class="modal-ov hidden" id="cl-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="clm-ttl">Add Client</div>
+    <input type="hidden" id="clm-id">
+    <div class="frow">
+      <div class="fg"><label class="flbl">Name</label><input class="finp" id="clm-name" placeholder="Full name"></div>
+      <div class="fg"><label class="flbl">Company</label><input class="finp" id="clm-company" placeholder="Company name"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Email</label><input class="finp" id="clm-email" type="email" placeholder="email@company.com"></div>
+      <div class="fg"><label class="flbl">Hourly Rate ($)</label><input class="finp" id="clm-rate" type="number" min="0" placeholder="75"></div>
+    </div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('cl-modal')">Cancel</button><button class="btn-p" onclick="saveClient()">Save</button></div>
+  </div>
+</div>
+
+<!-- Project Modal -->
+<div class="modal-ov hidden" id="pr-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="prm-ttl">Add Project</div>
+    <input type="hidden" id="prm-id">
+    <div class="fg"><label class="flbl">Project Name</label><input class="finp" id="prm-name" placeholder="Brand identity design..."></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Client</label><select class="fsel" id="prm-client"></select></div>
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="prm-status"><option>Active</option><option>On Hold</option><option>Completed</option></select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Budget ($)</label><input class="finp" id="prm-budget" type="number" min="0" placeholder="3000"></div>
+      <div class="fg"><label class="flbl">Hourly Rate Override ($)</label><input class="finp" id="prm-rate" type="number" min="0" placeholder="(use client rate)"></div>
+    </div>
+    <div class="fg"><label class="flbl">Description</label><textarea class="ftxt" id="prm-desc" rows="2" placeholder="What does this project involve?"></textarea></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('pr-modal')">Cancel</button><button class="btn-p" onclick="saveProject()">Save</button></div>
+  </div>
+</div>
+
+<!-- Stop Timer Modal -->
+<div class="modal-ov hidden" id="stop-modal">
+  <div class="modal">
+    <div class="modal-ttl">Save Time Entry</div>
+    <div style="margin-bottom:16px">
+      <div id="stop-summary" style="font-size:15px;color:var(--txt2);margin-bottom:12px"></div>
+    </div>
+    <div class="fg"><label class="flbl">Description (optional)</label><input class="finp" id="stop-desc" placeholder="What did you work on?"></div>
+    <div class="mfoot"><button class="btn-c" onclick="discardEntry()">Discard</button><button class="btn-p" onclick="saveEntry()">Save Entry</button></div>
+  </div>
+</div>
+
+<!-- Manual Entry Modal -->
+<div class="modal-ov hidden" id="entry-modal">
+  <div class="modal">
+    <div class="modal-ttl">Add Time Entry</div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Project</label><select class="fsel" id="enm-project"></select></div>
+      <div class="fg"><label class="flbl">Date</label><input class="finp" id="enm-date" type="date"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Hours</label><input class="finp" id="enm-hours" type="number" min="0" max="24" step="0.25" placeholder="2.5"></div>
+      <div class="fg"><label class="flbl">Billable?</label>
+        <select class="fsel" id="enm-billable"><option value="1">Yes</option><option value="0">No</option></select>
+      </div>
+    </div>
+    <div class="fg"><label class="flbl">Description</label><input class="finp" id="enm-desc" placeholder="What did you work on?"></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('entry-modal')">Cancel</button><button class="btn-p" onclick="saveManualEntry()">Save</button></div>
+  </div>
+</div>
+
+<!-- Invoice Modal -->
+<div class="modal-ov hidden" id="inv-modal">
+  <div class="modal">
+    <div class="modal-ttl">Generate Invoice</div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Client</label><select class="fsel" id="invm-client" onchange="fillInvoiceProject()"></select></div>
+      <div class="fg"><label class="flbl">Project</label><select class="fsel" id="invm-project" onchange="calcInvoiceAmt()"></select></div>
+    </div>
+    <div class="fg"><label class="flbl">Unbilled Hours</label><input class="finp" id="invm-hours" type="number" min="0" step="0.25" oninput="calcInvoiceAmt()"></div>
+    <div id="invm-rate-row" class="fg"><label class="flbl">Rate ($/hr)</label><input class="finp" id="invm-rate" type="number" min="0" oninput="calcInvoiceAmt()"></div>
+    <div class="fg"><label class="flbl">Invoice Amount ($)</label><input class="finp" id="invm-amount" type="number" min="0"></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Invoice Date</label><input class="finp" id="invm-date" type="date"></div>
+      <div class="fg"><label class="flbl">Due Date</label><input class="finp" id="invm-due" type="date"></div>
+    </div>
+    <div class="fg"><label class="flbl">Notes</label><input class="finp" id="invm-notes" placeholder="Payment terms, bank details..."></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('inv-modal')">Cancel</button><button class="btn-p" onclick="saveInvoice()">Create Invoice</button></div>
+  </div>
+</div>
+
+<script>
+var CLK='fh_clients', PRK='fh_projects', ENK='fh_entries', INK='fh_invoices', TK='fh_timer';
+var TODAY=new Date().toISOString().split('T')[0];
+var NOW=new Date(), CUR_YM=NOW.getFullYear()+'-'+(String(NOW.getMonth()+1).padStart(2,'0'));
+var clients=[],projects=[],entries=[],invoices=[],curView='dashboard';
+var timerState={running:false,projectId:null,startTime:null,elapsed:0};
+var timerInterval=null;
+var pendingEntry=null;
+
+function mkDate(d){var dt=new Date(TODAY+'T00:00:00');dt.setDate(dt.getDate()+d);return dt.toISOString().split('T')[0];}
+
+var SEED_CL=[
+  {id:'cl1',name:'Alex Thompson',company:'Horizon Media',email:'alex@horizonmedia.com',rate:85,totalEarned:6800},
+  {id:'cl2',name:'Priya Patel',company:'DesignStack',email:'priya@designstack.io',rate:95,totalEarned:3800},
+  {id:'cl3',name:'James Wu',company:'GreenLeaf Organics',email:'james@greenleaf.com',rate:70,totalEarned:2100}
+];
+var SEED_PR=[
+  {id:'pr1',clientId:'cl1',name:'Brand Identity Redesign',status:'Active',budget:5000,rateOverride:0,desc:'Complete brand refresh including logo, colors, typography.'},
+  {id:'pr2',clientId:'cl1',name:'Website Development',status:'Active',budget:8000,rateOverride:90,desc:'Full website build on Webflow with CMS integration.'},
+  {id:'pr3',clientId:'cl2',name:'UI/UX for Mobile App',status:'Active',budget:4500,rateOverride:0,desc:'Design screens for iOS app launch.'},
+  {id:'pr4',clientId:'cl3',name:'Social Media Graphics Pack',status:'Completed',budget:1200,rateOverride:0,desc:'Monthly template pack for Instagram and LinkedIn.'}
+];
+var SEED_EN=[];
+(function(){
+  var daysAgo=[0,1,1,2,3,3,4,5,6,7,7,8];
+  var seed=[
+    {projectId:'pr1',hours:2.5,desc:'Logo concept sketches',billable:true},
+    {projectId:'pr2',hours:3,desc:'Wireframe homepage',billable:true},
+    {projectId:'pr1',hours:1.5,desc:'Color palette exploration',billable:true},
+    {projectId:'pr3',hours:4,desc:'Onboarding screens design',billable:true},
+    {projectId:'pr2',hours:2,desc:'Develop nav component',billable:true},
+    {projectId:'pr1',hours:2,desc:'Client feedback revisions',billable:true},
+    {projectId:'pr2',hours:3.5,desc:'Build CMS templates',billable:true},
+    {projectId:'pr3',hours:2.5,desc:'Dashboard screen design',billable:true},
+    {projectId:'pr2',hours:1,desc:'Team sync call',billable:false},
+    {projectId:'pr3',hours:3,desc:'Prototype animations',billable:true},
+    {projectId:'pr1',hours:2,desc:'Final logo variations',billable:true},
+    {projectId:'pr2',hours:4,desc:'Responsive mobile dev',billable:true}
+  ];
+  seed.forEach(function(e,i){
+    SEED_EN.push({id:'e'+i,projectId:e.projectId,date:mkDate(-daysAgo[i]),hours:e.hours,desc:e.desc,billable:e.billable,invoiced:false});
+  });
+})();
+var SEED_INV=[
+  {id:'inv1',clientId:'cl1',projectId:'pr1',hours:8,amount:680,date:mkDate(-25),dueDate:mkDate(-10),status:'Paid',notes:'NET 15'},
+  {id:'inv2',clientId:'cl1',projectId:'pr2',hours:10,amount:900,date:mkDate(-12),dueDate:mkDate(3),status:'Sent',notes:'NET 15'},
+  {id:'inv3',clientId:'cl2',projectId:'pr3',hours:8,amount:760,date:mkDate(-8),dueDate:mkDate(7),status:'Sent',notes:''},
+  {id:'inv4',clientId:'cl3',projectId:'pr4',hours:12,amount:840,date:mkDate(-30),dueDate:mkDate(-15),status:'Paid',notes:''}
+];
+
+function load(){
+  clients=JSON.parse(localStorage.getItem(CLK)||'null')||JSON.parse(JSON.stringify(SEED_CL));
+  projects=JSON.parse(localStorage.getItem(PRK)||'null')||JSON.parse(JSON.stringify(SEED_PR));
+  entries=JSON.parse(localStorage.getItem(ENK)||'null')||JSON.parse(JSON.stringify(SEED_EN));
+  invoices=JSON.parse(localStorage.getItem(INK)||'null')||JSON.parse(JSON.stringify(SEED_INV));
+  var ts=localStorage.getItem(TK);if(ts)timerState=JSON.parse(ts);
+  [[CLK,clients],[PRK,projects],[ENK,entries],[INK,invoices]].forEach(function(p){if(!localStorage.getItem(p[0]))localStorage.setItem(p[0],JSON.stringify(p[1]));});
+  if(timerState.running)startTickInterval();
+}
+function saveAll(){localStorage.setItem(CLK,JSON.stringify(clients));localStorage.setItem(PRK,JSON.stringify(projects));localStorage.setItem(ENK,JSON.stringify(entries));localStorage.setItem(INK,JSON.stringify(invoices));}
+function saveTState(){localStorage.setItem(TK,JSON.stringify(timerState));}
+function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmt$(n){return '$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtH(h){return h.toFixed(1)+'h';}
+function fmtD(ds){if(!ds)return '';return new Date(ds+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function daysTo(ds){if(!ds)return null;return Math.round((new Date(ds+'T00:00:00')-new Date(TODAY+'T00:00:00'))/86400000);}
+function getClient(id){return clients.find(function(c){return c.id===id;})||{name:'Unknown',rate:0};}
+function getProject(id){return projects.find(function(p){return p.id===id;})||{name:'Unknown',clientId:'',rateOverride:0};}
+function getRate(pr){var c=getClient(pr.clientId);return pr.rateOverride>0?pr.rateOverride:c.rate;}
+function statusBadge(s){var m={'Active':'b-active','On Hold':'b-onhold','Inactive':'b-inactive','Completed':'b-active','Paid':'b-paid','Sent':'b-sent','Draft':'b-draft','Overdue':'b-overdue'};return '<span class="badge '+(m[s]||'b-draft')+'">'+s+'</span>';}
+
+function fmtSecs(s){s=Math.floor(s);var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return [h,m,sec].map(function(x){return String(x).padStart(2,'0');}).join(':');}
+function getElapsed(){
+  if(!timerState.running)return timerState.elapsed;
+  return timerState.elapsed+Math.floor((Date.now()-new Date(timerState.startTime).getTime())/1000);
+}
+
+function startTickInterval(){
+  if(timerInterval)clearInterval(timerInterval);
+  timerInterval=setInterval(function(){
+    var disp=document.getElementById('timer-disp');
+    if(disp)disp.textContent=fmtSecs(getElapsed());
+  },1000);
+}
+
+function sv(v){
+  curView=v;
+  ['dashboard','clients','projects','timer','invoices'].forEach(function(n){
+    document.getElementById('view-'+n).style.display=n===v?'':'none';
+    var t=document.querySelector('.tab[data-view="'+n+'"]');
+    if(t)t.classList.toggle('active',n===v);
+  });
+  render();
+}
+function render(){
+  if(curView==='dashboard')renderDash();
+  else if(curView==='clients')renderClients();
+  else if(curView==='projects')renderProjects();
+  else if(curView==='timer')renderTimer();
+  else renderInvoices();
+}
+
+function renderDash(){
+  var monthEntries=entries.filter(function(e){return e.date&&e.date.startsWith(CUR_YM);});
+  var monthHours=monthEntries.reduce(function(s,e){return s+e.hours;},0);
+  var monthIncome=invoices.filter(function(i){return i.date&&i.date.startsWith(CUR_YM)&&i.status==='Paid';}).reduce(function(s,i){return s+i.amount;},0);
+  var activeProj=projects.filter(function(p){return p.status==='Active';}).length;
+  var pending=invoices.filter(function(i){return i.status==='Sent';}).reduce(function(s,i){return s+i.amount;},0);
+
+  var h='<div class="stat-grid">';
+  h+=sc(fmt$(monthIncome),'Month Income','Invoices paid','c-grn');
+  h+=sc(fmtH(monthHours),'Hours Worked','This month','c-acc');
+  h+=sc(activeProj,'Active Projects','Currently running','');
+  h+=sc(fmt$(pending),'Pending','Awaiting payment','c-amb');
+  h+='</div>';
+
+  // Recent entries
+  h+='<div class="sh"><div class="st">⏱ Recent Time Entries</div><button class="btn-p btn-sm" onclick="sv(\'timer\')">Track Time →</button></div>';
+  var recent=entries.slice().sort(function(a,b){return b.date.localeCompare(a.date);}).slice(0,6);
+  h+='<table class="table"><thead><tr><th>Date</th><th>Project</th><th>Description</th><th>Hours</th><th>Billable</th></tr></thead><tbody>';
+  recent.forEach(function(e){
+    var p=getProject(e.projectId);
+    h+='<tr><td style="color:var(--txt2)">'+fmtD(e.date)+'</td>';
+    h+='<td style="font-weight:600;color:var(--acc2)">'+esc(p.name)+'</td>';
+    h+='<td style="color:var(--txt2)">'+esc(e.desc)+'</td>';
+    h+='<td style="font-weight:700">'+fmtH(e.hours)+'</td>';
+    h+='<td>'+(e.billable?'<span style="color:var(--grn)">✓ Yes</span>':'<span style="color:var(--txt2)">No</span>')+'</td></tr>';
+  });
+  if(!recent.length)h+='<tr><td colspan="5" style="text-align:center;color:var(--txt2);padding:20px">No time entries yet.</td></tr>';
+  h+='</tbody></table>';
+
+  // Project hours overview
+  h+='<div class="sh" style="margin-top:4px"><div class="st">📁 Active Projects</div></div>';
+  projects.filter(function(p){return p.status==='Active';}).forEach(function(p){
+    var c=getClient(p.clientId);
+    var projHours=entries.filter(function(e){return e.projectId===p.id;}).reduce(function(s,e){return s+e.hours;},0);
+    var billable=entries.filter(function(e){return e.projectId===p.id&&e.billable;}).reduce(function(s,e){return s+e.hours;},0);
+    var rate=getRate(p);
+    h+='<div style="background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rs);padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">';
+    h+='<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700">'+esc(p.name)+'</div>';
+    h+='<div style="font-size:12px;color:var(--txt2)">'+esc(c.name)+' · '+fmtH(projHours)+' tracked · '+fmtH(billable)+' billable</div></div>';
+    h+='<div style="text-align:right"><div style="font-size:16px;font-weight:800;color:var(--grn)">'+fmt$(billable*rate)+'</div>';
+    h+='<div style="font-size:11px;color:var(--txt2)">earned</div></div></div>';
+  });
+  document.getElementById('view-dashboard').innerHTML=h;
+}
+function sc(v,l,s,c){return '<div class="stat-card '+c+'"><div class="slbl">'+l+'</div><div class="sval">'+v+'</div><div class="ssub">'+s+'</div></div>';}
+
+function renderClients(){
+  var h='<div class="sh"><div class="st">Clients</div><button class="btn-p" onclick="openCLM(null)">+ Add Client</button></div>';
+  if(!clients.length){h+='<div class="empty">No clients yet.</div>';document.getElementById('view-clients').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Name</th><th>Company</th><th>Email</th><th>Rate</th><th>Total Earned</th><th>Actions</th></tr></thead><tbody>';
+  clients.forEach(function(c){
+    h+='<tr><td style="font-weight:700">'+esc(c.name)+'</td>';
+    h+='<td style="color:var(--txt2)">'+esc(c.company)+'</td>';
+    h+='<td><a href="mailto:'+esc(c.email)+'" style="color:var(--acc2)">'+esc(c.email)+'</a></td>';
+    h+='<td style="font-weight:600">$'+c.rate+'/hr</td>';
+    h+='<td style="font-weight:700;color:var(--grn)">'+fmt$(c.totalEarned)+'</td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openCLM(\''+c.id+'\')">✏️</button><button class="bico del" onclick="delClient(\''+c.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-clients').innerHTML=h;
+}
+function openCLM(id){
+  var c=id?clients.find(function(x){return x.id===id;}):null;
+  document.getElementById('clm-ttl').textContent=c?'Edit Client':'Add Client';
+  document.getElementById('clm-id').value=id||'';
+  document.getElementById('clm-name').value=c?c.name:'';
+  document.getElementById('clm-company').value=c?c.company:'';
+  document.getElementById('clm-email').value=c?c.email:'';
+  document.getElementById('clm-rate').value=c?c.rate:'';
+  document.getElementById('cl-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('clm-name').focus();},50);
+}
+function saveClient(){
+  var name=document.getElementById('clm-name').value.trim();if(!name)return;
+  var data={name:name,company:document.getElementById('clm-company').value.trim(),email:document.getElementById('clm-email').value.trim(),rate:parseFloat(document.getElementById('clm-rate').value)||0,totalEarned:0};
+  var id=document.getElementById('clm-id').value;
+  if(id){var c=clients.find(function(x){return x.id===id;});if(c){data.totalEarned=c.totalEarned;Object.assign(c,data);}}else clients.push(Object.assign({id:uid()},data));
+  saveAll();cm('cl-modal');render();
+}
+function delClient(id){if(!confirm('Delete client?'))return;clients=clients.filter(function(c){return c.id!==id;});saveAll();render();}
+
+function renderProjects(){
+  var h='<div class="sh"><div class="st">Projects</div><button class="btn-p" onclick="openPRM(null)">+ Add Project</button></div>';
+  if(!projects.length){h+='<div class="empty">No projects yet.</div>';document.getElementById('view-projects').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Budget</th><th>Hours</th><th>Earned</th><th>Actions</th></tr></thead><tbody>';
+  projects.forEach(function(p){
+    var c=getClient(p.clientId);
+    var hrs=entries.filter(function(e){return e.projectId===p.id&&e.billable;}).reduce(function(s,e){return s+e.hours;},0);
+    var rate=getRate(p);
+    h+='<tr><td style="font-weight:700">'+esc(p.name)+'</td>';
+    h+='<td style="color:var(--acc2)">'+esc(c.name)+'</td>';
+    h+='<td>'+statusBadge(p.status)+'</td>';
+    h+='<td style="color:var(--txt2)">'+fmt$(p.budget)+'</td>';
+    h+='<td style="font-weight:600">'+fmtH(hrs)+'</td>';
+    h+='<td style="font-weight:700;color:var(--grn)">'+fmt$(hrs*rate)+'</td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openPRM(\''+p.id+'\')">✏️</button><button class="bico del" onclick="delProject(\''+p.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-projects').innerHTML=h;
+}
+function openPRM(id){
+  var p=id?projects.find(function(x){return x.id===id;}):null;
+  document.getElementById('prm-ttl').textContent=p?'Edit Project':'Add Project';
+  document.getElementById('prm-id').value=id||'';
+  document.getElementById('prm-name').value=p?p.name:'';
+  document.getElementById('prm-status').value=p?p.status:'Active';
+  document.getElementById('prm-budget').value=p?p.budget:'';
+  document.getElementById('prm-rate').value=p?p.rateOverride||'':'';
+  document.getElementById('prm-desc').value=p?p.desc:'';
+  var sel=document.getElementById('prm-client');sel.innerHTML='';
+  clients.forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.name+' ('+c.company+')';if(p&&p.clientId===c.id)o.selected=true;sel.appendChild(o);});
+  document.getElementById('pr-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('prm-name').focus();},50);
+}
+function saveProject(){
+  var name=document.getElementById('prm-name').value.trim();if(!name)return;
+  var data={name:name,clientId:document.getElementById('prm-client').value,status:document.getElementById('prm-status').value,budget:parseFloat(document.getElementById('prm-budget').value)||0,rateOverride:parseFloat(document.getElementById('prm-rate').value)||0,desc:document.getElementById('prm-desc').value.trim()};
+  var id=document.getElementById('prm-id').value;
+  if(id){var p=projects.find(function(x){return x.id===id;});if(p)Object.assign(p,data);}else projects.push(Object.assign({id:uid()},data));
+  saveAll();cm('pr-modal');render();
+}
+function delProject(id){if(!confirm('Delete project?'))return;projects=projects.filter(function(p){return p.id!==id;});saveAll();render();}
+
+function renderTimer(){
+  var elapsed=getElapsed();
+  var activeProjects=projects.filter(function(p){return p.status==='Active';});
+  var curProj=timerState.projectId?getProject(timerState.projectId):null;
+
+  var h='<div class="timer-panel">';
+  h+='<div id="timer-disp" class="timer-display'+(timerState.running?' running':'')+'">'+fmtSecs(elapsed)+'</div>';
+  h+='<div class="timer-project">'+(timerState.running&&curProj?'Tracking: <strong>'+esc(curProj.name)+'</strong>':timerState.elapsed>0?'Paused':'Select a project and start tracking')+'</div>';
+  h+='<div class="timer-controls">';
+  h+='<select class="timer-select" id="timer-proj-sel"'+(timerState.running?' disabled':'')+'>';
+  h+='<option value="">— Select project —</option>';
+  activeProjects.forEach(function(p){
+    var c=getClient(p.clientId);
+    h+='<option value="'+p.id+'"'+(timerState.projectId===p.id?' selected':'')+'>'+esc(p.name)+' ('+esc(c.name)+')</option>';
+  });
+  h+='</select></div>';
+  h+='<div class="timer-controls">';
+  if(!timerState.running&&timerState.elapsed===0){
+    h+='<button class="btn-grn" onclick="startTimer()">▶ Start</button>';
+  } else if(timerState.running){
+    h+='<button class="btn-c" onclick="pauseTimer()">⏸ Pause</button>';
+    h+='<button class="btn-red" onclick="triggerStop()">⏹ Stop & Save</button>';
+  } else {
+    h+='<button class="btn-grn" onclick="startTimer()">▶ Resume</button>';
+    h+='<button class="btn-red" onclick="triggerStop()">⏹ Stop & Save</button>';
+  }
+  h+='</div></div>';
+
+  // Weekly view
+  h+='<div class="sh"><div class="st">This Week\'s Log</div><button class="btn-p btn-sm" onclick="openEntryM()">+ Manual Entry</button></div>';
+  var weekDays=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var todayDate=new Date(TODAY+'T00:00:00');
+  var startOfWeek=new Date(todayDate);startOfWeek.setDate(todayDate.getDate()-todayDate.getDay());
+
+  h+='<div class="week-grid">';
+  for(var i=0;i<7;i++){
+    var d=new Date(startOfWeek);d.setDate(startOfWeek.getDate()+i);
+    var ds=d.toISOString().split('T')[0];
+    var dayEntries=entries.filter(function(e){return e.date===ds;});
+    var isToday=ds===TODAY;
+    h+='<div class="week-day'+(isToday?' today':'')+'"><div class="week-day-name">'+weekDays[d.getDay()]+'</div>';
+    h+='<div class="week-day-num">'+d.getDate()+'</div>';
+    var dayHrs=dayEntries.reduce(function(s,e){return s+e.hours;},0);
+    if(dayHrs>0)h+='<div style="font-size:11px;font-weight:700;color:var(--acc2);margin-bottom:4px">'+fmtH(dayHrs)+'</div>';
+    dayEntries.forEach(function(e){
+      var p=getProject(e.projectId);
+      h+='<div class="entry-chip">'+esc(p.name.split(' ')[0])+' '+fmtH(e.hours)+'</div>';
+    });
+    h+='</div>';
+  }
+  h+='</div>';
+
+  // All entries table
+  h+='<div class="sh" style="margin-top:20px"><div class="st">All Time Entries</div></div>';
+  var allEntries=entries.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  h+='<table class="table"><thead><tr><th>Date</th><th>Project</th><th>Description</th><th>Hours</th><th>Billable</th><th></th></tr></thead><tbody>';
+  allEntries.slice(0,20).forEach(function(e){
+    var p=getProject(e.projectId);
+    h+='<tr><td style="color:var(--txt2)">'+fmtD(e.date)+'</td>';
+    h+='<td style="color:var(--acc2);font-weight:600">'+esc(p.name)+'</td>';
+    h+='<td style="color:var(--txt2)">'+esc(e.desc)+'</td>';
+    h+='<td style="font-weight:700">'+fmtH(e.hours)+'</td>';
+    h+='<td>'+(e.billable?'<span style="color:var(--grn)">✓</span>':'<span style="color:var(--txt2)">—</span>')+'</td>';
+    h+='<td><button class="bico del" onclick="delEntry(\''+e.id+'\')">🗑️</button></td></tr>';
+  });
+  if(!allEntries.length)h+='<tr><td colspan="6" style="text-align:center;color:var(--txt2);padding:20px">No entries yet. Start the timer!</td></tr>';
+  h+='</tbody></table>';
+
+  document.getElementById('view-timer').innerHTML=h;
+  if(timerState.running)startTickInterval();
+}
+
+function startTimer(){
+  var selEl=document.getElementById('timer-proj-sel');
+  var projId=selEl?selEl.value:'';
+  if(!projId&&!timerState.projectId){alert('Please select a project first.');return;}
+  if(projId)timerState.projectId=projId;
+  timerState.running=true;
+  timerState.startTime=new Date().toISOString();
+  saveTState();startTickInterval();
+  var disp=document.getElementById('timer-disp');
+  if(disp)disp.classList.add('running');
+  renderTimer();
+}
+function pauseTimer(){
+  timerState.elapsed=getElapsed();
+  timerState.running=false;timerState.startTime=null;
+  saveTState();if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
+  renderTimer();
+}
+function triggerStop(){
+  if(timerState.running)pauseTimer();
+  pendingEntry={elapsed:timerState.elapsed,projectId:timerState.projectId};
+  var p=getProject(timerState.projectId);
+  document.getElementById('stop-summary').innerHTML='<strong>'+fmtSecs(pendingEntry.elapsed)+'</strong> on <strong>'+esc(p.name)+'</strong>';
+  document.getElementById('stop-desc').value='';
+  document.getElementById('stop-modal').classList.remove('hidden');
+}
+function saveEntry(){
+  if(!pendingEntry)return;
+  var hours=Math.round(pendingEntry.elapsed/3600*4)/4;if(hours<0.01)hours=0.01;
+  entries.unshift({id:uid(),projectId:pendingEntry.projectId,date:TODAY,hours:hours,desc:document.getElementById('stop-desc').value.trim(),billable:true,invoiced:false});
+  timerState={running:false,projectId:null,startTime:null,elapsed:0};
+  saveTState();saveAll();cm('stop-modal');pendingEntry=null;render();
+}
+function discardEntry(){
+  timerState={running:false,projectId:null,startTime:null,elapsed:0};
+  saveTState();cm('stop-modal');pendingEntry=null;render();
+}
+function openEntryM(){
+  document.getElementById('enm-date').value=TODAY;
+  document.getElementById('enm-hours').value='';
+  document.getElementById('enm-desc').value='';
+  document.getElementById('enm-billable').value='1';
+  var sel=document.getElementById('enm-project');sel.innerHTML='';
+  projects.forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.name;sel.appendChild(o);});
+  document.getElementById('entry-modal').classList.remove('hidden');
+}
+function saveManualEntry(){
+  var hours=parseFloat(document.getElementById('enm-hours').value)||0;if(!hours)return;
+  entries.unshift({id:uid(),projectId:document.getElementById('enm-project').value,date:document.getElementById('enm-date').value,hours:hours,desc:document.getElementById('enm-desc').value.trim(),billable:document.getElementById('enm-billable').value==='1',invoiced:false});
+  saveAll();cm('entry-modal');renderTimer();
+}
+function delEntry(id){if(!confirm('Delete entry?'))return;entries=entries.filter(function(e){return e.id!==id;});saveAll();renderTimer();}
+
+function renderInvoices(){
+  var total=invoices.reduce(function(s,i){return s+i.amount;},0);
+  var paid=invoices.filter(function(i){return i.status==='Paid';}).reduce(function(s,i){return s+i.amount;},0);
+  var pending=invoices.filter(function(i){return i.status==='Sent';}).reduce(function(s,i){return s+i.amount;},0);
+
+  var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">';
+  h+='<div class="stat-card c-grn"><div class="slbl">Total Invoiced</div><div class="sval">'+fmt$(total)+'</div></div>';
+  h+='<div class="stat-card c-acc"><div class="slbl">Paid</div><div class="sval">'+fmt$(paid)+'</div></div>';
+  h+='<div class="stat-card c-amb"><div class="slbl">Pending</div><div class="sval">'+fmt$(pending)+'</div></div>';
+  h+='</div>';
+  h+='<div class="sh"><div class="st">Invoices</div><button class="btn-p" onclick="openInvM()">+ Create Invoice</button></div>';
+  if(!invoices.length){h+='<div class="empty">No invoices yet.</div>';document.getElementById('view-invoices').innerHTML=h;return;}
+  var sorted=invoices.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  sorted.forEach(function(inv,i){
+    var c=getClient(inv.clientId),p=getProject(inv.projectId);
+    var d=daysTo(inv.dueDate);
+    h+='<div class="inv-card">';
+    h+='<div class="inv-header"><div><div style="font-size:14px;font-weight:800">'+esc(c.name)+'<span style="color:var(--txt2);font-weight:400"> — '+esc(p.name)+'</span></div>';
+    h+='<div class="inv-meta">Invoice #'+(i+1)+' · '+fmtD(inv.date)+(inv.dueDate?' · Due: '+fmtD(inv.dueDate):'')+'</div></div>';
+    h+='<div class="inv-amount">'+fmt$(inv.amount)+'</div></div>';
+    h+='<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">';
+    h+=statusBadge(inv.status);
+    h+='<span style="font-size:12px;color:var(--txt2)">'+inv.hours+'h billed</span>';
+    if(inv.notes)h+='<span style="font-size:12px;color:var(--txt2)">'+esc(inv.notes)+'</span>';
+    if(d!==null&&d<0&&inv.status!=='Paid')h+='<span style="color:var(--red);font-size:12px;font-weight:600">⚠ Overdue '+Math.abs(d)+'d</span>';
+    h+='<div style="margin-left:auto;display:flex;gap:6px">';
+    if(inv.status!=='Paid')h+='<button class="btn-p btn-sm" onclick="markInvPaid(\''+inv.id+'\')">Mark Paid</button>';
+    h+='<button class="bico del" onclick="delInv(\''+inv.id+'\')">🗑️</button>';
+    h+='</div></div></div>';
+  });
+  document.getElementById('view-invoices').innerHTML=h;
+}
+function markInvPaid(id){
+  var inv=invoices.find(function(x){return x.id===id;});
+  if(inv){inv.status='Paid';var c=getClient(inv.clientId);c.totalEarned=(c.totalEarned||0)+inv.amount;saveAll();renderInvoices();}
+}
+function openInvM(){
+  var sel=document.getElementById('invm-client');sel.innerHTML='';
+  clients.forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.name+' ('+c.company+')';sel.appendChild(o);});
+  fillInvoiceProject();
+  document.getElementById('invm-date').value=TODAY;
+  var due=new Date(TODAY+'T00:00:00');due.setDate(due.getDate()+15);
+  document.getElementById('invm-due').value=due.toISOString().split('T')[0];
+  document.getElementById('invm-hours').value='';
+  document.getElementById('invm-amount').value='';
+  document.getElementById('invm-notes').value='NET 15';
+  document.getElementById('inv-modal').classList.remove('hidden');
+}
+function fillInvoiceProject(){
+  var cid=document.getElementById('invm-client').value;
+  var sel=document.getElementById('invm-project');sel.innerHTML='';
+  projects.filter(function(p){return p.clientId===cid;}).forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.name;sel.appendChild(o);});
+  calcInvoiceAmt();
+}
+function calcInvoiceAmt(){
+  var pid=document.getElementById('invm-project').value;
+  var p=getProject(pid);
+  var rate=getRate(p);
+  document.getElementById('invm-rate').value=rate;
+  var hours=parseFloat(document.getElementById('invm-hours').value)||0;
+  var r=parseFloat(document.getElementById('invm-rate').value)||rate;
+  document.getElementById('invm-amount').value=(hours*r).toFixed(2);
+}
+function saveInvoice(){
+  var amt=parseFloat(document.getElementById('invm-amount').value)||0;
+  var hours=parseFloat(document.getElementById('invm-hours').value)||0;
+  invoices.unshift({id:uid(),clientId:document.getElementById('invm-client').value,projectId:document.getElementById('invm-project').value,hours:hours,amount:amt,date:document.getElementById('invm-date').value,dueDate:document.getElementById('invm-due').value,status:'Draft',notes:document.getElementById('invm-notes').value.trim()});
+  saveAll();cm('inv-modal');render();
+}
+function delInv(id){if(!confirm('Delete?'))return;invoices=invoices.filter(function(i){return i.id!==id;});saveAll();render();}
+
+function cm(id){document.getElementById(id).classList.add('hidden');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov').forEach(function(el){el.classList.add('hidden');});});
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
+
+load(); renderDash();
+</script>
+</body>
+</html>

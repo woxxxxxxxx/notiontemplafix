@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Brain App | NotionTemplaFix</title>
+<meta name="description" content="Free Second Brain web app — capture ideas, organize notes and resources, search everything. No sign-up required.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="canonical" href="https://notiontemplafix.com/second-brain-app.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--sur:#1a1a1a;--sur2:#222;--bdr:#2a2a2a;--txt:#f0f0f0;--txt2:#a0a0a0;--acc:#6C47FF;--acc2:#8b6dff;--grn:#22c55e;--amb:#f59e0b;--red:#ef4444;--r:12px;--rs:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',sans-serif}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:0 24px;height:56px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr)}
+.back-btn{font-size:13px;color:var(--txt2);padding:5px 10px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.back-btn:hover{color:var(--txt);background:var(--sur2)}
+.app-brand{font-size:15px;font-weight:700;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;margin-left:auto}
+.tab{padding:6px 13px;border:none;background:transparent;color:var(--txt2);font-size:13px;font-weight:500;border-radius:var(--rs);transition:all .2s}
+.tab:hover{background:var(--sur2);color:var(--txt)} .tab.active{background:var(--acc);color:#fff}
+.main{padding:24px;max-width:960px;margin:0 auto}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.st{font-size:15px;font-weight:700}
+.btn-p{padding:8px 16px;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-p:hover{background:var(--acc2)} .btn-sm{padding:5px 12px;font-size:12px}
+.btn-c{padding:8px 15px;background:transparent;color:var(--txt2);border:1px solid var(--bdr);border-radius:var(--rs);font-size:13px;font-weight:600;transition:all .2s}
+.btn-c:hover{border-color:var(--txt);color:var(--txt)}
+.card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:10px;transition:border-color .2s}
+.card:hover{border-color:#3a3a3a}
+.card-title{font-size:14px;font-weight:700;margin-bottom:5px}
+.card-body{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:8px;white-space:pre-wrap}
+.card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.card-date{font-size:11px;color:var(--txt2)}
+.card-actions{display:flex;gap:5px}
+.bico{width:27px;height:27px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bico:hover{border-color:var(--acc);color:var(--acc2);background:var(--sur2)} .bico.del:hover{border-color:var(--red);color:var(--red)}
+.tags-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;background:var(--acc);background:rgba(108,71,255,.2);color:var(--acc2);cursor:pointer;transition:all .2s}
+.tag:hover,.tag.active{background:var(--acc);color:#fff}
+.tag-gray{background:var(--sur2);color:var(--txt2)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.res-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;transition:border-color .2s}
+.res-card:hover{border-color:#3a3a3a}
+.res-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.res-url{font-size:11px;color:var(--acc2);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res-desc{font-size:12px;color:var(--txt2);line-height:1.5;margin-bottom:8px}
+.res-cat{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;background:var(--sur2);color:var(--txt2)}
+.res-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.capture-wrap{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;margin-bottom:20px}
+.cap-title{font-size:18px;font-weight:800;margin-bottom:16px}
+.finp,.fsel,.ftxt{width:100%;padding:10px 12px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.finp:focus,.fsel:focus,.ftxt:focus{outline:none;border-color:var(--acc)}
+.fsel option{background:var(--sur2)} .ftxt{resize:vertical}
+.fg{margin-bottom:12px} .flbl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+.search-wrap{position:relative;margin-bottom:20px}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
+.search-inp{width:100%;padding:11px 12px 11px 38px;background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.search-inp:focus{outline:none;border-color:var(--acc)}
+.result-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--txt2);margin:16px 0 8px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+.tag-chip{padding:5px 13px;border:1px solid var(--bdr);border-radius:99px;font-size:12px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;background:transparent}
+.tag-chip:hover{border-color:var(--acc);color:var(--acc2)} .tag-chip.active{border-color:var(--acc);background:var(--acc);color:#fff}
+.tag-count{font-size:10px;opacity:.7;margin-left:3px}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-ov.hidden{display:none}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal-ttl{font-size:16px;font-weight:800;margin-bottom:16px}
+.mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.empty{text-align:center;padding:40px 20px;color:var(--txt2);font-size:13px}
+.empty-ico{font-size:36px;margin-bottom:8px}
+@media(max-width:640px){.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.res-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/my-library.html" class="back-btn">← Back to Library</a>
+  <div class="app-brand">🧠 Second Brain</div>
+  <div class="nav-tabs">
+    <button class="tab active" data-view="capture" onclick="sv('capture')">Capture</button>
+    <button class="tab" data-view="notes" onclick="sv('notes')">Notes</button>
+    <button class="tab" data-view="resources" onclick="sv('resources')">Resources</button>
+    <button class="tab" data-view="tags" onclick="sv('tags')">Tags</button>
+    <button class="tab" data-view="search" onclick="sv('search')">Search</button>
+  </div>
+</div>
+<div class="main">
+  <div id="view-capture"></div>
+  <div id="view-notes" style="display:none"></div>
+  <div id="view-resources" style="display:none"></div>
+  <div id="view-tags" style="display:none"></div>
+  <div id="view-search" style="display:none"></div>
+</div>
+
+<!-- Note Modal -->
+<div class="modal-ov hidden" id="note-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="nm-ttl">Edit Note</div>
+    <input type="hidden" id="nm-id">
+    <div class="fg"><label class="flbl">Title (optional)</label><input class="finp" id="nm-title" placeholder="Note title..."></div>
+    <div class="fg"><label class="flbl">Content</label><textarea class="ftxt" id="nm-content" rows="6" placeholder="Write your thoughts..."></textarea></div>
+    <div class="fg"><label class="flbl">Tags (comma-separated)</label><input class="finp" id="nm-tags" placeholder="books, productivity, ideas"></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('note-modal')">Cancel</button><button class="btn-p" onclick="saveNote()">Save Note</button></div>
+  </div>
+</div>
+
+<!-- Resource Modal -->
+<div class="modal-ov hidden" id="res-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="rm-ttl">Add Resource</div>
+    <input type="hidden" id="rm-id">
+    <div class="fg"><label class="flbl">Title</label><input class="finp" id="rm-title" placeholder="Resource title..."></div>
+    <div class="fg"><label class="flbl">URL</label><input class="finp" id="rm-url" placeholder="https://..." type="url"></div>
+    <div class="fg"><label class="flbl">Description</label><textarea class="ftxt" id="rm-desc" rows="3" placeholder="What is this about?"></textarea></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Category</label>
+        <select class="fsel" id="rm-cat"><option>Article</option><option>Video</option><option>Tool</option><option>Book</option><option>Course</option><option>Other</option></select>
+      </div>
+      <div class="fg"><label class="flbl">Tags</label><input class="finp" id="rm-tags" placeholder="coding, design"></div>
+    </div>
+    <div class="mfoot"><button class="btn-c" onclick="cm('res-modal')">Cancel</button><button class="btn-p" onclick="saveRes()">Save Resource</button></div>
+  </div>
+</div>
+
+<script>
+var NK='sb_notes', RK='sb_resources';
+var TODAY=new Date().toISOString().split('T')[0];
+var notes=[], resources=[], curView='capture', activeTag=null, editId=null;
+
+var SEED_NOTES=[
+  {id:'n1',title:'Atomic Habits — Key Insights',content:'Small habits compound over time. 1% better every day = 37x improvement in a year.\n\nFocus on systems, not goals. Identity-based habits work best: "I am a reader" vs "I want to read more".\n\nThe 4 laws: Make it obvious, attractive, easy, satisfying.',tags:['books','habits','productivity'],created:'2026-05-01T10:00:00Z'},
+  {id:'n2',title:'Q2 Planning Meeting Notes',content:'Key priorities for Q2:\n1. Launch mobile app by August\n2. Grow email list to 10,000 subscribers\n3. Redesign pricing page for conversion\n\nAction items: Alex handles dev, Sarah owns marketing, I take pricing page.',tags:['work','meetings'],created:'2026-05-10T14:30:00Z'},
+  {id:'n3',title:'Python asyncio Pattern',content:'Use async/await for I/O-bound tasks. asyncio.gather() for concurrent execution.\n\nBe careful with blocking calls in async context — use loop.run_in_executor() for CPU-bound work.\n\nKey insight: async is single-threaded concurrency, not parallelism.',tags:['coding','python','tech'],created:'2026-05-15T09:00:00Z'},
+  {id:'n4',title:'Morning Routine Ideas',content:'5:30 Wake up — no phone first 30 min\n5:45 Meditation (10 min)\n6:00 Exercise (30 min)\n6:35 Cold shower\n7:00 Journaling + daily planning\n\nKey: prep everything the night before.',tags:['habits','productivity','health'],created:'2026-05-18T07:00:00Z'},
+  {id:'n5',title:'Books to Read This Year',content:'1. Deep Work — Cal Newport\n2. The Psychology of Money — Morgan Housel\n3. Clear Thinking — Shane Parrish\n4. Four Thousand Weeks — Oliver Burkeman\n5. The Courage to Be Disliked — Kishimi & Koga',tags:['books','reading','list'],created:'2026-05-22T20:00:00Z'}
+];
+var SEED_RES=[
+  {id:'r1',title:'The Productivity Lab',url:'https://www.productivitylab.io',desc:'Research-backed productivity techniques and habit formation guides.',category:'Article',tags:['productivity','habits'],created:'2026-05-02T10:00:00Z'},
+  {id:'r2',title:'React Patterns Handbook',url:'https://reactpatterns.com',desc:'Common React patterns: compound components, render props, custom hooks, and more.',category:'Article',tags:['coding','react','tech'],created:'2026-05-08T11:00:00Z'},
+  {id:'r3',title:'Personal Finance 101',url:'https://www.investopedia.com/personal-finance',desc:'Comprehensive guide to budgeting, investing, and building long-term wealth.',category:'Course',tags:['finance','money'],created:'2026-05-12T09:00:00Z'},
+  {id:'r4',title:'UI Design Principles',url:'https://www.nngroup.com/articles',desc:'Nielsen Norman Group — UX research, usability heuristics, and interface design articles.',category:'Article',tags:['design','ux'],created:'2026-05-17T15:00:00Z'},
+  {id:'r5',title:'Speed Reading Techniques',url:'https://www.spreeder.com',desc:'Science-backed techniques to improve reading speed and comprehension significantly.',category:'Tool',tags:['reading','learning','books'],created:'2026-05-20T10:00:00Z'}
+];
+
+function load(){
+  var n=localStorage.getItem(NK), r=localStorage.getItem(RK);
+  notes=n?JSON.parse(n):JSON.parse(JSON.stringify(SEED_NOTES));
+  resources=r?JSON.parse(r):JSON.parse(JSON.stringify(SEED_RES));
+  if(!n)localStorage.setItem(NK,JSON.stringify(notes));
+  if(!r)localStorage.setItem(RK,JSON.stringify(resources));
+}
+function sn(){localStorage.setItem(NK,JSON.stringify(notes));}
+function sr(){localStorage.setItem(RK,JSON.stringify(resources));}
+function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function parseTags(s){return (s||'').split(',').map(function(t){return t.trim().toLowerCase();}).filter(Boolean);}
+function fmtTs(ts){var d=new Date(ts);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function fmtTagsHtml(tags){return tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join('');}
+
+function sv(v){
+  curView=v;
+  ['capture','notes','resources','tags','search'].forEach(function(n){
+    document.getElementById('view-'+n).style.display=n===v?'':'none';
+    var t=document.querySelector('.tab[data-view="'+n+'"]');
+    if(t)t.classList.toggle('active',n===v);
+  });
+  render();
+}
+function render(){
+  if(curView==='capture')renderCapture();
+  else if(curView==='notes')renderNotes();
+  else if(curView==='resources')renderResources();
+  else if(curView==='tags')renderTags();
+  else renderSearch();
+}
+
+function renderCapture(){
+  var h='<div class="capture-wrap">';
+  h+='<div class="cap-title">✨ Capture a Thought</div>';
+  h+='<div class="fg"><label class="flbl">Title (optional)</label><input class="finp" id="cap-title" placeholder="Give it a name..."></div>';
+  h+='<div class="fg"><label class="flbl">Content</label><textarea class="ftxt" id="cap-content" rows="5" placeholder="Write anything — ideas, notes, thoughts, quotes..."></textarea></div>';
+  h+='<div class="fg"><label class="flbl">Tags (comma-separated)</label><input class="finp" id="cap-tags" placeholder="ideas, work, reading..."></div>';
+  h+='<div style="text-align:right"><button class="btn-p" onclick="captureNote()">💾 Save to Notes</button></div>';
+  h+='</div>';
+  h+='<div class="sh"><div class="st">📝 Recent Notes</div><button class="btn-p btn-sm" onclick="sv(\'notes\')">See All →</button></div>';
+  notes.slice(0,3).forEach(function(n){h+=noteCardHtml(n,true);});
+  document.getElementById('view-capture').innerHTML=h;
+}
+
+function captureNote(){
+  var content=document.getElementById('cap-content').value.trim();
+  if(!content)return;
+  notes.unshift({id:uid(),title:document.getElementById('cap-title').value.trim(),content:content,tags:parseTags(document.getElementById('cap-tags').value),created:new Date().toISOString()});
+  sn(); render();
+}
+
+function renderNotes(){
+  var h='<div class="sh"><div class="st">📝 All Notes <span style="color:var(--txt2);font-weight:400;font-size:13px">('+notes.length+')</span></div><button class="btn-p" onclick="openNM(null)">+ New Note</button></div>';
+  if(!notes.length){h+='<div class="empty"><div class="empty-ico">📝</div>No notes yet. Start capturing!</div>';}
+  else notes.forEach(function(n){h+=noteCardHtml(n,false);});
+  document.getElementById('view-notes').innerHTML=h;
+}
+
+function noteCardHtml(n,minimal){
+  var preview=n.content.length>160?n.content.slice(0,160)+'…':n.content;
+  var h='<div class="card"><div class="card-title">'+(n.title?esc(n.title):'<span style="color:var(--txt2);font-style:italic">Untitled</span>')+'</div>';
+  h+='<div class="card-body">'+esc(preview)+'</div>';
+  if(n.tags.length)h+='<div class="tags-row">'+fmtTagsHtml(n.tags)+'</div>';
+  h+='<div class="card-footer"><span class="card-date">'+fmtTs(n.created)+'</span>';
+  if(!minimal)h+='<div class="card-actions"><button class="bico" onclick="openNM(\''+n.id+'\')">✏️</button><button class="bico del" onclick="delNote(\''+n.id+'\')">🗑️</button></div>';
+  h+='</div></div>';
+  return h;
+}
+
+function openNM(id){
+  editId=id;
+  var n=id?notes.find(function(x){return x.id===id;}):null;
+  document.getElementById('nm-ttl').textContent=n?'Edit Note':'New Note';
+  document.getElementById('nm-id').value=id||'';
+  document.getElementById('nm-title').value=n?n.title:'';
+  document.getElementById('nm-content').value=n?n.content:'';
+  document.getElementById('nm-tags').value=n?n.tags.join(', '):'';
+  document.getElementById('note-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('nm-content').focus();},50);
+}
+function saveNote(){
+  var content=document.getElementById('nm-content').value.trim();
+  if(!content)return;
+  var data={title:document.getElementById('nm-title').value.trim(),content:content,tags:parseTags(document.getElementById('nm-tags').value)};
+  var id=document.getElementById('nm-id').value;
+  if(id){var n=notes.find(function(x){return x.id===id;});if(n)Object.assign(n,data);}
+  else notes.unshift(Object.assign({id:uid(),created:new Date().toISOString()},data));
+  sn(); cm('note-modal'); render();
+}
+function delNote(id){if(!confirm('Delete this note?'))return;notes=notes.filter(function(n){return n.id!==id;});sn();render();}
+
+function renderResources(){
+  var h='<div class="sh"><div class="st">🔗 Resources <span style="color:var(--txt2);font-weight:400;font-size:13px">('+resources.length+')</span></div><button class="btn-p" onclick="openRM(null)">+ Add Resource</button></div>';
+  if(!resources.length){h+='<div class="empty"><div class="empty-ico">🔗</div>No resources yet. Save useful links!</div>';}
+  else{
+    h+='<div class="res-grid">';
+    resources.forEach(function(r){
+      h+='<div class="res-card"><div class="res-title">'+esc(r.title)+'</div>';
+      h+='<div class="res-url"><a href="'+esc(r.url)+'" target="_blank" rel="noopener" style="color:var(--acc2)">'+esc(r.url)+'</a></div>';
+      h+='<div class="res-desc">'+esc(r.desc)+'</div>';
+      if(r.tags.length)h+='<div class="tags-row">'+fmtTagsHtml(r.tags)+'</div>';
+      h+='<div class="res-footer"><span class="res-cat">'+esc(r.category)+'</span>';
+      h+='<div class="card-actions"><button class="bico" onclick="openRM(\''+r.id+'\')">✏️</button><button class="bico del" onclick="delRes(\''+r.id+'\')">🗑️</button></div></div>';
+      h+='</div>';
+    });
+    h+='</div>';
+  }
+  document.getElementById('view-resources').innerHTML=h;
+}
+
+function openRM(id){
+  var r=id?resources.find(function(x){return x.id===id;}):null;
+  document.getElementById('rm-ttl').textContent=r?'Edit Resource':'Add Resource';
+  document.getElementById('rm-id').value=id||'';
+  document.getElementById('rm-title').value=r?r.title:'';
+  document.getElementById('rm-url').value=r?r.url:'';
+  document.getElementById('rm-desc').value=r?r.desc:'';
+  document.getElementById('rm-cat').value=r?r.category:'Article';
+  document.getElementById('rm-tags').value=r?r.tags.join(', '):'';
+  document.getElementById('res-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('rm-title').focus();},50);
+}
+function saveRes(){
+  var title=document.getElementById('rm-title').value.trim();
+  var url=document.getElementById('rm-url').value.trim();
+  if(!title||!url)return;
+  var data={title:title,url:url,desc:document.getElementById('rm-desc').value.trim(),category:document.getElementById('rm-cat').value,tags:parseTags(document.getElementById('rm-tags').value)};
+  var id=document.getElementById('rm-id').value;
+  if(id){var r=resources.find(function(x){return x.id===id;});if(r)Object.assign(r,data);}
+  else resources.unshift(Object.assign({id:uid(),created:new Date().toISOString()},data));
+  sr(); cm('res-modal'); render();
+}
+function delRes(id){if(!confirm('Delete this resource?'))return;resources=resources.filter(function(r){return r.id!==id;});sr();render();}
+
+function renderTags(){
+  var tagMap={};
+  notes.forEach(function(n){n.tags.forEach(function(t){tagMap[t]=(tagMap[t]||0)+1;});});
+  resources.forEach(function(r){r.tags.forEach(function(t){tagMap[t]=(tagMap[t]||0)+1;});});
+  var allTags=Object.keys(tagMap).sort();
+
+  var h='<div class="sh"><div class="st">🏷️ Tag Cloud</div>';
+  if(activeTag)h+='<button class="btn-c btn-sm" onclick="activeTag=null;render()">Clear filter</button>';
+  h+='</div>';
+
+  if(!allTags.length){h+='<div class="empty"><div class="empty-ico">🏷️</div>No tags yet. Add tags to your notes.</div>';document.getElementById('view-tags').innerHTML=h;return;}
+
+  h+='<div class="tag-cloud">';
+  allTags.forEach(function(t){
+    h+='<button class="tag-chip'+(activeTag===t?' active':'')+'" onclick="activeTag=\''+esc(t)+'\';render()">'+esc(t)+'<span class="tag-count">'+tagMap[t]+'</span></button>';
+  });
+  h+='</div>';
+
+  if(activeTag){
+    var fNotes=notes.filter(function(n){return n.tags.indexOf(activeTag)>=0;});
+    var fRes=resources.filter(function(r){return r.tags.indexOf(activeTag)>=0;});
+    h+='<div class="result-label">Notes tagged "'+esc(activeTag)+'" ('+fNotes.length+')</div>';
+    if(!fNotes.length)h+='<div style="color:var(--txt2);font-size:13px;margin-bottom:12px">None found.</div>';
+    else fNotes.forEach(function(n){h+=noteCardHtml(n,true);});
+    h+='<div class="result-label">Resources tagged "'+esc(activeTag)+'" ('+fRes.length+')</div>';
+    if(!fRes.length)h+='<div style="color:var(--txt2);font-size:13px">None found.</div>';
+    else{
+      h+='<div class="res-grid">';
+      fRes.forEach(function(r){
+        h+='<div class="res-card"><div class="res-title">'+esc(r.title)+'</div>';
+        h+='<div class="res-url"><a href="'+esc(r.url)+'" target="_blank" rel="noopener" style="color:var(--acc2)">'+esc(r.url)+'</a></div>';
+        h+='<div class="res-desc">'+esc(r.desc)+'</div>';
+        h+='<div class="res-footer"><span class="res-cat">'+esc(r.category)+'</span></div></div>';
+      });
+      h+='</div>';
+    }
+  }
+  document.getElementById('view-tags').innerHTML=h;
+}
+
+function renderSearch(){
+  var h='<div class="sh"><div class="st">🔍 Search Everything</div></div>';
+  h+='<div class="search-wrap"><span class="search-ico">🔍</span><input class="search-inp" id="sq" placeholder="Search notes, resources, tags..." oninput="doSearch(this.value)"></div>';
+  h+='<div id="search-results"></div>';
+  document.getElementById('view-search').innerHTML=h;
+}
+function doSearch(q){
+  var el=document.getElementById('search-results');
+  if(!el)return;
+  q=q.trim().toLowerCase();
+  if(!q){el.innerHTML='<div style="color:var(--txt2);font-size:13px;text-align:center;padding:20px">Start typing to search...</div>';return;}
+  var fNotes=notes.filter(function(n){return (n.title+' '+n.content+' '+n.tags.join(' ')).toLowerCase().indexOf(q)>=0;});
+  var fRes=resources.filter(function(r){return (r.title+' '+r.desc+' '+r.url+' '+r.tags.join(' ')).toLowerCase().indexOf(q)>=0;});
+  var h='<div class="result-label">Notes ('+fNotes.length+')</div>';
+  if(!fNotes.length)h+='<div style="color:var(--txt2);font-size:13px;margin-bottom:12px">No notes found.</div>';
+  else fNotes.forEach(function(n){h+=noteCardHtml(n,true);});
+  h+='<div class="result-label">Resources ('+fRes.length+')</div>';
+  if(!fRes.length)h+='<div style="color:var(--txt2);font-size:13px">No resources found.</div>';
+  else{
+    h+='<div class="res-grid">';
+    fRes.forEach(function(r){
+      h+='<div class="res-card"><div class="res-title">'+esc(r.title)+'</div>';
+      h+='<div class="res-url"><a href="'+esc(r.url)+'" target="_blank" rel="noopener" style="color:var(--acc2)">'+esc(r.url)+'</a></div>';
+      h+='<div class="res-desc">'+esc(r.desc)+'</div>';
+      h+='<div class="res-footer"><span class="res-cat">'+esc(r.category)+'</span></div></div>';
+    });
+    h+='</div>';
+  }
+  el.innerHTML=h;
+}
+
+function cm(id){document.getElementById(id).classList.add('hidden');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov').forEach(function(el){el.classList.add('hidden');});});
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
+
+load(); renderCapture();
+</script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student OS App | NotionTemplaFix</title>
+<meta name="description" content="Free Student OS web app — manage courses, assignments, exams, and track your GPA. No sign-up required.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="canonical" href="https://notiontemplafix.com/student-os-app.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--sur:#1a1a1a;--sur2:#222;--bdr:#2a2a2a;--txt:#f0f0f0;--txt2:#a0a0a0;--acc:#6C47FF;--acc2:#8b6dff;--grn:#22c55e;--amb:#f59e0b;--red:#ef4444;--r:12px;--rs:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',sans-serif}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:0 24px;height:56px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr)}
+.back-btn{font-size:13px;color:var(--txt2);padding:5px 10px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.back-btn:hover{color:var(--txt);background:var(--sur2)}
+.app-brand{font-size:15px;font-weight:700;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;margin-left:auto}
+.tab{padding:6px 12px;border:none;background:transparent;color:var(--txt2);font-size:13px;font-weight:500;border-radius:var(--rs);transition:all .2s}
+.tab:hover{background:var(--sur2);color:var(--txt)} .tab.active{background:var(--acc);color:#fff}
+.main{padding:24px;max-width:1060px;margin:0 auto}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px}
+.slbl{font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sval{font-size:24px;font-weight:800;line-height:1} .ssub{font-size:11px;color:var(--txt2);margin-top:3px}
+.c-acc .sval{color:var(--acc2)} .c-grn .sval{color:var(--grn)} .c-amb .sval{color:var(--amb)} .c-red .sval{color:var(--red)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.st{font-size:15px;font-weight:700}
+.btn-p{padding:8px 15px;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-p:hover{background:var(--acc2)} .btn-sm{padding:5px 11px;font-size:12px}
+.btn-c{padding:8px 14px;background:transparent;color:var(--txt2);border:1px solid var(--bdr);border-radius:var(--rs);font-size:13px;font-weight:600;transition:all .2s}
+.btn-c:hover{border-color:var(--txt);color:var(--txt)}
+.table{width:100%;border-collapse:collapse;background:var(--sur);border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);margin-bottom:16px}
+.table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt2);border-bottom:1px solid var(--bdr);background:var(--sur2)}
+.table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--bdr);vertical-align:middle}
+.table tr:last-child td{border-bottom:none}
+.table tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600}
+.b-todo{background:#2a2a2a;color:var(--txt2)} .b-prog{background:#6C47FF22;color:var(--acc2)} .b-done{background:#22c55e22;color:var(--grn)} .b-late{background:#ef444422;color:var(--red)}
+.b-hi{background:#ef444422;color:var(--red)} .b-med{background:#f59e0b22;color:var(--amb)} .b-lo{background:#22c55e22;color:var(--grn)}
+.pbar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;margin-top:3px}
+.pfill{height:100%;background:var(--acc);border-radius:3px;transition:width .4s}
+.pfill.grn{background:var(--grn)} .pfill.red{background:var(--red)}
+.course-tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600}
+.exam-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:10px}
+.exam-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.countdown{font-size:28px;font-weight:800;color:var(--acc2);margin:8px 0}
+.countdown.soon{color:var(--red)}
+.gpa-big{font-size:56px;font-weight:800;color:var(--acc2);line-height:1;margin-bottom:4px}
+.gpa-lbl{font-size:13px;color:var(--txt2)}
+.gpa-panel{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:20px}
+.dash-section{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.dash-section-title{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--txt2)}
+.bico{width:27px;height:27px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bico:hover{border-color:var(--acc);color:var(--acc2);background:var(--sur2)} .bico.del:hover{border-color:var(--red);color:var(--red)}
+.act-row{display:flex;gap:5px}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-ov.hidden{display:none}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-ttl{font-size:15px;font-weight:800;margin-bottom:16px}
+.fg{margin-bottom:12px} .flbl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+.finp,.fsel,.ftxt{width:100%;padding:9px 11px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.finp:focus,.fsel:focus,.ftxt:focus{outline:none;border-color:var(--acc)}
+.fsel option{background:var(--sur2)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
+.review-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.review-lbl{font-size:13px;font-weight:600;flex:1}
+@media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.frow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/my-library.html" class="back-btn">← Back to Library</a>
+  <div class="app-brand">🎓 Student OS</div>
+  <div class="nav-tabs">
+    <button class="tab active" data-view="dashboard" onclick="sv('dashboard')">Dashboard</button>
+    <button class="tab" data-view="courses" onclick="sv('courses')">Courses</button>
+    <button class="tab" data-view="assignments" onclick="sv('assignments')">Assignments</button>
+    <button class="tab" data-view="exams" onclick="sv('exams')">Exams</button>
+    <button class="tab" data-view="gpa" onclick="sv('gpa')">GPA</button>
+  </div>
+</div>
+<div class="main">
+  <div id="view-dashboard"></div>
+  <div id="view-courses" style="display:none"></div>
+  <div id="view-assignments" style="display:none"></div>
+  <div id="view-exams" style="display:none"></div>
+  <div id="view-gpa" style="display:none"></div>
+</div>
+
+<!-- Course Modal -->
+<div class="modal-ov hidden" id="cm-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="cm-ttl">Add Course</div>
+    <input type="hidden" id="cm-id">
+    <div class="fg"><label class="flbl">Course Name</label><input class="finp" id="cm-name" placeholder="e.g. CS301 Algorithms"></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Professor</label><input class="finp" id="cm-prof" placeholder="Prof. Smith"></div>
+      <div class="fg"><label class="flbl">Credits</label><input class="finp" id="cm-cred" type="number" min="1" max="6" value="3"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Schedule</label><input class="finp" id="cm-sched" placeholder="Mon/Wed 10:00 AM"></div>
+      <div class="fg"><label class="flbl">Color</label>
+        <select class="fsel" id="cm-color"><option value="#6C47FF">Purple</option><option value="#22c55e">Green</option><option value="#f59e0b">Amber</option><option value="#ef4444">Red</option><option value="#3b82f6">Blue</option><option value="#ec4899">Pink</option></select>
+      </div>
+    </div>
+    <div class="mfoot"><button class="btn-c" onclick="closeM('cm-modal')">Cancel</button><button class="btn-p" onclick="saveCourse()">Save</button></div>
+  </div>
+</div>
+
+<!-- Assignment Modal -->
+<div class="modal-ov hidden" id="am-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="am-ttl">Add Assignment</div>
+    <input type="hidden" id="am-id">
+    <div class="fg"><label class="flbl">Title</label><input class="finp" id="am-title" placeholder="Assignment title..."></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Course</label>
+        <select class="fsel" id="am-course"></select>
+      </div>
+      <div class="fg"><label class="flbl">Due Date</label><input class="finp" id="am-due" type="date"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Priority</label>
+        <select class="fsel" id="am-pri"><option>High</option><option>Medium</option><option>Low</option></select>
+      </div>
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="am-status"><option>Todo</option><option>In Progress</option><option>Done</option></select>
+      </div>
+    </div>
+    <div class="fg"><label class="flbl">Notes (optional)</label><input class="finp" id="am-notes" placeholder="Any extra notes..."></div>
+    <div class="mfoot"><button class="btn-c" onclick="closeM('am-modal')">Cancel</button><button class="btn-p" onclick="saveAssign()">Save</button></div>
+  </div>
+</div>
+
+<!-- Exam Modal -->
+<div class="modal-ov hidden" id="em-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="em-ttl">Add Exam</div>
+    <input type="hidden" id="em-id">
+    <div class="fg"><label class="flbl">Exam Title</label><input class="finp" id="em-title" placeholder="e.g. Midterm Exam"></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Course</label><select class="fsel" id="em-course"></select></div>
+      <div class="fg"><label class="flbl">Date</label><input class="finp" id="em-date" type="date"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Time</label><input class="finp" id="em-time" type="time"></div>
+      <div class="fg"><label class="flbl">Location</label><input class="finp" id="em-loc" placeholder="Room 204"></div>
+    </div>
+    <div class="fg"><label class="flbl">Review Progress (%)</label><input class="finp" id="em-review" type="number" min="0" max="100" value="0"></div>
+    <div class="mfoot"><button class="btn-c" onclick="closeM('em-modal')">Cancel</button><button class="btn-p" onclick="saveExam()">Save</button></div>
+  </div>
+</div>
+
+<!-- Grade Modal -->
+<div class="modal-ov hidden" id="gm-modal">
+  <div class="modal">
+    <div class="modal-ttl">Add Grade</div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Course</label><select class="fsel" id="gm-course"></select></div>
+      <div class="fg"><label class="flbl">Letter Grade</label>
+        <select class="fsel" id="gm-grade"><option>A+</option><option>A</option><option>A-</option><option>B+</option><option>B</option><option>B-</option><option>C+</option><option>C</option><option>C-</option><option>D+</option><option>D</option><option>F</option></select>
+      </div>
+    </div>
+    <div class="fg"><label class="flbl">Assignment / Exam Name</label><input class="finp" id="gm-name" placeholder="e.g. Midterm Exam"></div>
+    <div class="mfoot"><button class="btn-c" onclick="closeM('gm-modal')">Cancel</button><button class="btn-p" onclick="saveGrade()">Save</button></div>
+  </div>
+</div>
+
+<script>
+var CK='sos_courses', AK='sos_assign', EK='sos_exams', GK='sos_grades';
+var TODAY=new Date().toISOString().split('T')[0];
+var courses=[], assignments=[], exams=[], grades=[], curView='dashboard', editId=null;
+
+var SEED_C=[
+  {id:'c1',name:'CS301 Algorithms',professor:'Prof. Chen',credits:3,schedule:'Mon/Wed 10:00 AM',color:'#6C47FF'},
+  {id:'c2',name:'ECON201 Macroeconomics',professor:'Prof. Williams',credits:3,schedule:'Tue/Thu 2:00 PM',color:'#22c55e'},
+  {id:'c3',name:'MATH302 Linear Algebra',professor:'Prof. Davis',credits:4,schedule:'Mon/Wed/Fri 9:00 AM',color:'#f59e0b'}
+];
+var SEED_A=[
+  {id:'a1',title:'Algorithm Analysis Report',courseId:'c1',due:'2026-06-10',priority:'High',status:'In Progress',notes:'Focus on Big-O analysis'},
+  {id:'a2',title:'Problem Set 5',courseId:'c1',due:'2026-06-05',priority:'Medium',status:'Todo',notes:''},
+  {id:'a3',title:'Macro Policy Essay',courseId:'c2',due:'2026-06-15',priority:'High',status:'Todo',notes:'1500 words on monetary policy'},
+  {id:'a4',title:'Matrix Operations Worksheet',courseId:'c3',due:'2026-06-03',priority:'Low',status:'Done',notes:''},
+  {id:'a5',title:'Economic Data Analysis',courseId:'c2',due:'2026-06-20',priority:'Medium',status:'Todo',notes:'Use provided dataset'}
+];
+var SEED_E=[
+  {id:'e1',title:'Midterm Exam',courseId:'c1',date:'2026-06-12',time:'10:00',location:'Hall B, Room 204',review:65},
+  {id:'e2',title:'Final Exam',courseId:'c2',date:'2026-07-02',time:'14:00',location:'Main Hall',review:20},
+  {id:'e3',title:'Final Exam',courseId:'c3',date:'2026-06-25',time:'09:00',location:'Math Building 301',review:40}
+];
+var SEED_G=[
+  {id:'g1',courseId:'c1',grade:'B+',name:'Quiz 1'},{id:'g2',courseId:'c1',grade:'A-',name:'Quiz 2'},
+  {id:'g3',courseId:'c2',grade:'A',name:'Midterm'},{id:'g4',courseId:'c2',grade:'B',name:'Quiz 1'},
+  {id:'g5',courseId:'c3',grade:'A-',name:'Midterm'},{id:'g6',courseId:'c3',grade:'A',name:'Homework 1'}
+];
+
+var GP={A:4.0,'A+':4.0,'A-':3.7,'B+':3.3,'B':3.0,'B-':2.7,'C+':2.3,'C':2.0,'C-':1.7,'D+':1.3,'D':1.0,'F':0.0};
+
+function load(){
+  courses=JSON.parse(localStorage.getItem(CK)||'null')||JSON.parse(JSON.stringify(SEED_C));
+  assignments=JSON.parse(localStorage.getItem(AK)||'null')||JSON.parse(JSON.stringify(SEED_A));
+  exams=JSON.parse(localStorage.getItem(EK)||'null')||JSON.parse(JSON.stringify(SEED_E));
+  grades=JSON.parse(localStorage.getItem(GK)||'null')||JSON.parse(JSON.stringify(SEED_G));
+  ['courses','assignments','exams','grades'].forEach(function(k){
+    if(!localStorage.getItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k]))
+      localStorage.setItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k],JSON.stringify(eval(k)));
+  });
+}
+function save(){localStorage.setItem(CK,JSON.stringify(courses));localStorage.setItem(AK,JSON.stringify(assignments));localStorage.setItem(EK,JSON.stringify(exams));localStorage.setItem(GK,JSON.stringify(grades));}
+function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function daysTo(ds){if(!ds)return null;return Math.round((new Date(ds+'T00:00:00')-new Date(TODAY+'T00:00:00'))/86400000);}
+function fmtD(ds){if(!ds)return '';return new Date(ds+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function getCourse(id){return courses.find(function(c){return c.id===id;})||{name:'Unknown',color:'#666'};}
+function calcGPA(){
+  var total=0,cred=0;
+  grades.forEach(function(g){
+    var c=getCourse(g.courseId);
+    var pts=GP[g.grade]||0;
+    total+=pts*c.credits;cred+=c.credits;
+  });
+  return cred>0?(total/cred).toFixed(2):'-';
+}
+function statusBadge(s){
+  if(s==='Done')return '<span class="badge b-done">Done</span>';
+  if(s==='In Progress')return '<span class="badge b-prog">In Progress</span>';
+  return '<span class="badge b-todo">Todo</span>';
+}
+function priBadge(p){
+  if(p==='High')return '<span class="badge b-hi">High</span>';
+  if(p==='Medium')return '<span class="badge b-med">Med</span>';
+  return '<span class="badge b-lo">Low</span>';
+}
+
+function sv(v){
+  curView=v;
+  ['dashboard','courses','assignments','exams','gpa'].forEach(function(n){
+    document.getElementById('view-'+n).style.display=n===v?'':'none';
+    var t=document.querySelector('.tab[data-view="'+n+'"]');
+    if(t)t.classList.toggle('active',n===v);
+  });
+  render();
+}
+function render(){
+  if(curView==='dashboard')renderDash();
+  else if(curView==='courses')renderCourses();
+  else if(curView==='assignments')renderAssign();
+  else if(curView==='exams')renderExams();
+  else renderGPA();
+}
+
+function renderDash(){
+  var done=assignments.filter(function(a){return a.status==='Done';}).length;
+  var upcoming=assignments.filter(function(a){var d=daysTo(a.due);return a.status!=='Done'&&d!==null&&d>=0&&d<=7;}).length;
+  var nextExam=exams.filter(function(e){return daysTo(e.date)>=0;}).sort(function(a,b){return new Date(a.date)-new Date(b.date);})[0];
+  var gpa=calcGPA();
+  var h='<div class="stat-grid">';
+  h+=sc(courses.length,'Courses','Enrolled this term','');
+  h+=sc(upcoming,'Due This Week','Assignments due soon','c-amb');
+  h+=sc(nextExam?daysTo(nextExam.date)+'d':'—','Next Exam','Days remaining',daysTo(nextExam&&nextExam.date)<=7?'c-red':'c-acc');
+  h+=sc(gpa,'Current GPA','Cumulative','c-grn');
+  h+='</div>';
+
+  var todo=assignments.filter(function(a){return a.status!=='Done'&&daysTo(a.due)>=0;}).sort(function(a,b){return new Date(a.due)-new Date(b.due);}).slice(0,5);
+  h+='<div class="dash-section"><div class="dash-section-title">📋 UPCOMING ASSIGNMENTS</div>';
+  if(!todo.length)h+='<div style="color:var(--txt2);font-size:13px">No upcoming assignments.</div>';
+  else{
+    h+='<table class="table"><thead><tr><th>Assignment</th><th>Course</th><th>Due</th><th>Priority</th><th>Status</th></tr></thead><tbody>';
+    todo.forEach(function(a){
+      var c=getCourse(a.courseId);
+      h+='<tr><td style="font-weight:600">'+esc(a.title)+'</td>';
+      h+='<td><span class="course-tag" style="background:'+c.color+'22;color:'+c.color+'">'+esc(c.name.split(' ')[0])+'</span></td>';
+      h+='<td style="color:'+(daysTo(a.due)<=3?'var(--red)':'var(--txt2)')+'">'+fmtD(a.due)+'</td>';
+      h+='<td>'+priBadge(a.priority)+'</td><td>'+statusBadge(a.status)+'</td></tr>';
+    });
+    h+='</tbody></table>';
+  }
+  h+='</div>';
+
+  h+='<div class="dash-section"><div class="dash-section-title">📅 UPCOMING EXAMS</div>';
+  var upExams=exams.filter(function(e){var d=daysTo(e.date);return d!==null&&d>=0;}).sort(function(a,b){return new Date(a.date)-new Date(b.date);}).slice(0,3);
+  if(!upExams.length)h+='<div style="color:var(--txt2);font-size:13px">No upcoming exams.</div>';
+  else upExams.forEach(function(e){
+    var c=getCourse(e.courseId), d=daysTo(e.date);
+    h+='<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bdr)">';
+    h+='<div><div style="font-size:13px;font-weight:700">'+esc(e.title)+' — <span style="color:'+c.color+'">'+esc(c.name)+'</span></div>';
+    h+='<div style="font-size:12px;color:var(--txt2);margin-top:2px">'+fmtD(e.date)+(e.time?' at '+e.time:'')+(e.location?' · '+esc(e.location):'')+'</div></div>';
+    h+='<div style="font-size:18px;font-weight:800;color:'+(d<=7?'var(--red)':'var(--acc2)')+'">'+d+'d</div></div>';
+  });
+  h+='</div>';
+  document.getElementById('view-dashboard').innerHTML=h;
+}
+function sc(v,l,s,c){return '<div class="stat-card '+c+'"><div class="slbl">'+l+'</div><div class="sval">'+v+'</div><div class="ssub">'+s+'</div></div>';}
+
+function renderCourses(){
+  var h='<div class="sh"><div class="st">My Courses</div><button class="btn-p" onclick="openCM(null)">+ Add Course</button></div>';
+  if(!courses.length){h+='<div class="empty">No courses yet.</div>';document.getElementById('view-courses').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Course</th><th>Professor</th><th>Credits</th><th>Schedule</th><th>Actions</th></tr></thead><tbody>';
+  courses.forEach(function(c){
+    h+='<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+c.color+';margin-right:8px"></span><span style="font-weight:600">'+esc(c.name)+'</span></td>';
+    h+='<td style="color:var(--txt2)">'+esc(c.professor)+'</td>';
+    h+='<td style="color:var(--txt2)">'+c.credits+' cr</td>';
+    h+='<td style="color:var(--txt2)">'+esc(c.schedule)+'</td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openCM(\''+c.id+'\')">✏️</button><button class="bico del" onclick="delCourse(\''+c.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-courses').innerHTML=h;
+}
+
+function openCM(id){
+  var c=id?courses.find(function(x){return x.id===id;}):null;
+  document.getElementById('cm-ttl').textContent=c?'Edit Course':'Add Course';
+  document.getElementById('cm-id').value=id||'';
+  document.getElementById('cm-name').value=c?c.name:'';
+  document.getElementById('cm-prof').value=c?c.professor:'';
+  document.getElementById('cm-cred').value=c?c.credits:3;
+  document.getElementById('cm-sched').value=c?c.schedule:'';
+  document.getElementById('cm-color').value=c?c.color:'#6C47FF';
+  document.getElementById('cm-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('cm-name').focus();},50);
+}
+function saveCourse(){
+  var name=document.getElementById('cm-name').value.trim();if(!name)return;
+  var data={name:name,professor:document.getElementById('cm-prof').value.trim(),credits:parseInt(document.getElementById('cm-cred').value)||3,schedule:document.getElementById('cm-sched').value.trim(),color:document.getElementById('cm-color').value};
+  var id=document.getElementById('cm-id').value;
+  if(id){var c=courses.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else courses.push(Object.assign({id:uid()},data));
+  save();closeM('cm-modal');render();
+}
+function delCourse(id){if(!confirm('Delete course and related data?'))return;courses=courses.filter(function(c){return c.id!==id;});save();render();}
+
+function renderAssign(){
+  var sorted=assignments.slice().sort(function(a,b){
+    if(a.status==='Done'&&b.status!=='Done')return 1;
+    if(a.status!=='Done'&&b.status==='Done')return -1;
+    return new Date(a.due)-new Date(b.due);
+  });
+  var h='<div class="sh"><div class="st">Assignments</div><button class="btn-p" onclick="openAM(null)">+ Add Assignment</button></div>';
+  if(!sorted.length){h+='<div class="empty">No assignments yet.</div>';document.getElementById('view-assignments').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Title</th><th>Course</th><th>Due Date</th><th>Priority</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+  sorted.forEach(function(a){
+    var c=getCourse(a.courseId), d=daysTo(a.due);
+    var dStr=fmtD(a.due)+(d!==null&&d<0&&a.status!=='Done'?'<span style="color:var(--red);font-size:11px;margin-left:4px">Overdue</span>':'');
+    h+='<tr><td style="font-weight:600">'+esc(a.title)+'</td>';
+    h+='<td><span class="course-tag" style="background:'+c.color+'22;color:'+c.color+'">'+esc(c.name.split(' ')[0])+'</span></td>';
+    h+='<td>'+dStr+'</td>';
+    h+='<td>'+priBadge(a.priority)+'</td>';
+    h+='<td><select onchange="changeStatus(\''+a.id+'\',this.value)" style="background:var(--sur2);border:1px solid var(--bdr);color:var(--txt);border-radius:6px;padding:3px 6px;font-size:12px">';
+    ['Todo','In Progress','Done'].forEach(function(s){h+='<option'+(a.status===s?' selected':'')+'>'+s+'</option>';});
+    h+='</select></td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openAM(\''+a.id+'\')">✏️</button><button class="bico del" onclick="delAssign(\''+a.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-assignments').innerHTML=h;
+}
+function changeStatus(id,s){var a=assignments.find(function(x){return x.id===id;});if(a){a.status=s;save();if(curView==='assignments')renderAssign();}}
+
+function populateCourseSelect(selId,val){
+  var sel=document.getElementById(selId);if(!sel)return;
+  sel.innerHTML='';courses.forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.name;if(c.id===val)o.selected=true;sel.appendChild(o);});
+}
+function openAM(id){
+  var a=id?assignments.find(function(x){return x.id===id;}):null;
+  document.getElementById('am-ttl').textContent=a?'Edit Assignment':'Add Assignment';
+  document.getElementById('am-id').value=id||'';
+  document.getElementById('am-title').value=a?a.title:'';
+  document.getElementById('am-due').value=a?a.due:'';
+  document.getElementById('am-pri').value=a?a.priority:'Medium';
+  document.getElementById('am-status').value=a?a.status:'Todo';
+  document.getElementById('am-notes').value=a?a.notes:'';
+  populateCourseSelect('am-course',a?a.courseId:null);
+  document.getElementById('am-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('am-title').focus();},50);
+}
+function saveAssign(){
+  var title=document.getElementById('am-title').value.trim();if(!title)return;
+  var data={title:title,courseId:document.getElementById('am-course').value,due:document.getElementById('am-due').value,priority:document.getElementById('am-pri').value,status:document.getElementById('am-status').value,notes:document.getElementById('am-notes').value.trim()};
+  var id=document.getElementById('am-id').value;
+  if(id){var a=assignments.find(function(x){return x.id===id;});if(a)Object.assign(a,data);}else assignments.push(Object.assign({id:uid()},data));
+  save();closeM('am-modal');render();
+}
+function delAssign(id){if(!confirm('Delete?'))return;assignments=assignments.filter(function(a){return a.id!==id;});save();render();}
+
+function renderExams(){
+  var sorted=exams.slice().sort(function(a,b){return new Date(a.date)-new Date(b.date);});
+  var h='<div class="sh"><div class="st">Exams</div><button class="btn-p" onclick="openEM(null)">+ Add Exam</button></div>';
+  sorted.forEach(function(e){
+    var c=getCourse(e.courseId), d=daysTo(e.date);
+    h+='<div class="exam-card">';
+    h+='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">';
+    h+='<div><div class="exam-title">'+esc(e.title)+'</div>';
+    h+='<div style="font-size:12px;color:'+c.color+'">'+esc(c.name)+'</div>';
+    h+='<div style="font-size:12px;color:var(--txt2);margin-top:4px">'+fmtD(e.date)+(e.time?' at '+e.time:'')+(e.location?' · 📍 '+esc(e.location):'')+'</div></div>';
+    h+='<div style="text-align:right">';
+    h+='<div class="countdown'+(d!==null&&d<=7?' soon':'')+'">'+( d!==null?(d>=0?d+'d':'Past'):'—')+'</div>';
+    h+='<div style="font-size:11px;color:var(--txt2)">'+(d!==null&&d>=0?'days left':'')+'</div>';
+    h+='<div class="act-row" style="justify-content:flex-end;margin-top:6px"><button class="bico" onclick="openEM(\''+e.id+'\')">✏️</button><button class="bico del" onclick="delExam(\''+e.id+'\')">🗑️</button></div>';
+    h+='</div></div>';
+    h+='<div style="margin-top:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:var(--txt2)">Review Progress</span><span style="font-size:12px;font-weight:700">'+e.review+'%</span></div>';
+    h+='<div class="pbar"><div class="pfill'+(e.review>=80?' grn':e.review<30?' red':'')+'" style="width:'+e.review+'%"></div></div></div>';
+    h+='</div>';
+  });
+  if(!exams.length)h+='<div class="empty">No exams yet.</div>';
+  document.getElementById('view-exams').innerHTML=h;
+}
+function openEM(id){
+  var e=id?exams.find(function(x){return x.id===id;}):null;
+  document.getElementById('em-ttl').textContent=e?'Edit Exam':'Add Exam';
+  document.getElementById('em-id').value=id||'';
+  document.getElementById('em-title').value=e?e.title:'';
+  document.getElementById('em-date').value=e?e.date:'';
+  document.getElementById('em-time').value=e?e.time:'';
+  document.getElementById('em-loc').value=e?e.location:'';
+  document.getElementById('em-review').value=e?e.review:0;
+  populateCourseSelect('em-course',e?e.courseId:null);
+  document.getElementById('em-modal').classList.remove('hidden');
+}
+function saveExam(){
+  var title=document.getElementById('em-title').value.trim();if(!title)return;
+  var data={title:title,courseId:document.getElementById('em-course').value,date:document.getElementById('em-date').value,time:document.getElementById('em-time').value,location:document.getElementById('em-loc').value.trim(),review:Math.min(100,Math.max(0,parseInt(document.getElementById('em-review').value)||0))};
+  var id=document.getElementById('em-id').value;
+  if(id){var e=exams.find(function(x){return x.id===id;});if(e)Object.assign(e,data);}else exams.push(Object.assign({id:uid()},data));
+  save();closeM('em-modal');render();
+}
+function delExam(id){if(!confirm('Delete?'))return;exams=exams.filter(function(e){return e.id!==id;});save();render();}
+
+function renderGPA(){
+  var gpa=calcGPA();
+  var h='<div class="gpa-panel"><div class="gpa-big">'+gpa+'</div><div class="gpa-lbl">Cumulative GPA</div></div>';
+  h+='<div class="sh"><div class="st">Grade Records</div><button class="btn-p" onclick="openGM()">+ Add Grade</button></div>';
+  if(!grades.length){h+='<div class="empty">No grades recorded yet.</div>';document.getElementById('view-gpa').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Course</th><th>Assignment/Exam</th><th>Grade</th><th>Points</th><th></th></tr></thead><tbody>';
+  grades.forEach(function(g){
+    var c=getCourse(g.courseId);
+    h+='<tr><td><span class="course-tag" style="background:'+c.color+'22;color:'+c.color+'">'+esc(c.name.split(' ')[0])+'</span></td>';
+    h+='<td style="color:var(--txt2)">'+esc(g.name)+'</td>';
+    h+='<td style="font-size:16px;font-weight:800;color:var(--grn)">'+g.grade+'</td>';
+    h+='<td style="color:var(--txt2)">'+GP[g.grade]+'</td>';
+    h+='<td><button class="bico del" onclick="delGrade(\''+g.id+'\')">🗑️</button></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-gpa').innerHTML=h;
+}
+function openGM(){
+  populateCourseSelect('gm-course',null);
+  document.getElementById('gm-name').value='';
+  document.getElementById('gm-grade').value='A';
+  document.getElementById('gm-modal').classList.remove('hidden');
+}
+function saveGrade(){
+  var name=document.getElementById('gm-name').value.trim();if(!name)return;
+  grades.push({id:uid(),courseId:document.getElementById('gm-course').value,grade:document.getElementById('gm-grade').value,name:name});
+  save();closeM('gm-modal');render();
+}
+function delGrade(id){if(!confirm('Delete?'))return;grades=grades.filter(function(g){return g.id!==id;});save();render();}
+
+function closeM(id){document.getElementById(id).classList.add('hidden');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov').forEach(function(el){el.classList.add('hidden');});});
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
+
+load(); renderDash();
+</script>
+</body>
+</html>

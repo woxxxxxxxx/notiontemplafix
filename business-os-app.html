@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business OS | NotionTemplaFix</title>
+<meta name="description" content="Free Business OS web app — manage clients, projects, tasks, finances and OKRs. No sign-up required.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="canonical" href="https://notiontemplafix.com/business-os-app.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--sur:#1a1a1a;--sur2:#222;--bdr:#2a2a2a;--txt:#f0f0f0;--txt2:#a0a0a0;--acc:#6C47FF;--acc2:#8b6dff;--grn:#22c55e;--amb:#f59e0b;--red:#ef4444;--r:12px;--rs:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',sans-serif}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:0 24px;height:56px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr)}
+.back-btn{font-size:13px;color:var(--txt2);padding:5px 10px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.back-btn:hover{color:var(--txt);background:var(--sur2)}
+.app-brand{font-size:15px;font-weight:700;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;margin-left:auto}
+.tab{padding:6px 11px;border:none;background:transparent;color:var(--txt2);font-size:12px;font-weight:500;border-radius:var(--rs);transition:all .2s}
+.tab:hover{background:var(--sur2);color:var(--txt)} .tab.active{background:var(--acc);color:#fff}
+.main{padding:24px;max-width:1100px;margin:0 auto}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px}
+.slbl{font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sval{font-size:24px;font-weight:800;line-height:1} .ssub{font-size:11px;color:var(--txt2);margin-top:3px}
+.c-acc .sval{color:var(--acc2)} .c-grn .sval{color:var(--grn)} .c-amb .sval{color:var(--amb)} .c-red .sval{color:var(--red)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.st{font-size:15px;font-weight:700}
+.btn-p{padding:8px 15px;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-p:hover{background:var(--acc2)} .btn-sm{padding:5px 11px;font-size:12px}
+.btn-c{padding:8px 14px;background:transparent;color:var(--txt2);border:1px solid var(--bdr);border-radius:var(--rs);font-size:13px;font-weight:600;transition:all .2s}
+.btn-c:hover{border-color:var(--txt);color:var(--txt)}
+.table{width:100%;border-collapse:collapse;background:var(--sur);border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);margin-bottom:16px}
+.table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt2);border-bottom:1px solid var(--bdr);background:var(--sur2)}
+.table td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--bdr);vertical-align:middle}
+.table tr:last-child td{border-bottom:none} .table tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600}
+.b-active{background:#22c55e22;color:var(--grn)} .b-inactive{background:#2a2a2a;color:var(--txt2)} .b-lead{background:#6C47FF22;color:var(--acc2)}
+.b-todo{background:#2a2a2a;color:var(--txt2)} .b-prog{background:#6C47FF22;color:var(--acc2)} .b-done{background:#22c55e22;color:var(--grn)}
+.b-onhold{background:#f59e0b22;color:var(--amb)} .b-completed{background:#22c55e22;color:var(--grn)}
+.b-hi{background:#ef444422;color:var(--red)} .b-med{background:#f59e0b22;color:var(--amb)} .b-lo{background:#22c55e22;color:var(--grn)}
+.b-paid{background:#22c55e22;color:var(--grn)} .b-pending{background:#f59e0b22;color:var(--amb)} .b-overdue{background:#ef444422;color:var(--red)}
+.pbar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden}
+.pfill{height:100%;background:var(--acc);border-radius:3px;transition:width .4s}
+.pfill.grn{background:var(--grn)}
+.bico{width:27px;height:27px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bico:hover{border-color:var(--acc);color:var(--acc2)} .bico.del:hover{border-color:var(--red);color:var(--red)}
+.act-row{display:flex;gap:5px}
+/* Kanban */
+.kanban{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}
+.kb-col{flex:0 0 260px;background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden}
+.kb-hdr{padding:12px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr);color:var(--txt2)}
+.kb-cnt{padding:10px;min-height:120px}
+.kb-card{background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px;margin-bottom:8px}
+.kb-title{font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.kb-meta{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:4px}
+.kb-proj{font-size:11px;color:var(--acc2);font-weight:500}
+.kb-due{font-size:11px;color:var(--txt2)}
+.kb-actions{display:flex;gap:4px;justify-content:flex-end;margin-top:6px}
+.status-btn{padding:3px 8px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s}
+.status-btn:hover{border-color:var(--acc);color:var(--acc2)}
+/* OKR */
+.okr-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.okr-obj{font-size:15px;font-weight:800;margin-bottom:4px}
+.okr-quarter{font-size:11px;color:var(--acc2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.kr-item{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.kr-text{font-size:13px;font-weight:500;flex:1;min-width:0}
+.kr-pct{font-size:12px;font-weight:700;width:36px;text-align:right;color:var(--acc2);flex-shrink:0}
+.kr-input{width:60px;padding:4px 8px;background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;color:var(--txt);font-size:12px;text-align:center}
+.kr-input:focus{outline:none;border-color:var(--acc)}
+/* Dash mini cards */
+.dash-section{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.dash-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--txt2);margin-bottom:12px}
+/* Modal */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-ov.hidden{display:none}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-ttl{font-size:15px;font-weight:800;margin-bottom:16px}
+.fg{margin-bottom:12px} .flbl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+.finp,.fsel,.ftxt{width:100%;padding:9px 11px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.finp:focus,.fsel:focus,.ftxt:focus{outline:none;border-color:var(--acc)} .fsel option{background:var(--sur2)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
+@media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 8px;font-size:11px}.main{padding:14px}.frow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="/my-library.html" class="back-btn">← Back to Library</a>
+  <div class="app-brand">🏢 Business OS</div>
+  <div class="nav-tabs">
+    <button class="tab active" data-view="dashboard" onclick="sv('dashboard')">Dashboard</button>
+    <button class="tab" data-view="clients" onclick="sv('clients')">Clients</button>
+    <button class="tab" data-view="projects" onclick="sv('projects')">Projects</button>
+    <button class="tab" data-view="tasks" onclick="sv('tasks')">Tasks</button>
+    <button class="tab" data-view="finance" onclick="sv('finance')">Finance</button>
+    <button class="tab" data-view="okrs" onclick="sv('okrs')">OKRs</button>
+  </div>
+</div>
+<div class="main">
+  <div id="view-dashboard"></div>
+  <div id="view-clients" style="display:none"></div>
+  <div id="view-projects" style="display:none"></div>
+  <div id="view-tasks" style="display:none"></div>
+  <div id="view-finance" style="display:none"></div>
+  <div id="view-okrs" style="display:none"></div>
+</div>
+
+<!-- Client Modal -->
+<div class="modal-ov hidden" id="cm-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="cm-ttl">Add Client</div>
+    <input type="hidden" id="cm-id">
+    <div class="frow">
+      <div class="fg"><label class="flbl">Company</label><input class="finp" id="cm-company" placeholder="Acme Inc."></div>
+      <div class="fg"><label class="flbl">Contact Name</label><input class="finp" id="cm-contact" placeholder="John Smith"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Email</label><input class="finp" id="cm-email" type="email" placeholder="john@acme.com"></div>
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="cm-status"><option>Active</option><option>Lead</option><option>Inactive</option></select>
+      </div>
+    </div>
+    <div class="fg"><label class="flbl">Contract Value ($)</label><input class="finp" id="cm-value" type="number" min="0" placeholder="5000"></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm2('cm-modal')">Cancel</button><button class="btn-p" onclick="saveClient()">Save</button></div>
+  </div>
+</div>
+
+<!-- Project Modal -->
+<div class="modal-ov hidden" id="pm-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="pm-ttl">Add Project</div>
+    <input type="hidden" id="pm-id">
+    <div class="fg"><label class="flbl">Project Name</label><input class="finp" id="pm-name" placeholder="Website Redesign"></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Client</label><select class="fsel" id="pm-client"></select></div>
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="pm-status"><option>Active</option><option>On Hold</option><option>Completed</option></select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Deadline</label><input class="finp" id="pm-deadline" type="date"></div>
+      <div class="fg"><label class="flbl">Progress (%)</label><input class="finp" id="pm-progress" type="number" min="0" max="100" value="0"></div>
+    </div>
+    <div class="fg"><label class="flbl">Description</label><textarea class="ftxt" id="pm-desc" rows="2" placeholder="What does this project involve?"></textarea></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm2('pm-modal')">Cancel</button><button class="btn-p" onclick="saveProject()">Save</button></div>
+  </div>
+</div>
+
+<!-- Task Modal -->
+<div class="modal-ov hidden" id="tm-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="tm-ttl">Add Task</div>
+    <input type="hidden" id="tm-id">
+    <div class="fg"><label class="flbl">Task Title</label><input class="finp" id="tm-title" placeholder="Task description..."></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Project</label><select class="fsel" id="tm-project"></select></div>
+      <div class="fg"><label class="flbl">Priority</label>
+        <select class="fsel" id="tm-priority"><option>High</option><option>Medium</option><option>Low</option></select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="tm-status"><option>Todo</option><option>In Progress</option><option>Done</option></select>
+      </div>
+      <div class="fg"><label class="flbl">Due Date</label><input class="finp" id="tm-due" type="date"></div>
+    </div>
+    <div class="mfoot"><button class="btn-c" onclick="cm2('tm-modal')">Cancel</button><button class="btn-p" onclick="saveTask()">Save</button></div>
+  </div>
+</div>
+
+<!-- Invoice Modal -->
+<div class="modal-ov hidden" id="inv-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="invm-ttl">Add Payment Record</div>
+    <input type="hidden" id="invm-id">
+    <div class="frow">
+      <div class="fg"><label class="flbl">Client</label><select class="fsel" id="invm-client"></select></div>
+      <div class="fg"><label class="flbl">Amount ($)</label><input class="finp" id="invm-amount" type="number" min="0" placeholder="1500"></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Date</label><input class="finp" id="invm-date" type="date"></div>
+      <div class="fg"><label class="flbl">Status</label>
+        <select class="fsel" id="invm-status"><option>Paid</option><option>Pending</option><option>Overdue</option></select>
+      </div>
+    </div>
+    <div class="fg"><label class="flbl">Description</label><input class="finp" id="invm-desc" placeholder="Project / invoice description..."></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm2('inv-modal')">Cancel</button><button class="btn-p" onclick="saveInv()">Save</button></div>
+  </div>
+</div>
+
+<!-- OKR Modal -->
+<div class="modal-ov hidden" id="okr-modal">
+  <div class="modal">
+    <div class="modal-ttl">Add OKR</div>
+    <div class="fg"><label class="flbl">Objective</label><input class="finp" id="okrm-obj" placeholder="e.g. Reach $100K ARR"></div>
+    <div class="fg"><label class="flbl">Quarter</label>
+      <select class="fsel" id="okrm-quarter"><option>Q1 2026</option><option>Q2 2026</option><option>Q3 2026</option><option>Q4 2026</option><option>Q1 2027</option></select>
+    </div>
+    <div class="fg"><label class="flbl">Key Result 1</label><input class="finp" id="okrm-kr1" placeholder="Key result description..."></div>
+    <div class="fg"><label class="flbl">Key Result 2</label><input class="finp" id="okrm-kr2" placeholder="Key result description..."></div>
+    <div class="fg"><label class="flbl">Key Result 3 (optional)</label><input class="finp" id="okrm-kr3" placeholder="Key result description..."></div>
+    <div class="mfoot"><button class="btn-c" onclick="cm2('okr-modal')">Cancel</button><button class="btn-p" onclick="saveOKR()">Save OKR</button></div>
+  </div>
+</div>
+
+<script>
+var CLK='bos_clients',PRK='bos_projects',TSK='bos_tasks',INK='bos_invoices',OKK='bos_okrs';
+var TODAY=new Date().toISOString().split('T')[0];
+var NOW=new Date();
+var CUR_YM=NOW.getFullYear()+'-'+(String(NOW.getMonth()+1).padStart(2,'0'));
+var clients=[],projects=[],tasks=[],invoices=[],okrs=[],curView='dashboard';
+
+function mkDate(d){var dt=new Date(TODAY+'T00:00:00');dt.setDate(dt.getDate()+d);return dt.toISOString().split('T')[0];}
+
+var SEED_CL=[
+  {id:'cl1',company:'TechCorp Inc.',contact:'Sarah Johnson',email:'sarah@techcorp.com',status:'Active',contractValue:15000},
+  {id:'cl2',company:'Acme Digital',contact:'Marcus Lee',email:'marcus@acmedigital.com',status:'Active',contractValue:8500},
+  {id:'cl3',company:'StartupXYZ',contact:'Emma Davis',email:'emma@startupxyz.com',status:'Lead',contractValue:25000}
+];
+var SEED_PR=[
+  {id:'pr1',clientId:'cl1',name:'Website Redesign',status:'Active',deadline:mkDate(45),progress:65,desc:'Full redesign of corporate website with new brand identity.'},
+  {id:'pr2',clientId:'cl2',name:'Mobile App MVP',status:'Active',deadline:mkDate(95),progress:30,desc:'Cross-platform mobile app for customer portal.'}
+];
+var SEED_TS=[
+  {id:'t1',projectId:'pr1',title:'Design homepage wireframes',status:'Done',priority:'High',due:mkDate(-10)},
+  {id:'t2',projectId:'pr1',title:'Develop navigation component',status:'Done',priority:'High',due:mkDate(-5)},
+  {id:'t3',projectId:'pr1',title:'Integrate CMS backend',status:'In Progress',priority:'High',due:mkDate(7)},
+  {id:'t4',projectId:'pr1',title:'Cross-browser testing',status:'In Progress',priority:'Medium',due:mkDate(14)},
+  {id:'t5',projectId:'pr1',title:'SEO meta optimization',status:'Todo',priority:'Low',due:mkDate(30)},
+  {id:'t6',projectId:'pr2',title:'Set up React Native project',status:'Done',priority:'High',due:mkDate(-15)},
+  {id:'t7',projectId:'pr2',title:'Build auth flow',status:'In Progress',priority:'High',due:mkDate(10)},
+  {id:'t8',projectId:'pr2',title:'Design dashboard screens',status:'Todo',priority:'Medium',due:mkDate(20)},
+  {id:'t9',projectId:'pr2',title:'API integration',status:'Todo',priority:'High',due:mkDate(35)}
+];
+var SEED_INV=[
+  {id:'i1',clientId:'cl1',amount:5000,status:'Paid',date:mkDate(-30),desc:'Website Redesign — Phase 1 deposit'},
+  {id:'i2',clientId:'cl1',amount:5000,status:'Paid',date:mkDate(-10),desc:'Website Redesign — Phase 2 milestone'},
+  {id:'i3',clientId:'cl2',amount:3000,status:'Paid',date:mkDate(-20),desc:'Mobile App MVP — Kickoff payment'},
+  {id:'i4',clientId:'cl2',amount:2500,status:'Pending',date:mkDate(0),desc:'Mobile App MVP — Sprint 2 delivery'},
+  {id:'i5',clientId:'cl3',amount:0,status:'Pending',date:mkDate(5),desc:'StartupXYZ — Proposal submitted'}
+];
+var SEED_OKR=[
+  {id:'o1',objective:'Reach $50K in Annual Revenue',quarter:'Q2 2026',keyResults:[
+    {id:'kr1',text:'Close 3 new client contracts worth $15K total',progress:33},
+    {id:'kr2',text:'Upsell existing clients to add $8K in new work',progress:60},
+    {id:'kr3',text:'Reduce project cancellation rate to under 5%',progress:80}
+  ]},
+  {id:'o2',objective:'Build a 5-Star Client Portfolio',quarter:'Q2 2026',keyResults:[
+    {id:'kr4',text:'Collect 5 detailed case studies from past clients',progress:40},
+    {id:'kr5',text:'Achieve average client satisfaction score of 4.8+',progress:70},
+    {id:'kr6',text:'Launch updated portfolio website with new projects',progress:20}
+  ]}
+];
+
+function load(){
+  clients=JSON.parse(localStorage.getItem(CLK)||'null')||JSON.parse(JSON.stringify(SEED_CL));
+  projects=JSON.parse(localStorage.getItem(PRK)||'null')||JSON.parse(JSON.stringify(SEED_PR));
+  tasks=JSON.parse(localStorage.getItem(TSK)||'null')||JSON.parse(JSON.stringify(SEED_TS));
+  invoices=JSON.parse(localStorage.getItem(INK)||'null')||JSON.parse(JSON.stringify(SEED_INV));
+  okrs=JSON.parse(localStorage.getItem(OKK)||'null')||JSON.parse(JSON.stringify(SEED_OKR));
+  [[CLK,clients],[PRK,projects],[TSK,tasks],[INK,invoices],[OKK,okrs]].forEach(function(p){
+    if(!localStorage.getItem(p[0]))localStorage.setItem(p[0],JSON.stringify(p[1]));
+  });
+}
+function saveAll(){
+  localStorage.setItem(CLK,JSON.stringify(clients));localStorage.setItem(PRK,JSON.stringify(projects));
+  localStorage.setItem(TSK,JSON.stringify(tasks));localStorage.setItem(INK,JSON.stringify(invoices));
+  localStorage.setItem(OKK,JSON.stringify(okrs));
+}
+function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmt$(n){return '$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});}
+function fmtD(ds){if(!ds)return '';return new Date(ds+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function daysTo(ds){if(!ds)return null;return Math.round((new Date(ds+'T00:00:00')-new Date(TODAY+'T00:00:00'))/86400000);}
+function getClient(id){return clients.find(function(c){return c.id===id;})||{company:'Unknown',contact:''};}
+function getProject(id){return projects.find(function(p){return p.id===id;})||{name:'Unknown'};}
+function statusBadge(s){var m={'Active':'b-active','Lead':'b-lead','Inactive':'b-inactive','Todo':'b-todo','In Progress':'b-prog','Done':'b-done','On Hold':'b-onhold','Completed':'b-completed','Paid':'b-paid','Pending':'b-pending','Overdue':'b-overdue'};return '<span class="badge '+(m[s]||'b-todo')+'">'+s+'</span>';}
+function priBadge(p){return '<span class="badge '+(p==='High'?'b-hi':p==='Medium'?'b-med':'b-lo')+'">'+p+'</span>';}
+
+function sv(v){
+  curView=v;
+  ['dashboard','clients','projects','tasks','finance','okrs'].forEach(function(n){
+    document.getElementById('view-'+n).style.display=n===v?'':'none';
+    var t=document.querySelector('.tab[data-view="'+n+'"]');
+    if(t)t.classList.toggle('active',n===v);
+  });
+  render();
+}
+function render(){
+  if(curView==='dashboard')renderDash();
+  else if(curView==='clients')renderClients();
+  else if(curView==='projects')renderProjects();
+  else if(curView==='tasks')renderTasks();
+  else if(curView==='finance')renderFinance();
+  else renderOKRs();
+}
+
+function renderDash(){
+  var activeClients=clients.filter(function(c){return c.status==='Active';}).length;
+  var activeProjects=projects.filter(function(p){return p.status==='Active';}).length;
+  var monthInc=invoices.filter(function(i){return i.date&&i.date.startsWith(CUR_YM)&&i.status==='Paid';}).reduce(function(s,i){return s+i.amount;},0);
+  var openTasks=tasks.filter(function(t){return t.status!=='Done';}).length;
+
+  var h='<div class="stat-grid">';
+  h+=sc('Active Clients',activeClients,'Current clients','');
+  h+=sc('Active Projects',activeProjects,'In progress','c-acc');
+  h+=sc('Month Revenue',fmt$(monthInc),'Paid this month','c-grn');
+  h+=sc('Open Tasks',openTasks,'Todo + In Progress',openTasks>5?'c-amb':'');
+  h+='</div>';
+
+  h+='<div class="dash-section"><div class="dash-section-title">📁 Active Projects</div>';
+  var ap=projects.filter(function(p){return p.status==='Active';});
+  if(!ap.length)h+='<div style="color:var(--txt2);font-size:13px">No active projects.</div>';
+  else ap.forEach(function(p){
+    var c=getClient(p.clientId),d=daysTo(p.deadline);
+    h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
+    h+='<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700">'+esc(p.name)+'</div>';
+    h+='<div style="font-size:12px;color:var(--txt2);margin-bottom:4px">'+esc(c.company)+(d!==null?' · '+d+'d left':'')+'</div>';
+    h+='<div class="pbar"><div class="pfill" style="width:'+p.progress+'%"></div></div></div>';
+    h+='<div style="font-size:16px;font-weight:800;color:var(--acc2)">'+p.progress+'%</div></div>';
+  });
+  h+='</div>';
+
+  h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">';
+  h+='<div class="dash-section"><div class="dash-section-title">🔴 High Priority Tasks</div>';
+  var hp=tasks.filter(function(t){return t.priority==='High'&&t.status!=='Done';}).slice(0,4);
+  if(!hp.length)h+='<div style="color:var(--txt2);font-size:13px">None outstanding.</div>';
+  else hp.forEach(function(t){
+    h+='<div style="padding:6px 0;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px">';
+    h+='<div style="flex:1;font-size:13px;font-weight:500">'+esc(t.title)+'</div>';
+    h+=statusBadge(t.status)+'</div>';
+  });
+  h+='</div>';
+
+  h+='<div class="dash-section"><div class="dash-section-title">💳 Recent Payments</div>';
+  var rp=invoices.filter(function(i){return i.amount>0;}).sort(function(a,b){return b.date.localeCompare(a.date);}).slice(0,4);
+  if(!rp.length)h+='<div style="color:var(--txt2);font-size:13px">No payments yet.</div>';
+  else rp.forEach(function(i){
+    var cl=getClient(i.clientId);
+    h+='<div style="padding:6px 0;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between">';
+    h+='<div><div style="font-size:12px;font-weight:600">'+esc(cl.company)+'</div>';
+    h+='<div style="font-size:11px;color:var(--txt2)">'+fmtD(i.date)+'</div></div>';
+    h+='<div style="text-align:right"><div style="font-size:13px;font-weight:700;color:'+(i.status==='Paid'?'var(--grn)':'var(--amb)')+'">'+fmt$(i.amount)+'</div>';
+    h+=statusBadge(i.status)+'</div></div>';
+  });
+  h+='</div></div>';
+  document.getElementById('view-dashboard').innerHTML=h;
+}
+function sc(l,v,s,c){return '<div class="stat-card '+c+'"><div class="slbl">'+l+'</div><div class="sval">'+v+'</div><div class="ssub">'+s+'</div></div>';}
+
+function renderClients(){
+  var h='<div class="sh"><div class="st">Clients</div><button class="btn-p" onclick="openCM(null)">+ Add Client</button></div>';
+  if(!clients.length){h+='<div class="empty">No clients yet.</div>';document.getElementById('view-clients').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Company</th><th>Contact</th><th>Email</th><th>Status</th><th>Contract Value</th><th>Actions</th></tr></thead><tbody>';
+  clients.forEach(function(c){
+    h+='<tr><td style="font-weight:700">'+esc(c.company)+'</td>';
+    h+='<td style="color:var(--txt2)">'+esc(c.contact)+'</td>';
+    h+='<td><a href="mailto:'+esc(c.email)+'" style="color:var(--acc2)">'+esc(c.email)+'</a></td>';
+    h+='<td>'+statusBadge(c.status)+'</td>';
+    h+='<td style="font-weight:700;color:var(--grn)">'+fmt$(c.contractValue)+'</td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openCM(\''+c.id+'\')">✏️</button><button class="bico del" onclick="delClient(\''+c.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-clients').innerHTML=h;
+}
+function openCM(id){
+  var c=id?clients.find(function(x){return x.id===id;}):null;
+  document.getElementById('cm-ttl').textContent=c?'Edit Client':'Add Client';
+  document.getElementById('cm-id').value=id||'';
+  document.getElementById('cm-company').value=c?c.company:'';
+  document.getElementById('cm-contact').value=c?c.contact:'';
+  document.getElementById('cm-email').value=c?c.email:'';
+  document.getElementById('cm-status').value=c?c.status:'Active';
+  document.getElementById('cm-value').value=c?c.contractValue:'';
+  document.getElementById('cm-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('cm-company').focus();},50);
+}
+function saveClient(){
+  var co=document.getElementById('cm-company').value.trim();if(!co)return;
+  var data={company:co,contact:document.getElementById('cm-contact').value.trim(),email:document.getElementById('cm-email').value.trim(),status:document.getElementById('cm-status').value,contractValue:parseFloat(document.getElementById('cm-value').value)||0};
+  var id=document.getElementById('cm-id').value;
+  if(id){var c=clients.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else clients.push(Object.assign({id:uid()},data));
+  saveAll();cm2('cm-modal');render();
+}
+function delClient(id){if(!confirm('Delete client?'))return;clients=clients.filter(function(c){return c.id!==id;});saveAll();render();}
+
+function renderProjects(){
+  var h='<div class="sh"><div class="st">Projects</div><button class="btn-p" onclick="openPM(null)">+ Add Project</button></div>';
+  if(!projects.length){h+='<div class="empty">No projects yet.</div>';document.getElementById('view-projects').innerHTML=h;return;}
+  h+='<table class="table"><thead><tr><th>Project</th><th>Client</th><th>Status</th><th>Deadline</th><th>Progress</th><th>Actions</th></tr></thead><tbody>';
+  projects.forEach(function(p){
+    var c=getClient(p.clientId),d=daysTo(p.deadline);
+    h+='<tr><td style="font-weight:700">'+esc(p.name)+'</td>';
+    h+='<td style="color:var(--acc2)">'+esc(c.company)+'</td>';
+    h+='<td>'+statusBadge(p.status)+'</td>';
+    h+='<td style="color:'+(d!==null&&d<=14?'var(--red)':'var(--txt2)')+'">'+fmtD(p.deadline)+'</td>';
+    h+='<td style="min-width:120px"><div style="display:flex;align-items:center;gap:8px"><div class="pbar" style="flex:1"><div class="pfill" style="width:'+p.progress+'%"></div></div><span style="font-size:12px;font-weight:700">'+p.progress+'%</span></div></td>';
+    h+='<td><div class="act-row"><button class="bico" onclick="openPM(\''+p.id+'\')">✏️</button><button class="bico del" onclick="delProject(\''+p.id+'\')">🗑️</button></div></td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('view-projects').innerHTML=h;
+}
+function openPM(id){
+  var p=id?projects.find(function(x){return x.id===id;}):null;
+  document.getElementById('pm-ttl').textContent=p?'Edit Project':'Add Project';
+  document.getElementById('pm-id').value=id||'';
+  document.getElementById('pm-name').value=p?p.name:'';
+  document.getElementById('pm-status').value=p?p.status:'Active';
+  document.getElementById('pm-deadline').value=p?p.deadline:'';
+  document.getElementById('pm-progress').value=p?p.progress:0;
+  document.getElementById('pm-desc').value=p?p.desc:'';
+  var sel=document.getElementById('pm-client');sel.innerHTML='';
+  clients.forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.company;if(p&&p.clientId===c.id)o.selected=true;sel.appendChild(o);});
+  document.getElementById('pm-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('pm-name').focus();},50);
+}
+function saveProject(){
+  var name=document.getElementById('pm-name').value.trim();if(!name)return;
+  var data={name:name,clientId:document.getElementById('pm-client').value,status:document.getElementById('pm-status').value,deadline:document.getElementById('pm-deadline').value,progress:Math.min(100,Math.max(0,parseInt(document.getElementById('pm-progress').value)||0)),desc:document.getElementById('pm-desc').value.trim()};
+  var id=document.getElementById('pm-id').value;
+  if(id){var p=projects.find(function(x){return x.id===id;});if(p)Object.assign(p,data);}else projects.push(Object.assign({id:uid()},data));
+  saveAll();cm2('pm-modal');render();
+}
+function delProject(id){if(!confirm('Delete project?'))return;projects=projects.filter(function(p){return p.id!==id;});saveAll();render();}
+
+function renderTasks(){
+  var statuses=['Todo','In Progress','Done'];
+  var h='<div class="sh"><div class="st">Task Board</div><button class="btn-p" onclick="openTM(null)">+ Add Task</button></div>';
+  h+='<div class="kanban">';
+  statuses.forEach(function(status){
+    var items=tasks.filter(function(t){return t.status===status;});
+    var colColor={'Todo':'var(--txt2)','In Progress':'var(--acc2)','Done':'var(--grn)'}[status];
+    h+='<div class="kb-col"><div class="kb-hdr" style="color:'+colColor+'">'+status+'<span style="color:var(--txt2);font-weight:400">'+items.length+'</span></div>';
+    h+='<div class="kb-cnt">';
+    if(!items.length)h+='<div style="font-size:12px;color:var(--txt2);text-align:center;padding:16px 0">Empty</div>';
+    else items.forEach(function(t){
+      var pr=getProject(t.projectId);
+      h+='<div class="kb-card"><div class="kb-title">'+esc(t.title)+'</div>';
+      h+='<div class="kb-meta">'+priBadge(t.priority);
+      h+='<span class="kb-proj">'+esc(pr.name)+'</span></div>';
+      if(t.due)h+='<div class="kb-due">📅 '+fmtD(t.due)+'</div>';
+      h+='<div class="kb-actions">';
+      var si=statuses.indexOf(status);
+      if(si>0)h+='<button class="status-btn" onclick="moveTask(\''+t.id+'\',-1)">←</button>';
+      if(si<2)h+='<button class="status-btn" onclick="moveTask(\''+t.id+'\',1)">→</button>';
+      h+='<button class="bico" onclick="openTM(\''+t.id+'\')">✏️</button>';
+      h+='<button class="bico del" onclick="delTask(\''+t.id+'\')">🗑️</button>';
+      h+='</div></div>';
+    });
+    h+='</div></div>';
+  });
+  h+='</div>';
+  document.getElementById('view-tasks').innerHTML=h;
+}
+function moveTask(id,dir){
+  var statuses=['Todo','In Progress','Done'];
+  var t=tasks.find(function(x){return x.id===id;});if(!t)return;
+  var idx=statuses.indexOf(t.status)+dir;
+  if(idx>=0&&idx<3){t.status=statuses[idx];saveAll();renderTasks();}
+}
+function openTM(id){
+  var t=id?tasks.find(function(x){return x.id===id;}):null;
+  document.getElementById('tm-ttl').textContent=t?'Edit Task':'Add Task';
+  document.getElementById('tm-id').value=id||'';
+  document.getElementById('tm-title').value=t?t.title:'';
+  document.getElementById('tm-priority').value=t?t.priority:'Medium';
+  document.getElementById('tm-status').value=t?t.status:'Todo';
+  document.getElementById('tm-due').value=t?t.due:'';
+  var sel=document.getElementById('tm-project');sel.innerHTML='<option value="">No project</option>';
+  projects.forEach(function(p){var o=document.createElement('option');o.value=p.id;o.textContent=p.name;if(t&&t.projectId===p.id)o.selected=true;sel.appendChild(o);});
+  document.getElementById('tm-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('tm-title').focus();},50);
+}
+function saveTask(){
+  var title=document.getElementById('tm-title').value.trim();if(!title)return;
+  var data={title:title,projectId:document.getElementById('tm-project').value,priority:document.getElementById('tm-priority').value,status:document.getElementById('tm-status').value,due:document.getElementById('tm-due').value};
+  var id=document.getElementById('tm-id').value;
+  if(id){var t=tasks.find(function(x){return x.id===id;});if(t)Object.assign(t,data);}else tasks.push(Object.assign({id:uid()},data));
+  saveAll();cm2('tm-modal');render();
+}
+function delTask(id){if(!confirm('Delete?'))return;tasks=tasks.filter(function(t){return t.id!==id;});saveAll();render();}
+
+function renderFinance(){
+  var paid=invoices.filter(function(i){return i.status==='Paid';});
+  var pending=invoices.filter(function(i){return i.status==='Pending';});
+  var totalPaid=paid.reduce(function(s,i){return s+i.amount;},0);
+  var totalPending=pending.reduce(function(s,i){return s+i.amount;},0);
+  var monthPaid=paid.filter(function(i){return i.date&&i.date.startsWith(CUR_YM);}).reduce(function(s,i){return s+i.amount;},0);
+
+  var h='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">';
+  h+='<div class="stat-card c-grn"><div class="slbl">Total Received</div><div class="sval">'+fmt$(totalPaid)+'</div><div class="ssub">All time</div></div>';
+  h+='<div class="stat-card c-amb"><div class="slbl">Pending</div><div class="sval">'+fmt$(totalPending)+'</div><div class="ssub">Awaiting payment</div></div>';
+  h+='<div class="stat-card c-acc"><div class="slbl">This Month</div><div class="sval">'+fmt$(monthPaid)+'</div><div class="ssub">Received in '+CUR_YM+'</div></div>';
+  h+='</div>';
+  h+='<div class="sh"><div class="st">Payment Records</div><button class="btn-p" onclick="openInvM(null)">+ Add Record</button></div>';
+  var sorted=invoices.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  if(!sorted.length){h+='<div class="empty">No records yet.</div>';}
+  else{
+    h+='<table class="table"><thead><tr><th>Date</th><th>Client</th><th>Description</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+    sorted.forEach(function(i){
+      var cl=getClient(i.clientId);
+      h+='<tr><td style="color:var(--txt2)">'+fmtD(i.date)+'</td>';
+      h+='<td style="font-weight:600">'+esc(cl.company)+'</td>';
+      h+='<td style="color:var(--txt2)">'+esc(i.desc)+'</td>';
+      h+='<td style="font-weight:700;color:var(--grn)">'+fmt$(i.amount)+'</td>';
+      h+='<td>'+statusBadge(i.status);
+      if(i.status==='Pending')h+='<button class="btn-p btn-sm" style="margin-left:6px" onclick="markPaid(\''+i.id+'\')">Mark Paid</button>';
+      h+='</td>';
+      h+='<td><div class="act-row"><button class="bico" onclick="openInvM(\''+i.id+'\')">✏️</button><button class="bico del" onclick="delInv(\''+i.id+'\')">🗑️</button></div></td></tr>';
+    });
+    h+='</tbody></table>';
+  }
+  document.getElementById('view-finance').innerHTML=h;
+}
+function markPaid(id){var i=invoices.find(function(x){return x.id===id;});if(i){i.status='Paid';saveAll();renderFinance();}}
+function openInvM(id){
+  var i=id?invoices.find(function(x){return x.id===id;}):null;
+  document.getElementById('invm-ttl').textContent=i?'Edit Record':'Add Payment Record';
+  document.getElementById('invm-id').value=id||'';
+  document.getElementById('invm-amount').value=i?i.amount:'';
+  document.getElementById('invm-date').value=i?i.date:TODAY;
+  document.getElementById('invm-status').value=i?i.status:'Paid';
+  document.getElementById('invm-desc').value=i?i.desc:'';
+  var sel=document.getElementById('invm-client');sel.innerHTML='';
+  clients.forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.company;if(i&&i.clientId===c.id)o.selected=true;sel.appendChild(o);});
+  document.getElementById('inv-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('invm-amount').focus();},50);
+}
+function saveInv(){
+  var amt=parseFloat(document.getElementById('invm-amount').value)||0;
+  var data={clientId:document.getElementById('invm-client').value,amount:amt,date:document.getElementById('invm-date').value,status:document.getElementById('invm-status').value,desc:document.getElementById('invm-desc').value.trim()};
+  var id=document.getElementById('invm-id').value;
+  if(id){var i=invoices.find(function(x){return x.id===id;});if(i)Object.assign(i,data);}else invoices.push(Object.assign({id:uid()},data));
+  saveAll();cm2('inv-modal');render();
+}
+function delInv(id){if(!confirm('Delete?'))return;invoices=invoices.filter(function(i){return i.id!==id;});saveAll();render();}
+
+function renderOKRs(){
+  var h='<div class="sh"><div class="st">OKRs — Objectives & Key Results</div><button class="btn-p" onclick="document.getElementById(\'okr-modal\').classList.remove(\'hidden\')">+ Add OKR</button></div>';
+  if(!okrs.length){h+='<div class="empty">No OKRs yet.</div>';document.getElementById('view-okrs').innerHTML=h;return;}
+  okrs.forEach(function(o){
+    var avgProgress=o.keyResults.length?Math.round(o.keyResults.reduce(function(s,kr){return s+kr.progress;},0)/o.keyResults.length):0;
+    h+='<div class="okr-card">';
+    h+='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">';
+    h+='<div><div class="okr-obj">'+esc(o.objective)+'</div><div class="okr-quarter">'+esc(o.quarter)+'</div></div>';
+    h+='<div style="text-align:right;flex-shrink:0"><div style="font-size:22px;font-weight:800;color:var(--acc2)">'+avgProgress+'%</div><div style="font-size:11px;color:var(--txt2)">avg progress</div></div>';
+    h+='</div>';
+    h+='<div style="margin-bottom:14px"><div class="pbar" style="height:8px"><div class="pfill'+(avgProgress>=100?' grn':'')+'" style="width:'+avgProgress+'%"></div></div></div>';
+    o.keyResults.forEach(function(kr){
+      h+='<div class="kr-item">';
+      h+='<div style="width:14px;height:14px;border-radius:50%;background:'+(kr.progress>=100?'var(--grn)':'var(--bdr)');h+=';border:2px solid '+(kr.progress>=100?'var(--grn)':'var(--acc)');h+=';flex-shrink:0"></div>';
+      h+='<div class="kr-text">'+esc(kr.text)+'</div>';
+      h+='<input class="kr-input" type="number" min="0" max="100" value="'+kr.progress+'" onchange="updateKR(\''+o.id+'\',\''+kr.id+'\',this.value)">';
+      h+='<div class="kr-pct">'+kr.progress+'%</div>';
+      h+='</div>';
+    });
+    h+='<div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="bico del" onclick="delOKR(\''+o.id+'\')">🗑️ Delete OKR</button></div>';
+    h+='</div>';
+  });
+  document.getElementById('view-okrs').innerHTML=h;
+}
+function updateKR(oid,krid,val){
+  var o=okrs.find(function(x){return x.id===oid;});if(!o)return;
+  var kr=o.keyResults.find(function(x){return x.id===krid;});
+  if(kr){kr.progress=Math.min(100,Math.max(0,parseInt(val)||0));saveAll();}
+  var el=document.querySelector('.okr-card .kr-pct');
+  renderOKRs();
+}
+function saveOKR(){
+  var obj=document.getElementById('okrm-obj').value.trim();if(!obj)return;
+  var krs=[];
+  ['okrm-kr1','okrm-kr2','okrm-kr3'].forEach(function(id){
+    var v=document.getElementById(id).value.trim();
+    if(v)krs.push({id:uid(),text:v,progress:0});
+  });
+  okrs.push({id:uid(),objective:obj,quarter:document.getElementById('okrm-quarter').value,keyResults:krs});
+  saveAll();cm2('okr-modal');render();
+}
+function delOKR(id){if(!confirm('Delete OKR?'))return;okrs=okrs.filter(function(o){return o.id!==id;});saveAll();render();}
+
+function cm2(id){document.getElementById(id).classList.add('hidden');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov').forEach(function(el){el.classList.add('hidden');});});
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
+
+load(); renderDash();
+</script>
+</body>
+</html>
