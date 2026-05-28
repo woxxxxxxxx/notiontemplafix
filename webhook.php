@@ -47,6 +47,21 @@ $orderNumber = $attrs['order_number']           ?? '';
 // Normalise ISO date to YYYY-MM-DD for Notion
 $dateOnly = substr($createdAt, 0, 10);
 
+// ── 4b. Append buyer email to purchased.json ────────────────
+if (!empty($buyerEmail)) {
+    $jsonFile = __DIR__ . '/purchased.json';
+    $emails = [];
+    if (file_exists($jsonFile)) {
+        $decoded = json_decode(file_get_contents($jsonFile), true);
+        if (is_array($decoded)) $emails = $decoded;
+    }
+    $emailLower = strtolower($buyerEmail);
+    if (!in_array($emailLower, array_map('strtolower', $emails))) {
+        $emails[] = $emailLower;
+        file_put_contents($jsonFile, json_encode($emails, JSON_PRETTY_PRINT), LOCK_EX);
+    }
+}
+
 // ── 5. Write to Notion Orders database ──────────────────────
 $notionBody = json_encode([
     'parent'     => ['database_id' => NOTION_DATABASE_ID],

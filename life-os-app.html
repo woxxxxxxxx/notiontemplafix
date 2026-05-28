@@ -216,9 +216,39 @@ input,textarea,select{font-family:inherit}
   .dashboard{grid-template-columns:1fr 1fr}
   .dash-value{font-size:20px}
 }
+
+/* ---- UNLOCK GATE ---- */
+#unlockGate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px}
+.unlock-box{width:100%;max-width:400px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:36px 32px;text-align:center}
+.unlock-logo{display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:800;color:var(--text);margin-bottom:28px}
+.unlock-logo span{color:var(--accent)}
+.unlock-title{font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.3px}
+.unlock-sub{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6}
+.unlock-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:15px;padding:12px 16px;outline:none;transition:border-color .18s;margin-bottom:12px}
+.unlock-input:focus{border-color:var(--accent)}
+.unlock-btn{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;transition:background .18s;margin-bottom:16px}
+.unlock-btn:hover{background:var(--accent2)}
+.unlock-btn:disabled{opacity:.55;cursor:not-allowed}
+.unlock-error{font-size:13px;color:var(--red);min-height:18px;margin-bottom:12px}
+.unlock-buy{font-size:13px;color:var(--text3)}
+.unlock-buy a{color:var(--accent);font-weight:600;text-decoration:none}
+.unlock-buy a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+
+<!-- UNLOCK GATE -->
+<div id="unlockGate">
+  <div class="unlock-box">
+    <div class="unlock-logo"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><rect width="20" height="20" rx="4" fill="#6C47FF"/><text x="10" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white">N</text></svg><span>Notion</span>TemplaFix</div>
+    <div class="unlock-title">Life OS App</div>
+    <div class="unlock-sub">Enter the email address you used to purchase Life OS Dashboard to unlock the app.</div>
+    <input class="unlock-input" type="email" id="unlockEmail" placeholder="your@email.com" autocomplete="email">
+    <div class="unlock-error" id="unlockError"></div>
+    <button class="unlock-btn" id="unlockBtn" onclick="checkUnlock()">Unlock App</button>
+    <div class="unlock-buy">Don't have access? <a href="/life-os-dashboard.html">Get Life OS Dashboard →</a></div>
+  </div>
+</div>
 
 <!-- TOP NAV -->
 <div class="topbar">
@@ -231,7 +261,10 @@ input,textarea,select{font-family:inherit}
     <button class="nav-tab" data-tab="health">💪 Health</button>
     <button class="nav-tab" data-tab="review">🔄 Weekly Review</button>
   </div>
-  <a href="/life-os-dashboard.html" class="nav-notion-btn" style="margin-left:12px">Get Notion Template</a>
+  <div style="display:flex;gap:8px;margin-left:12px;flex-shrink:0">
+    <a href="/life-os-app.html" download="life-os-app.html" class="nav-notion-btn" style="background:var(--bg3);border:1px solid var(--border);color:var(--text2)" title="Download app as HTML file">⬇ Download App</a>
+    <a href="/life-os-dashboard.html" class="nav-notion-btn">Get Notion Template</a>
+  </div>
 </div>
 
 <!-- DASHBOARD STRIP -->
@@ -916,11 +949,64 @@ function setFormDefaults(){
   document.getElementById('taskDue').max=max.toISOString().slice(0,10);
 }
 
+// ===================== UNLOCK GATE =====================
+var UNLOCK_KEY = 'lib_unlocked_life-os';
+var EMAIL_KEY  = 'lib_email';
+
+function bootApp(){
+  var gate = document.getElementById('unlockGate');
+  if(gate) gate.style.display = 'none';
+  initData();
+  setFormDefaults();
+  renderGoals();
+  updateDashboard();
+}
+
+function checkUnlock(){
+  var emailEl = document.getElementById('unlockEmail');
+  var errEl   = document.getElementById('unlockError');
+  var btn     = document.getElementById('unlockBtn');
+  var email   = emailEl.value.trim().toLowerCase();
+  errEl.textContent = '';
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    errEl.textContent = 'Please enter a valid email address.';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Checking…';
+  var fd = new FormData();
+  fd.append('email', email);
+  fetch('/check-purchase.php', {method:'POST', body:fd})
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data.unlocked){
+        localStorage.setItem(UNLOCK_KEY, '1');
+        localStorage.setItem(EMAIL_KEY, email);
+        bootApp();
+      } else {
+        errEl.textContent = 'Email not found. Please use the email you purchased with.';
+        btn.disabled = false;
+        btn.textContent = 'Unlock App';
+      }
+    })
+    .catch(function(){
+      errEl.textContent = 'Connection error — please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Unlock App';
+    });
+}
+
+// Also allow Enter key in email field
+document.getElementById('unlockEmail').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') checkUnlock();
+});
+
 // ===================== BOOT =====================
-initData();
-setFormDefaults();
-renderGoals();
-updateDashboard();
+if(localStorage.getItem(UNLOCK_KEY) === '1'){
+  bootApp();
+} else {
+  // Show gate — already visible by default
+}
 </script>
 </body>
 </html>
