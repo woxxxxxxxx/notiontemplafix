@@ -6,53 +6,525 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Goal Tracker App - Coming Soon | NotionTemplaFix</title>
-<meta name="description" content="The free Goal Tracker web app is coming soon. Set goals, break them into milestones, and track your progress — no Notion account required.">
+<title>Goal Tracker App | NotionTemplaFix</title>
+<meta name="description" content="Free Goal Tracker web app. Set goals, break them into milestones, and track your progress visually — no sign-up required.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
 <link rel="canonical" href="https://notiontemplafix.com/goal-tracker-app.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#0f0f0f;--sur:#1a1a1a;--sur2:#222;--bdr:#2a2a2a;--txt:#f0f0f0;--txt2:#a0a0a0;--acc:#6C47FF;--acc2:#8b6dff;--grn:#22c55e;--amb:#f59e0b;--red:#ef4444;--blu:#3b82f6;--r:12px;--rs:8px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f8f9fb;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column}
-a{text-decoration:none;color:inherit}
-.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 32px;background:#fff;border-bottom:1px solid #eef0f5}
-.navbar .logo{font-size:20px;font-weight:800;color:#1a1a2e;letter-spacing:-.5px;display:flex;align-items:center;gap:6px}
-.navbar .logo span{color:#6c5ce7}
-.wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;flex-direction:column;text-align:center}
-.soon-icon{font-size:64px;margin-bottom:24px;line-height:1}
-.soon-tag{display:inline-block;padding:5px 16px;background:#f0f0ff;color:#6c5ce7;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px}
-h1{font-size:32px;font-weight:800;color:#1a1a2e;letter-spacing:-.5px;margin-bottom:12px}
-p{font-size:16px;color:#666;line-height:1.6;max-width:480px;margin:0 auto 28px}
-.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-primary{padding:11px 28px;background:#6c5ce7;color:#fff;border-radius:8px;font-size:14px;font-weight:700;transition:background .2s}
-.btn-primary:hover{background:#5a4bd6}
-.btn-outline{padding:11px 28px;border:2px solid #6c5ce7;color:#6c5ce7;border-radius:8px;font-size:14px;font-weight:700;transition:all .2s}
-.btn-outline:hover{background:#6c5ce7;color:#fff}
-.notion-link{margin-top:24px;font-size:13px;color:#888}
-.notion-link a{color:#6c5ce7;font-weight:600}
-.footer{background:#1a1a2e;color:#aaa;text-align:center;padding:24px 20px;font-size:13px;margin-top:auto}
-.footer a{color:#aaa}
-.footer a:hover{color:#fff}
-@media(max-width:600px){.navbar{padding:0 16px}h1{font-size:24px}}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;padding:0 24px;height:56px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bdr)}
+.back-btn{font-size:13px;color:var(--txt2);padding:5px 10px;border-radius:var(--rs);transition:all .2s;white-space:nowrap}
+.back-btn:hover{color:var(--txt);background:var(--sur2)}
+.app-brand{font-size:15px;font-weight:700;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;margin-left:auto}
+.tab{padding:6px 13px;border:none;background:transparent;color:var(--txt2);font-size:13px;font-weight:500;border-radius:var(--rs);transition:all .2s}
+.tab:hover{background:var(--sur2);color:var(--txt)}
+.tab.active{background:var(--acc);color:#fff}
+.main{padding:24px;max-width:1100px;margin:0 auto}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:18px}
+.stat-lbl{font-size:11px;color:var(--txt2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.stat-val{font-size:26px;font-weight:800;line-height:1}
+.stat-sub{font-size:11px;color:var(--txt2);margin-top:4px}
+.c-acc .stat-val{color:var(--acc2)} .c-grn .stat-val{color:var(--grn)} .c-amb .stat-val{color:var(--amb)} .c-red .stat-val{color:var(--red)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.st{font-size:15px;font-weight:700}
+.btn-p{padding:8px 16px;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:600;transition:background .2s}
+.btn-p:hover{background:var(--acc2)}
+.btn-sm{padding:5px 12px;font-size:12px}
+.goal-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;margin-bottom:10px;transition:border-color .2s}
+.goal-card:hover{border-color:#444}
+.gch{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.gemoji{font-size:22px;line-height:1;flex-shrink:0;margin-top:2px}
+.gi{flex:1;min-width:0}
+.gname{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gmeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ctag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600}
+.ct-Health{background:#22c55e22;color:#22c55e} .ct-Work{background:#6C47FF22;color:#8b6dff} .ct-Personal{background:#f59e0b22;color:#f59e0b} .ct-Finance{background:#ef444422;color:#ef4444} .ct-Learning{background:#3b82f622;color:#3b82f6}
+.gdl{font-size:12px;color:var(--txt2)}
+.gacts{display:flex;gap:5px;flex-shrink:0}
+.bico{width:27px;height:27px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:6px;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.bico:hover{border-color:var(--acc);color:var(--acc2);background:var(--sur2)}
+.bico.del:hover{border-color:var(--red);color:var(--red)}
+.prow{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.plbl{font-size:12px;color:var(--txt2)}
+.ppct{font-size:12px;font-weight:700}
+.pbar{height:6px;background:var(--bdr);border-radius:3px;overflow:hidden}
+.pfill{height:100%;border-radius:3px;background:var(--acc);transition:width .4s}
+.pfill.grn{background:var(--grn)} .pfill.amb{background:var(--amb)}
+.dbadge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:2px 7px;border-radius:99px}
+.db-ok{background:#22c55e22;color:#22c55e} .db-warn{background:#f59e0b22;color:#f59e0b} .db-due{background:#ef444422;color:#ef4444}
+.filter-bar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.fbtn{padding:5px 13px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);border-radius:99px;font-size:12px;font-weight:500;transition:all .2s}
+.fbtn:hover{border-color:var(--acc);color:var(--acc2)}
+.fbtn.active{border-color:var(--acc);background:var(--acc);color:#fff}
+.ms-list{padding:8px 0 0;border-top:1px solid var(--bdr);margin-top:10px}
+.ms-item{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--bdr)}
+.ms-item:last-child{border-bottom:none}
+.mschk{width:19px;height:19px;border:2px solid var(--bdr);border-radius:50%;background:transparent;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s}
+.mschk.done{background:var(--grn);border-color:var(--grn);color:#fff}
+.mschk:hover:not(.done){border-color:var(--acc)}
+.msi{flex:1;min-width:0}
+.msname{font-size:13px;font-weight:500;color:var(--txt)}
+.msname.done{text-decoration:line-through;color:var(--txt2)}
+.msdue{font-size:11px;color:var(--txt2);margin-top:1px}
+.msdel{opacity:0;transition:opacity .2s}
+.ms-item:hover .msdel{opacity:1}
+.ms-tog{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt2);background:transparent;border:none;padding:0;margin-top:10px;cursor:pointer;transition:color .2s}
+.ms-tog:hover{color:var(--acc2)}
+.ms-cnt{font-weight:700;color:var(--acc2)}
+.mg{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:14px;overflow:hidden}
+.mgh{display:flex;align-items:center;justify-content:space-between;padding:15px 17px;cursor:pointer;transition:background .2s}
+.mgh:hover{background:var(--sur2)}
+.mght{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.mgb{padding:0 17px 15px}
+.mgp{font-size:12px;color:var(--txt2);font-weight:500}
+.chv{font-size:11px;color:var(--txt2);transition:transform .2s}
+.chv.open{transform:rotate(90deg)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sc{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:20px}
+.sc.full{grid-column:1/-1}
+.sct{font-size:14px;font-weight:700;margin-bottom:16px}
+.pie-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.pie{width:150px;height:150px;border-radius:50%;flex-shrink:0;position:relative}
+.pie::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:75px;height:75px;background:var(--sur);border-radius:50%}
+.pleg{flex:1;min-width:110px}
+.li{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.ll{font-size:13px;color:var(--txt2)}
+.lv{font-size:13px;font-weight:700;color:var(--txt);margin-left:auto}
+.rank-item{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.rn{width:21px;height:21px;background:var(--sur2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.rn.top{background:var(--acc);color:#fff}
+.ri{flex:1;min-width:0}
+.rname{font-size:13px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbw{height:5px;background:var(--bdr);border-radius:3px;overflow:hidden}
+.rb{height:100%;background:var(--acc);border-radius:3px}
+.rpct{font-size:12px;font-weight:700;color:var(--acc2);flex-shrink:0;width:34px;text-align:right}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-ov.hidden{display:none}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-ttl{font-size:16px;font-weight:800;margin-bottom:18px}
+.fg{margin-bottom:14px}
+.flbl{font-size:11px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+.finp,.fsel,.ftxt{width:100%;padding:9px 11px;background:var(--sur2);border:1px solid var(--bdr);border-radius:var(--rs);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;transition:border-color .2s}
+.finp:focus,.fsel:focus,.ftxt:focus{outline:none;border-color:var(--acc)}
+.fsel option{background:var(--sur2)}
+.ftxt{resize:vertical;min-height:72px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}
+.btn-c{padding:8px 15px;background:transparent;color:var(--txt2);border:1px solid var(--bdr);border-radius:var(--rs);font-size:13px;font-weight:600;transition:all .2s}
+.btn-c:hover{border-color:var(--txt);color:var(--txt)}
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
+.fc{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--r);padding:16px}
+.fct{font-size:13px;font-weight:700;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fcm{display:flex;align-items:center;gap:7px;margin-bottom:10px;flex-wrap:wrap}
+.empty{text-align:center;padding:40px 20px;color:var(--txt2)}
+.empty-ico{font-size:36px;margin-bottom:10px}
+.empty-txt{font-size:13px}
+@media(max-width:900px){.stat-grid{grid-template-columns:repeat(2,1fr)}.focus-grid{grid-template-columns:1fr 1fr}.stats-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.topbar{padding:0 12px;gap:6px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.stat-grid{gap:9px}.stat-val{font-size:20px}.focus-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="navbar">
-  <a class="logo" href="/"><svg width="20" height="20" viewBox="0 0 20 20" style="flex-shrink:0" aria-hidden="true"><rect width="20" height="20" rx="4" fill="#6c5ce7"/><text x="10" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white">N</text></svg><span>Notion</span>TemplaFix</a>
-</nav>
-<div class="wrap">
-  <div class="soon-icon">🎯</div>
-  <div class="soon-tag">Coming Soon</div>
-  <h1>Goal Tracker App</h1>
-  <p>We're building a free standalone web app to set goals, break them into milestones, and track your progress visually — no Notion account or sign-up required.</p>
-  <div class="btn-row">
-    <a class="btn-primary" href="/goal-tracker.html">Get Free Notion Template</a>
-    <a class="btn-outline" href="/">Browse All Templates</a>
+<div class="topbar">
+  <a href="/my-library.html" class="back-btn">← Back to Library</a>
+  <div class="app-brand">🎯 Goal Tracker</div>
+  <div class="nav-tabs">
+    <button class="tab active" data-view="dashboard" onclick="switchView('dashboard')">Dashboard</button>
+    <button class="tab" data-view="goals" onclick="switchView('goals')">Goals</button>
+    <button class="tab" data-view="milestones" onclick="switchView('milestones')">Milestones</button>
+    <button class="tab" data-view="stats" onclick="switchView('stats')">Stats</button>
   </div>
-  <div class="notion-link">Already use Notion? <a href="/goal-tracker.html">Get the free Notion template →</a></div>
 </div>
-<div class="footer">
-  <div style="margin-bottom:8px"><a href="/">Home</a> &nbsp;·&nbsp; <a href="/#faq">FAQ</a> &nbsp;·&nbsp; <a href="mailto:support@notiontemplafix.com">Contact</a></div>
-  NotionTemplaFix &mdash; Free &amp; Premium Notion Templates &copy; 2026
+<div class="main">
+  <div id="view-dashboard"></div>
+  <div id="view-goals" style="display:none"></div>
+  <div id="view-milestones" style="display:none"></div>
+  <div id="view-stats" style="display:none"></div>
 </div>
+
+<!-- Goal Modal -->
+<div class="modal-ov hidden" id="goal-modal">
+  <div class="modal">
+    <div class="modal-ttl" id="gm-title">Add Goal</div>
+    <div class="fg"><label class="flbl">Goal Name</label><input class="finp" id="gm-name" placeholder="e.g. Run a marathon" maxlength="80"></div>
+    <div class="frow">
+      <div class="fg"><label class="flbl">Category</label>
+        <select class="fsel" id="gm-cat"><option>Health</option><option>Work</option><option>Personal</option><option>Finance</option><option>Learning</option></select>
+      </div>
+      <div class="fg"><label class="flbl">Deadline</label><input class="finp" id="gm-deadline" type="date"></div>
+    </div>
+    <div class="fg"><label class="flbl">Description (optional)</label><textarea class="ftxt" id="gm-desc" placeholder="What does success look like?"></textarea></div>
+    <div class="fg"><label class="flbl">Current Progress (%)</label><input class="finp" id="gm-progress" type="number" min="0" max="100" value="0"></div>
+    <div class="mfoot"><button class="btn-c" onclick="closeModal('goal-modal')">Cancel</button><button class="btn-p" onclick="saveGoalModal()">Save Goal</button></div>
+  </div>
+</div>
+
+<!-- Milestone Modal -->
+<div class="modal-ov hidden" id="ms-modal">
+  <div class="modal">
+    <div class="modal-ttl">Add Milestone</div>
+    <input type="hidden" id="mm-gid">
+    <div class="fg"><label class="flbl">Milestone Name</label><input class="finp" id="mm-name" placeholder="e.g. Complete first 10K run" maxlength="80"></div>
+    <div class="fg"><label class="flbl">Due Date</label><input class="finp" id="mm-due" type="date"></div>
+    <div class="mfoot"><button class="btn-c" onclick="closeModal('ms-modal')">Cancel</button><button class="btn-p" onclick="saveMsModal()">Add Milestone</button></div>
+  </div>
+</div>
+
+<script>
+var GK='gt_goals', MK='gt_milestones';
+var TODAY=new Date().toISOString().split('T')[0];
+var CEMOJI={Health:'💪',Work:'💼',Personal:'🌱',Finance:'💰',Learning:'📚'};
+var CCOLOR={Health:'#22c55e',Work:'#6C47FF',Personal:'#f59e0b',Finance:'#ef4444',Learning:'#3b82f6'};
+
+var SGLS=[
+  {id:'g1',name:'Run a Marathon',category:'Health',deadline:'2026-10-15',desc:'Train for and complete a full 42K marathon. Current weekly mileage: 25km.',progress:60,created:'2026-01-15'},
+  {id:'g2',name:'Launch My Online Store',category:'Work',deadline:'2026-08-01',desc:'Build and launch an e-commerce store selling handmade goods.',progress:25,created:'2026-02-01'},
+  {id:'g3',name:'Save $10,000 Emergency Fund',category:'Finance',deadline:'2026-12-31',desc:'Build a 6-month emergency fund by cutting expenses and saving consistently.',progress:40,created:'2026-01-01'},
+  {id:'g4',name:'Read 24 Books This Year',category:'Learning',deadline:'2026-12-31',desc:'Read 2 books per month across fiction, non-fiction, and self-improvement.',progress:50,created:'2026-01-01'},
+  {id:'g5',name:'Learn Spanish B1 Level',category:'Personal',deadline:'2027-06-01',desc:'Reach conversational B1 level through daily practice, weekly tutoring, and Spanish films.',progress:15,created:'2026-03-01'}
+];
+var SMS=[
+  {id:'m1',goalId:'g1',name:'Register for a marathon race',due:'2026-02-01',done:true},
+  {id:'m2',goalId:'g1',name:'Complete first 10K training run',due:'2026-04-15',done:true},
+  {id:'m3',goalId:'g1',name:'Run a half marathon (21K)',due:'2026-07-15',done:false},
+  {id:'m4',goalId:'g2',name:'Set up Shopify store & domain',due:'2026-03-15',done:true},
+  {id:'m5',goalId:'g2',name:'List 20 products with photos',due:'2026-05-20',done:false},
+  {id:'m6',goalId:'g2',name:'Launch first ad campaign',due:'2026-07-15',done:false},
+  {id:'m7',goalId:'g3',name:'Save first $2,000',due:'2026-03-31',done:true},
+  {id:'m8',goalId:'g3',name:'Reach $5,000 milestone',due:'2026-06-30',done:false},
+  {id:'m9',goalId:'g3',name:'Hit $10,000 target',due:'2026-12-31',done:false},
+  {id:'m10',goalId:'g4',name:'Read 6 books — Q1 complete',due:'2026-03-31',done:true},
+  {id:'m11',goalId:'g4',name:'Read 12 books — midyear check',due:'2026-06-30',done:false},
+  {id:'m12',goalId:'g4',name:'Finish all 24 books by Dec',due:'2026-12-15',done:false},
+  {id:'m13',goalId:'g5',name:'Complete A1 vocabulary (500 words)',due:'2026-04-30',done:true},
+  {id:'m14',goalId:'g5',name:'Finish A2 online course',due:'2026-08-31',done:false},
+  {id:'m15',goalId:'g5',name:'Pass B1 practice test',due:'2027-03-31',done:false}
+];
+
+var goals=[], milestones=[], curView='dashboard', gFilter='All', expanded={}, editId=null;
+
+function loadData(){
+  var g=localStorage.getItem(GK), m=localStorage.getItem(MK);
+  goals=g?JSON.parse(g):JSON.parse(JSON.stringify(SGLS));
+  milestones=m?JSON.parse(m):JSON.parse(JSON.stringify(SMS));
+  if(!g)localStorage.setItem(GK,JSON.stringify(goals));
+  if(!m)localStorage.setItem(MK,JSON.stringify(milestones));
+}
+function saveG(){localStorage.setItem(GK,JSON.stringify(goals));}
+function saveM(){localStorage.setItem(MK,JSON.stringify(milestones));}
+function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+
+function daysTo(ds){
+  if(!ds)return null;
+  return Math.round((new Date(ds+'T00:00:00')-new Date(TODAY+'T00:00:00'))/86400000);
+}
+function fmtD(ds){
+  if(!ds)return '';
+  var d=new Date(ds+'T00:00:00');
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+function gms(gid){return milestones.filter(function(m){return m.goalId===gid;});}
+function recalc(gid){
+  var ms=gms(gid); if(!ms.length)return;
+  var g=goals.find(function(x){return x.id===gid;});
+  if(g){g.progress=Math.round(ms.filter(function(m){return m.done;}).length/ms.length*100);saveG();}
+}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function dbadge(d){
+  if(d===null)return '';
+  if(d<0)return '<span class="dbadge db-due">Overdue</span>';
+  if(d===0)return '<span class="dbadge db-warn">Due today</span>';
+  if(d<=14)return '<span class="dbadge db-warn">'+d+'d left</span>';
+  return '<span class="dbadge db-ok">'+d+'d left</span>';
+}
+function pfclass(p){return p>=100?'grn':p>=50?'':'amb';}
+
+function switchView(v){
+  curView=v;
+  ['dashboard','goals','milestones','stats'].forEach(function(n){
+    document.getElementById('view-'+n).style.display=n===v?'':'none';
+    var t=document.querySelector('.tab[data-view="'+n+'"]');
+    if(t)t.classList.toggle('active',n===v);
+  });
+  render();
+}
+function render(){
+  if(curView==='dashboard')renderDash();
+  else if(curView==='goals')renderGoals();
+  else if(curView==='milestones')renderMs();
+  else renderStats();
+}
+
+// ── Dashboard ─────────────────────────────────────────────────
+function renderDash(){
+  var active=goals.filter(function(g){return g.progress<100;});
+  var done=goals.filter(function(g){return g.progress>=100;});
+  var overall=goals.length?Math.round(goals.reduce(function(s,g){return s+g.progress;},0)/goals.length):0;
+  var soon=goals.filter(function(g){var d=daysTo(g.deadline);return d!==null&&d>=0&&d<=14&&g.progress<100;}).length;
+  var focus=goals.filter(function(g){return g.progress<100&&g.deadline;})
+    .sort(function(a,b){return new Date(a.deadline)-new Date(b.deadline);}).slice(0,3);
+
+  var h='<div class="stat-grid">';
+  h+=sc('Active Goals',active.length,'Goals in progress','c-acc');
+  h+=sc('Completed',done.length,'Goals finished','c-grn');
+  h+=sc('Overall Progress',overall+'%','Across all goals','');
+  h+=sc('Due Soon',soon,'Within 14 days',soon>0?'c-red':'');
+  h+='</div>';
+
+  h+='<div class="sh"><div class="st">🎯 Today\'s Focus</div></div>';
+  if(focus.length===0){
+    h+='<div class="empty"><div class="empty-ico">🏆</div><div class="empty-txt">All goals on track! Add new goals to keep growing.</div></div>';
+  }else{
+    h+='<div class="focus-grid">';
+    focus.forEach(function(g){
+      var d=daysTo(g.deadline);
+      h+='<div class="fc"><div class="fct">'+esc(g.name)+'</div>';
+      h+='<div class="fcm"><span class="ctag ct-'+g.category+'">'+CEMOJI[g.category]+' '+g.category+'</span>'+dbadge(d)+'</div>';
+      h+='<div class="prow"><span class="plbl">Progress</span><span class="ppct">'+g.progress+'%</span></div>';
+      h+='<div class="pbar"><div class="pfill '+pfclass(g.progress)+'" style="width:'+g.progress+'%"></div></div>';
+      h+='</div>';
+    });
+    h+='</div>';
+  }
+
+  h+='<div class="sh"><div class="st">All Goals</div><button class="btn-p btn-sm" onclick="switchView(\'goals\')">Manage →</button></div>';
+  if(!goals.length){
+    h+='<div class="empty"><div class="empty-ico">🎯</div><div class="empty-txt"><a style="color:var(--acc2)" href="#" onclick="switchView(\'goals\')">Add your first goal →</a></div></div>';
+  }else{
+    goals.forEach(function(g){h+=gcHtml(g,true);});
+  }
+  document.getElementById('view-dashboard').innerHTML=h;
+}
+function sc(lbl,val,sub,cls){
+  return '<div class="stat-card '+cls+'"><div class="stat-lbl">'+lbl+'</div><div class="stat-val">'+val+'</div><div class="stat-sub">'+sub+'</div></div>';
+}
+
+// ── Goals ─────────────────────────────────────────────────────
+function renderGoals(){
+  var cats=['All','Health','Work','Personal','Finance','Learning'];
+  var filtered=gFilter==='All'?goals:goals.filter(function(g){return g.category===gFilter;});
+  var h='<div class="sh"><div class="st">My Goals</div><button class="btn-p" onclick="openGM(null)">+ Add Goal</button></div>';
+  h+='<div class="filter-bar">';
+  cats.forEach(function(c){h+='<button class="fbtn'+(gFilter===c?' active':'')+'" onclick="setFilter(\''+c+'\')">'+c+'</button>';});
+  h+='</div>';
+  if(!filtered.length){
+    h+='<div class="empty"><div class="empty-ico">🎯</div><div class="empty-txt">No goals in this category.</div></div>';
+  }else{
+    filtered.forEach(function(g){h+=gcHtml(g,false);});
+  }
+  document.getElementById('view-goals').innerHTML=h;
+}
+function setFilter(c){gFilter=c;renderGoals();}
+
+function gcHtml(g,mini){
+  var d=daysTo(g.deadline), ms=gms(g.id), doneMs=ms.filter(function(m){return m.done;}).length;
+  var h='<div class="goal-card" id="gc-'+g.id+'">';
+  h+='<div class="gch"><div class="gemoji">'+CEMOJI[g.category]+'</div>';
+  h+='<div class="gi"><div class="gname">'+esc(g.name)+'</div>';
+  h+='<div class="gmeta"><span class="ctag ct-'+g.category+'">'+g.category+'</span>';
+  if(g.deadline)h+='<span class="gdl">📅 '+fmtD(g.deadline)+'</span>';
+  h+=dbadge(d)+'</div></div>';
+  if(!mini){
+    h+='<div class="gacts">';
+    h+='<button class="bico" onclick="openGM(\''+g.id+'\')" title="Edit">✏️</button>';
+    h+='<button class="bico del" onclick="delGoal(\''+g.id+'\')" title="Delete">🗑️</button>';
+    h+='</div>';
+  }
+  h+='</div>';
+  h+='<div class="prow"><span class="plbl">Progress</span><span class="ppct">'+g.progress+'%</span></div>';
+  h+='<div class="pbar"><div class="pfill '+pfclass(g.progress)+'" style="width:'+g.progress+'%"></div></div>';
+  if(!mini){
+    h+='<button class="ms-tog" onclick="toggleExp(\''+g.id+'\')">';
+    h+='<span>📍 Milestones</span><span class="ms-cnt">'+doneMs+'/'+ms.length+'</span>';
+    h+='<span style="margin-left:4px;font-size:10px">'+(expanded[g.id]?'▲':'▼')+'</span></button>';
+    if(expanded[g.id]){
+      h+='<div class="ms-list">';
+      if(!ms.length)h+='<div style="padding:6px 0;font-size:13px;color:var(--txt2)">No milestones yet.</div>';
+      else ms.forEach(function(m){h+=msHtml(m);});
+      h+='<button class="btn-p btn-sm" style="margin-top:8px" onclick="openMM(\''+g.id+'\')">+ Add Milestone</button>';
+      h+='</div>';
+    }
+  }
+  h+='</div>';
+  return h;
+}
+function msHtml(m){
+  var h='<div class="ms-item">';
+  h+='<button class="mschk'+(m.done?' done':'')+'" onclick="toggleMs(\''+m.id+'\')">'+(m.done?'✓':'')+'</button>';
+  h+='<div class="msi"><div class="msname'+(m.done?' done':'')+'">'+esc(m.name)+'</div>';
+  if(m.due)h+='<div class="msdue">📅 '+fmtD(m.due)+'</div>';
+  h+='</div>';
+  h+='<button class="bico del msdel" onclick="delMs(\''+m.id+'\')" title="Delete">🗑️</button>';
+  h+='</div>';
+  return h;
+}
+function toggleExp(id){expanded[id]=!expanded[id];render();}
+
+// ── Milestones view ───────────────────────────────────────────
+function renderMs(){
+  var h='<div class="sh"><div class="st">All Milestones</div></div>';
+  if(!goals.length){
+    h+='<div class="empty"><div class="empty-ico">📍</div><div class="empty-txt">Add goals first to track milestones.</div></div>';
+    document.getElementById('view-milestones').innerHTML=h; return;
+  }
+  goals.forEach(function(g){
+    var ms=gms(g.id), dm=ms.filter(function(m){return m.done;}).length;
+    var key='mv_'+g.id, open=expanded[key]!==false;
+    h+='<div class="mg"><div class="mgh" onclick="toggleMv(\''+g.id+'\')">';
+    h+='<div class="mght"><span>'+CEMOJI[g.category]+'</span><span>'+esc(g.name)+'</span>';
+    h+='<span class="ctag ct-'+g.category+'">'+g.category+'</span></div>';
+    h+='<div style="display:flex;align-items:center;gap:10px">';
+    h+='<span class="mgp">'+dm+'/'+ms.length+' done</span>';
+    h+='<span class="chv'+(open?' open':'')+'">▶</span></div></div>';
+    if(open){
+      h+='<div class="mgb">';
+      if(!ms.length)h+='<div style="font-size:13px;color:var(--txt2);padding:6px 0">No milestones yet.</div>';
+      else ms.forEach(function(m){h+=msHtml(m);});
+      h+='<button class="btn-p btn-sm" style="margin-top:8px" onclick="openMM(\''+g.id+'\')">+ Add Milestone</button>';
+      h+='</div>';
+    }
+    h+='</div>';
+  });
+  document.getElementById('view-milestones').innerHTML=h;
+}
+function toggleMv(gid){var k='mv_'+gid;expanded[k]=expanded[k]===false?true:false;render();}
+
+// ── Stats ─────────────────────────────────────────────────────
+function renderStats(){
+  var h='<div class="stats-grid">';
+  h+='<div class="sc"><div class="sct">Goals by Category</div>';
+  h+='<div class="pie-wrap"><div class="pie" id="pie"></div><div class="pleg" id="pleg"></div></div></div>';
+  h+='<div class="sc"><div class="sct">Progress Ranking</div><div id="rank"></div></div>';
+  h+='<div class="sc full"><div class="sct">Milestones Completed — Past 12 Weeks</div><div id="bchart"></div></div>';
+  h+='</div>';
+  document.getElementById('view-stats').innerHTML=h;
+  drawPie(); drawRank(); drawBar();
+}
+
+function drawPie(){
+  var cats=['Health','Work','Personal','Finance','Learning'];
+  var counts={Health:0,Work:0,Personal:0,Finance:0,Learning:0};
+  goals.forEach(function(g){if(counts[g.category]!==undefined)counts[g.category]++;});
+  var total=goals.length||1, grad='', cum=0, leg='';
+  cats.forEach(function(c){
+    var pct=counts[c]/total*100, col=CCOLOR[c];
+    leg+='<div class="li"><div class="ld" style="background:'+col+'"></div><span class="ll">'+c+'</span><span class="lv">'+counts[c]+'</span></div>';
+    if(pct>0){grad+=col+' '+cum.toFixed(1)+'% '+(cum+pct).toFixed(1)+'%, ';cum+=pct;}
+  });
+  grad=grad?grad.slice(0,-2):'var(--bdr) 0% 100%';
+  var p=document.getElementById('pie'); if(p)p.style.background='conic-gradient('+grad+')';
+  var l=document.getElementById('pleg'); if(l)l.innerHTML=leg;
+}
+
+function drawRank(){
+  var sorted=goals.slice().sort(function(a,b){return b.progress-a.progress;});
+  var h='';
+  if(!sorted.length){h='<div style="color:var(--txt2);font-size:13px">No goals yet.</div>';}
+  else sorted.forEach(function(g,i){
+    h+='<div class="rank-item"><div class="rn'+(i===0?' top':'')+'">'+( i+1)+'</div>';
+    h+='<div class="ri"><div class="rname">'+esc(g.name)+'</div>';
+    h+='<div class="rbw"><div class="rb" style="width:'+g.progress+'%;background:'+(CCOLOR[g.category]||'var(--acc)')+'"></div></div></div>';
+    h+='<div class="rpct">'+g.progress+'%</div></div>';
+  });
+  var el=document.getElementById('rank'); if(el)el.innerHTML=h;
+}
+
+function drawBar(){
+  var today=new Date(TODAY+'T00:00:00');
+  // synthetic seed values for visual richness (oldest→newest)
+  var syn=[1,2,1,3,2,4,3,2,1,3,2,1];
+  var weeks=[];
+  for(var i=11;i>=0;i--){
+    var we=new Date(today); we.setDate(today.getDate()-i*7);
+    var ws=new Date(we); ws.setDate(we.getDate()-6);
+    var cnt=milestones.filter(function(m){
+      if(!m.done)return false;
+      var due=new Date(m.due+'T00:00:00');
+      return due>=ws&&due<=we;
+    }).length;
+    var mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    weeks.push({lbl:mn[ws.getMonth()]+' '+ws.getDate(),count:cnt+syn[11-i]});
+  }
+  var mx=Math.max.apply(null,weeks.map(function(w){return w.count;}))||1;
+  var h='<div style="display:flex;align-items:flex-end;gap:5px;height:130px;padding-bottom:28px">';
+  weeks.forEach(function(w){
+    var hp=Math.max(4,Math.round(w.count/mx*100));
+    h+='<div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;position:relative">';
+    h+='<div style="width:100%;background:var(--acc);border-radius:4px 4px 0 0;height:'+hp+'%;margin-top:auto;opacity:'+(w.count>0?'1':'0.25')+'"></div>';
+    h+='<div style="font-size:9px;color:var(--txt2);position:absolute;bottom:2px;transform:rotate(-40deg);transform-origin:top center;white-space:nowrap">'+w.lbl+'</div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  var el=document.getElementById('bchart'); if(el)el.innerHTML=h;
+}
+
+// ── CRUD ──────────────────────────────────────────────────────
+function openGM(id){
+  editId=id;
+  var g=id?goals.find(function(x){return x.id===id;}):null;
+  document.getElementById('gm-title').textContent=g?'Edit Goal':'Add Goal';
+  document.getElementById('gm-name').value=g?g.name:'';
+  document.getElementById('gm-cat').value=g?g.category:'Health';
+  document.getElementById('gm-deadline').value=g?g.deadline:'';
+  document.getElementById('gm-desc').value=g?g.desc:'';
+  document.getElementById('gm-progress').value=g?g.progress:0;
+  document.getElementById('goal-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('gm-name').focus();},50);
+}
+function saveGoalModal(){
+  var name=document.getElementById('gm-name').value.trim();
+  if(!name){document.getElementById('gm-name').focus();return;}
+  var data={name:name,category:document.getElementById('gm-cat').value,deadline:document.getElementById('gm-deadline').value,
+    desc:document.getElementById('gm-desc').value.trim(),progress:Math.min(100,Math.max(0,parseInt(document.getElementById('gm-progress').value)||0))};
+  if(editId){var g=goals.find(function(x){return x.id===editId;});if(g)Object.assign(g,data);}
+  else goals.push(Object.assign({id:uid(),created:TODAY},data));
+  saveG(); closeModal('goal-modal'); render();
+}
+function delGoal(id){
+  if(!confirm('Delete this goal and all its milestones?'))return;
+  goals=goals.filter(function(g){return g.id!==id;});
+  milestones=milestones.filter(function(m){return m.goalId!==id;});
+  saveG(); saveM(); render();
+}
+function openMM(gid){
+  document.getElementById('mm-gid').value=gid;
+  document.getElementById('mm-name').value='';
+  document.getElementById('mm-due').value='';
+  document.getElementById('ms-modal').classList.remove('hidden');
+  setTimeout(function(){document.getElementById('mm-name').focus();},50);
+}
+function saveMsModal(){
+  var name=document.getElementById('mm-name').value.trim();
+  if(!name){document.getElementById('mm-name').focus();return;}
+  var gid=document.getElementById('mm-gid').value;
+  milestones.push({id:uid(),goalId:gid,name:name,due:document.getElementById('mm-due').value,done:false});
+  saveM(); recalc(gid); closeModal('ms-modal'); render();
+}
+function toggleMs(mid){
+  var m=milestones.find(function(x){return x.id===mid;});
+  if(!m)return; m.done=!m.done; saveM(); recalc(m.goalId); render();
+}
+function delMs(mid){
+  var m=milestones.find(function(x){return x.id===mid;});
+  if(!m)return; var gid=m.goalId;
+  milestones=milestones.filter(function(x){return x.id!==mid;});
+  saveM(); recalc(gid); render();
+}
+function closeModal(id){document.getElementById(id).classList.add('hidden');}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov').forEach(function(el){el.classList.add('hidden');});});
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
+
+loadData(); renderDash();
+</script>
 </body>
 </html>
