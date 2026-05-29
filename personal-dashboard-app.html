@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Dashboard App | NotionTemplaFix</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--s1:#1a1a1a;--s2:#222;--s3:#2a2a2a;--bd:#333;--tx:#f0f0f0;--t2:#a0a0a0;--t3:#555;--acc:#6C47FF;--acc2:#8b6dff;--red:#ef4444;--grn:#22c55e;--yel:#f59e0b;--blu:#3b82f6;--orn:#f97316}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+input,textarea,select{font-family:inherit}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:8px;padding:0 20px;height:54px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.app-title{font-size:15px;font-weight:800;color:var(--tx)}
+.nav-tabs{display:flex;gap:3px;margin-left:auto;overflow-x:auto}
+.nav-tabs::-webkit-scrollbar{height:0}
+.tab{padding:6px 13px;border:none;background:transparent;color:var(--t2);font-size:13px;font-weight:600;border-radius:8px;white-space:nowrap;transition:all .2s}
+.tab:hover{background:var(--s3);color:var(--tx)}
+.tab.active{background:var(--acc);color:#fff}
+.back-btn{font-size:12px;color:var(--t2);padding:5px 10px;border-radius:7px;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.back-btn:hover{color:var(--tx);background:var(--s3)}
+.main{padding:22px 22px 60px;max-width:1100px;margin:0 auto}
+.view{display:none}.view.active{display:block}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.sl{font-size:11px;color:var(--t2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sv{font-size:26px;font-weight:800}
+.ss{font-size:11px;color:var(--t2);margin-top:3px}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;margin-top:20px}
+.st{font-size:15px;font-weight:700}
+.btn{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s}
+.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc2)}
+.btn-sm{padding:5px 11px;font-size:12px}
+.btn-g{background:var(--s3);color:var(--t2);border:1px solid var(--bd)}.btn-g:hover{color:var(--tx)}
+.btn-d{background:#2a1010;color:var(--red);border:1px solid #5a2020}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.fb{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--bd);background:var(--s2);color:var(--t2);cursor:pointer;transition:all .2s}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.task-item{display:flex;align-items:center;gap:9px;padding:10px 12px;background:var(--s1);border:1px solid var(--bd);border-radius:9px;margin-bottom:6px;transition:border-color .2s}
+.task-item:hover{border-color:#555}
+.task-item.done .task-tx{text-decoration:line-through;color:var(--t3)}
+.task-tx{flex:1;font-size:13px;cursor:pointer}
+.cb{width:16px;height:16px;accent-color:var(--acc);cursor:pointer;flex-shrink:0}
+.pri{padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+.ph{background:#2d1010;color:var(--red)}.pm{background:#2d2210;color:var(--yel)}.pl{background:#0e241a;color:var(--grn)}
+.cat-tag{font-size:11px;color:var(--t2);background:var(--s3);padding:2px 7px;border-radius:99px}
+.due-tag{font-size:11px;color:var(--t3)}
+.quick-row{display:flex;gap:8px;margin-bottom:18px}
+.quick-in{flex:1;background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;color:var(--tx);font-size:13px;outline:none;transition:border-color .2s}
+.quick-in:focus{border-color:var(--acc)}
+.quote-box{background:var(--s1);border:1px solid var(--bd);border-left:3px solid var(--acc);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.qt{font-size:14px;font-style:italic;color:var(--t2);line-height:1.6}
+.qa{font-size:12px;color:var(--t3);margin-top:6px;font-weight:600}
+.wx-card{background:linear-gradient(135deg,#1c1430,#2d1b69);border:1px solid #3d2b99;border-radius:12px;padding:16px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.wx-icon{font-size:32px}
+.wx-temp{font-size:22px;font-weight:800}
+.wx-desc{font-size:13px;color:var(--t2);margin-top:2px}
+.wx-note{font-size:11px;color:var(--t3);margin-top:4px}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.nc{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:15px;cursor:pointer;transition:border-color .2s}
+.nc:hover{border-color:var(--acc)}
+.nc-purple{border-top:3px solid var(--acc)}.nc-blue{border-top:3px solid var(--blu)}.nc-green{border-top:3px solid var(--grn)}.nc-yellow{border-top:3px solid var(--yel)}.nc-red{border-top:3px solid var(--red)}.nc-orange{border-top:3px solid var(--orn)}
+.nc-ttl{font-size:14px;font-weight:700;margin-bottom:6px}
+.nc-body{font-size:12px;color:var(--t2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.nc-dt{font-size:11px;color:var(--t3);margin-top:10px}
+.cal-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:12px;overflow:hidden}
+.cal-hdr-row,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-dhdr{background:var(--s2);padding:8px 4px;text-align:center;font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase}
+.cal-cell{background:var(--s1);border-top:1px solid var(--bd);border-right:1px solid var(--bd);min-height:68px;padding:6px 4px;cursor:pointer;transition:background .2s;display:flex;flex-direction:column;align-items:center}
+.cal-cell:nth-child(7n){border-right:none}
+.cal-cell:hover{background:var(--s3)}
+.cal-cell.sel{background:var(--s3);outline:1px inset var(--acc)}
+.cal-num{width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border-radius:50%}
+.cal-cell.today .cal-num{background:var(--acc);color:#fff}
+.cal-cell.om .cal-num{color:var(--t3)}
+.dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;margin-top:3px}
+.dot{width:5px;height:5px;border-radius:50%}
+.day-panel{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-top:14px}
+.dp-title{font-size:14px;font-weight:700;color:var(--acc);margin-bottom:12px}
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.lk-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:5px;cursor:pointer;transition:border-color .2s}
+.lk-card:hover{border-color:var(--acc)}
+.lk-em{font-size:22px}
+.lk-name{font-size:13px;font-weight:700}
+.lk-url{font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lk-cat{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--s3);color:var(--t2);align-self:flex-start}
+.lk-edit-btn{font-size:11px;color:var(--t3);background:var(--s3);border:none;border-radius:5px;padding:2px 7px;cursor:pointer;margin-top:2px;align-self:flex-start}
+.lk-edit-btn:hover{color:var(--acc)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:22px;width:100%;max-width:460px;transform:translateY(10px);transition:transform .2s;max-height:90vh;overflow-y:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-ttl{font-size:16px;font-weight:700;margin-bottom:16px}
+.fr{margin-bottom:12px}
+.fl{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;display:block}
+.fi{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:8px 12px;color:var(--tx);font-size:13px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--acc)}
+.fta{min-height:100px;resize:vertical}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.empty{text-align:center;padding:40px 16px;color:var(--t3)}
+.ei{font-size:32px;margin-bottom:10px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){.stat-row{grid-template-columns:repeat(2,1fr)}.main{padding:14px 14px 60px}.nav-tabs{gap:2px}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div class="topbar">
+  <a class="back-btn" href="/my-library.html">← Library</a>
+  <div class="app-title">Personal Dashboard</div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="sv('dashboard',this)">Dashboard</button>
+    <button class="tab" onclick="sv('tasks',this)">Tasks</button>
+    <button class="tab" onclick="sv('notes',this)">Notes</button>
+    <button class="tab" onclick="sv('calendar',this)">Calendar</button>
+    <button class="tab" onclick="sv('links',this)">Links</button>
+  </div>
+</div>
+<div class="main">
+  <!-- DASHBOARD -->
+  <div class="view active" id="v-dashboard">
+    <div class="stat-row" id="d-stats"></div>
+    <div id="d-weather"></div>
+    <div id="d-quote"></div>
+    <div class="sh"><span class="st">Quick Capture</span></div>
+    <div class="quick-row">
+      <input class="quick-in" id="qi" placeholder="Add a task for today… (Enter to save)" onkeydown="if(event.key==='Enter')qcAdd()">
+      <button class="btn btn-p" onclick="qcAdd()">+ Add</button>
+    </div>
+    <div class="sh"><span class="st">Today's Tasks</span></div>
+    <div id="d-today"></div>
+  </div>
+  <!-- TASKS -->
+  <div class="view" id="v-tasks">
+    <div class="sh"><span class="st">All Tasks</span><button class="btn btn-p btn-sm" onclick="openTask(null)">+ Add Task</button></div>
+    <div class="filter-bar" id="tf">
+      <button class="fb on" onclick="setTF('all',this)">All</button>
+      <button class="fb" onclick="setTF('active',this)">Active</button>
+      <button class="fb" onclick="setTF('done',this)">Done</button>
+      <button class="fb" onclick="setTF('high',this)">🔴 High</button>
+      <button class="fb" onclick="setTF('work',this)">Work</button>
+      <button class="fb" onclick="setTF('personal',this)">Personal</button>
+    </div>
+    <div id="task-list"></div>
+  </div>
+  <!-- NOTES -->
+  <div class="view" id="v-notes">
+    <div class="sh"><span class="st">Notes</span><button class="btn btn-p btn-sm" onclick="openNote(null)">+ New Note</button></div>
+    <div class="filter-bar" id="nf">
+      <button class="fb on" onclick="setNF('all',this)">All</button>
+      <button class="fb" onclick="setNF('purple',this)" style="color:#a78bfa">● Purple</button>
+      <button class="fb" onclick="setNF('blue',this)" style="color:#60a5fa">● Blue</button>
+      <button class="fb" onclick="setNF('green',this)" style="color:#4ade80">● Green</button>
+      <button class="fb" onclick="setNF('yellow',this)" style="color:#fbbf24">● Yellow</button>
+      <button class="fb" onclick="setNF('red',this)" style="color:#f87171">● Red</button>
+    </div>
+    <div class="notes-grid" id="notes-grid"></div>
+  </div>
+  <!-- CALENDAR -->
+  <div class="view" id="v-calendar">
+    <div class="sh">
+      <span class="st" id="cal-label"></span>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-g btn-sm" onclick="calNav(-1)">← Prev</button>
+        <button class="btn btn-g btn-sm" onclick="calToday()">Today</button>
+        <button class="btn btn-g btn-sm" onclick="calNav(1)">Next →</button>
+      </div>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal-hdr-row" id="cal-dhdrs"></div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+    <div id="cal-panel"></div>
+  </div>
+  <!-- LINKS -->
+  <div class="view" id="v-links">
+    <div class="sh"><span class="st">Quick Links</span><button class="btn btn-p btn-sm" onclick="openLink(null)">+ Add Link</button></div>
+    <div class="filter-bar" id="lf"></div>
+    <div class="links-grid" id="links-grid"></div>
+  </div>
+</div>
+
+<!-- TASK MODAL -->
+<div class="overlay" id="tm" onclick="if(event.target===this)closeTM()">
+<div class="modal">
+  <div class="modal-ttl" id="tm-ttl">Add Task</div>
+  <div class="fr"><label class="fl">Title</label><input class="fi" id="t-ti" placeholder="Task title…"></div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Priority</label><select class="fi" id="t-pr"><option value="high">🔴 High</option><option value="med" selected>🟡 Medium</option><option value="low">🟢 Low</option></select></div>
+    <div class="fr"><label class="fl">Category</label><select class="fi" id="t-ca"><option>Work</option><option>Personal</option><option>Health</option><option>Learning</option><option>Finance</option><option>Other</option></select></div>
+  </div>
+  <div class="fr"><label class="fl">Due Date</label><input class="fi" id="t-du" type="date"></div>
+  <div class="ma">
+    <button class="btn btn-g" onclick="closeTM()">Cancel</button>
+    <button class="btn btn-d btn-sm" id="tm-del" onclick="delTask()" style="display:none">Delete</button>
+    <button class="btn btn-p" onclick="saveTask()">Save</button>
+  </div>
+</div></div>
+
+<!-- NOTE MODAL -->
+<div class="overlay" id="nm" onclick="if(event.target===this)closeNM()">
+<div class="modal">
+  <div class="modal-ttl" id="nm-ttl">New Note</div>
+  <div class="fr"><label class="fl">Title</label><input class="fi" id="n-ti" placeholder="Note title…"></div>
+  <div class="fr"><label class="fl">Content</label><textarea class="fi fta" id="n-co" placeholder="Write your note…"></textarea></div>
+  <div class="fr"><label class="fl">Color</label>
+    <select class="fi" id="n-cl">
+      <option value="purple">Purple</option><option value="blue">Blue</option><option value="green">Green</option>
+      <option value="yellow">Yellow</option><option value="red">Red</option><option value="orange">Orange</option>
+    </select>
+  </div>
+  <div class="ma">
+    <button class="btn btn-g" onclick="closeNM()">Cancel</button>
+    <button class="btn btn-d btn-sm" id="nm-del" onclick="delNote()" style="display:none">Delete</button>
+    <button class="btn btn-p" onclick="saveNote()">Save</button>
+  </div>
+</div></div>
+
+<!-- LINK MODAL -->
+<div class="overlay" id="lm" onclick="if(event.target===this)closeLM()">
+<div class="modal">
+  <div class="modal-ttl" id="lm-ttl">Add Link</div>
+  <div class="fr"><label class="fl">Title</label><input class="fi" id="l-ti" placeholder="e.g. GitHub"></div>
+  <div class="fr"><label class="fl">URL</label><input class="fi" id="l-ur" placeholder="https://…"></div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Emoji</label><input class="fi" id="l-em" placeholder="🔗"></div>
+    <div class="fr"><label class="fl">Category</label><input class="fi" id="l-ca" placeholder="Work, Social…"></div>
+  </div>
+  <div class="ma">
+    <button class="btn btn-g" onclick="closeLM()">Cancel</button>
+    <button class="btn btn-d btn-sm" id="lm-del" onclick="delLink()" style="display:none">Delete</button>
+    <button class="btn btn-p" onclick="saveLink()">Save</button>
+  </div>
+</div></div>
+
+<script>
+var TK='pd_tasks',NK='pd_notes',LK='pd_links';
+var tasks=[],notes=[],links=[];
+var tFilt='all',nFilt='all',lFilt='All';
+var eTid=null,eNid=null,eLid=null;
+var calY,calM,calSel=null;
+
+var QUOTES=[
+  {t:'The secret of getting ahead is getting started.',a:'Mark Twain'},
+  {t:'It always seems impossible until it\'s done.',a:'Nelson Mandela'},
+  {t:'Do what you can, with what you have, where you are.',a:'Theodore Roosevelt'},
+  {t:'The way to get started is to quit talking and begin doing.',a:'Walt Disney'},
+  {t:'In the middle of every difficulty lies opportunity.',a:'Albert Einstein'},
+  {t:'It does not matter how slowly you go as long as you do not stop.',a:'Confucius'},
+  {t:'The only way to do great work is to love what you do.',a:'Steve Jobs'},
+  {t:'Believe you can and you\'re halfway there.',a:'Theodore Roosevelt'}
+];
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAY_LABELS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
+function tod(){return new Date().toISOString().slice(0,10);}
+function fmtD(s){if(!s)return '';var p=s.split('-');return p[1]+'/'+p[2]+'/'+p[0];}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2100);}
+function pClass(p){return p==='high'?'ph':p==='med'?'pm':'pl';}
+function pLabel(p){return p==='high'?'High':p==='med'?'Med':'Low';}
+function dOff(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+
+function load(){
+  tasks=JSON.parse(localStorage.getItem(TK)||'null');
+  notes=JSON.parse(localStorage.getItem(NK)||'null');
+  links=JSON.parse(localStorage.getItem(LK)||'null');
+  if(!tasks){tasks=seedT();savT();}
+  if(!notes){notes=seedN();savN();}
+  if(!links){links=seedL();savL();}
+}
+function savT(){localStorage.setItem(TK,JSON.stringify(tasks));}
+function savN(){localStorage.setItem(NK,JSON.stringify(notes));}
+function savL(){localStorage.setItem(LK,JSON.stringify(links));}
+
+function seedT(){return[
+  {id:uid(),title:'Review project proposal',priority:'high',dueDate:dOff(0),category:'Work',done:false},
+  {id:uid(),title:'Buy groceries',priority:'med',dueDate:dOff(0),category:'Personal',done:false},
+  {id:uid(),title:'Call dentist for appointment',priority:'low',dueDate:dOff(1),category:'Health',done:false},
+  {id:uid(),title:'Read 30 pages of current book',priority:'med',dueDate:dOff(0),category:'Learning',done:true},
+  {id:uid(),title:'Team standup meeting',priority:'high',dueDate:dOff(0),category:'Work',done:true},
+  {id:uid(),title:'Pay monthly bills',priority:'high',dueDate:dOff(2),category:'Finance',done:false},
+  {id:uid(),title:'Workout — 30 min cardio',priority:'med',dueDate:dOff(1),category:'Health',done:false},
+  {id:uid(),title:'Review pull requests',priority:'high',dueDate:dOff(0),category:'Work',done:false},
+  {id:uid(),title:'Plan weekend activities',priority:'low',dueDate:dOff(3),category:'Personal',done:false},
+  {id:uid(),title:'Finish online course module',priority:'med',dueDate:dOff(4),category:'Learning',done:false},
+];}
+function seedN(){return[
+  {id:uid(),title:'Q2 Goals Overview',content:'Key objectives for Q2:\n1. Launch new product feature\n2. Grow team by 2 engineers\n3. Improve test coverage to 80%\n4. Reduce customer churn by 15%',color:'purple',createdAt:dOff(-2)},
+  {id:uid(),title:'Book Recommendations',content:'Books to read this quarter:\n• Atomic Habits — James Clear\n• Deep Work — Cal Newport\n• The Pragmatic Programmer\n• Designing Data-Intensive Applications',color:'blue',createdAt:dOff(-5)},
+  {id:uid(),title:'Weekend Ideas',content:'Fun activities:\n- Visit the farmers market\n- Try the new Italian restaurant\n- Hiking trail at state park\n- Movie night with friends',color:'green',createdAt:dOff(-1)},
+  {id:uid(),title:'Workout Plan',content:'Mon: Upper body + core\nTue: 5km run\nWed: Lower body\nThu: Rest\nFri: Full body HIIT\nWeekend: Active recovery',color:'red',createdAt:dOff(-3)},
+  {id:uid(),title:'Meeting Notes — Product Sync',content:'Attendees: Alice, Bob, Carol\nDecisions:\n• Push v2.0 launch to end of month\n• A/B test pricing page\nNext: Carol to draft spec by Friday',color:'yellow',createdAt:dOff(0)},
+  {id:uid(),title:'Shopping List',content:'Groceries:\n• Eggs, milk, bread\n• Chicken, salmon\n• Broccoli, spinach, tomatoes\n• Greek yogurt\n• Protein powder',color:'orange',createdAt:dOff(-1)},
+];}
+function seedL(){return[
+  {id:uid(),title:'GitHub',url:'https://github.com',emoji:'🐙',category:'Work'},
+  {id:uid(),title:'Google Drive',url:'https://drive.google.com',emoji:'📁',category:'Work'},
+  {id:uid(),title:'Notion',url:'https://notion.so',emoji:'📝',category:'Work'},
+  {id:uid(),title:'YouTube',url:'https://youtube.com',emoji:'▶️',category:'Entertainment'},
+  {id:uid(),title:'Twitter / X',url:'https://x.com',emoji:'🐦',category:'Social'},
+  {id:uid(),title:'LinkedIn',url:'https://linkedin.com',emoji:'💼',category:'Social'},
+  {id:uid(),title:'Gmail',url:'https://mail.google.com',emoji:'📧',category:'Work'},
+  {id:uid(),title:'Figma',url:'https://figma.com',emoji:'🎨',category:'Design'},
+  {id:uid(),title:'Duolingo',url:'https://duolingo.com',emoji:'🦉',category:'Learning'},
+  {id:uid(),title:'Spotify',url:'https://spotify.com',emoji:'🎵',category:'Entertainment'},
+];}
+
+function sv(name,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.getElementById('v-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(name==='dashboard')renderDash();
+  else if(name==='tasks')renderTasks();
+  else if(name==='notes')renderNotes();
+  else if(name==='calendar')renderCal();
+  else if(name==='links')renderLinks();
+}
+
+// ── DASHBOARD ──
+function renderDash(){
+  var td=tod();
+  var todayTasks=tasks.filter(function(t){return t.dueDate===td;});
+  var done=todayTasks.filter(function(t){return t.done;});
+  var active=tasks.filter(function(t){return !t.done;});
+  document.getElementById('d-stats').innerHTML=
+    '<div class="stat-card"><div class="sl">Today\'s Tasks</div><div class="sv" style="color:var(--acc2)">'+done.length+'/'+todayTasks.length+'</div><div class="ss">completed today</div></div>'+
+    '<div class="stat-card"><div class="sl">Active Tasks</div><div class="sv" style="color:var(--yel)">'+active.length+'</div><div class="ss">to do remaining</div></div>'+
+    '<div class="stat-card"><div class="sl">Notes</div><div class="sv" style="color:var(--grn)">'+notes.length+'</div><div class="ss">saved notes</div></div>'+
+    '<div class="stat-card"><div class="sl">Quick Links</div><div class="sv" style="color:var(--blu)">'+links.length+'</div><div class="ss">bookmarked</div></div>';
+  document.getElementById('d-weather').innerHTML=
+    '<div class="wx-card"><div class="wx-icon">⛅</div><div><div class="wx-temp">72°F</div><div class="wx-desc">Partly Cloudy · Have a great day!</div><div class="wx-note">Connect a weather API to show live data</div></div></div>';
+  var q=QUOTES[new Date().getDay()%QUOTES.length];
+  document.getElementById('d-quote').innerHTML='<div class="quote-box"><div class="qt">"'+esc(q.t)+'"</div><div class="qa">— '+esc(q.a)+'</div></div>';
+  var h='';
+  if(!todayTasks.length){h='<div class="empty"><div class="ei">✅</div>No tasks due today — enjoy your day!</div>';}
+  else{todayTasks.forEach(function(t){
+    h+='<div class="task-item'+(t.done?' done':'')+'">'+
+      '<input type="checkbox" class="cb" '+(t.done?'checked':'')+' onchange="togT(\''+t.id+'\')" onclick="event.stopPropagation()">'+
+      '<span class="task-tx" onclick="openTask(\''+t.id+'\')">'+esc(t.title)+'</span>'+
+      '<span class="pri '+pClass(t.priority)+'">'+pLabel(t.priority)+'</span>'+
+      '<span class="cat-tag">'+esc(t.category)+'</span></div>';
+  });}
+  document.getElementById('d-today').innerHTML=h;
+}
+function qcAdd(){
+  var v=document.getElementById('qi').value.trim();
+  if(!v)return;
+  tasks.push({id:uid(),title:v,priority:'med',dueDate:tod(),category:'Work',done:false});
+  savT();document.getElementById('qi').value='';renderDash();toast('Task added!');
+}
+
+// ── TASKS ──
+function renderTasks(){
+  var ft=tasks.filter(function(t){
+    if(tFilt==='active')return !t.done;
+    if(tFilt==='done')return t.done;
+    if(tFilt==='high')return t.priority==='high'&&!t.done;
+    if(tFilt==='work')return t.category==='Work'&&!t.done;
+    if(tFilt==='personal')return t.category==='Personal'&&!t.done;
+    return true;
+  });
+  ft.sort(function(a,b){return ({high:0,med:1,low:2}[a.priority]||0)-({high:0,med:1,low:2}[b.priority]||0);});
+  var h='';
+  if(!ft.length)h='<div class="empty"><div class="ei">📝</div>No tasks match this filter</div>';
+  else ft.forEach(function(t){
+    h+='<div class="task-item'+(t.done?' done':'')+'">'+
+      '<input type="checkbox" class="cb" '+(t.done?'checked':'')+' onchange="togT(\''+t.id+'\')" onclick="event.stopPropagation()">'+
+      '<span class="task-tx" onclick="openTask(\''+t.id+'\')">'+esc(t.title)+'</span>'+
+      '<span class="pri '+pClass(t.priority)+'">'+pLabel(t.priority)+'</span>'+
+      '<span class="cat-tag">'+esc(t.category)+'</span>'+
+      (t.dueDate?'<span class="due-tag">'+fmtD(t.dueDate)+'</span>':'')+
+      '</div>';
+  });
+  document.getElementById('task-list').innerHTML=h;
+}
+function setTF(f,btn){tFilt=f;document.querySelectorAll('#tf .fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderTasks();}
+function togT(tid){var t=tasks.find(function(x){return x.id===tid;});if(t){t.done=!t.done;savT();}
+  var vid=document.querySelector('.view.active').id;
+  if(vid==='v-dashboard')renderDash();else renderTasks();
+}
+function openTask(tid){
+  eTid=tid;
+  document.getElementById('tm-ttl').textContent=tid?'Edit Task':'Add Task';
+  document.getElementById('tm-del').style.display=tid?'':'none';
+  if(tid){var t=tasks.find(function(x){return x.id===tid;});if(!t)return;
+    document.getElementById('t-ti').value=t.title;document.getElementById('t-pr').value=t.priority;
+    document.getElementById('t-ca').value=t.category;document.getElementById('t-du').value=t.dueDate||'';
+  } else {
+    document.getElementById('t-ti').value='';document.getElementById('t-pr').value='med';
+    document.getElementById('t-ca').value='Work';document.getElementById('t-du').value=tod();
+  }
+  document.getElementById('tm').classList.add('open');
+  setTimeout(function(){document.getElementById('t-ti').focus();},80);
+}
+function closeTM(){document.getElementById('tm').classList.remove('open');}
+function saveTask(){
+  var ti=document.getElementById('t-ti').value.trim();if(!ti)return;
+  if(eTid){var t=tasks.find(function(x){return x.id===eTid;});if(t){t.title=ti;t.priority=document.getElementById('t-pr').value;t.category=document.getElementById('t-ca').value;t.dueDate=document.getElementById('t-du').value;}}
+  else tasks.push({id:uid(),title:ti,priority:document.getElementById('t-pr').value,dueDate:document.getElementById('t-du').value,category:document.getElementById('t-ca').value,done:false});
+  savT();closeTM();renderTasks();toast('Saved!');
+}
+function delTask(){if(!eTid)return;tasks=tasks.filter(function(t){return t.id!==eTid;});savT();closeTM();renderTasks();toast('Deleted.');}
+
+// ── NOTES ──
+function renderNotes(){
+  var fn=nFilt==='all'?notes:notes.filter(function(n){return n.color===nFilt;});
+  var h='';
+  if(!fn.length)h='<div class="empty" style="grid-column:1/-1"><div class="ei">📒</div>No notes yet</div>';
+  else fn.forEach(function(n){
+    h+='<div class="nc nc-'+esc(n.color)+'" onclick="openNote(\''+n.id+'\')">'+
+      '<div class="nc-ttl">'+esc(n.title)+'</div>'+
+      '<div class="nc-body">'+esc(n.content)+'</div>'+
+      '<div class="nc-dt">'+fmtD(n.createdAt)+'</div></div>';
+  });
+  document.getElementById('notes-grid').innerHTML=h;
+}
+function setNF(f,btn){nFilt=f;document.querySelectorAll('#nf .fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderNotes();}
+function openNote(nid){
+  eNid=nid;
+  document.getElementById('nm-ttl').textContent=nid?'Edit Note':'New Note';
+  document.getElementById('nm-del').style.display=nid?'':'none';
+  if(nid){var n=notes.find(function(x){return x.id===nid;});if(!n)return;
+    document.getElementById('n-ti').value=n.title;document.getElementById('n-co').value=n.content;document.getElementById('n-cl').value=n.color;
+  } else {document.getElementById('n-ti').value='';document.getElementById('n-co').value='';document.getElementById('n-cl').value='purple';}
+  document.getElementById('nm').classList.add('open');
+  setTimeout(function(){document.getElementById('n-ti').focus();},80);
+}
+function closeNM(){document.getElementById('nm').classList.remove('open');}
+function saveNote(){
+  var ti=document.getElementById('n-ti').value.trim();if(!ti)return;
+  var co=document.getElementById('n-co').value.trim();
+  var cl=document.getElementById('n-cl').value;
+  if(eNid){var n=notes.find(function(x){return x.id===eNid;});if(n){n.title=ti;n.content=co;n.color=cl;}}
+  else notes.push({id:uid(),title:ti,content:co,color:cl,createdAt:tod()});
+  savN();closeNM();renderNotes();toast('Saved!');
+}
+function delNote(){if(!eNid)return;notes=notes.filter(function(n){return n.id!==eNid;});savN();closeNM();renderNotes();toast('Deleted.');}
+
+// ── CALENDAR ──
+function renderCal(){
+  var now=new Date();
+  if(calY===undefined){calY=now.getFullYear();calM=now.getMonth();}
+  document.getElementById('cal-label').textContent=MONTHS[calM]+' '+calY;
+  var dhdrs='';DAY_LABELS.forEach(function(d){dhdrs+='<div class="cal-dhdr">'+d+'</div>';});
+  document.getElementById('cal-dhdrs').innerHTML=dhdrs;
+  var first=new Date(calY,calM,1).getDay();
+  var dim=new Date(calY,calM+1,0).getDate();
+  var td=tod();
+  var h='';
+  for(var i=0;i<first;i++){var pd=new Date(calY,calM,0).getDate()-first+i+1;h+='<div class="cal-cell om"><div class="cal-num">'+pd+'</div></div>';}
+  for(var day=1;day<=dim;day++){
+    var ds=calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    var dt=tasks.filter(function(t){return t.dueDate===ds;});
+    var isT=ds===td,isSel=ds===calSel;
+    var dots='';
+    var pen=dt.filter(function(t){return !t.done;}).length;
+    var dn=dt.filter(function(t){return t.done;}).length;
+    if(pen)dots+='<div class="dot" style="background:var(--acc)"></div>';
+    if(dn)dots+='<div class="dot" style="background:var(--grn)"></div>';
+    h+='<div class="cal-cell'+(isT?' today':'')+(isSel?' sel':'')+'" onclick="selDay(\''+ds+'\')">'
+      +'<div class="cal-num">'+day+'</div>'
+      +(dots?'<div class="dots">'+dots+'</div>':'')
+      +'</div>';
+  }
+  var rem=(7-(first+dim)%7)%7;
+  for(var nd=1;nd<=rem;nd++)h+='<div class="cal-cell om"><div class="cal-num">'+nd+'</div></div>';
+  document.getElementById('cal-grid').innerHTML=h;
+  if(calSel)renderDayPanel(calSel);
+  else document.getElementById('cal-panel').innerHTML='<p style="text-align:center;padding:18px;color:var(--t3);font-size:13px">Click a date to view tasks</p>';
+}
+function calNav(d){calM+=d;if(calM<0){calM=11;calY--;}if(calM>11){calM=0;calY++;}renderCal();}
+function calToday(){var n=new Date();calY=n.getFullYear();calM=n.getMonth();calSel=null;renderCal();}
+function selDay(ds){calSel=ds;renderCal();}
+function renderDayPanel(ds){
+  var dt=tasks.filter(function(t){return t.dueDate===ds;});
+  var parts=ds.split('-');
+  var lbl=MONTHS[parseInt(parts[1])-1]+' '+parseInt(parts[2])+', '+parts[0];
+  var h='<div class="day-panel"><div class="dp-title">'+lbl+'</div>';
+  if(!dt.length)h+='<div style="color:var(--t3);font-size:13px">No tasks on this day.</div>';
+  else dt.forEach(function(t){
+    h+='<div class="task-item'+(t.done?' done':'')+'">'+
+      '<input type="checkbox" class="cb" '+(t.done?'checked':'')+' onchange="togT(\''+t.id+'\')" onclick="event.stopPropagation()">'+
+      '<span class="task-tx">'+esc(t.title)+'</span>'+
+      '<span class="pri '+pClass(t.priority)+'">'+pLabel(t.priority)+'</span></div>';
+  });
+  document.getElementById('cal-panel').innerHTML=h+'</div>';
+}
+
+// ── LINKS ──
+function renderLinks(){
+  var cats=['All'];
+  links.forEach(function(l){if(l.category&&cats.indexOf(l.category)<0)cats.push(l.category);});
+  var fh='';
+  cats.forEach(function(c){fh+='<button class="fb'+(lFilt===c?' on':'')+'" onclick="setLF(\''+esc(c)+'\',this)">'+esc(c)+'</button>';});
+  document.getElementById('lf').innerHTML=fh;
+  var fl=lFilt==='All'?links:links.filter(function(l){return l.category===lFilt;});
+  var h='';
+  if(!fl.length)h='<div class="empty" style="grid-column:1/-1"><div class="ei">🔗</div>No links yet</div>';
+  else fl.forEach(function(l){
+    h+='<div class="lk-card" onclick="openLink(\''+l.id+'\')">'+
+      '<div class="lk-em">'+esc(l.emoji||'🔗')+'</div>'+
+      '<div class="lk-name">'+esc(l.title)+'</div>'+
+      '<div class="lk-url">'+esc(l.url)+'</div>'+
+      (l.category?'<div class="lk-cat">'+esc(l.category)+'</div>':'')+
+      '<button class="lk-edit-btn" onclick="goLink(event,\''+esc(l.url)+'\')">↗ Open</button></div>';
+  });
+  document.getElementById('links-grid').innerHTML=h;
+}
+function goLink(e,url){e.stopPropagation();window.open(url,'_blank','noopener');}
+function setLF(f,btn){lFilt=f;document.querySelectorAll('#lf .fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderLinks();}
+function openLink(lid){
+  eLid=lid;
+  document.getElementById('lm-ttl').textContent=lid?'Edit Link':'Add Link';
+  document.getElementById('lm-del').style.display=lid?'':'none';
+  if(lid){var l=links.find(function(x){return x.id===lid;});if(!l)return;
+    document.getElementById('l-ti').value=l.title;document.getElementById('l-ur').value=l.url;
+    document.getElementById('l-em').value=l.emoji||'🔗';document.getElementById('l-ca').value=l.category||'';
+  } else {document.getElementById('l-ti').value='';document.getElementById('l-ur').value='';document.getElementById('l-em').value='🔗';document.getElementById('l-ca').value='';}
+  document.getElementById('lm').classList.add('open');
+  setTimeout(function(){document.getElementById('l-ti').focus();},80);
+}
+function closeLM(){document.getElementById('lm').classList.remove('open');}
+function saveLink(){
+  var ti=document.getElementById('l-ti').value.trim();var ur=document.getElementById('l-ur').value.trim();if(!ti||!ur)return;
+  if(eLid){var l=links.find(function(x){return x.id===eLid;});if(l){l.title=ti;l.url=ur;l.emoji=document.getElementById('l-em').value||'🔗';l.category=document.getElementById('l-ca').value.trim();}}
+  else links.push({id:uid(),title:ti,url:ur,emoji:document.getElementById('l-em').value||'🔗',category:document.getElementById('l-ca').value.trim()});
+  savL();closeLM();renderLinks();toast('Saved!');
+}
+function delLink(){if(!eLid)return;links=links.filter(function(l){return l.id!==eLid;});savL();closeLM();renderLinks();toast('Deleted.');}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeTM();closeNM();closeLM();}});
+load();renderDash();
+</script>
+</body>
+</html>

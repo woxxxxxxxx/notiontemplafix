@@ -343,6 +343,8 @@ var NOTION_TEMPLATES = [
     price: 9,
     desc: 'All-in-one personal command center with calendar, tasks, notes, and quick links.',
     thumb: '/images/previews/personal-dashboard.png',
+    appUrl: '/personal-dashboard-app.html',
+    status: 'live',
     buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/a9fcf35a-c307-44dd-9ca0-9ad3ddcb6584'
   },
   {
@@ -351,6 +353,8 @@ var NOTION_TEMPLATES = [
     price: 9,
     desc: 'Plan your week ahead with priorities, tasks, meals, and reflection notes.',
     thumb: '/images/previews/weekly-planner.png',
+    appUrl: '/weekly-planner-app.html',
+    status: 'live',
     buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/bd798ed2-554a-4de7-961c-30a107875c84'
   },
   {
@@ -359,6 +363,8 @@ var NOTION_TEMPLATES = [
     price: 9,
     desc: 'Organize courses, assignments, exams, and study sessions all in one place.',
     thumb: '/images/previews/study-planner.png',
+    appUrl: '/study-planner-app.html',
+    status: 'live',
     buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/4701313c-55d7-4984-b8e7-63179a5aa91b'
   },
   {
@@ -367,6 +373,8 @@ var NOTION_TEMPLATES = [
     price: 9,
     desc: 'Capture agendas, action items, and decisions to keep every meeting organized.',
     thumb: '/images/previews/meeting-notes.png',
+    appUrl: '/meeting-notes-app.html',
+    status: 'live',
     buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/0e693918-d7db-4a5b-a9a8-9cd46a5dac59'
   },
   {
@@ -391,6 +399,8 @@ var NOTION_TEMPLATES = [
     price: 9,
     desc: 'Plan, schedule, and manage your content strategy with a visual calendar.',
     thumb: '/images/previews/content-calendar.png',
+    appUrl: '/content-calendar-app.html',
+    status: 'live',
     buyUrl: 'https://notiontemplafix.lemonsqueezy.com/checkout/buy/08216c91-848d-4696-9114-da346332f64d'
   },
   {
@@ -513,15 +523,24 @@ function renderTemplatesGrid(){
   var grid = document.getElementById('templatesGrid');
   grid.innerHTML = '';
   NOTION_TEMPLATES.forEach(function(p){
-    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">'
-      +'<div class="lock-shade">🔒</div>'
-      +'<div class="corner-tag tag-paid">$'+p.price+'</div>';
+    var live = p.status === 'live' && p.appUrl;
+    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">';
+    if(live){
+      thumbHtml += '<div class="corner-tag tag-unlocked">▶ Try Free</div>';
+    } else {
+      thumbHtml += '<div class="lock-shade">🔒</div><div class="corner-tag tag-paid">$'+p.price+'</div>';
+    }
+    var actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy Now — $'+p.price+'</a>';
+    if(live){
+      actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Try App</a>'
+        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy $'+p.price+'</a>';
+    }
     var card = document.createElement('div');
-    card.className = 'prod-card locked-card';
+    card.className = 'prod-card'+(live?'':' locked-card');
     card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
       +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
-      +'<div class="prod-price">$'+p.price+'</div>'
-      +'<div class="prod-actions"><a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy Now — $'+p.price+'</a></div></div>';
+      +(live?'':'<div class="prod-price">$'+p.price+'</div>')
+      +'<div class="prod-actions">'+actions+'</div></div>';
     grid.appendChild(card);
   });
 }

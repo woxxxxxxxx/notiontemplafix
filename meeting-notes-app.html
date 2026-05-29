@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meeting Notes App | NotionTemplaFix</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--s1:#1a1a1a;--s2:#222;--s3:#2a2a2a;--bd:#333;--tx:#f0f0f0;--t2:#a0a0a0;--t3:#555;--acc:#6C47FF;--acc2:#8b6dff;--red:#ef4444;--grn:#22c55e;--yel:#f59e0b;--blu:#3b82f6}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:8px;padding:0 20px;height:54px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.app-title{font-size:15px;font-weight:800;flex-shrink:0}
+.nav-tabs{display:flex;gap:3px;margin-left:auto;overflow-x:auto}.nav-tabs::-webkit-scrollbar{height:0}
+.tab{padding:6px 13px;border:none;background:transparent;color:var(--t2);font-size:13px;font-weight:600;border-radius:8px;white-space:nowrap;transition:all .2s}
+.tab:hover{background:var(--s3);color:var(--tx)}.tab.active{background:var(--acc);color:#fff}
+.back-btn{font-size:12px;color:var(--t2);padding:5px 10px;border-radius:7px;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.back-btn:hover{color:var(--tx);background:var(--s3)}
+.main{padding:22px 22px 60px;max-width:1100px;margin:0 auto}
+.view{display:none}.view.active{display:block}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.sl{font-size:11px;color:var(--t2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sv{font-size:26px;font-weight:800}.ss{font-size:11px;color:var(--t2);margin-top:3px}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;margin-top:20px}
+.st{font-size:15px;font-weight:700}
+.btn{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s}
+.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc2)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-g{background:var(--s3);color:var(--t2);border:1px solid var(--bd)}.btn-g:hover{color:var(--tx)}
+.btn-d{background:#2a1010;color:var(--red);border:1px solid #5a2020}
+/* MEETING CARDS */
+.meet-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:border-color .2s}
+.meet-card:hover{border-color:#444}
+.meet-hdr{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:10px}
+.meet-icon{font-size:20px;flex-shrink:0}
+.meet-info{flex:1;min-width:0}
+.meet-title{font-size:14px;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meet-meta{font-size:12px;color:var(--t2);display:flex;gap:12px;flex-wrap:wrap}
+.meet-badge{padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;background:var(--s3);color:var(--t2)}
+.meet-caret{font-size:12px;color:var(--t3);flex-shrink:0;transition:transform .2s}
+.meet-card.open .meet-caret{transform:rotate(90deg)}
+.meet-body{display:none;padding:0 16px 16px;border-top:1px solid var(--bd)}
+.meet-card.open .meet-body{display:block}
+.meet-section{margin-top:14px}
+.meet-sec-lbl{font-size:11px;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.meet-sec-txt{font-size:13px;color:var(--t2);line-height:1.6;white-space:pre-wrap}
+.ai-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--s2);border-radius:8px;margin-bottom:5px;font-size:13px}
+.ai-item.done .ai-tx{text-decoration:line-through;color:var(--t3)}
+.ai-tx{flex:1;line-height:1.4}
+.ai-asgn{font-size:11px;color:var(--t3);background:var(--s3);padding:2px 7px;border-radius:99px;white-space:nowrap}
+.ai-src{font-size:11px;color:var(--t3);font-style:italic}
+.cb{width:14px;height:14px;accent-color:var(--acc);cursor:pointer;flex-shrink:0;margin-top:2px}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.fb{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--bd);background:var(--s2);color:var(--t2);cursor:pointer;transition:all .2s}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+/* TEMPLATES */
+.tmpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.tmpl-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:18px;cursor:pointer;transition:all .2s}
+.tmpl-card:hover{border-color:var(--acc);transform:translateY(-1px)}
+.tmpl-icon{font-size:28px;margin-bottom:10px}
+.tmpl-name{font-size:14px;font-weight:700;margin-bottom:6px}
+.tmpl-desc{font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:12px}
+.tmpl-agenda{font-size:11px;color:var(--t3)}
+/* RECENT MEETING LIST ON DASH */
+.recent-meet{background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .2s}
+.recent-meet:hover{border-color:var(--acc)}
+.rm-icon{font-size:18px;flex-shrink:0}
+.rm-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.rm-meta{font-size:12px;color:var(--t2)}
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:22px;width:100%;max-width:600px;transform:translateY(10px);transition:transform .2s;max-height:90vh;overflow-y:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-ttl{font-size:16px;font-weight:700;margin-bottom:16px}
+.fr{margin-bottom:12px}.fl{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;display:block}
+.fi{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:8px 12px;color:var(--tx);font-size:13px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--acc)}
+.fta{min-height:72px;resize:vertical}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+/* ACTION ITEMS IN MODAL */
+.ai-form-row{display:flex;gap:6px;margin-bottom:6px;align-items:center}
+.ai-form-tx{flex:1;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:7px 10px;color:var(--tx);font-size:13px;outline:none}
+.ai-form-tx:focus{border-color:var(--acc)}
+.ai-form-as{width:130px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:7px 10px;color:var(--tx);font-size:13px;outline:none}
+.ai-del-btn{background:none;border:none;color:var(--t3);font-size:16px;cursor:pointer;padding:4px}
+.ai-del-btn:hover{color:var(--red)}
+.empty{text-align:center;padding:36px 16px;color:var(--t3)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){.stat-row{grid-template-columns:1fr 1fr}.main{padding:14px 14px 60px}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div class="topbar">
+  <a class="back-btn" href="/my-library.html">← Library</a>
+  <div class="app-title">Meeting Notes</div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="sv('dash',this)">Dashboard</button>
+    <button class="tab" onclick="sv('meetings',this)">Meetings</button>
+    <button class="tab" onclick="sv('actions',this)">Action Items</button>
+    <button class="tab" onclick="sv('templates',this)">Templates</button>
+  </div>
+</div>
+<div class="main">
+  <!-- DASHBOARD -->
+  <div class="view active" id="v-dash">
+    <div class="stat-row" id="d-stats"></div>
+    <div class="sh" style="margin-top:8px"><span class="st">Recent Meetings</span><button class="btn btn-p btn-sm" onclick="openMeet(null)">+ New Meeting</button></div>
+    <div id="d-recent"></div>
+    <div class="sh"><span class="st">Open Action Items</span></div>
+    <div id="d-open-ai"></div>
+  </div>
+  <!-- MEETINGS -->
+  <div class="view" id="v-meetings">
+    <div class="sh" style="margin-top:0"><span class="st">All Meetings</span><button class="btn btn-p btn-sm" onclick="openMeet(null)">+ New Meeting</button></div>
+    <div id="meetings-list"></div>
+  </div>
+  <!-- ACTION ITEMS -->
+  <div class="view" id="v-actions">
+    <div class="sh" style="margin-top:0"><span class="st">All Action Items</span></div>
+    <div class="filter-bar" id="ai-filter">
+      <button class="fb on" onclick="setAIF('all',this)">All</button>
+      <button class="fb" onclick="setAIF('open',this)">Open</button>
+      <button class="fb" onclick="setAIF('done',this)">Done</button>
+    </div>
+    <div id="ai-list"></div>
+  </div>
+  <!-- TEMPLATES -->
+  <div class="view" id="v-templates">
+    <div class="sh" style="margin-top:0"><span class="st">Meeting Templates</span><span style="font-size:13px;color:var(--t2)">Click to start a new meeting</span></div>
+    <div class="tmpl-grid" id="tmpl-grid"></div>
+  </div>
+</div>
+
+<!-- MEETING MODAL -->
+<div class="overlay" id="mm" onclick="if(event.target===this)closeMM()">
+<div class="modal">
+  <div class="modal-ttl" id="mm-ttl">New Meeting</div>
+  <div class="fr"><label class="fl">Meeting Title</label><input class="fi" id="m-ti" placeholder="e.g. Q2 Planning Session"></div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Date</label><input class="fi" id="m-da" type="date"></div>
+    <div class="fr"><label class="fl">Attendees</label><input class="fi" id="m-at" placeholder="Alice, Bob, Carol…"></div>
+  </div>
+  <div class="fr"><label class="fl">Agenda</label><textarea class="fi fta" id="m-ag" placeholder="Meeting agenda items…"></textarea></div>
+  <div class="fr"><label class="fl">Notes</label><textarea class="fi fta" id="m-no" placeholder="Meeting notes and discussion…"></textarea></div>
+  <div class="fr"><label class="fl">Decisions Made</label><textarea class="fi fta" id="m-de" placeholder="Key decisions from this meeting…"></textarea></div>
+  <div class="fr">
+    <label class="fl">Action Items</label>
+    <div id="ai-form-list"></div>
+    <button class="btn btn-g btn-sm" onclick="addAIRow()" style="margin-top:6px">+ Add Action Item</button>
+  </div>
+  <div class="ma">
+    <button class="btn btn-g" onclick="closeMM()">Cancel</button>
+    <button class="btn btn-d btn-sm" id="mm-del" onclick="delMeet()" style="display:none">Delete</button>
+    <button class="btn btn-p" onclick="saveMeet()">Save Meeting</button>
+  </div>
+</div></div>
+
+<script>
+var MK='mn_meetings';
+var meetings=[];
+var eMid=null,aiFilt='all';
+
+var TEMPLATES=[
+  {id:'t1',icon:'👥',name:'1:1 Meeting',desc:'Regular one-on-one check-in between manager and direct report.',
+    agenda:'1. Personal updates & wellbeing\n2. Work progress & priorities\n3. Blockers & challenges\n4. Feedback & growth\n5. Action items'},
+  {id:'t2',icon:'📋',name:'Team Weekly',desc:'Weekly team sync to align on priorities and surface blockers.',
+    agenda:'1. Last week recap\n2. This week priorities\n3. Blockers & dependencies\n4. Team announcements\n5. Open questions'},
+  {id:'t3',icon:'🚀',name:'Project Kickoff',desc:'Align all stakeholders at the start of a new project.',
+    agenda:'1. Project overview & goals\n2. Scope & deliverables\n3. Timeline & milestones\n4. Roles & responsibilities\n5. Risks & dependencies\n6. Q&A'},
+  {id:'t4',icon:'🔍',name:'Retrospective',desc:'Review what went well, what didn\'t, and plan improvements.',
+    agenda:'1. What went well? (keep doing)\n2. What didn\'t go well? (stop doing)\n3. What to try next? (start doing)\n4. Actionable improvements\n5. Assign owners & timelines'},
+];
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2100);}
+function tod(){return new Date().toISOString().slice(0,10);}
+function dOff(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+function fmtD(s){if(!s)return '';var p=s.split('-');var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return months[parseInt(p[1])-1]+' '+parseInt(p[2])+', '+p[0];}
+function getWeekStart(){var now=new Date(),day=now.getDay();var mon=new Date(now);mon.setDate(now.getDate()-(day===0?6:day-1));return mon.toISOString().slice(0,10);}
+
+function load(){
+  meetings=JSON.parse(localStorage.getItem(MK)||'null');
+  if(!meetings){meetings=seedM();savM();}
+}
+function savM(){localStorage.setItem(MK,JSON.stringify(meetings));}
+
+function seedM(){return[
+  {id:'m1',title:'Q2 Product Roadmap Review',date:dOff(-3),attendees:'Alice, Bob, Carol, Dave',
+    agenda:'Review Q1 outcomes\nPresent Q2 initiatives\nTimeline discussion\nResource planning',
+    notes:'Strong Q1 results — 94% of OKRs achieved. Mobile app launch is the key focus for Q2. Engineering team needs 2 more headcount to hit targets.',
+    decisions:'Launch mobile beta in June\nHire 2 engineers by end of Q2\nFreeze non-critical features until beta ships',
+    actionItems:[
+      {id:'ai1',text:'Draft mobile beta announcement blog post',assignee:'Bob',done:false},
+      {id:'ai2',text:'Update hiring pipeline with new JD',assignee:'Carol',done:true},
+      {id:'ai3',text:'Create Q2 OKR tracking document',assignee:'Dave',done:false},
+    ]},
+  {id:'m2',title:'Engineering Weekly Stand-up',date:dOff(-1),attendees:'Alex, Sam, Jordan, Riley, Morgan',
+    agenda:'Sprint 12 recap\nCurrent blockers\nCode review process\nUpcoming deadlines',
+    notes:'Sprint 12 completed with 95% velocity. New PR review process discussed. Deployment pipeline needs update.',
+    decisions:'New PR review process starts next Monday — 2 approvals required\nDaily 15-min sync retained for Q2',
+    actionItems:[
+      {id:'ai4',text:'Set up automated testing pipeline',assignee:'Alex',done:false},
+      {id:'ai5',text:'Document new PR review process in Notion',assignee:'Sam',done:false},
+      {id:'ai6',text:'Update deployment pipeline scripts',assignee:'Jordan',done:true},
+    ]},
+  {id:'m3',title:'1:1 with Sarah — Career Development',date:dOff(0),attendees:'Me, Sarah',
+    agenda:'Career goals & growth\nCurrent project status\nFeedback & coaching\nNext quarter focus',
+    notes:'Great discussion about growth into a senior role. Leadership training program identified as key development area. Q3 promotion possibility discussed.',
+    decisions:'Enroll in leadership training program Q3\nTake ownership of new feature spec next sprint',
+    actionItems:[
+      {id:'ai7',text:'Research leadership training courses and share 3 options',assignee:'Me',done:false},
+      {id:'ai8',text:'Connect with HR about training budget allocation',assignee:'Sarah',done:false},
+      {id:'ai9',text:'Write up feature spec draft for new onboarding flow',assignee:'Me',done:false},
+    ]},
+];}
+
+function sv(name,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.getElementById('v-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(name==='dash')renderDash();
+  else if(name==='meetings')renderMeetings();
+  else if(name==='actions')renderActions();
+  else if(name==='templates')renderTemplates();
+}
+
+// ── DASHBOARD ──
+function renderDash(){
+  var ws=getWeekStart();
+  var weMeets=meetings.filter(function(m){return m.date>=ws&&m.date<=tod();});
+  var allAI=[];
+  meetings.forEach(function(m){(m.actionItems||[]).forEach(function(ai){allAI.push({ai:ai,meeting:m});});});
+  var openAI=allAI.filter(function(x){return !x.ai.done;});
+
+  document.getElementById('d-stats').innerHTML=
+    '<div class="stat-card"><div class="sl">This Week\'s Meetings</div><div class="sv" style="color:var(--acc2)">'+weMeets.length+'</div><div class="ss">meetings held</div></div>'+
+    '<div class="stat-card"><div class="sl">Open Action Items</div><div class="sv" style="color:var(--red)">'+openAI.length+'</div><div class="ss">need attention</div></div>'+
+    '<div class="stat-card"><div class="sl">Total Meetings</div><div class="sv" style="color:var(--grn)">'+meetings.length+'</div><div class="ss">in your history</div></div>';
+
+  var recent=meetings.slice().sort(function(a,b){return b.date>a.date?1:-1;}).slice(0,3);
+  var rh='';
+  if(!recent.length)rh='<div class="empty">No meetings yet</div>';
+  else recent.forEach(function(m){
+    var cnt=(m.actionItems||[]).length;
+    rh+='<div class="recent-meet" onclick="goToMeeting(\''+m.id+'\')">'+
+      '<div class="rm-icon">📝</div>'+
+      '<div style="flex:1;min-width:0">'+
+        '<div class="rm-title">'+esc(m.title)+'</div>'+
+        '<div class="rm-meta">'+fmtD(m.date)+' · '+esc(m.attendees)+' · '+cnt+' action items</div>'+
+      '</div>'+
+      '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="#555" stroke-width="1.5" stroke-linecap="round"/></svg>'+
+    '</div>';
+  });
+  document.getElementById('d-recent').innerHTML=rh;
+
+  var oah='';
+  var shown=openAI.slice(0,5);
+  if(!shown.length)oah='<div style="color:var(--t3);font-size:13px;padding:12px 0">No open action items — great job! 🎉</div>';
+  else shown.forEach(function(x){
+    oah+='<div class="ai-item">'+
+      '<input type="checkbox" class="cb" onchange="togAI(\''+x.meeting.id+'\',\''+x.ai.id+'\')">'+
+      '<div style="flex:1"><div class="ai-tx">'+esc(x.ai.text)+'</div><div class="ai-src">From: '+esc(x.meeting.title)+'</div></div>'+
+      (x.ai.assignee?'<span class="ai-asgn">'+esc(x.ai.assignee)+'</span>':'')+
+    '</div>';
+  });
+  document.getElementById('d-open-ai').innerHTML=oah;
+}
+
+function goToMeeting(mid){
+  document.querySelectorAll('.tab')[1].click();
+  setTimeout(function(){toggleMeet(mid);},100);
+}
+
+// ── MEETINGS ──
+function renderMeetings(){
+  var sorted=meetings.slice().sort(function(a,b){return b.date>a.date?1:-1;});
+  var h='';
+  if(!sorted.length)h='<div class="empty">No meetings yet. Add your first meeting!</div>';
+  else sorted.forEach(function(m){
+    var ais=m.actionItems||[];
+    var open=ais.filter(function(a){return !a.done;}).length;
+    h+='<div class="meet-card" id="mc-'+m.id+'">'+
+      '<div class="meet-hdr" onclick="toggleMeet(\''+m.id+'\')">'+
+        '<div class="meet-icon">📝</div>'+
+        '<div class="meet-info">'+
+          '<div class="meet-title">'+esc(m.title)+'</div>'+
+          '<div class="meet-meta">'+
+            '<span>'+fmtD(m.date)+'</span>'+
+            '<span>👥 '+esc(m.attendees)+'</span>'+
+            (ais.length?'<span class="meet-badge">'+open+'/'+ais.length+' action items open</span>':'')+
+          '</div>'+
+        '</div>'+
+        '<div style="display:flex;gap:6px;align-items:center">'+
+          '<button class="btn btn-g btn-sm" onclick="event.stopPropagation();openMeet(\''+m.id+'\')">Edit</button>'+
+          '<span class="meet-caret">›</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="meet-body">'+
+        (m.agenda?'<div class="meet-section"><div class="meet-sec-lbl">📋 Agenda</div><div class="meet-sec-txt">'+esc(m.agenda)+'</div></div>':'')+
+        (m.notes?'<div class="meet-section"><div class="meet-sec-lbl">📝 Notes</div><div class="meet-sec-txt">'+esc(m.notes)+'</div></div>':'')+
+        (m.decisions?'<div class="meet-section"><div class="meet-sec-lbl">✅ Decisions</div><div class="meet-sec-txt">'+esc(m.decisions)+'</div></div>':'')+
+        (ais.length?'<div class="meet-section"><div class="meet-sec-lbl">⚡ Action Items</div>'+
+          ais.map(function(ai){
+            return '<div class="ai-item'+(ai.done?' done':'')+'">'+
+              '<input type="checkbox" class="cb" '+(ai.done?'checked':'')+' onchange="togAI(\''+m.id+'\',\''+ai.id+'\')">'+
+              '<span class="ai-tx">'+esc(ai.text)+'</span>'+
+              (ai.assignee?'<span class="ai-asgn">'+esc(ai.assignee)+'</span>':'')+
+            '</div>';
+          }).join('')+'</div>':'')+
+      '</div>'+
+    '</div>';
+  });
+  document.getElementById('meetings-list').innerHTML=h;
+}
+
+function toggleMeet(mid){
+  var card=document.getElementById('mc-'+mid);
+  if(card)card.classList.toggle('open');
+}
+
+function togAI(mid,aiid){
+  var m=meetings.find(function(x){return x.id===mid;});if(!m)return;
+  var ai=(m.actionItems||[]).find(function(a){return a.id===aiid;});if(ai){ai.done=!ai.done;savM();}
+  var av=document.querySelector('.view.active').id;
+  if(av==='v-dash')renderDash();else if(av==='v-meetings')renderMeetings();else renderActions();
+}
+
+// ── MODAL ──
+var modalAIs=[];
+function openMeet(mid,tmpl){
+  eMid=mid;modalAIs=[];
+  document.getElementById('mm-ttl').textContent=mid?'Edit Meeting':'New Meeting';
+  document.getElementById('mm-del').style.display=mid?'':'none';
+  if(mid){
+    var m=meetings.find(function(x){return x.id===mid;});if(!m)return;
+    document.getElementById('m-ti').value=m.title;document.getElementById('m-da').value=m.date;
+    document.getElementById('m-at').value=m.attendees;document.getElementById('m-ag').value=m.agenda||'';
+    document.getElementById('m-no').value=m.notes||'';document.getElementById('m-de').value=m.decisions||'';
+    modalAIs=(m.actionItems||[]).map(function(a){return {id:a.id,text:a.text,assignee:a.assignee,done:a.done};});
+  } else {
+    document.getElementById('m-ti').value=tmpl?tmpl.name:'';
+    document.getElementById('m-da').value=tod();
+    document.getElementById('m-at').value='';
+    document.getElementById('m-ag').value=tmpl?tmpl.agenda:'';
+    document.getElementById('m-no').value='';document.getElementById('m-de').value='';
+    modalAIs=[];
+  }
+  renderAIForm();
+  document.getElementById('mm').classList.add('open');
+  setTimeout(function(){document.getElementById('m-ti').focus();},80);
+}
+function closeMM(){document.getElementById('mm').classList.remove('open');}
+
+function renderAIForm(){
+  var h='';
+  modalAIs.forEach(function(ai,i){
+    h+='<div class="ai-form-row">'+
+      '<input class="ai-form-tx" placeholder="Action item…" value="'+esc(ai.text)+'" onchange="modalAIs['+i+'].text=this.value" oninput="modalAIs['+i+'].text=this.value">'+
+      '<input class="ai-form-as" placeholder="Assignee" value="'+esc(ai.assignee||'')+'" onchange="modalAIs['+i+'].assignee=this.value" oninput="modalAIs['+i+'].assignee=this.value">'+
+      '<button class="ai-del-btn" onclick="removeAIRow('+i+')">×</button>'+
+    '</div>';
+  });
+  document.getElementById('ai-form-list').innerHTML=h;
+}
+function addAIRow(){modalAIs.push({id:uid(),text:'',assignee:'',done:false});renderAIForm();}
+function removeAIRow(i){modalAIs.splice(i,1);renderAIForm();}
+
+function saveMeet(){
+  var ti=document.getElementById('m-ti').value.trim();if(!ti)return;
+  var obj={title:ti,date:document.getElementById('m-da').value||tod(),
+    attendees:document.getElementById('m-at').value.trim(),
+    agenda:document.getElementById('m-ag').value.trim(),
+    notes:document.getElementById('m-no').value.trim(),
+    decisions:document.getElementById('m-de').value.trim(),
+    actionItems:modalAIs.filter(function(a){return a.text.trim();})};
+  if(eMid){var m=meetings.find(function(x){return x.id===eMid;});if(m)Object.assign(m,obj);}
+  else{obj.id=uid();meetings.push(obj);}
+  savM();closeMM();
+  var av=document.querySelector('.view.active').id;
+  if(av==='v-dash')renderDash();else renderMeetings();
+  toast('Meeting saved!');
+}
+function delMeet(){
+  if(!eMid)return;meetings=meetings.filter(function(m){return m.id!==eMid;});savM();closeMM();renderMeetings();toast('Deleted.');
+}
+
+// ── ACTIONS ──
+function renderActions(){
+  var allAI=[];
+  meetings.forEach(function(m){(m.actionItems||[]).forEach(function(ai){allAI.push({ai:ai,meeting:m});});});
+  var ft=allAI.filter(function(x){
+    if(aiFilt==='open')return !x.ai.done;
+    if(aiFilt==='done')return x.ai.done;
+    return true;
+  });
+  var h='';
+  if(!ft.length)h='<div class="empty">No action items found</div>';
+  else ft.forEach(function(x){
+    h+='<div class="ai-item'+(x.ai.done?' done':'')+'">'+
+      '<input type="checkbox" class="cb" '+(x.ai.done?'checked':'')+' onchange="togAI(\''+x.meeting.id+'\',\''+x.ai.id+'\')">'+
+      '<div style="flex:1"><div class="ai-tx">'+esc(x.ai.text)+'</div><div class="ai-src">'+esc(x.meeting.title)+' · '+fmtD(x.meeting.date)+'</div></div>'+
+      (x.ai.assignee?'<span class="ai-asgn">'+esc(x.ai.assignee)+'</span>':'')+
+    '</div>';
+  });
+  document.getElementById('ai-list').innerHTML=h;
+}
+function setAIF(f,btn){aiFilt=f;document.querySelectorAll('#ai-filter .fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderActions();}
+
+// ── TEMPLATES ──
+function renderTemplates(){
+  var h='';
+  TEMPLATES.forEach(function(t){
+    h+='<div class="tmpl-card" onclick="useTemplate(\''+t.id+'\')">'+
+      '<div class="tmpl-icon">'+t.icon+'</div>'+
+      '<div class="tmpl-name">'+esc(t.name)+'</div>'+
+      '<div class="tmpl-desc">'+esc(t.desc)+'</div>'+
+      '<div class="tmpl-agenda" style="white-space:pre-line">'+esc(t.agenda)+'</div>'+
+      '<button class="btn btn-p btn-sm" style="margin-top:12px;width:100%;justify-content:center">Use This Template →</button>'+
+    '</div>';
+  });
+  document.getElementById('tmpl-grid').innerHTML=h;
+}
+function useTemplate(tid){
+  var t=TEMPLATES.find(function(x){return x.id===tid;});if(!t)return;
+  document.querySelectorAll('.tab')[1].click();
+  setTimeout(function(){openMeet(null,t);},100);
+}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMM();});
+load();renderDash();
+</script>
+</body>
+</html>
