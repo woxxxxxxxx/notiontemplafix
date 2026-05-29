@@ -508,7 +508,8 @@ function renderPremiumGrid(email){
 
     var actions = '';
     if(locked){
-      actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy — $'+p.price+'</a>';
+      actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Try App</a>'
+        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy — $'+p.price+'</a>';
     } else if(soon){
       actions = '<span class="btn-coming">Coming Soon</span>';
       if(email) actions += ' <span style="font-size:11px;color:#22c55e;font-weight:600;display:block;margin-top:6px">✓ You own this</span>';
@@ -521,7 +522,6 @@ function renderPremiumGrid(email){
     card.className = 'prod-card'+(unlocked?' unlocked':'')+(locked?' locked-card':'');
     card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
       +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
-      +(locked?'<div class="prod-price">$'+p.price+'</div>':'')
       +'<div class="prod-actions">'+actions+'</div></div>';
     grid.appendChild(card);
   });
