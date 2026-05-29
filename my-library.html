@@ -191,8 +191,8 @@ button{cursor:pointer;font-family:inherit}
 
   <!-- NOTION TEMPLATES -->
   <div class="sec-label" style="margin-top:12px">
-    <span class="sec-title">Notion Templates</span>
-    <span class="sec-badge premium">One-time purchase</span>
+    <span class="sec-title">More Apps</span>
+    <span class="sec-badge premium">Unlock with purchase</span>
     <span class="sec-divider"></span>
   </div>
   <div class="prod-grid" id="templatesGrid"></div>
@@ -508,7 +508,7 @@ function renderPremiumGrid(email){
 
     var actions = '';
     if(locked){
-      actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy Now — $'+p.price+'</a>';
+      actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy — $'+p.price+'</a>';
     } else if(soon){
       actions = '<span class="btn-coming">Coming Soon</span>';
       if(email) actions += ' <span style="font-size:11px;color:#22c55e;font-weight:600;display:block;margin-top:6px">✓ You own this</span>';
@@ -538,10 +538,10 @@ function renderTemplatesGrid(){
     } else {
       thumbHtml += '<div class="lock-shade">🔒</div><div class="corner-tag tag-paid">$'+p.price+'</div>';
     }
-    var actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy Now — $'+p.price+'</a>';
+    var actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy — $'+p.price+'</a>';
     if(live){
       actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Try App</a>'
-        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy $'+p.price+'</a>';
+        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy — $'+p.price+'</a>';
     }
     var card = document.createElement('div');
     card.className = 'prod-card'+(live?'':' locked-card');
