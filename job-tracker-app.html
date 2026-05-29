@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Job Tracker App | NotionTemplaFix</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--s1:#1a1a1a;--s2:#222;--s3:#2a2a2a;--bd:#333;--tx:#f0f0f0;--t2:#a0a0a0;--t3:#555;--acc:#6C47FF;--acc2:#8b6dff;--red:#ef4444;--grn:#22c55e;--yel:#f59e0b;--blu:#3b82f6;--orn:#f97316}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit}input,textarea,select{font-family:inherit}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:8px;padding:0 20px;height:54px;background:rgba(15,15,15,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.app-title{font-size:15px;font-weight:800;flex-shrink:0}
+.nav-tabs{display:flex;gap:3px;margin-left:auto;overflow-x:auto}.nav-tabs::-webkit-scrollbar{height:0}
+.tab{padding:6px 13px;border:none;background:transparent;color:var(--t2);font-size:13px;font-weight:600;border-radius:8px;white-space:nowrap;transition:all .2s}
+.tab:hover{background:var(--s3);color:var(--tx)}.tab.active{background:var(--acc);color:#fff}
+.back-btn{font-size:12px;color:var(--t2);padding:5px 10px;border-radius:7px;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.back-btn:hover{color:var(--tx);background:var(--s3)}
+.main{padding:22px 22px 60px;max-width:1100px;margin:0 auto}
+.view{display:none}.view.active{display:block}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.sl{font-size:11px;color:var(--t2);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.sv{font-size:26px;font-weight:800}.ss{font-size:11px;color:var(--t2);margin-top:3px}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;margin-top:20px}
+.st{font-size:15px;font-weight:700}
+.btn{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .2s}
+.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc2)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-g{background:var(--s3);color:var(--t2);border:1px solid var(--bd)}.btn-g:hover{color:var(--tx)}
+.btn-d{background:#2a1010;color:var(--red);border:1px solid #5a2020}
+.btn-grn{background:#0e241a;color:var(--grn);border:1px solid #1a5a30}.btn-grn:hover{background:#1a5a30}
+.btn-red{background:#2a1010;color:var(--red);border:1px solid #5a2020}.btn-red:hover{background:#5a2020}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.fb{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--bd);background:var(--s2);color:var(--t2);cursor:pointer;transition:all .2s}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tbl-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:12px;overflow:hidden;overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;min-width:600px}
+.tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--bd);text-align:left;font-size:13px}
+.tbl th{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px;background:var(--s2);white-space:nowrap}
+.tbl tbody tr:hover td{background:var(--s2)}
+.tbl tbody tr:last-child td{border-bottom:none}
+/* STATUS BADGES */
+.st-badge{padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap}
+.st-Applied{background:#1e2a3a;color:var(--blu)}
+.st-Phone{background:#2d2210;color:var(--yel)}
+.st-Interview{background:#2a1a4a;color:var(--acc2)}
+.st-Offer{background:#0e241a;color:var(--grn)}
+.st-Rejected{background:#2d1010;color:var(--red)}
+/* OFFER CARDS */
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.offer-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.offer-card.accepted{border-color:var(--grn)}
+.offer-card.declined{border-color:var(--red);opacity:.7}
+.offer-company{font-size:18px;font-weight:800}
+.offer-role{font-size:13px;color:var(--t2);margin-bottom:4px}
+.offer-salary{font-size:22px;font-weight:800;color:var(--acc2)}
+.offer-detail{font-size:12px;color:var(--t2);background:var(--s2);border-radius:8px;padding:8px 10px;line-height:1.5}
+.offer-deadline{font-size:12px;color:var(--yel);font-weight:600}
+.offer-decision{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;align-self:flex-start}
+.od-pending{background:var(--s3);color:var(--t2)}
+.od-accepted{background:#0e241a;color:var(--grn)}
+.od-declined{background:#2d1010;color:var(--red)}
+.offer-actions{display:flex;gap:8px;margin-top:4px}
+/* CONTACT CARDS */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.contact-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px;cursor:pointer;transition:border-color .2s}
+.contact-card:hover{border-color:var(--acc)}
+.cc-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;margin-bottom:10px}
+.cc-name{font-size:14px;font-weight:700;margin-bottom:3px}
+.cc-company{font-size:12px;color:var(--t2);margin-bottom:2px}
+.cc-role{font-size:12px;color:var(--t3)}
+.cc-rel{font-size:11px;background:var(--s3);color:var(--t2);padding:2px 8px;border-radius:99px;display:inline-block;margin-top:8px}
+.cc-last{font-size:11px;color:var(--t3);margin-top:6px}
+/* PIPELINE FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+.funnel-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--s1);border:1px solid var(--bd)}
+.funnel-label{font-size:12px;font-weight:600;width:110px;flex-shrink:0}
+.funnel-bar{flex:1;height:20px;background:var(--s3);border-radius:4px;overflow:hidden}
+.funnel-fill{height:100%;border-radius:4px;transition:width .5s}
+.funnel-count{font-size:13px;font-weight:700;width:24px;text-align:right;flex-shrink:0}
+/* INTERVIEWS */
+.int-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:10px;transition:border-color .2s}
+.int-card:hover{border-color:#444}
+.int-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.int-company{font-size:15px;font-weight:800}
+.int-round{font-size:12px;color:var(--t2);margin-top:2px}
+.int-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--t2);margin-bottom:8px}
+.int-result{padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700}
+.ir-Pending{background:var(--s3);color:var(--t2)}.ir-Passed{background:#0e241a;color:var(--grn)}.ir-Failed{background:#2d1010;color:var(--red)}
+.int-prep{background:var(--s2);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--t2);line-height:1.5;white-space:pre-wrap}
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:22px;width:100%;max-width:500px;transform:translateY(10px);transition:transform .2s;max-height:90vh;overflow-y:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-ttl{font-size:16px;font-weight:700;margin-bottom:16px}
+.fr{margin-bottom:12px}.fl{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;display:block}
+.fi{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:8px 12px;color:var(--tx);font-size:13px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--acc)}
+.fta{min-height:80px;resize:vertical}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.empty{text-align:center;padding:36px 16px;color:var(--t3)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){.stat-row{grid-template-columns:repeat(2,1fr)}.main{padding:14px 14px 60px}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div class="topbar">
+  <a class="back-btn" href="/my-library.html">← Library</a>
+  <div class="app-title">Job Tracker</div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="sv('dash',this)">Dashboard</button>
+    <button class="tab" onclick="sv('apps',this)">Applications</button>
+    <button class="tab" onclick="sv('interviews',this)">Interviews</button>
+    <button class="tab" onclick="sv('offers',this)">Offers</button>
+    <button class="tab" onclick="sv('contacts',this)">Contacts</button>
+  </div>
+</div>
+<div class="main">
+  <div class="view active" id="v-dash">
+    <div class="stat-row" id="d-stats"></div>
+    <div class="sh" style="margin-top:8px"><span class="st">Application Pipeline</span></div>
+    <div class="funnel" id="d-funnel"></div>
+    <div class="sh"><span class="st">Recent Applications</span><button class="btn btn-p btn-sm" onclick="openApp(null)">+ Add Application</button></div>
+    <div id="d-recent"></div>
+  </div>
+  <div class="view" id="v-apps">
+    <div class="sh" style="margin-top:0"><span class="st">Applications</span><button class="btn btn-p btn-sm" onclick="openApp(null)">+ Add</button></div>
+    <div class="filter-bar" id="af">
+      <button class="fb on" onclick="setAF('all',this)">All</button>
+      <button class="fb" onclick="setAF('Applied',this)">Applied</button>
+      <button class="fb" onclick="setAF('Phone Screen',this)">Phone Screen</button>
+      <button class="fb" onclick="setAF('Interview',this)">Interview</button>
+      <button class="fb" onclick="setAF('Offer',this)">Offer</button>
+      <button class="fb" onclick="setAF('Rejected',this)">Rejected</button>
+    </div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Company</th><th>Role</th><th>Status</th><th>Date</th><th>Notes</th><th></th></tr></thead><tbody id="apps-body"></tbody></table></div>
+  </div>
+  <div class="view" id="v-interviews">
+    <div class="sh" style="margin-top:0"><span class="st">Interviews</span><button class="btn btn-p btn-sm" onclick="openInt(null)">+ Add Interview</button></div>
+    <div id="int-list"></div>
+  </div>
+  <div class="view" id="v-offers">
+    <div class="sh" style="margin-top:0"><span class="st">Offers</span><button class="btn btn-p btn-sm" onclick="openOffer(null)">+ Add Offer</button></div>
+    <div class="offer-grid" id="offers-grid"></div>
+  </div>
+  <div class="view" id="v-contacts">
+    <div class="sh" style="margin-top:0"><span class="st">Contacts</span><button class="btn btn-p btn-sm" onclick="openContact(null)">+ Add Contact</button></div>
+    <div class="contact-grid" id="contacts-grid"></div>
+  </div>
+</div>
+
+<!-- APP MODAL -->
+<div class="overlay" id="am" onclick="if(event.target===this)closeAM()">
+<div class="modal">
+  <div class="modal-ttl" id="am-ttl">Add Application</div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Company</label><input class="fi" id="a-co" placeholder="e.g. Google"></div>
+    <div class="fr"><label class="fl">Role</label><input class="fi" id="a-ro" placeholder="e.g. Software Engineer"></div>
+  </div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Status</label><select class="fi" id="a-st"><option>Applied</option><option>Phone Screen</option><option>Interview</option><option>Offer</option><option>Rejected</option></select></div>
+    <div class="fr"><label class="fl">Date Applied</label><input class="fi" id="a-da" type="date"></div>
+  </div>
+  <div class="fr"><label class="fl">Job URL</label><input class="fi" id="a-li" placeholder="https://…" type="url"></div>
+  <div class="fr"><label class="fl">Notes</label><textarea class="fi fta" id="a-no" placeholder="Notes, contacts, how you found it…"></textarea></div>
+  <div class="ma"><button class="btn btn-g" onclick="closeAM()">Cancel</button><button class="btn btn-d btn-sm" id="am-del" onclick="delApp()" style="display:none">Delete</button><button class="btn btn-p" onclick="saveApp()">Save</button></div>
+</div></div>
+
+<!-- INTERVIEW MODAL -->
+<div class="overlay" id="im" onclick="if(event.target===this)closeIM()">
+<div class="modal">
+  <div class="modal-ttl" id="im-ttl">Add Interview</div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Company</label><input class="fi" id="i-co" placeholder="Company name"></div>
+    <div class="fr"><label class="fl">Round</label><input class="fi" id="i-ro" placeholder="e.g. Round 2 - Technical"></div>
+  </div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Date</label><input class="fi" id="i-da" type="date"></div>
+    <div class="fr"><label class="fl">Format</label><select class="fi" id="i-fo"><option>Video Call</option><option>Phone</option><option>On-site</option><option>Take-home</option><option>Other</option></select></div>
+  </div>
+  <div class="fr"><label class="fl">Result</label><select class="fi" id="i-re"><option>Pending</option><option>Passed</option><option>Failed</option></select></div>
+  <div class="fr"><label class="fl">Prep Notes</label><textarea class="fi fta" id="i-pn" placeholder="What to prepare, topics to study…" style="min-height:100px"></textarea></div>
+  <div class="ma"><button class="btn btn-g" onclick="closeIM()">Cancel</button><button class="btn btn-d btn-sm" id="im-del" onclick="delInt()" style="display:none">Delete</button><button class="btn btn-p" onclick="saveInt()">Save</button></div>
+</div></div>
+
+<!-- OFFER MODAL -->
+<div class="overlay" id="om" onclick="if(event.target===this)closeOM()">
+<div class="modal">
+  <div class="modal-ttl" id="om-ttl">Add Offer</div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Company</label><input class="fi" id="o-co" placeholder="Company name"></div>
+    <div class="fr"><label class="fl">Role</label><input class="fi" id="o-ro" placeholder="Role title"></div>
+  </div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Salary / Compensation</label><input class="fi" id="o-sa" placeholder="e.g. $150,000 + bonus"></div>
+    <div class="fr"><label class="fl">Decision Deadline</label><input class="fi" id="o-dl" type="date"></div>
+  </div>
+  <div class="fr"><label class="fl">Benefits & Perks</label><textarea class="fi fta" id="o-be" placeholder="PTO, remote, equity, health, 401k…"></textarea></div>
+  <div class="ma"><button class="btn btn-g" onclick="closeOM()">Cancel</button><button class="btn btn-d btn-sm" id="om-del" onclick="delOffer()" style="display:none">Delete</button><button class="btn btn-p" onclick="saveOffer()">Save</button></div>
+</div></div>
+
+<!-- CONTACT MODAL -->
+<div class="overlay" id="cm" onclick="if(event.target===this)closeCM()">
+<div class="modal">
+  <div class="modal-ttl" id="cm-ttl">Add Contact</div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Name</label><input class="fi" id="c-na" placeholder="Full name"></div>
+    <div class="fr"><label class="fl">Company</label><input class="fi" id="c-co" placeholder="Company"></div>
+  </div>
+  <div class="fg2">
+    <div class="fr"><label class="fl">Role / Title</label><input class="fi" id="c-ro" placeholder="e.g. Engineering Manager"></div>
+    <div class="fr"><label class="fl">Relationship</label><input class="fi" id="c-re" placeholder="e.g. LinkedIn, College friend"></div>
+  </div>
+  <div class="fr"><label class="fl">Last Contact Date</label><input class="fi" id="c-lc" type="date"></div>
+  <div class="fr"><label class="fl">Notes</label><textarea class="fi fta" id="c-no" placeholder="How they helped, next steps…"></textarea></div>
+  <div class="ma"><button class="btn btn-g" onclick="closeCM()">Cancel</button><button class="btn btn-d btn-sm" id="cm-del" onclick="delContact()" style="display:none">Delete</button><button class="btn btn-p" onclick="saveContact()">Save</button></div>
+</div></div>
+
+<script>
+var AK='jt_apps',IK='jt_interviews',OK='jt_offers',CK='jt_contacts';
+var apps=[],ints=[],offers=[],contacts=[];
+var eAid=null,eIid=null,eOid=null,eCid=null,aFilt='all';
+var STATUSES=['Applied','Phone Screen','Interview','Offer','Rejected'];
+var ST_COLORS={Applied:'var(--blu)','Phone Screen':'var(--yel)',Interview:'var(--acc2)',Offer:'var(--grn)',Rejected:'var(--red)'};
+var ST_BG={Applied:'#1e2a3a','Phone Screen':'#2d2210',Interview:'#2a1a4a',Offer:'#0e241a',Rejected:'#2d1010'};
+var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function esc(s){var d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2100);}
+function tod(){return new Date().toISOString().slice(0,10);}
+function dOff(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
+function fmtD(s){if(!s)return '';var p=s.split('-');return MONTHS[parseInt(p[1])-1]+' '+parseInt(p[2]);}
+function stClass(s){return s?'st-'+(s.split(' ')[0]):'';}
+
+function load(){
+  apps=JSON.parse(localStorage.getItem(AK)||'null');
+  ints=JSON.parse(localStorage.getItem(IK)||'null');
+  offers=JSON.parse(localStorage.getItem(OK)||'null');
+  contacts=JSON.parse(localStorage.getItem(CK)||'null');
+  if(!apps){apps=seedA();savA();}
+  if(!ints){ints=seedI();savI();}
+  if(!offers){offers=seedO();savO();}
+  if(!contacts){contacts=seedC();savC();}
+}
+function savA(){localStorage.setItem(AK,JSON.stringify(apps));}
+function savI(){localStorage.setItem(IK,JSON.stringify(ints));}
+function savO(){localStorage.setItem(OK,JSON.stringify(offers));}
+function savC(){localStorage.setItem(CK,JSON.stringify(contacts));}
+
+function seedA(){return[
+  {id:'a1',company:'Google',role:'Senior Software Engineer',status:'Interview',date:dOff(-14),link:'https://careers.google.com',notes:'Referral from Sarah Chen — 3rd round scheduled'},
+  {id:'a2',company:'Meta',role:'Frontend Engineer',status:'Phone Screen',date:dOff(-7),link:'',notes:'Applied via LinkedIn, recruiter reached out same day'},
+  {id:'a3',company:'Stripe',role:'Backend Engineer',status:'Applied',date:dOff(-3),link:'',notes:'Exciting fintech company, great engineering culture'},
+  {id:'a4',company:'Netflix',role:'Engineering Manager',status:'Offer',date:dOff(-10),link:'',notes:'Got the offer! Need to make decision by deadline.'},
+  {id:'a5',company:'Amazon',role:'SDE II',status:'Rejected',date:dOff(-21),link:'',notes:'Rejected after 4th round — system design went poorly'},
+];}
+function seedI(){return[
+  {id:'i1',company:'Google',round:'Round 3 — System Design',date:dOff(2),format:'Video Call',prepNotes:'Review distributed systems design patterns\nPractice designing URL shortener and rate limiter\nStudy Google\'s tech stack and recent engineering blog posts\nBe ready to discuss scalability at billions of users',result:'Pending'},
+  {id:'i2',company:'Meta',round:'Phone Screen',date:dOff(-5),format:'Phone',prepNotes:'Behavioral questions using STAR method\nProduct sense — think about Facebook features\nData structures basics (arrays, hashmaps)',result:'Passed'},
+];}
+function seedO(){return[
+  {id:'o1',company:'Netflix',role:'Engineering Manager',salary:'$220,000 base + 20% bonus + RSUs',benefits:'Full remote, 6 weeks PTO, unlimited sick leave, $600/mo health stipend, top-tier 401k match, annual learning budget $5,000',deadline:dOff(7),decision:'Pending'},
+];}
+function seedC(){return[
+  {id:'c1',name:'Sarah Chen',company:'Google',role:'Senior Software Engineer',relationship:'LinkedIn referral',lastContact:dOff(-7),notes:'Connected me with the hiring manager, offered to do a mock interview'},
+  {id:'c2',name:'Mike Johnson',company:'Meta',role:'Engineering Manager',relationship:'College friend',lastContact:dOff(-14),notes:'Gave insider tips on Meta\'s interview process and team culture'},
+  {id:'c3',name:'Lisa Park',company:'Netflix',role:'Technical Recruiter',relationship:'Via application',lastContact:dOff(-3),notes:'Main point of contact — very responsive and helpful throughout process'},
+];}
+
+function sv(name,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.getElementById('v-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(name==='dash')renderDash();else if(name==='apps')renderApps();
+  else if(name==='interviews')renderInts();else if(name==='offers')renderOffers();
+  else if(name==='contacts')renderContacts();
+}
+
+// ── DASHBOARD ──
+function renderDash(){
+  var total=apps.length;
+  var interviewing=apps.filter(function(a){return a.status==='Phone Screen'||a.status==='Interview';}).length;
+  var offerCnt=apps.filter(function(a){return a.status==='Offer';}).length;
+  var rejected=apps.filter(function(a){return a.status==='Rejected';}).length;
+  document.getElementById('d-stats').innerHTML=
+    '<div class="stat-card"><div class="sl">Total Applied</div><div class="sv" style="color:var(--blu)">'+total+'</div><div class="ss">applications sent</div></div>'+
+    '<div class="stat-card"><div class="sl">In Process</div><div class="sv" style="color:var(--acc2)">'+interviewing+'</div><div class="ss">interviewing now</div></div>'+
+    '<div class="stat-card"><div class="sl">Offers</div><div class="sv" style="color:var(--grn)">'+offerCnt+'</div><div class="ss">received</div></div>'+
+    '<div class="stat-card"><div class="sl">Rejected</div><div class="sv" style="color:var(--red)">'+rejected+'</div><div class="ss">total rejections</div></div>';
+
+  var fh='';var maxCnt=Math.max.apply(null,STATUSES.map(function(s){return apps.filter(function(a){return a.status===s;}).length;}).concat([1]));
+  STATUSES.forEach(function(s){
+    var cnt=apps.filter(function(a){return a.status===s;}).length;
+    var pct=cnt/maxCnt*100;
+    fh+='<div class="funnel-row"><div class="funnel-label" style="color:'+ST_COLORS[s]+'">'+s+'</div>'+
+      '<div class="funnel-bar"><div class="funnel-fill" style="width:'+pct+'%;background:'+ST_COLORS[s]+';opacity:.85"></div></div>'+
+      '<div class="funnel-count">'+cnt+'</div></div>';
+  });
+  document.getElementById('d-funnel').innerHTML=fh;
+
+  var recent=apps.slice().sort(function(a,b){return b.date>a.date?1:-1;}).slice(0,4);
+  var rh='';
+  if(!recent.length)rh='<div class="empty">No applications yet</div>';
+  else{
+    rh='<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Company</th><th>Role</th><th>Status</th><th>Date</th></tr></thead><tbody>';
+    recent.forEach(function(a){
+      rh+='<tr onclick="openApp(\''+a.id+'\')" style="cursor:pointer">'+
+        '<td><strong>'+esc(a.company)+'</strong></td><td>'+esc(a.role)+'</td>'+
+        '<td><span class="st-badge '+stClass(a.status)+'" style="background:'+ST_BG[a.status]+';color:'+ST_COLORS[a.status]+'">'+esc(a.status)+'</span></td>'+
+        '<td>'+fmtD(a.date)+'</td></tr>';
+    });
+    rh+='</tbody></table></div>';
+  }
+  document.getElementById('d-recent').innerHTML=rh;
+}
+
+// ── APPLICATIONS ──
+function renderApps(){
+  var ft=aFilt==='all'?apps:apps.filter(function(a){return a.status===aFilt;});
+  ft=ft.slice().sort(function(a,b){return b.date>a.date?1:-1;});
+  var h='';
+  if(!ft.length)h='<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--t3)">No applications found</td></tr>';
+  else ft.forEach(function(a){
+    h+='<tr><td><strong>'+esc(a.company)+'</strong></td><td>'+esc(a.role)+'</td>'+
+      '<td><span class="st-badge '+stClass(a.status)+'" style="background:'+ST_BG[a.status]+';color:'+ST_COLORS[a.status]+'">'+esc(a.status)+'</span></td>'+
+      '<td>'+fmtD(a.date)+'</td>'+
+      '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t2)">'+esc(a.notes||'—')+'</td>'+
+      '<td style="display:flex;gap:6px">'+
+        (a.link?'<a href="'+esc(a.link)+'" target="_blank" rel="noopener" class="btn btn-g btn-sm" onclick="event.stopPropagation()">↗</a>':'')+
+        '<button class="btn btn-g btn-sm" onclick="openApp(\''+a.id+'\')">Edit</button>'+
+      '</td></tr>';
+  });
+  document.getElementById('apps-body').innerHTML=h;
+}
+function setAF(f,btn){aFilt=f;document.querySelectorAll('#af .fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderApps();}
+
+function openApp(aid){
+  eAid=aid;document.getElementById('am-ttl').textContent=aid?'Edit Application':'Add Application';
+  document.getElementById('am-del').style.display=aid?'':'none';
+  if(aid){var a=apps.find(function(x){return x.id===aid;});if(!a)return;
+    document.getElementById('a-co').value=a.company;document.getElementById('a-ro').value=a.role;
+    document.getElementById('a-st').value=a.status;document.getElementById('a-da').value=a.date||'';
+    document.getElementById('a-li').value=a.link||'';document.getElementById('a-no').value=a.notes||'';
+  } else {['a-co','a-ro','a-li','a-no'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('a-da').value=tod();}
+  document.getElementById('am').classList.add('open');setTimeout(function(){document.getElementById('a-co').focus();},80);
+}
+function closeAM(){document.getElementById('am').classList.remove('open');}
+function saveApp(){
+  var co=document.getElementById('a-co').value.trim();if(!co)return;
+  var obj={company:co,role:document.getElementById('a-ro').value.trim(),status:document.getElementById('a-st').value,
+    date:document.getElementById('a-da').value,link:document.getElementById('a-li').value.trim(),notes:document.getElementById('a-no').value.trim()};
+  if(eAid){var a=apps.find(function(x){return x.id===eAid;});if(a)Object.assign(a,obj);}
+  else{obj.id=uid();apps.push(obj);}
+  savA();closeAM();renderApps();toast('Saved!');
+}
+function delApp(){if(!eAid)return;apps=apps.filter(function(a){return a.id!==eAid;});savA();closeAM();renderApps();toast('Deleted.');}
+
+// ── INTERVIEWS ──
+function renderInts(){
+  var sorted=ints.slice().sort(function(a,b){return b.date>a.date?1:-1;});
+  var h='';
+  if(!sorted.length)h='<div class="empty">No interviews recorded yet</div>';
+  else sorted.forEach(function(it){
+    h+='<div class="int-card"><div class="int-hdr">'+
+      '<div><div class="int-company">'+esc(it.company)+'</div><div class="int-round">'+esc(it.round)+'</div></div>'+
+      '<div style="display:flex;gap:6px;align-items:center">'+
+        '<span class="int-result ir-'+esc(it.result)+'">'+esc(it.result)+'</span>'+
+        '<button class="btn btn-g btn-sm" onclick="openInt(\''+it.id+'\')">Edit</button>'+
+      '</div></div>'+
+      '<div class="int-meta"><span>📅 '+fmtD(it.date)+'</span><span>📱 '+esc(it.format)+'</span></div>'+
+      (it.prepNotes?'<div class="int-prep">📝 '+esc(it.prepNotes)+'</div>':'')+
+      '</div>';
+  });
+  document.getElementById('int-list').innerHTML=h;
+}
+function openInt(iid){
+  eIid=iid;document.getElementById('im-ttl').textContent=iid?'Edit Interview':'Add Interview';
+  document.getElementById('im-del').style.display=iid?'':'none';
+  if(iid){var it=ints.find(function(x){return x.id===iid;});if(!it)return;
+    document.getElementById('i-co').value=it.company;document.getElementById('i-ro').value=it.round;
+    document.getElementById('i-da').value=it.date||'';document.getElementById('i-fo').value=it.format;
+    document.getElementById('i-re').value=it.result;document.getElementById('i-pn').value=it.prepNotes||'';
+  } else {['i-co','i-ro','i-pn'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('i-da').value=tod();document.getElementById('i-re').value='Pending';}
+  document.getElementById('im').classList.add('open');setTimeout(function(){document.getElementById('i-co').focus();},80);
+}
+function closeIM(){document.getElementById('im').classList.remove('open');}
+function saveInt(){
+  var co=document.getElementById('i-co').value.trim();if(!co)return;
+  var obj={company:co,round:document.getElementById('i-ro').value.trim(),date:document.getElementById('i-da').value,
+    format:document.getElementById('i-fo').value,result:document.getElementById('i-re').value,prepNotes:document.getElementById('i-pn').value.trim()};
+  if(eIid){var it=ints.find(function(x){return x.id===eIid;});if(it)Object.assign(it,obj);}
+  else{obj.id=uid();ints.push(obj);}
+  savI();closeIM();renderInts();toast('Saved!');
+}
+function delInt(){if(!eIid)return;ints=ints.filter(function(i){return i.id!==eIid;});savI();closeIM();renderInts();toast('Deleted.');}
+
+// ── OFFERS ──
+function renderOffers(){
+  var h='';
+  if(!offers.length)h='<div class="empty" style="grid-column:1/-1">No offers yet — keep applying! 💪</div>';
+  else offers.forEach(function(o){
+    var dec=o.decision||'Pending';
+    var dClass=dec==='Accepted'?'od-accepted':dec==='Declined'?'od-declined':'od-pending';
+    var daysLeft=o.deadline?Math.ceil((new Date(o.deadline)-new Date(tod()))/(86400000)):null;
+    h+='<div class="offer-card '+(dec==='Accepted'?'accepted':dec==='Declined'?'declined':'')+'">'+
+      '<div><div class="offer-company">'+esc(o.company)+'</div><div class="offer-role">'+esc(o.role)+'</div></div>'+
+      '<div class="offer-salary">'+esc(o.salary)+'</div>'+
+      (o.benefits?'<div class="offer-detail">'+esc(o.benefits)+'</div>':'')+
+      (o.deadline?'<div class="offer-deadline">⏰ Deadline: '+fmtD(o.deadline)+(daysLeft!==null?' ('+daysLeft+'d left)':'')+'</div>':'')+
+      '<span class="offer-decision '+dClass+'">'+esc(dec)+'</span>'+
+      (dec==='Pending'?'<div class="offer-actions">'+
+        '<button class="btn btn-grn btn-sm" onclick="setOfferDecision(\''+o.id+'\',\'Accepted\')">✓ Accept</button>'+
+        '<button class="btn btn-red btn-sm" onclick="setOfferDecision(\''+o.id+'\',\'Declined\')">✗ Decline</button>'+
+        '<button class="btn btn-g btn-sm" onclick="openOffer(\''+o.id+'\')">Edit</button>'+
+        '</div>':
+        '<button class="btn btn-g btn-sm" style="align-self:flex-start" onclick="openOffer(\''+o.id+'\')">Edit</button>')+
+      '</div>';
+  });
+  document.getElementById('offers-grid').innerHTML=h;
+}
+function setOfferDecision(oid,dec){
+  var o=offers.find(function(x){return x.id===oid;});if(o){o.decision=dec;savO();renderOffers();toast('Decision saved!');}
+}
+function openOffer(oid){
+  eOid=oid;document.getElementById('om-ttl').textContent=oid?'Edit Offer':'Add Offer';
+  document.getElementById('om-del').style.display=oid?'':'none';
+  if(oid){var o=offers.find(function(x){return x.id===oid;});if(!o)return;
+    document.getElementById('o-co').value=o.company;document.getElementById('o-ro').value=o.role||'';
+    document.getElementById('o-sa').value=o.salary||'';document.getElementById('o-dl').value=o.deadline||'';
+    document.getElementById('o-be').value=o.benefits||'';
+  } else {['o-co','o-ro','o-sa','o-be'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('o-dl').value='';}
+  document.getElementById('om').classList.add('open');setTimeout(function(){document.getElementById('o-co').focus();},80);
+}
+function closeOM(){document.getElementById('om').classList.remove('open');}
+function saveOffer(){
+  var co=document.getElementById('o-co').value.trim();if(!co)return;
+  var obj={company:co,role:document.getElementById('o-ro').value.trim(),salary:document.getElementById('o-sa').value.trim(),
+    deadline:document.getElementById('o-dl').value,benefits:document.getElementById('o-be').value.trim(),decision:'Pending'};
+  if(eOid){var o=offers.find(function(x){return x.id===eOid;});if(o){var dec=o.decision;Object.assign(o,obj);o.decision=dec;}}
+  else{obj.id=uid();offers.push(obj);}
+  savO();closeOM();renderOffers();toast('Saved!');
+}
+function delOffer(){if(!eOid)return;offers=offers.filter(function(o){return o.id!==eOid;});savO();closeOM();renderOffers();toast('Deleted.');}
+
+// ── CONTACTS ──
+function renderContacts(){
+  var h='';
+  if(!contacts.length)h='<div class="empty" style="grid-column:1/-1">No contacts yet — start networking!</div>';
+  else contacts.forEach(function(c){
+    var init=(c.name||'?').charAt(0).toUpperCase();
+    h+='<div class="contact-card" onclick="openContact(\''+c.id+'\')">'+
+      '<div class="cc-avatar">'+esc(init)+'</div>'+
+      '<div class="cc-name">'+esc(c.name)+'</div>'+
+      '<div class="cc-company">'+esc(c.company)+'</div>'+
+      '<div class="cc-role">'+esc(c.role)+'</div>'+
+      '<span class="cc-rel">'+esc(c.relationship||'Connection')+'</span>'+
+      (c.lastContact?'<div class="cc-last">Last contact: '+fmtD(c.lastContact)+'</div>':'')+
+      (c.notes?'<div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.4">'+esc(c.notes)+'</div>':'')+
+      '</div>';
+  });
+  document.getElementById('contacts-grid').innerHTML=h;
+}
+function openContact(cid){
+  eCid=cid;document.getElementById('cm-ttl').textContent=cid?'Edit Contact':'Add Contact';
+  document.getElementById('cm-del').style.display=cid?'':'none';
+  if(cid){var c=contacts.find(function(x){return x.id===cid;});if(!c)return;
+    document.getElementById('c-na').value=c.name;document.getElementById('c-co').value=c.company||'';
+    document.getElementById('c-ro').value=c.role||'';document.getElementById('c-re').value=c.relationship||'';
+    document.getElementById('c-lc').value=c.lastContact||'';document.getElementById('c-no').value=c.notes||'';
+  } else {['c-na','c-co','c-ro','c-re','c-no'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('c-lc').value=tod();}
+  document.getElementById('cm').classList.add('open');setTimeout(function(){document.getElementById('c-na').focus();},80);
+}
+function closeCM(){document.getElementById('cm').classList.remove('open');}
+function saveContact(){
+  var na=document.getElementById('c-na').value.trim();if(!na)return;
+  var obj={name:na,company:document.getElementById('c-co').value.trim(),role:document.getElementById('c-ro').value.trim(),
+    relationship:document.getElementById('c-re').value.trim(),lastContact:document.getElementById('c-lc').value,notes:document.getElementById('c-no').value.trim()};
+  if(eCid){var c=contacts.find(function(x){return x.id===eCid;});if(c)Object.assign(c,obj);}
+  else{obj.id=uid();contacts.push(obj);}
+  savC();closeCM();renderContacts();toast('Saved!');
+}
+function delContact(){if(!eCid)return;contacts=contacts.filter(function(c){return c.id!==eCid;});savC();closeCM();renderContacts();toast('Deleted.');}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAM();closeIM();closeOM();closeCM();}});
+load();renderDash();
+</script>
+</body>
+</html>

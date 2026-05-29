@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRM Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0f0f0f;--card:#1a1a1a;--border:#2a2a2a;--text:#e8e8e8;--muted:#888;--acc:#6C47FF;--acc2:#8B6DFF;--green:#22c55e;--red:#ef4444;--yellow:#f59e0b;--blue:#3b82f6;--pink:#ec4899}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--acc);text-decoration:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--card)}
+.topbar h1{font-size:18px;font-weight:700;color:var(--acc)}
+.back-link{font-size:13px;color:var(--muted);padding:6px 12px;border:1px solid var(--border);border-radius:8px;transition:.2s}
+.back-link:hover{color:var(--text);border-color:var(--acc)}
+.nav{display:flex;gap:4px;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border);overflow-x:auto}
+.nav-btn{padding:7px 16px;border-radius:8px;border:none;background:transparent;color:var(--muted);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer;white-space:nowrap;transition:.2s}
+.nav-btn.active{background:var(--acc);color:#fff}
+.nav-btn:hover:not(.active){background:var(--border);color:var(--text)}
+.view{display:none;padding:24px;max-width:1200px;margin:0 auto}
+.view.active{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:700px){.grid2,.grid4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.card-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.card-val{font-size:28px;font-weight:700}
+.section-title{font-size:15px;font-weight:600;margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--acc);color:#fff}
+.btn-primary:hover{background:var(--acc2)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text);border-color:var(--acc)}
+.top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto}
+.modal h3{font-size:16px;font-weight:600;margin-bottom:20px}
+.form-row{margin-bottom:14px}
+.form-row label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}
+.form-row input,.form-row select,.form-row textarea{width:100%;background:#111;border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-color:var(--acc)}
+.form-row textarea{resize:vertical;min-height:70px}
+.form-row select option{background:#1a1a1a}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:10px 12px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(108,71,255,.05)}
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;background:rgba(108,71,255,.15);color:var(--acc);margin:2px}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.delete-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px}
+.delete-btn:hover{color:var(--red)}
+/* Pipeline Kanban */
+.pipe-board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:start;overflow-x:auto}
+@media(max-width:1000px){.pipe-board{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.pipe-board{grid-template-columns:1fr}}
+.pipe-col{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;min-width:160px}
+.pipe-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.deal-card{background:#111;border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px}
+.deal-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.deal-company{font-size:12px;color:var(--muted);margin-bottom:6px}
+.deal-val{font-size:13px;font-weight:700;color:var(--green)}
+.deal-prob{font-size:11px;color:var(--muted);margin-top:4px}
+.deal-actions{display:flex;gap:4px;margin-top:8px}
+.arrow-btn{background:var(--border);border:none;color:var(--text);border-radius:4px;padding:2px 8px;cursor:pointer;font-size:12px}
+.arrow-btn:hover{background:var(--acc);color:#fff}
+/* Activity */
+.activity-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.activity-item:last-child{border-bottom:none}
+.activity-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.activity-body{flex:1}
+.activity-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.activity-meta{font-size:11px;color:var(--muted)}
+/* Follow-ups */
+.followup-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.followup-item:last-child{border-bottom:none}
+.followup-contact{font-size:13px;font-weight:500}
+.followup-due{font-size:11px;color:var(--red)}
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <h1>🤝 CRM Template</h1>
+  <a class="back-link" href="my-library.html">← Back to Library</a>
+</div>
+<div class="nav">
+  <button class="nav-btn active" onclick="showView('dash')">Dashboard</button>
+  <button class="nav-btn" onclick="showView('contacts')">Contacts</button>
+  <button class="nav-btn" onclick="showView('deals')">Deals</button>
+  <button class="nav-btn" onclick="showView('pipeline')">Pipeline</button>
+  <button class="nav-btn" onclick="showView('activities')">Activities</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="view active">
+  <div class="grid4" style="margin-bottom:20px" id="dashStats"></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="section-title">Follow-up Reminders</div>
+      <div id="followups"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">Recent Activities</div>
+      <div id="recentActs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div id="contacts" class="view">
+  <div class="top-row">
+    <div class="section-title" style="margin:0">Contacts</div>
+    <button class="btn btn-primary btn-sm" onclick="openContactModal()">+ Add Contact</button>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table>
+      <thead><tr><th></th><th>Name</th><th>Company</th><th>Email</th><th>Phone</th><th>Tags</th><th>Last Contact</th><th></th></tr></thead>
+      <tbody id="contactBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DEALS -->
+<div id="deals" class="view">
+  <div class="top-row">
+    <div class="section-title" style="margin:0">Deals</div>
+    <button class="btn btn-primary btn-sm" onclick="openDealModal()">+ Add Deal</button>
+  </div>
+  <div class="card" style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Deal</th><th>Contact</th><th>Value</th><th>Stage</th><th>Probability</th><th>Close Date</th><th></th></tr></thead>
+      <tbody id="dealBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<div id="pipeline" class="view">
+  <div class="section-title">Sales Pipeline</div>
+  <div class="pipe-board" id="pipeBoard"></div>
+</div>
+
+<!-- ACTIVITIES -->
+<div id="activities" class="view">
+  <div class="top-row">
+    <div class="section-title" style="margin:0">Activity Log</div>
+    <button class="btn btn-primary btn-sm" onclick="openActModal()">+ Log Activity</button>
+  </div>
+  <div class="card">
+    <div id="actList"></div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <h3 id="contactModalTitle">Add Contact</h3>
+    <div class="form-row"><label>Full Name</label><input type="text" id="cName" placeholder="e.g. Sarah Johnson"></div>
+    <div class="form-row"><label>Company</label><input type="text" id="cCompany" placeholder="Company name"></div>
+    <div class="form-row"><label>Email</label><input type="email" id="cEmail" placeholder="email@example.com"></div>
+    <div class="form-row"><label>Phone</label><input type="tel" id="cPhone" placeholder="+1 555 000 0000"></div>
+    <div class="form-row"><label>Tags (comma-separated)</label><input type="text" id="cTags" placeholder="e.g. VIP, Enterprise"></div>
+    <div class="form-row"><label>Last Contact Date</label><input type="date" id="cLastContact"></div>
+    <div class="form-row"><label>Follow-up Date</label><input type="date" id="cFollowup"></div>
+    <div class="form-row"><label>Notes</label><textarea id="cNotes" placeholder="Any notes about this contact"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeContactModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveContact()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="dealModal">
+  <div class="modal">
+    <h3 id="dealModalTitle">Add Deal</h3>
+    <div class="form-row"><label>Deal Name</label><input type="text" id="dName" placeholder="e.g. Enterprise License Q3"></div>
+    <div class="form-row"><label>Contact</label><select id="dContact"></select></div>
+    <div class="form-row"><label>Value ($)</label><input type="number" id="dValue" min="0" placeholder="5000"></div>
+    <div class="form-row"><label>Stage</label>
+      <select id="dStage">
+        <option value="lead">Lead</option><option value="qualified">Qualified</option>
+        <option value="proposal">Proposal</option><option value="negotiation">Negotiation</option>
+        <option value="closed">Closed Won</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Probability (%)</label><input type="number" id="dProb" min="0" max="100" placeholder="50"></div>
+    <div class="form-row"><label>Expected Close Date</label><input type="date" id="dClose"></div>
+    <div class="form-row"><label>Notes</label><textarea id="dNotes" placeholder="Deal notes"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeDealModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDeal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="actModal">
+  <div class="modal">
+    <h3>Log Activity</h3>
+    <div class="form-row"><label>Type</label>
+      <select id="actType">
+        <option value="📞">📞 Call</option><option value="📧">📧 Email</option>
+        <option value="🤝">🤝 Meeting</option><option value="📝">📝 Note</option>
+        <option value="📤">📤 Proposal Sent</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Contact</label><select id="actContact"></select></div>
+    <div class="form-row"><label>Date</label><input type="date" id="actDate"></div>
+    <div class="form-row"><label>Summary</label><textarea id="actSummary" placeholder="What happened / was discussed?"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeActModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveAct()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function tod(){return new Date().toISOString().slice(0,10)}
+function dOff(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}
+function fmt(d){return d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}):'—'}
+function fmtVal(n){return'$'+Number(n).toLocaleString()}
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+function load(k,def){try{var v=localStorage.getItem(k);return v?JSON.parse(v):def}catch(e){return def}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+
+var STAGE_ORDER=['lead','qualified','proposal','negotiation','closed'];
+var STAGE_LABELS={lead:'Lead',qualified:'Qualified',proposal:'Proposal',negotiation:'Negotiation',closed:'Closed Won'};
+var STAGE_COLORS={lead:'#888',qualified:'#3b82f6',proposal:'#f59e0b',negotiation:'#ec4899',closed:'#22c55e'};
+var AVATAR_COLORS=['#6C47FF','#3b82f6','#22c55e','#f59e0b','#ef4444','#ec4899'];
+
+function seedContacts(){return[
+  {id:'c1',name:'Sarah Johnson',company:'TechCorp Inc',email:'sarah@techcorp.com',phone:'+1 555 100 2000',tags:'Enterprise,VIP',lastContact:dOff(-3),followup:dOff(4),notes:'Decision maker for Q3 renewal'},
+  {id:'c2',name:'Michael Chen',company:'Startup Labs',email:'m.chen@startuplabs.io',phone:'+1 555 200 3000',tags:'SMB,Hot Lead',lastContact:dOff(-7),followup:dOff(1),notes:'Interested in Team plan'},
+  {id:'c3',name:'Emma Williams',company:'Global Retail Co',email:'emma.w@globalretail.com',phone:'+1 555 300 4000',tags:'Enterprise',lastContact:dOff(-14),followup:dOff(7),notes:'Needs demo for executive team'},
+  {id:'c4',name:'David Kim',company:'FinanceFirst',email:'dkim@financefirst.com',phone:'+1 555 400 5000',tags:'Qualified',lastContact:dOff(-21),followup:dOff(14),notes:'Evaluating 3 vendors'},
+  {id:'c5',name:'Lisa Park',company:'HealthTech Solutions',email:'lisa@healthtech.co',phone:'+1 555 500 6000',tags:'Cold,Healthcare',lastContact:dOff(-30),followup:dOff(0),notes:'Re-engagement campaign'},
+];}
+function seedDeals(){return[
+  {id:'d1',name:'TechCorp Annual License',contactId:'c1',value:48000,stage:'negotiation',prob:75,close:dOff(15),notes:'Renewal + 3 new seats'},
+  {id:'d2',name:'Startup Labs Team Plan',contactId:'c2',value:5400,stage:'proposal',prob:60,close:dOff(10),notes:'12-month prepay'},
+  {id:'d3',name:'Global Retail Enterprise',contactId:'c3',value:120000,stage:'qualified',prob:40,close:dOff(45),notes:'Large deal — needs exec buy-in'},
+  {id:'d4',name:'FinanceFirst Pilot',contactId:'c4',value:12000,stage:'lead',prob:20,close:dOff(60),notes:'Competitive situation'},
+  {id:'d5',name:'HealthTech Basic',contactId:'c5',value:2400,stage:'closed',prob:100,close:dOff(-5),notes:'Won!'},
+];}
+function seedActivities(){return[
+  {id:'a1',type:'📞',contactId:'c1',date:dOff(-1),summary:'Discussed renewal terms. Sarah positive about 3 new seats, wants volume discount.'},
+  {id:'a2',type:'📧',contactId:'c2',date:dOff(-2),summary:'Sent pricing proposal for Team plan. Awaiting response.'},
+  {id:'a3',type:'🤝',contactId:'c3',date:dOff(-5),summary:'Product demo with Emma and her team. Very positive reception.'},
+  {id:'a4',type:'📝',contactId:'c4',date:dOff(-8),summary:'David evaluating us against 2 competitors. Price sensitivity noted.'},
+  {id:'a5',type:'📤',contactId:'c1',date:dOff(-10),summary:'Sent updated proposal with volume discount applied.'},
+  {id:'a6',type:'📞',contactId:'c5',date:dOff(-15),summary:'Re-engagement call. Lisa interested in re-starting conversation.'},
+];}
+
+var CONTACTS=load('crm_contacts',null)||seedContacts(); save('crm_contacts',CONTACTS);
+var DEALS=load('crm_deals',null)||seedDeals(); save('crm_deals',DEALS);
+var ACTIVITIES=load('crm_activities',null)||seedActivities(); save('crm_activities',ACTIVITIES);
+var editingContact=null,editingDeal=null;
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  if(id==='dash')renderDash();
+  if(id==='contacts')renderContacts();
+  if(id==='deals')renderDeals();
+  if(id==='pipeline')renderPipeline();
+  if(id==='activities')renderActivities();
+}
+
+function getAvatar(name,idx){
+  var col=AVATAR_COLORS[idx%AVATAR_COLORS.length];
+  return'<div class="avatar" style="background:'+col+'">'+esc((name||'?').charAt(0))+'</div>';
+}
+
+function renderDash(){
+  var totalDeals=DEALS.reduce(function(s,d){return s+Number(d.value)},0);
+  var closedDeals=DEALS.filter(function(d){return d.stage==='closed'});
+  var closedVal=closedDeals.reduce(function(s,d){return s+Number(d.value)},0);
+  var openDeals=DEALS.filter(function(d){return d.stage!=='closed'}).length;
+  var today=tod();
+  var overdueFollowups=CONTACTS.filter(function(c){return c.followup&&c.followup<=today}).length;
+  var stats=document.getElementById('dashStats');
+  stats.innerHTML='';
+  [{label:'Pipeline Value',val:fmtVal(totalDeals),color:'#6C47FF'},
+   {label:'Closed Won',val:fmtVal(closedVal),color:'#22c55e'},
+   {label:'Open Deals',val:openDeals,color:'#3b82f6'},
+   {label:'Overdue Follow-ups',val:overdueFollowups,color:'#ef4444'}
+  ].forEach(function(s){
+    var d=document.createElement('div');d.className='card';
+    d.innerHTML='<div class="card-title">'+s.label+'</div><div class="card-val" style="color:'+s.color+'">'+s.val+'</div>';
+    stats.appendChild(d);
+  });
+  var fups=document.getElementById('followups');
+  var upcoming=CONTACTS.filter(function(c){return c.followup}).sort(function(a,b){return a.followup.localeCompare(b.followup)}).slice(0,5);
+  if(!upcoming.length){fups.innerHTML='<div class="empty">No follow-ups scheduled</div>';return}
+  fups.innerHTML=upcoming.map(function(c){
+    var overdue=c.followup<today;
+    return'<div class="followup-item">'+
+      '<div><div class="followup-contact">'+esc(c.name)+'</div><div style="font-size:11px;color:var(--muted)">'+esc(c.company)+'</div></div>'+
+      '<div class="followup-due" style="color:'+(overdue?'var(--red)':'var(--yellow)')+'">'+fmt(c.followup)+'</div>'+
+    '</div>';
+  }).join('');
+  var racts=document.getElementById('recentActs');
+  var sorted=ACTIVITIES.slice().sort(function(a,b){return b.date.localeCompare(a.date)}).slice(0,4);
+  racts.innerHTML=sorted.map(function(a){
+    var c=CONTACTS.find(function(x){return x.id===a.contactId});
+    return'<div class="activity-item">'+
+      '<div class="activity-icon" style="background:rgba(108,71,255,.15)">'+a.type+'</div>'+
+      '<div class="activity-body">'+
+        '<div class="activity-title">'+esc(c?c.name:'Unknown')+'</div>'+
+        '<div class="activity-meta">'+fmt(a.date)+' · '+esc(a.summary.slice(0,60))+'...</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderContacts(){
+  var tb=document.getElementById('contactBody');
+  if(!CONTACTS.length){tb.innerHTML='<tr><td colspan="8" class="empty">No contacts yet</td></tr>';return}
+  tb.innerHTML=CONTACTS.map(function(c,i){
+    var tags=c.tags?c.tags.split(',').map(function(t){return'<span class="tag">'+esc(t.trim())+'</span>'}).join(''):'';
+    return'<tr>'+
+      '<td>'+getAvatar(c.name,i)+'</td>'+
+      '<td style="font-weight:500">'+esc(c.name)+'</td>'+
+      '<td>'+esc(c.company)+'</td>'+
+      '<td><a href="mailto:'+esc(c.email)+'">'+esc(c.email)+'</a></td>'+
+      '<td>'+esc(c.phone)+'</td>'+
+      '<td>'+tags+'</td>'+
+      '<td>'+fmt(c.lastContact)+'</td>'+
+      '<td><button class="delete-btn" onclick="delContact(\''+c.id+'\')">🗑</button></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderDeals(){
+  var tb=document.getElementById('dealBody');
+  if(!DEALS.length){tb.innerHTML='<tr><td colspan="7" class="empty">No deals yet</td></tr>';return}
+  tb.innerHTML=DEALS.map(function(d){
+    var c=CONTACTS.find(function(x){return x.id===d.contactId});
+    var stCol=STAGE_COLORS[d.stage]||'#888';
+    return'<tr>'+
+      '<td style="font-weight:500">'+esc(d.name)+'</td>'+
+      '<td>'+esc(c?c.name:'—')+'</td>'+
+      '<td style="color:var(--green);font-weight:600">'+fmtVal(d.value)+'</td>'+
+      '<td><span class="badge" style="background:'+stCol+'22;color:'+stCol+'">'+STAGE_LABELS[d.stage]+'</span></td>'+
+      '<td>'+d.prob+'%</td>'+
+      '<td>'+fmt(d.close)+'</td>'+
+      '<td><button class="delete-btn" onclick="delDeal(\''+d.id+'\')">🗑</button></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderPipeline(){
+  var board=document.getElementById('pipeBoard');
+  board.innerHTML='';
+  STAGE_ORDER.forEach(function(st){
+    var stDeals=DEALS.filter(function(d){return d.stage===st});
+    var stVal=stDeals.reduce(function(s,d){return s+Number(d.value)},0);
+    var col=document.createElement('div');col.className='pipe-col';
+    col.innerHTML='<div class="pipe-col-title"><span style="color:'+STAGE_COLORS[st]+'">'+STAGE_LABELS[st]+'</span><span style="color:var(--muted)">'+stDeals.length+'</span></div>'+
+      (stVal?'<div style="font-size:11px;color:var(--muted);margin-bottom:10px">'+fmtVal(stVal)+'</div>':'')+
+      stDeals.map(function(d){
+        var c=CONTACTS.find(function(x){return x.id===d.contactId});
+        var si=STAGE_ORDER.indexOf(st);
+        return'<div class="deal-card">'+
+          '<div class="deal-name">'+esc(d.name)+'</div>'+
+          '<div class="deal-company">'+esc(c?c.name:'—')+'</div>'+
+          '<div class="deal-val">'+fmtVal(d.value)+'</div>'+
+          '<div class="deal-prob">'+d.prob+'% probability</div>'+
+          '<div class="deal-actions">'+
+            (si>0?'<button class="arrow-btn" onclick="moveDeal(\''+d.id+'\',\''+STAGE_ORDER[si-1]+'\')">←</button>':'')+
+            (si<STAGE_ORDER.length-1?'<button class="arrow-btn" onclick="moveDeal(\''+d.id+'\',\''+STAGE_ORDER[si+1]+'\')">→</button>':'')+
+            '<button class="delete-btn" style="margin-left:auto" onclick="delDeal(\''+d.id+'\')">🗑</button>'+
+          '</div>'+
+        '</div>';
+      }).join('')+
+      '<button style="width:100%;background:transparent;border:1px dashed var(--border);border-radius:8px;padding:8px;color:var(--muted);font-size:12px;cursor:pointer;margin-top:4px" onclick="openDealModalStage(\''+st+'\')">+ Add deal</button>';
+    board.appendChild(col);
+  });
+}
+
+function moveDeal(id,newSt){
+  var d=DEALS.find(function(x){return x.id===id});
+  if(d)d.stage=newSt;
+  save('crm_deals',DEALS);renderPipeline();renderDeals();
+}
+
+function renderActivities(){
+  var el=document.getElementById('actList');
+  var sorted=ACTIVITIES.slice().sort(function(a,b){return b.date.localeCompare(a.date)});
+  if(!sorted.length){el.innerHTML='<div class="empty">No activities yet</div>';return}
+  el.innerHTML=sorted.map(function(a){
+    var c=CONTACTS.find(function(x){return x.id===a.contactId});
+    return'<div class="activity-item">'+
+      '<div class="activity-icon" style="background:rgba(108,71,255,.15)">'+a.type+'</div>'+
+      '<div class="activity-body">'+
+        '<div class="activity-title">'+esc(c?c.name:'Unknown')+(c?'<span style="color:var(--muted);font-weight:400"> · '+esc(c.company)+'</span>':'')+'</div>'+
+        '<div class="activity-meta">'+fmt(a.date)+'</div>'+
+        '<div style="font-size:12px;color:var(--muted);margin-top:4px">'+esc(a.summary)+'</div>'+
+      '</div>'+
+      '<button class="delete-btn" onclick="delAct(\''+a.id+'\')">🗑</button>'+
+    '</div>';
+  }).join('');
+}
+
+function populateContactSelects(){
+  ['dContact','actContact'].forEach(function(selId){
+    var sel=document.getElementById(selId);
+    while(sel.options.length>0)sel.remove(0);
+    CONTACTS.forEach(function(c){
+      var opt=document.createElement('option');opt.value=c.id;opt.text=c.name+' · '+c.company;sel.appendChild(opt);
+    });
+  });
+}
+
+function openContactModal(){
+  editingContact=null;
+  document.getElementById('contactModalTitle').textContent='Add Contact';
+  ['cName','cCompany','cEmail','cPhone','cTags','cNotes'].forEach(function(id){document.getElementById(id).value=''});
+  document.getElementById('cLastContact').value=tod();
+  document.getElementById('cFollowup').value='';
+  document.getElementById('contactModal').classList.add('open');
+}
+function closeContactModal(){document.getElementById('contactModal').classList.remove('open')}
+function saveContact(){
+  var name=document.getElementById('cName').value.trim();
+  if(!name){alert('Name required');return}
+  var data={name,company:document.getElementById('cCompany').value.trim(),
+    email:document.getElementById('cEmail').value.trim(),
+    phone:document.getElementById('cPhone').value.trim(),
+    tags:document.getElementById('cTags').value.trim(),
+    lastContact:document.getElementById('cLastContact').value,
+    followup:document.getElementById('cFollowup').value,
+    notes:document.getElementById('cNotes').value.trim()};
+  if(editingContact){
+    var i=CONTACTS.findIndex(function(c){return c.id===editingContact});
+    if(i>-1)CONTACTS[i]={...CONTACTS[i],...data};
+  }else{CONTACTS.push({id:uid(),...data})}
+  save('crm_contacts',CONTACTS);closeContactModal();renderContacts();
+}
+function delContact(id){
+  CONTACTS=CONTACTS.filter(function(c){return c.id!==id});
+  save('crm_contacts',CONTACTS);renderContacts();
+}
+
+function openDealModal(){
+  editingDeal=null;
+  populateContactSelects();
+  document.getElementById('dealModalTitle').textContent='Add Deal';
+  ['dName','dValue','dProb','dNotes'].forEach(function(id){document.getElementById(id).value=''});
+  document.getElementById('dStage').value='lead';
+  document.getElementById('dClose').value='';
+  document.getElementById('dealModal').classList.add('open');
+}
+function openDealModalStage(st){
+  openDealModal();
+  document.getElementById('dStage').value=st;
+}
+function closeDealModal(){document.getElementById('dealModal').classList.remove('open')}
+function saveDeal(){
+  var name=document.getElementById('dName').value.trim();
+  var value=parseFloat(document.getElementById('dValue').value)||0;
+  if(!name){alert('Deal name required');return}
+  var data={name,contactId:document.getElementById('dContact').value,
+    value,stage:document.getElementById('dStage').value,
+    prob:parseInt(document.getElementById('dProb').value)||0,
+    close:document.getElementById('dClose').value,
+    notes:document.getElementById('dNotes').value.trim()};
+  if(editingDeal){
+    var i=DEALS.findIndex(function(d){return d.id===editingDeal});
+    if(i>-1)DEALS[i]={...DEALS[i],...data};
+  }else{DEALS.push({id:uid(),...data})}
+  save('crm_deals',DEALS);closeDealModal();renderDeals();renderPipeline();
+}
+function delDeal(id){
+  DEALS=DEALS.filter(function(d){return d.id!==id});
+  save('crm_deals',DEALS);renderDeals();renderPipeline();
+}
+
+function openActModal(){
+  populateContactSelects();
+  document.getElementById('actDate').value=tod();
+  document.getElementById('actSummary').value='';
+  document.getElementById('actModal').classList.add('open');
+}
+function closeActModal(){document.getElementById('actModal').classList.remove('open')}
+function saveAct(){
+  var summary=document.getElementById('actSummary').value.trim();
+  if(!summary){alert('Summary required');return}
+  ACTIVITIES.unshift({id:uid(),type:document.getElementById('actType').value,
+    contactId:document.getElementById('actContact').value,
+    date:document.getElementById('actDate').value,summary});
+  save('crm_activities',ACTIVITIES);closeActModal();renderActivities();
+}
+function delAct(id){
+  ACTIVITIES=ACTIVITIES.filter(function(a){return a.id!==id});
+  save('crm_activities',ACTIVITIES);renderActivities();
+}
+
+document.querySelectorAll('.modal-overlay').forEach(function(m){
+  m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open')});
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(function(m){m.classList.remove('open')});
+});
+
+renderDash();
+</script>
+</body>
+</html>
