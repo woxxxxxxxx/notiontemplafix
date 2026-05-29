@@ -85,9 +85,43 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 .mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
 .empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
 @media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.timer-display{font-size:40px}.week-grid{grid-template-columns:repeat(4,1fr)}.frow{grid-template-columns:1fr}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Freelancer Hub</div>
+  <span class="ntf-lprice">$15</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/52d2c14d-6fe5-4e95-835d-f7f8041827f2" target="_blank" rel="noopener">Unlock App &mdash; $15</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/52d2c14d-6fe5-4e95-835d-f7f8041827f2" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div class="topbar">
   <a href="/my-library.html" class="back-btn">← Back to Library</a>
   <div class="app-brand">💼 Freelancer Hub</div>
@@ -197,6 +231,17 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 </div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var CLK='fh_clients', PRK='fh_projects', ENK='fh_entries', INK='fh_invoices', TK='fh_timer';
 var TODAY=new Date().toISOString().split('T')[0];
 var NOW=new Date(), CUR_YM=NOW.getFullYear()+'-'+(String(NOW.getMonth()+1).padStart(2,'0'));
@@ -247,16 +292,16 @@ var SEED_INV=[
 ];
 
 function load(){
-  clients=JSON.parse(localStorage.getItem(CLK)||'null')||JSON.parse(JSON.stringify(SEED_CL));
-  projects=JSON.parse(localStorage.getItem(PRK)||'null')||JSON.parse(JSON.stringify(SEED_PR));
-  entries=JSON.parse(localStorage.getItem(ENK)||'null')||JSON.parse(JSON.stringify(SEED_EN));
-  invoices=JSON.parse(localStorage.getItem(INK)||'null')||JSON.parse(JSON.stringify(SEED_INV));
-  var ts=localStorage.getItem(TK);if(ts)timerState=JSON.parse(ts);
-  [[CLK,clients],[PRK,projects],[ENK,entries],[INK,invoices]].forEach(function(p){if(!localStorage.getItem(p[0]))localStorage.setItem(p[0],JSON.stringify(p[1]));});
+  clients=JSON.parse(LS.getItem(CLK)||'null')||JSON.parse(JSON.stringify(SEED_CL));
+  projects=JSON.parse(LS.getItem(PRK)||'null')||JSON.parse(JSON.stringify(SEED_PR));
+  entries=JSON.parse(LS.getItem(ENK)||'null')||JSON.parse(JSON.stringify(SEED_EN));
+  invoices=JSON.parse(LS.getItem(INK)||'null')||JSON.parse(JSON.stringify(SEED_INV));
+  var ts=LS.getItem(TK);if(ts)timerState=JSON.parse(ts);
+  [[CLK,clients],[PRK,projects],[ENK,entries],[INK,invoices]].forEach(function(p){if(!LS.getItem(p[0]))LS.setItem(p[0],JSON.stringify(p[1]));});
   if(timerState.running)startTickInterval();
 }
-function saveAll(){localStorage.setItem(CLK,JSON.stringify(clients));localStorage.setItem(PRK,JSON.stringify(projects));localStorage.setItem(ENK,JSON.stringify(entries));localStorage.setItem(INK,JSON.stringify(invoices));}
-function saveTState(){localStorage.setItem(TK,JSON.stringify(timerState));}
+function saveAll(){LS.setItem(CLK,JSON.stringify(clients));LS.setItem(PRK,JSON.stringify(projects));LS.setItem(ENK,JSON.stringify(entries));LS.setItem(INK,JSON.stringify(invoices));}
+function saveTState(){LS.setItem(TK,JSON.stringify(timerState));}
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmt$(n){return '$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -375,7 +420,8 @@ function saveClient(){
   var name=document.getElementById('clm-name').value.trim();if(!name)return;
   var data={name:name,company:document.getElementById('clm-company').value.trim(),email:document.getElementById('clm-email').value.trim(),rate:parseFloat(document.getElementById('clm-rate').value)||0,totalEarned:0};
   var id=document.getElementById('clm-id').value;
-  if(id){var c=clients.find(function(x){return x.id===id;});if(c){data.totalEarned=c.totalEarned;Object.assign(c,data);}}else clients.push(Object.assign({id:uid()},data));
+  if(id){var c=clients.find(function(x){return x.id===id;});if(c){data.totalEarned=c.totalEarned;Object.assign(c,data);}}else if(!ntfAddCheck())return;
+  clients.push(Object.assign({id:uid()},data));
   saveAll();cm('cl-modal');render();
 }
 function delClient(id){if(!confirm('Delete client?'))return;clients=clients.filter(function(c){return c.id!==id;});saveAll();render();}
@@ -417,7 +463,8 @@ function saveProject(){
   var name=document.getElementById('prm-name').value.trim();if(!name)return;
   var data={name:name,clientId:document.getElementById('prm-client').value,status:document.getElementById('prm-status').value,budget:parseFloat(document.getElementById('prm-budget').value)||0,rateOverride:parseFloat(document.getElementById('prm-rate').value)||0,desc:document.getElementById('prm-desc').value.trim()};
   var id=document.getElementById('prm-id').value;
-  if(id){var p=projects.find(function(x){return x.id===id;});if(p)Object.assign(p,data);}else projects.push(Object.assign({id:uid()},data));
+  if(id){var p=projects.find(function(x){return x.id===id;});if(p)Object.assign(p,data);}else if(!ntfAddCheck())return;
+  projects.push(Object.assign({id:uid()},data));
   saveAll();cm('pr-modal');render();
 }
 function delProject(id){if(!confirm('Delete project?'))return;projects=projects.filter(function(p){return p.id!==id;});saveAll();render();}
@@ -523,6 +570,7 @@ function triggerStop(){
 function saveEntry(){
   if(!pendingEntry)return;
   var hours=Math.round(pendingEntry.elapsed/3600*4)/4;if(hours<0.01)hours=0.01;
+  if(!ntfAddCheck())return;
   entries.unshift({id:uid(),projectId:pendingEntry.projectId,date:TODAY,hours:hours,desc:document.getElementById('stop-desc').value.trim(),billable:true,invoiced:false});
   timerState={running:false,projectId:null,startTime:null,elapsed:0};
   saveTState();saveAll();cm('stop-modal');pendingEntry=null;render();
@@ -542,6 +590,7 @@ function openEntryM(){
 }
 function saveManualEntry(){
   var hours=parseFloat(document.getElementById('enm-hours').value)||0;if(!hours)return;
+  if(!ntfAddCheck())return;
   entries.unshift({id:uid(),projectId:document.getElementById('enm-project').value,date:document.getElementById('enm-date').value,hours:hours,desc:document.getElementById('enm-desc').value.trim(),billable:document.getElementById('enm-billable').value==='1',invoiced:false});
   saveAll();cm('entry-modal');renderTimer();
 }
@@ -613,6 +662,7 @@ function calcInvoiceAmt(){
 function saveInvoice(){
   var amt=parseFloat(document.getElementById('invm-amount').value)||0;
   var hours=parseFloat(document.getElementById('invm-hours').value)||0;
+  if(!ntfAddCheck())return;
   invoices.unshift({id:uid(),clientId:document.getElementById('invm-client').value,projectId:document.getElementById('invm-project').value,hours:hours,amount:amt,date:document.getElementById('invm-date').value,dueDate:document.getElementById('invm-due').value,status:'Draft',notes:document.getElementById('invm-notes').value.trim()});
   saveAll();cm('inv-modal');render();
 }
@@ -623,6 +673,33 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.que
 document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
 
 load(); renderDash();
+
+(function(){
+  var unkey='ntf_unlock_freelancer-hub-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

@@ -73,9 +73,43 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 .review-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
 .review-lbl{font-size:13px;font-weight:600;flex:1}
 @media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.frow{grid-template-columns:1fr}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Student OS</div>
+  <span class="ntf-lprice">$15</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/47341d6a-8b3e-4228-abda-33d07a33c92b" target="_blank" rel="noopener">Unlock App &mdash; $15</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/47341d6a-8b3e-4228-abda-33d07a33c92b" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div class="topbar">
   <a href="/my-library.html" class="back-btn">← Back to Library</a>
   <div class="app-brand">🎓 Student OS</div>
@@ -175,6 +209,17 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 </div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var CK='sos_courses', AK='sos_assign', EK='sos_exams', GK='sos_grades';
 var TODAY=new Date().toISOString().split('T')[0];
 var courses=[], assignments=[], exams=[], grades=[], curView='dashboard', editId=null;
@@ -205,16 +250,16 @@ var SEED_G=[
 var GP={A:4.0,'A+':4.0,'A-':3.7,'B+':3.3,'B':3.0,'B-':2.7,'C+':2.3,'C':2.0,'C-':1.7,'D+':1.3,'D':1.0,'F':0.0};
 
 function load(){
-  courses=JSON.parse(localStorage.getItem(CK)||'null')||JSON.parse(JSON.stringify(SEED_C));
-  assignments=JSON.parse(localStorage.getItem(AK)||'null')||JSON.parse(JSON.stringify(SEED_A));
-  exams=JSON.parse(localStorage.getItem(EK)||'null')||JSON.parse(JSON.stringify(SEED_E));
-  grades=JSON.parse(localStorage.getItem(GK)||'null')||JSON.parse(JSON.stringify(SEED_G));
+  courses=JSON.parse(LS.getItem(CK)||'null')||JSON.parse(JSON.stringify(SEED_C));
+  assignments=JSON.parse(LS.getItem(AK)||'null')||JSON.parse(JSON.stringify(SEED_A));
+  exams=JSON.parse(LS.getItem(EK)||'null')||JSON.parse(JSON.stringify(SEED_E));
+  grades=JSON.parse(LS.getItem(GK)||'null')||JSON.parse(JSON.stringify(SEED_G));
   ['courses','assignments','exams','grades'].forEach(function(k){
-    if(!localStorage.getItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k]))
-      localStorage.setItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k],JSON.stringify(eval(k)));
+    if(!LS.getItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k]))
+      LS.setItem({courses:CK,assignments:AK,exams:EK,grades:GK}[k],JSON.stringify(eval(k)));
   });
 }
-function save(){localStorage.setItem(CK,JSON.stringify(courses));localStorage.setItem(AK,JSON.stringify(assignments));localStorage.setItem(EK,JSON.stringify(exams));localStorage.setItem(GK,JSON.stringify(grades));}
+function save(){LS.setItem(CK,JSON.stringify(courses));LS.setItem(AK,JSON.stringify(assignments));LS.setItem(EK,JSON.stringify(exams));LS.setItem(GK,JSON.stringify(grades));}
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function daysTo(ds){if(!ds)return null;return Math.round((new Date(ds+'T00:00:00')-new Date(TODAY+'T00:00:00'))/86400000);}
@@ -331,7 +376,8 @@ function saveCourse(){
   var name=document.getElementById('cm-name').value.trim();if(!name)return;
   var data={name:name,professor:document.getElementById('cm-prof').value.trim(),credits:parseInt(document.getElementById('cm-cred').value)||3,schedule:document.getElementById('cm-sched').value.trim(),color:document.getElementById('cm-color').value};
   var id=document.getElementById('cm-id').value;
-  if(id){var c=courses.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else courses.push(Object.assign({id:uid()},data));
+  if(id){var c=courses.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else if(!ntfAddCheck())return;
+  courses.push(Object.assign({id:uid()},data));
   save();closeM('cm-modal');render();
 }
 function delCourse(id){if(!confirm('Delete course and related data?'))return;courses=courses.filter(function(c){return c.id!==id;});save();render();}
@@ -383,7 +429,8 @@ function saveAssign(){
   var title=document.getElementById('am-title').value.trim();if(!title)return;
   var data={title:title,courseId:document.getElementById('am-course').value,due:document.getElementById('am-due').value,priority:document.getElementById('am-pri').value,status:document.getElementById('am-status').value,notes:document.getElementById('am-notes').value.trim()};
   var id=document.getElementById('am-id').value;
-  if(id){var a=assignments.find(function(x){return x.id===id;});if(a)Object.assign(a,data);}else assignments.push(Object.assign({id:uid()},data));
+  if(id){var a=assignments.find(function(x){return x.id===id;});if(a)Object.assign(a,data);}else if(!ntfAddCheck())return;
+  assignments.push(Object.assign({id:uid()},data));
   save();closeM('am-modal');render();
 }
 function delAssign(id){if(!confirm('Delete?'))return;assignments=assignments.filter(function(a){return a.id!==id;});save();render();}
@@ -426,7 +473,8 @@ function saveExam(){
   var title=document.getElementById('em-title').value.trim();if(!title)return;
   var data={title:title,courseId:document.getElementById('em-course').value,date:document.getElementById('em-date').value,time:document.getElementById('em-time').value,location:document.getElementById('em-loc').value.trim(),review:Math.min(100,Math.max(0,parseInt(document.getElementById('em-review').value)||0))};
   var id=document.getElementById('em-id').value;
-  if(id){var e=exams.find(function(x){return x.id===id;});if(e)Object.assign(e,data);}else exams.push(Object.assign({id:uid()},data));
+  if(id){var e=exams.find(function(x){return x.id===id;});if(e)Object.assign(e,data);}else if(!ntfAddCheck())return;
+  exams.push(Object.assign({id:uid()},data));
   save();closeM('em-modal');render();
 }
 function delExam(id){if(!confirm('Delete?'))return;exams=exams.filter(function(e){return e.id!==id;});save();render();}
@@ -456,6 +504,7 @@ function openGM(){
 }
 function saveGrade(){
   var name=document.getElementById('gm-name').value.trim();if(!name)return;
+  if(!ntfAddCheck())return;
   grades.push({id:uid(),courseId:document.getElementById('gm-course').value,grade:document.getElementById('gm-grade').value,name:name});
   save();closeM('gm-modal');render();
 }
@@ -466,6 +515,33 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.que
 document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
 
 load(); renderDash();
+
+(function(){
+  var unkey='ntf_unlock_student-os-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

@@ -81,9 +81,43 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 .filter-sel:focus{outline:none;border-color:var(--acc)} .filter-sel option{background:var(--sur)}
 .empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
 @media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 9px;font-size:12px}.main{padding:14px}.stats-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Finance Tracker Pro</div>
+  <span class="ntf-lprice">$15</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/20d2604e-3554-438f-b493-74dd5728801f" target="_blank" rel="noopener">Unlock App &mdash; $15</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/20d2604e-3554-438f-b493-74dd5728801f" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div class="topbar">
   <a href="/my-library.html" class="back-btn">← Back to Library</a>
   <div class="app-brand">💰 Finance Tracker Pro</div>
@@ -158,6 +192,17 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 </div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var TK='ft_tx', BK='ft_budgets', SK='ft_savings';
 var TODAY=new Date().toISOString().split('T')[0];
 var NOW=new Date();
@@ -207,14 +252,14 @@ var SEED_S=[
 ];
 
 function load(){
-  transactions=JSON.parse(localStorage.getItem(TK)||'null')||JSON.parse(JSON.stringify(SEED_TX));
-  budgets=JSON.parse(localStorage.getItem(BK)||'null')||JSON.parse(JSON.stringify(SEED_B));
-  savings=JSON.parse(localStorage.getItem(SK)||'null')||JSON.parse(JSON.stringify(SEED_S));
-  if(!localStorage.getItem(TK))localStorage.setItem(TK,JSON.stringify(transactions));
-  if(!localStorage.getItem(BK))localStorage.setItem(BK,JSON.stringify(budgets));
-  if(!localStorage.getItem(SK))localStorage.setItem(SK,JSON.stringify(savings));
+  transactions=JSON.parse(LS.getItem(TK)||'null')||JSON.parse(JSON.stringify(SEED_TX));
+  budgets=JSON.parse(LS.getItem(BK)||'null')||JSON.parse(JSON.stringify(SEED_B));
+  savings=JSON.parse(LS.getItem(SK)||'null')||JSON.parse(JSON.stringify(SEED_S));
+  if(!LS.getItem(TK))LS.setItem(TK,JSON.stringify(transactions));
+  if(!LS.getItem(BK))LS.setItem(BK,JSON.stringify(budgets));
+  if(!LS.getItem(SK))LS.setItem(SK,JSON.stringify(savings));
 }
-function saveAll(){localStorage.setItem(TK,JSON.stringify(transactions));localStorage.setItem(BK,JSON.stringify(budgets));localStorage.setItem(SK,JSON.stringify(savings));}
+function saveAll(){LS.setItem(TK,JSON.stringify(transactions));LS.setItem(BK,JSON.stringify(budgets));LS.setItem(SK,JSON.stringify(savings));}
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmt$(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -320,7 +365,8 @@ function saveTx(){
   var amt=parseFloat(document.getElementById('tx-amt').value);if(!amt||amt<=0)return;
   var data={type:document.getElementById('tx-type').value,date:document.getElementById('tx-date').value,amount:amt,category:document.getElementById('tx-cat').value,note:document.getElementById('tx-note').value.trim()};
   var id=document.getElementById('tx-id').value;
-  if(id){var t=transactions.find(function(x){return x.id===id;});if(t)Object.assign(t,data);}else transactions.unshift(Object.assign({id:uid()},data));
+  if(id){var t=transactions.find(function(x){return x.id===id;});if(t)Object.assign(t,data);}else if(!ntfAddCheck())return;
+  transactions.unshift(Object.assign({id:uid()},data));
   saveAll();cm('tx-modal');render();
 }
 function delTx(id){if(!confirm('Delete?'))return;transactions=transactions.filter(function(t){return t.id!==id;});saveAll();render();}
@@ -395,7 +441,8 @@ function saveSv(){
   var name=document.getElementById('svm-name').value.trim();if(!name)return;
   var data={name:name,target:parseFloat(document.getElementById('svm-target').value)||0,current:parseFloat(document.getElementById('svm-current').value)||0,date:document.getElementById('svm-date').value};
   var id=document.getElementById('svm-id').value;
-  if(id){var s=savings.find(function(x){return x.id===id;});if(s)Object.assign(s,data);}else savings.push(Object.assign({id:uid()},data));
+  if(id){var s=savings.find(function(x){return x.id===id;});if(s)Object.assign(s,data);}else if(!ntfAddCheck())return;
+  savings.push(Object.assign({id:uid()},data));
   saveAll();cm('sv-modal');render();
 }
 function delSv(id){if(!confirm('Delete?'))return;savings=savings.filter(function(s){return s.id!==id;});saveAll();render();}
@@ -468,6 +515,33 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.que
 document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
 
 load(); renderDash();
+
+(function(){
+  var unkey='ntf_unlock_finance-tracker-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

@@ -110,9 +110,43 @@ input,textarea,select{font-family:inherit}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:700px){.stat-row{grid-template-columns:repeat(2,1fr)}.main{padding:14px 14px 60px}.nav-tabs{gap:2px}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Personal Dashboard</div>
+  <span class="ntf-lprice">$9</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/a9fcf35a-c307-44dd-9ca0-9ad3ddcb6584" target="_blank" rel="noopener">Unlock App &mdash; $9</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/a9fcf35a-c307-44dd-9ca0-9ad3ddcb6584" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div id="toast" class="toast"></div>
 <div class="topbar">
   <a class="back-btn" href="/my-library.html">← Library</a>
@@ -243,6 +277,17 @@ input,textarea,select{font-family:inherit}
 </div></div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var TK='pd_tasks',NK='pd_notes',LK='pd_links';
 var tasks=[],notes=[],links=[];
 var tFilt='all',nFilt='all',lFilt='All';
@@ -272,16 +317,16 @@ function pLabel(p){return p==='high'?'High':p==='med'?'Med':'Low';}
 function dOff(n){var d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
 
 function load(){
-  tasks=JSON.parse(localStorage.getItem(TK)||'null');
-  notes=JSON.parse(localStorage.getItem(NK)||'null');
-  links=JSON.parse(localStorage.getItem(LK)||'null');
+  tasks=JSON.parse(LS.getItem(TK)||'null');
+  notes=JSON.parse(LS.getItem(NK)||'null');
+  links=JSON.parse(LS.getItem(LK)||'null');
   if(!tasks){tasks=seedT();savT();}
   if(!notes){notes=seedN();savN();}
   if(!links){links=seedL();savL();}
 }
-function savT(){localStorage.setItem(TK,JSON.stringify(tasks));}
-function savN(){localStorage.setItem(NK,JSON.stringify(notes));}
-function savL(){localStorage.setItem(LK,JSON.stringify(links));}
+function savT(){LS.setItem(TK,JSON.stringify(tasks));}
+function savN(){LS.setItem(NK,JSON.stringify(notes));}
+function savL(){LS.setItem(LK,JSON.stringify(links));}
 
 function seedT(){return[
   {id:uid(),title:'Review project proposal',priority:'high',dueDate:dOff(0),category:'Work',done:false},
@@ -357,6 +402,7 @@ function renderDash(){
 function qcAdd(){
   var v=document.getElementById('qi').value.trim();
   if(!v)return;
+  if(!ntfAddCheck())return;
   tasks.push({id:uid(),title:v,priority:'med',dueDate:tod(),category:'Work',done:false});
   savT();document.getElementById('qi').value='';renderDash();toast('Task added!');
 }
@@ -408,7 +454,7 @@ function closeTM(){document.getElementById('tm').classList.remove('open');}
 function saveTask(){
   var ti=document.getElementById('t-ti').value.trim();if(!ti)return;
   if(eTid){var t=tasks.find(function(x){return x.id===eTid;});if(t){t.title=ti;t.priority=document.getElementById('t-pr').value;t.category=document.getElementById('t-ca').value;t.dueDate=document.getElementById('t-du').value;}}
-  else tasks.push({id:uid(),title:ti,priority:document.getElementById('t-pr').value,dueDate:document.getElementById('t-du').value,category:document.getElementById('t-ca').value,done:false});
+  else{if(!ntfAddCheck())return;tasks.push({id:uid(),title:ti,priority:document.getElementById('t-pr').value,dueDate:document.getElementById('t-du').value,category:document.getElementById('t-ca').value,done:false});
   savT();closeTM();renderTasks();toast('Saved!');
 }
 function delTask(){if(!eTid)return;tasks=tasks.filter(function(t){return t.id!==eTid;});savT();closeTM();renderTasks();toast('Deleted.');}
@@ -443,7 +489,7 @@ function saveNote(){
   var co=document.getElementById('n-co').value.trim();
   var cl=document.getElementById('n-cl').value;
   if(eNid){var n=notes.find(function(x){return x.id===eNid;});if(n){n.title=ti;n.content=co;n.color=cl;}}
-  else notes.push({id:uid(),title:ti,content:co,color:cl,createdAt:tod()});
+  else{if(!ntfAddCheck())return;notes.push({id:uid(),title:ti,content:co,color:cl,createdAt:tod()});
   savN();closeNM();renderNotes();toast('Saved!');
 }
 function delNote(){if(!eNid)return;notes=notes.filter(function(n){return n.id!==eNid;});savN();closeNM();renderNotes();toast('Deleted.');}
@@ -535,13 +581,40 @@ function closeLM(){document.getElementById('lm').classList.remove('open');}
 function saveLink(){
   var ti=document.getElementById('l-ti').value.trim();var ur=document.getElementById('l-ur').value.trim();if(!ti||!ur)return;
   if(eLid){var l=links.find(function(x){return x.id===eLid;});if(l){l.title=ti;l.url=ur;l.emoji=document.getElementById('l-em').value||'🔗';l.category=document.getElementById('l-ca').value.trim();}}
-  else links.push({id:uid(),title:ti,url:ur,emoji:document.getElementById('l-em').value||'🔗',category:document.getElementById('l-ca').value.trim()});
+  else{if(!ntfAddCheck())return;links.push({id:uid(),title:ti,url:ur,emoji:document.getElementById('l-em').value||'🔗',category:document.getElementById('l-ca').value.trim()});
   savL();closeLM();renderLinks();toast('Saved!');
 }
 function delLink(){if(!eLid)return;links=links.filter(function(l){return l.id!==eLid;});savL();closeLM();renderLinks();toast('Deleted.');}
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeTM();closeNM();closeLM();}});
 load();renderDash();
+
+(function(){
+  var unkey='ntf_unlock_personal-dashboard-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

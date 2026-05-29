@@ -99,9 +99,43 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit}i
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:700px){.main{padding:14px 14px 60px}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Weekly Planner</div>
+  <span class="ntf-lprice">$9</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/bd798ed2-554a-4de7-961c-30a107875c84" target="_blank" rel="noopener">Unlock App &mdash; $9</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/bd798ed2-554a-4de7-961c-30a107875c84" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div id="toast" class="toast"></div>
 <div class="topbar">
   <a class="back-btn" href="/my-library.html">← Library</a>
@@ -166,6 +200,17 @@ a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit}i
 </div></div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var WK='wp_tasks',MK='wp_meals',RK='wp_reflections';
 var tasks=[],meals={},refs=[];
 var eTid=null,mDate=null,mType=null,mDayForTask=null;
@@ -192,16 +237,16 @@ function getWeek(){
 }
 
 function load(){
-  tasks=JSON.parse(localStorage.getItem(WK)||'null');
-  meals=JSON.parse(localStorage.getItem(MK)||'null');
-  refs=JSON.parse(localStorage.getItem(RK)||'null');
+  tasks=JSON.parse(LS.getItem(WK)||'null');
+  meals=JSON.parse(LS.getItem(MK)||'null');
+  refs=JSON.parse(LS.getItem(RK)||'null');
   if(!tasks){tasks=seedT();savT();}
   if(!meals){meals=seedM();savM();}
   if(!refs){refs=seedR();savR();}
 }
-function savT(){localStorage.setItem(WK,JSON.stringify(tasks));}
-function savM(){localStorage.setItem(MK,JSON.stringify(meals));}
-function savR(){localStorage.setItem(RK,JSON.stringify(refs));}
+function savT(){LS.setItem(WK,JSON.stringify(tasks));}
+function savM(){LS.setItem(MK,JSON.stringify(meals));}
+function savR(){LS.setItem(RK,JSON.stringify(refs));}
 
 function seedT(){
   var wk=getWeek();
@@ -324,7 +369,7 @@ function saveTask(){
   var dy=document.getElementById('t-dy').value||null;
   var pr=document.getElementById('t-pr').value;
   if(eTid){var t=tasks.find(function(x){return x.id===eTid;});if(t){t.title=ti;t.priority=pr;t.date=dy;}}
-  else tasks.push({id:uid(),title:ti,priority:pr,date:dy,done:false});
+  else{if(!ntfAddCheck())return;tasks.push({id:uid(),title:ti,priority:pr,date:dy,done:false});
   savT();closeTM();
   var av=document.querySelector('.view.active').id;
   if(av==='v-week')renderWeek();else renderBacklog();
@@ -441,6 +486,33 @@ function saveReflection(){
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeTM();closeMM();}});
 load();renderWeek();
+
+(function(){
+  var unkey='ntf_unlock_weekly-planner-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

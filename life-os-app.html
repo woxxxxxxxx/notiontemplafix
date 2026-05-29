@@ -233,9 +233,43 @@ input,textarea,select{font-family:inherit}
 .unlock-buy{font-size:13px;color:var(--text3)}
 .unlock-buy a{color:var(--accent);font-weight:600;text-decoration:none}
 .unlock-buy a:hover{text-decoration:underline}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Life OS Dashboard</div>
+  <span class="ntf-lprice">$19</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/838cf7a7-6733-4ddb-8350-6a451479a809" target="_blank" rel="noopener">Unlock App &mdash; $19</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/838cf7a7-6733-4ddb-8350-6a451479a809" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 
 <!-- UNLOCK GATE -->
 <div id="unlockGate">
@@ -498,6 +532,17 @@ input,textarea,select{font-family:inherit}
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 // ===================== UTILS =====================
 var TODAY = new Date().toISOString().slice(0,10);
 
@@ -518,8 +563,8 @@ function toast(msg,type){
 }
 
 // ===================== STORE =====================
-function load(key,def){try{var v=localStorage.getItem(key);return v?JSON.parse(v):def}catch(e){return def}}
-function save(key,val){localStorage.setItem(key,JSON.stringify(val))}
+function load(key,def){try{var v=LS.getItem(key);return v?JSON.parse(v):def}catch(e){return def}}
+function save(key,val){LS.setItem(key,JSON.stringify(val))}
 
 // ===================== SEED DATA =====================
 function seedGoals(){return[
@@ -713,6 +758,7 @@ function saveHabit(){
     var h=habits.find(function(x){return x.id===id});
     if(h){h.name=name;h.freq=document.getElementById('habitFreq').value;h.cat=document.getElementById('habitCat').value;h.icon=document.getElementById('habitIcon').value||'⭐';}
   } else {
+    if(!ntfAddCheck())return;
     habits.push({id:uid(),name:name,freq:document.getElementById('habitFreq').value,cat:document.getElementById('habitCat').value,icon:document.getElementById('habitIcon').value||'⭐',streak:0,history:[]});
   }
   save('los_habits',habits);closeModal('habitModal');clearHabitForm();renderHabits();toast('Habit saved!');
@@ -927,6 +973,7 @@ function saveReview(){
   var ng=document.getElementById('rNextGoals').value.trim();
   if(!h&&!imp&&!ng){toast('Please fill in at least one field','error');return;}
   var wd=weekDates();
+  if(!ntfAddCheck())return;
   reviews.push({id:uid(),weekStart:wd[0],highlights:h,improvements:imp,nextGoals:ng});
   save('los_reviews',reviews);
   document.getElementById('rHighlights').value='';
@@ -980,8 +1027,8 @@ function checkUnlock(){
     .then(function(r){ return r.json(); })
     .then(function(data){
       if(data.unlocked){
-        localStorage.setItem(UNLOCK_KEY, '1');
-        localStorage.setItem(EMAIL_KEY, email);
+        LS.setItem(UNLOCK_KEY, '1');
+        LS.setItem(EMAIL_KEY, email);
         bootApp();
       } else {
         errEl.textContent = 'Email not found. Please use the email you purchased with.';
@@ -1002,11 +1049,38 @@ document.getElementById('unlockEmail').addEventListener('keydown', function(e){
 });
 
 // ===================== BOOT =====================
-if(localStorage.getItem(UNLOCK_KEY) === '1'){
+if(LS.getItem(UNLOCK_KEY) === '1'){
   bootApp();
 } else {
   // Show gate — already visible by default
 }
+
+(function(){
+  var unkey='ntf_unlock_life-os-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>

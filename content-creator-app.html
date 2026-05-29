@@ -90,9 +90,43 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 .mfoot{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
 .empty{text-align:center;padding:36px 20px;color:var(--txt2);font-size:13px}
 @media(max-width:768px){.stat-grid{grid-template-columns:1fr 1fr}.topbar{padding:0 12px}.back-btn{display:none}.tab{padding:5px 8px;font-size:11px}.main{padding:14px}.stats-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}}
+
+/* === NTF Trial Mode === */
+#ntf-lock{position:fixed;inset:0;background:rgba(0,0,0,.90);backdrop-filter:blur(14px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ntf-lbox{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:18px;padding:36px 32px;max-width:420px;width:100%;text-align:center}
+.ntf-lico{font-size:44px;margin-bottom:10px}
+.ntf-lname{font-size:22px;font-weight:800;color:#f0f0f0;margin-bottom:6px}
+.ntf-lprice{display:inline-block;font-size:13px;font-weight:700;color:#8b6dff;background:rgba(108,71,255,.15);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+.ntf-ldesc{font-size:13px;color:#a0a0a0;line-height:1.65;margin-bottom:22px}
+.ntf-lbuy{display:block;padding:13px 20px;background:#6C47FF;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:background .2s}
+.ntf-lbuy:hover{background:#8b6dff}
+.ntf-ldemo{display:block;width:100%;padding:11px 20px;background:#242424;color:#a0a0a0;border:1px solid #333;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.ntf-ldemo:hover{background:#2e2e2e;color:#e0e0e0;border-color:#555}
+.ntf-lback{display:block;font-size:12px;color:#555;margin-top:14px;text-decoration:none;transition:color .2s}
+.ntf-lback:hover{color:#a0a0a0}
+#ntf-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9998;background:#6C47FF;color:#fff;padding:10px 18px;font-size:13px;font-weight:500;align-items:center;gap:10px;flex-wrap:wrap}
+.ntf-btxt{flex:1;min-width:0}
+.ntf-bbuy{padding:5px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .2s}
+.ntf-bbuy:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
+<div id="ntf-lock">
+<div class="ntf-lbox">
+  <div class="ntf-lico">🔒</div>
+  <div class="ntf-lname">Content Creator OS</div>
+  <span class="ntf-lprice">$19</span>
+  <p class="ntf-ldesc">Try the interactive demo before you buy — explore all features with sample data.</p>
+  <a class="ntf-lbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/abedadda-729b-483d-9c07-430c74158a1d" target="_blank" rel="noopener">Unlock App &mdash; $19</a>
+  <button class="ntf-ldemo" id="ntf-try-demo">Try Demo</button>
+  <a class="ntf-lback" href="/my-library.html">&#8592; Back to Library</a>
+</div>
+</div>
+<div id="ntf-banner">
+  <span class="ntf-btxt">Preview Mode &mdash; Data won&#8217;t be saved. Buy to unlock full access.</span>
+  <a class="ntf-bbuy" href="https://notiontemplafix.lemonsqueezy.com/checkout/buy/abedadda-729b-483d-9c07-430c74158a1d" target="_blank" rel="noopener">Buy Now</a>
+</div>
+
 <div class="topbar">
   <a href="/my-library.html" class="back-btn">← Back to Library</a>
   <div class="app-brand">🎬 Content Creator OS</div>
@@ -159,6 +193,17 @@ a{color:inherit;text-decoration:none} button{cursor:pointer;font-family:'Inter',
 </div>
 
 <script>
+
+var DEMO=sessionStorage.getItem('ntf_demo')==='1';
+var LS=DEMO?sessionStorage:localStorage;
+function ntfAddCheck(){
+  if(!DEMO)return true;
+  var n=parseInt(sessionStorage.getItem('ntf_adds')||'0');
+  if(n>=3){setTimeout(function(){alert('Upgrade to save unlimited entries');},0);return false;}
+  sessionStorage.setItem('ntf_adds',n+1);
+  return true;
+}
+
 var CK='cc_content', IK='cc_ideas';
 var TODAY=new Date().toISOString().split('T')[0];
 var NOW=new Date(), CY=NOW.getFullYear(), CM=NOW.getMonth();
@@ -194,13 +239,13 @@ var SEED_I=[
 ];
 
 function load(){
-  content=JSON.parse(localStorage.getItem(CK)||'null')||JSON.parse(JSON.stringify(SEED_C));
-  ideas=JSON.parse(localStorage.getItem(IK)||'null')||JSON.parse(JSON.stringify(SEED_I));
-  if(!localStorage.getItem(CK))localStorage.setItem(CK,JSON.stringify(content));
-  if(!localStorage.getItem(IK))localStorage.setItem(IK,JSON.stringify(ideas));
+  content=JSON.parse(LS.getItem(CK)||'null')||JSON.parse(JSON.stringify(SEED_C));
+  ideas=JSON.parse(LS.getItem(IK)||'null')||JSON.parse(JSON.stringify(SEED_I));
+  if(!LS.getItem(CK))LS.setItem(CK,JSON.stringify(content));
+  if(!LS.getItem(IK))LS.setItem(IK,JSON.stringify(ideas));
 }
-function saveC(){localStorage.setItem(CK,JSON.stringify(content));}
-function saveI(){localStorage.setItem(IK,JSON.stringify(ideas));}
+function saveC(){LS.setItem(CK,JSON.stringify(content));}
+function saveI(){LS.setItem(IK,JSON.stringify(ideas));}
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtD(ds){if(!ds)return '';return new Date(ds+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});}
@@ -427,7 +472,8 @@ function saveCon(){
   var title=document.getElementById('conm-title').value.trim();if(!title)return;
   var data={title:title,platform:document.getElementById('conm-plat').value,status:document.getElementById('conm-status').value,type:document.getElementById('conm-type').value,date:document.getElementById('conm-date').value,notes:document.getElementById('conm-notes').value.trim()};
   var id=document.getElementById('conm-id').value;
-  if(id){var c=content.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else content.unshift(Object.assign({id:uid()},data));
+  if(id){var c=content.find(function(x){return x.id===id;});if(c)Object.assign(c,data);}else if(!ntfAddCheck())return;
+  content.unshift(Object.assign({id:uid()},data));
   saveC();cm('con-modal');render();
 }
 function delCon(id){if(!confirm('Delete?'))return;content=content.filter(function(c){return c.id!==id;});saveC();render();}
@@ -449,12 +495,14 @@ function saveIdea(){
   var title=document.getElementById('ideam-title').value.trim();if(!title)return;
   var data={title:title,desc:document.getElementById('ideam-desc').value.trim(),platform:document.getElementById('ideam-plat').value,tags:document.getElementById('ideam-tags').value.split(',').map(function(t){return t.trim();}).filter(Boolean),created:TODAY};
   var id=document.getElementById('ideam-id').value;
-  if(id){var i=ideas.find(function(x){return x.id===id;});if(i)Object.assign(i,data);}else ideas.unshift(Object.assign({id:uid()},data));
+  if(id){var i=ideas.find(function(x){return x.id===id;});if(i)Object.assign(i,data);}else if(!ntfAddCheck())return;
+  ideas.unshift(Object.assign({id:uid()},data));
   saveI();cm('idea-modal');render();
 }
 function delIdea(id){if(!confirm('Delete?'))return;ideas=ideas.filter(function(i){return i.id!==id;});saveI();render();}
 function promoteFromCard(id){
   var i=ideas.find(function(x){return x.id===id;});if(!i)return;
+  if(!ntfAddCheck())return;
   content.unshift({id:uid(),title:i.title,platform:i.platform,status:'Idea',type:'Video',date:'',notes:i.desc});
   ideas=ideas.filter(function(x){return x.id!==id;});
   saveC();saveI();sv('pipeline');
@@ -469,6 +517,33 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.que
 document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.add('hidden');});});
 
 load(); renderDash();
+
+(function(){
+  var unkey='ntf_unlock_content-creator-app';
+  var unlocked=localStorage.getItem(unkey);
+  var demo=DEMO;
+  var demoBtn=document.getElementById('ntf-try-demo');
+  if(unlocked){
+    document.getElementById('ntf-lock').style.display='none';
+    if(demoBtn)demoBtn.style.display='none';
+    return;
+  }
+  if(demo){
+    document.getElementById('ntf-lock').style.display='none';
+    var b=document.getElementById('ntf-banner');
+    b.style.display='flex';
+    document.body.style.paddingTop='44px';
+    return;
+  }
+  document.getElementById('ntf-lock').style.display='flex';
+  if(demoBtn){
+    demoBtn.addEventListener('click',function(){
+      sessionStorage.setItem('ntf_demo','1');
+      window.location.reload();
+    });
+  }
+})();
+
 </script>
 </body>
 </html>
