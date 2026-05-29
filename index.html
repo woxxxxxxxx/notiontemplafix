@@ -73,6 +73,7 @@
  .back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:#6c5ce7;color:#fff;border:none;font-size:20px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(108,92,231,.4);transition:background .2s;z-index:999;line-height:1}
  .back-to-top.visible{display:flex}
  .back-to-top:hover{background:#5a4bd6}
+ html{scroll-behavior:smooth}
  @media(max-width:700px){.hero h1{font-size:28px}.hero{padding:36px 20px 28px}.grid{padding:0 16px 32px;grid-template-columns:1fr}.navbar{padding:0 16px}.faq{padding:0 16px}.newsletter-form{flex-direction:column}.newsletter h2{font-size:22px}.newsletter{padding:40px 16px}}
 </style>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico">
@@ -84,7 +85,7 @@
 <div class="hero">
 <h1>Free &amp; Premium <span>Notion Templates</span></h1>
 <p>Beautiful, ready-to-use Notion templates to boost your productivity, organize your life, and streamline your workflow. All templates are instantly downloadable.</p>
-<a class="cta-btn" href="#templateGrid">Browse Templates</a><a class="cta-btn s-out" href="#free">Free Templates</a>
+<a class="cta-btn" href="#templateGrid">Browse Templates</a><a class="cta-btn s-out" href="#templateGrid" onclick="document.querySelector('.filter-btn[data-filter=\'free\']').click()">Free Templates</a>
 </div>
 
 <div class="search-wrap">
