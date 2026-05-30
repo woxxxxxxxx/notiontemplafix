@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://notiontemplafix.com/</loc><lastmod>2026-05-26</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://notiontemplafix.com/personal-dashboard.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/habit-tracker.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/weekly-planner.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/project-manager.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/budget-tracker.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/content-calendar.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/study-planner.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/job-tracker.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/book-tracker.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/life-os-dashboard.html</loc><lastmod>2026-05-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/crm-template.html</loc><lastmod>2026-05-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/meeting-notes.html</loc><lastmod>2026-05-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/goal-tracker.html</loc><lastmod>2026-05-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
-  <url><loc>https://notiontemplafix.com/second-brain.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/student-os.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/business-os.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/finance-tracker-pro.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/content-creator-os.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://notiontemplafix.com/freelancer-hub.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- ── Main pages ─────────────────────────────────────────── -->
+  <url><loc>https://notiontemplafix.com/</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://notiontemplafix.com/my-library.html</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- ── Premium template landing pages ────────────────────── -->
+  <url><loc>https://notiontemplafix.com/life-os-dashboard.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/second-brain.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/business-os.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/student-os.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/finance-tracker-pro.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/content-creator-os.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/freelancer-hub.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/personal-dashboard.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/weekly-planner.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/study-planner.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/meeting-notes.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/content-calendar.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/job-tracker.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/budget-tracker.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/project-manager.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/crm-template.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ── Free template landing pages ───────────────────────── -->
+  <url><loc>https://notiontemplafix.com/habit-tracker.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://notiontemplafix.com/goal-tracker.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://notiontemplafix.com/book-tracker.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ── Premium interactive app pages ─────────────────────── -->
+  <url><loc>https://notiontemplafix.com/life-os-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/second-brain-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/business-os-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/student-os-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/finance-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/content-creator-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/freelancer-hub-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/personal-dashboard-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/weekly-planner-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/study-planner-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/meeting-notes-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/content-calendar-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/job-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/budget-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/project-manager-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://notiontemplafix.com/crm-template-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ── Free interactive app pages ────────────────────────── -->
+  <url><loc>https://notiontemplafix.com/habit-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://notiontemplafix.com/goal-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://notiontemplafix.com/book-tracker-app.html</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
 </urlset>
