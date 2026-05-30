@@ -80,7 +80,7 @@
 <link rel="canonical" href="https://notiontemplafix.com/">
 </head>
 <body>
-<nav class="navbar"><a class="logo" href="/"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;margin-right:6px;flex-shrink:0" aria-hidden="true"><rect width="20" height="20" rx="4" fill="#6c5ce7"/><text x="10" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white">N</text></svg><span>Notion</span>TemplaFix</a><div class="nav-links"><a class="nav-link active" href="/">All</a><a class="nav-link" href="#" onclick="filter('free')">Free</a><a class="nav-link" href="#" onclick="filter('premium')">Premium</a><a class="nav-link" href="/my-library.html" style="color:#6c5ce7;font-weight:700">My Library</a></div></nav>
+<nav class="navbar"><a class="logo" href="/"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;margin-right:6px;flex-shrink:0" aria-hidden="true"><rect width="20" height="20" rx="4" fill="#6c5ce7"/><text x="10" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white">N</text></svg><span>Notion</span>TemplaFix</a><div class="nav-links"><a class="nav-link active" href="#" data-filter="all" onclick="document.querySelector('.filter-btn[data-filter=\'all\']').click();return false;">All</a><a class="nav-link" href="#" data-filter="free" onclick="document.querySelector('.filter-btn[data-filter=\'free\']').click();return false;">Free</a><a class="nav-link" href="#" data-filter="premium" onclick="document.querySelector('.filter-btn[data-filter=\'premium\']').click();return false;">Premium</a><a class="nav-link" href="/my-library.html" style="color:#6c5ce7;font-weight:700">My Library</a></div></nav>
 
 <div class="hero">
 <h1>Free &amp; Premium <span>Notion Templates</span></h1>
@@ -186,6 +186,8 @@ NotionTemplaFix &mdash; Free &amp; Premium Notion Templates &copy; 2026
       currentFilter=this.getAttribute('data-filter');
       for(var j=0;j<btns.length;j++)btns[j].classList.remove('active');
       this.classList.add('active');
+      var navLinks=document.querySelectorAll('.nav-link[data-filter]');
+      for(var k=0;k<navLinks.length;k++)navLinks[k].classList.toggle('active',navLinks[k].getAttribute('data-filter')===currentFilter);
       applyFilter();
     });
   }
