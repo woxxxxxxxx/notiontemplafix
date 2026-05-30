@@ -1,53 +1,47 @@
 <?php
 // ============================================================
-// NotionTemplaFix — Lemon Squeezy Webhook Handler
+// NotionTemplaFix — Payhip Webhook Handler
 // ============================================================
 require_once __DIR__ . '/webhook_config.php';
 
-// ── 1. Read raw payload ──────────────────────────────────────
-$rawPayload = file_get_contents('php://input');
-if (empty($rawPayload)) {
-    http_response_code(400);
-    exit('Empty payload');
+// ── 1. Accept POST only ──────────────────────────────────────
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    exit('Method Not Allowed');
 }
 
-// ── 2. Verify Lemon Squeezy HMAC-SHA256 signature ───────────
-$signatureHeader = $_SERVER['HTTP_X_SIGNATURE'] ?? '';
-$expected = hash_hmac('sha256', $rawPayload, WEBHOOK_SECRET);
-if (!hash_equals($expected, $signatureHeader)) {
+// ── 2. Verify Payhip security key ───────────────────────────
+// Payhip sends security_key as a POST field matching the key
+// you configured in Payhip → Settings → Webhooks → Security Key
+$securityKey = $_POST['security_key'] ?? '';
+if (empty($securityKey) || !hash_equals(WEBHOOK_SECRET, $securityKey)) {
     http_response_code(401);
-    exit('Invalid signature');
+    exit('Invalid security key');
 }
 
-// ── 3. Decode JSON ───────────────────────────────────────────
-$data = json_decode($rawPayload, true);
-if (json_last_error() !== JSON_ERROR_NONE) {
-    http_response_code(400);
-    exit('Invalid JSON');
+// ── 3. Extract Payhip order fields ──────────────────────────
+// Payhip sends form-encoded POST data (not JSON)
+$productName = trim($_POST['product_name'] ?? 'Unknown Product');
+$buyerEmail  = trim($_POST['email']         ?? '');
+$buyerName   = trim($_POST['name']          ?? 'Customer');
+$price       = trim($_POST['price']         ?? '0');
+$currency    = strtoupper(trim($_POST['currency'] ?? 'USD'));
+$orderNumber = trim($_POST['order_number']  ?? '');
+$payDate     = trim($_POST['pay_date']      ?? date('Y-m-d'));
+$country     = trim($_POST['country']       ?? '');
+
+// Normalise price to float (Payhip sends as "9.00" not cents)
+$amountUsd = (float)$price;
+
+// Normalise date to YYYY-MM-DD for Notion
+// Payhip sends pay_date in various formats; try to parse safely
+$dateOnly = date('Y-m-d'); // fallback
+if (!empty($payDate)) {
+    $ts = strtotime($payDate);
+    if ($ts !== false) $dateOnly = date('Y-m-d', $ts);
 }
 
-$eventName = $data['meta']['event_name'] ?? '';
-if ($eventName !== 'order_created') {
-    http_response_code(200);
-    exit('Event ignored');
-}
-
-// ── 4. Extract order fields ──────────────────────────────────
-$attrs       = $data['data']['attributes'] ?? [];
-$firstItem   = $attrs['first_order_item']  ?? [];
-
-$productName = trim($firstItem['product_name'] ?? 'Unknown Product');
-$buyerEmail  = trim($attrs['user_email']        ?? '');
-$buyerName   = trim($attrs['user_name']         ?? 'Customer');
-$amountCents = (int)($attrs['total']            ?? 0);
-$amountUsd   = round($amountCents / 100, 2);
-$createdAt   = $attrs['created_at']             ?? date('c');
-$orderNumber = $attrs['order_number']           ?? '';
-
-// Normalise ISO date to YYYY-MM-DD for Notion
-$dateOnly = substr($createdAt, 0, 10);
-
-// ── 4b. Append buyer email to purchased.json ────────────────
+// ── 4. Append buyer email to purchased.json ─────────────────
 if (!empty($buyerEmail)) {
     $jsonFile = __DIR__ . '/purchased.json';
     $emails = [];
