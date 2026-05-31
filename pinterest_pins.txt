@@ -1,0 +1,15 @@
+用 playwright 生成以下13个 Pinterest Pin 图片（1000x1500px），每个都点击 "Try Demo" 进入App界面后截图，嵌入竖版模板（#0f0f0f背景，截图占上60%，下方显示标题+副标题+notiontemplafix.com），保存到 C:\Users\Administrator\notiontemplafix\pinterest\ 文件夹：
+
+1. life-os-app.html → 标题"Life OS Dashboard" 副标题"Goals • Habits • Tasks • Journal • Health — $19"
+2. second-brain-app.html → 标题"Second Brain App" 副标题"Capture ideas • Connect notes • Find anything — $19"
+3. business-os-app.html → 标题"Business OS" 副标题"Clients • Projects • Tasks • Finance — $29"
+4. student-os-app.html → 标题"Student OS" 副标题"Courses • Assignments • GPA Tracker — $15"
+5. finance-tracker-app.html → 标题"Finance Tracker Pro" 副标题"Income • Expenses • Budgets • Savings — $15"
+6. content-creator-app.html → 标题"Content Creator OS" 副标题"Pipeline • Calendar • Ideas • Analytics — $19"
+7. freelancer-hub-app.html → 标题"Freelancer Hub" 副标题"Clients • Projects • Time • Invoices — $15"
+8. personal-dashboard-app.html → 标题"Personal Dashboard" 副标题"Tasks • Notes • Calendar • Links — $9"
+9. weekly-planner-app.html → 标题"Weekly Planner App" 副标题"7-Day View • Meals • Reflection — $9"
+10. study-planner-app.html → 标题"Study Planner App" 副标题"Pomodoro • Assignments • GPA — $9"
+11. budget-tracker-app.html → 标题"Budget Tracker App" 副标题"Expenses • Budgets • Bills • Reports — $9"
+12. project-manager-app.html → 标题"Project Manager App" 副标题"Kanban • Timeline • Team — $9"
+13. crm-template-app.html → 标题"CRM Template App" 副标题"Contacts • Deals • Pipeline — $19"
