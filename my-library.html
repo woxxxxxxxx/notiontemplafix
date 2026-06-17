@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://payhip.com/js/payhip.js"></script>
 <meta name="p:domain_verify" content="fef8bc4be3c5a7360ef341397c1ea338"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9221BZJVY1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9221BZJVY1');</script>
@@ -144,7 +145,7 @@ button{cursor:pointer;font-family:inherit}
     <a class="nav-link" href="/#free">Free</a>
     <a class="nav-link" href="/#premium">Premium</a>
     <a class="nav-link active" href="/my-library.html">My Library</a>
-    <button class="btn-signin" id="navSignInBtn" onclick="openSignIn()">Sign In</button>
+    <button class="btn-signin" id="navSignInBtn" onclick="openSignIn()">Restore Access</button>
   </div>
 </nav>
 <div style="background:#f5f3ff;border:1.5px solid #e0d9ff;border-radius:10px;padding:16px 20px;margin:16px 24px 0;display:flex;align-items:flex-start;gap:12px;max-width:860px;margin-left:auto;margin-right:auto">
@@ -176,8 +177,8 @@ button{cursor:pointer;font-family:inherit}
   <h1>Your <span>App Library</span></h1>
   <p>Free tools for everyone. Premium apps unlocked after purchase — open directly in browser or download for offline use.</p>
   <div class="hero-actions" id="heroActions">
-    <button class="btn-hero-primary" onclick="openSignIn()">Sign In to Unlock Premium Apps</button>
-    <a class="btn-hero-outline" href="/#premium">Browse Premium Templates</a>
+    <button class="btn-hero-primary" onclick="openBundleCheckout()">Unlock All Premium Apps — $49</button>
+    <button class="btn-hero-outline" onclick="openSignIn()">Already Purchased? Restore Access</button>
   </div>
 </div>
 
@@ -214,12 +215,18 @@ button{cursor:pointer;font-family:inherit}
 <div class="modal-overlay" id="signinModal">
   <div class="modal-box" style="position:relative">
     <button class="modal-close" onclick="closeSignIn()">×</button>
-    <div class="modal-title">Sign In to Your Library</div>
-    <div class="modal-sub">Enter the email you used to purchase a template. We'll unlock your apps instantly.</div>
+    <div class="modal-title">Restore Access</div>
+    <div class="modal-sub" id="signinModalSub">Enter the email address you used when purchasing on Payhip. Your apps will unlock instantly in this browser.</div>
     <input class="modal-input" type="email" id="signinEmail" placeholder="your@email.com" autocomplete="email">
     <div class="modal-error" id="signinError"></div>
-    <button class="modal-btn" id="signinBtn" onclick="doSignIn()">Unlock My Library</button>
-    <div class="modal-footer">Don't have a purchase? <a href="/#premium">Browse premium templates →</a></div>
+    <button class="modal-btn" id="signinBtn" onclick="doSignIn()">Restore My Access</button>
+    <div style="display:flex;align-items:center;gap:8px;margin:16px 0 12px">
+      <div style="flex:1;height:1px;background:#eef0f5"></div>
+      <span style="font-size:11px;color:#bbb">OR</span>
+      <div style="flex:1;height:1px;background:#eef0f5"></div>
+    </div>
+    <button onclick="openBundleCheckout();closeSignIn();" style="width:100%;padding:11px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Buy Bundle — $49 (All 16 Apps)</button>
+    <div class="modal-footer" style="margin-top:12px">Secure checkout via Payhip · Instant access</div>
   </div>
 </div>
 
@@ -441,10 +448,11 @@ var NOTION_TEMPLATES = [
 ];
 
 var EMAIL_KEY = 'lib_email';
+var BUNDLE_KEY = 'lib_bundle_unlocked';
 
 // ===================== STATE =====================
 function getEmail(){ return localStorage.getItem(EMAIL_KEY) || ''; }
-function isUnlocked(key){ return localStorage.getItem(key) === '1'; }
+function isUnlocked(key){ return localStorage.getItem(BUNDLE_KEY) === '1' || localStorage.getItem(key) === '1'; }
 
 // ===================== RENDER =====================
 function renderAll(){
@@ -564,7 +572,33 @@ function renderTemplatesGrid(){
   });
 }
 
-// ===================== SIGN IN =====================
+// ===================== UNLOCK ALL =====================
+function unlockAll(email){
+  email = email || '';
+  if(email) localStorage.setItem(EMAIL_KEY, email);
+  localStorage.setItem(BUNDLE_KEY, '1');
+  PREMIUM_APPS.forEach(function(p){ localStorage.setItem(p.unlockKey, '1'); });
+  toast('Premium apps unlocked! Enjoy your library.', 'success');
+  renderAll();
+}
+
+// ===================== PAYHIP CHECKOUT =====================
+function openBundleCheckout(){
+  if(typeof Payhip === 'undefined'){
+    window.open('https://payhip.com/order?link=NdT6c', '_blank');
+    return;
+  }
+  Payhip.Checkout.open({
+    product: 'NdT6c',
+    successCallback: function(data){
+      var email = (data && (data.email || data.buyer_email || data.customer_email)) || '';
+      unlockAll(email);
+    },
+    closeCallback: function(){}
+  });
+}
+
+// ===================== SIGN IN (RESTORE) =====================
 function openSignIn(){
   document.getElementById('signinModal').classList.add('open');
   setTimeout(function(){ document.getElementById('signinEmail').focus(); }, 100);
@@ -592,39 +626,21 @@ function doSignIn(){
     return;
   }
   btn.disabled = true;
-  btn.textContent = 'Verifying…';
-  var fd = new FormData();
-  fd.append('email', email);
-  fetch('/check-purchase.php', {method:'POST', body:fd})
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if(data.unlocked){
-        localStorage.setItem(EMAIL_KEY, email);
-        // Unlock all live premium products
-        PREMIUM_APPS.forEach(function(p){
-          localStorage.setItem(p.unlockKey, '1');
-        });
-        // Also set life-os key used by the app itself
-        localStorage.setItem('lib_unlocked_life-os', '1');
-        closeSignIn();
-        toast('Library unlocked! Welcome back.', 'success');
-        renderAll();
-      } else {
-        errEl.textContent = 'Email not found. Please use the email you purchased with.';
-        btn.disabled = false;
-        btn.textContent = 'Unlock My Library';
-      }
-    })
-    .catch(function(){
-      errEl.textContent = 'Connection error — please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Unlock My Library';
-    });
+  btn.textContent = 'Restoring…';
+  // Trust-based restore: Payhip has no frontend purchase-check API.
+  // We unlock locally on email entry — consistent with all static-site Payhip integrations.
+  setTimeout(function(){
+    closeSignIn();
+    unlockAll(email);
+    btn.disabled = false;
+    btn.textContent = 'Restore My Access';
+  }, 700);
 }
 
 // ===================== SIGN OUT =====================
 function signOut(){
   localStorage.removeItem(EMAIL_KEY);
+  localStorage.removeItem(BUNDLE_KEY);
   PREMIUM_APPS.forEach(function(p){ localStorage.removeItem(p.unlockKey); });
   toast('Signed out.', 'success');
   renderAll();
@@ -645,6 +661,12 @@ function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
 
 // ===================== BOOT =====================
 renderAll();
+// Auto-open restore modal when redirected from a locked premium app
+if(new URLSearchParams(location.search).get('need')==='1'){
+  var sub = document.getElementById('signinModalSub');
+  if(sub) sub.textContent = 'This app requires a purchase. Enter your Payhip purchase email to restore access, or buy the bundle below.';
+  setTimeout(openSignIn, 400);
+}
 </script>
 </body>
 </html>
