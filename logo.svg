@@ -1,13 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48">
-  <g transform="translate(0, 13)">
-    <rect x="10" y="6" width="36" height="22" rx="5" fill="none" stroke="#6c5ce7" stroke-width="3" opacity="0.4"/>
-    <rect x="2" y="0" width="36" height="22" rx="5" fill="#6c5ce7"/>
-    <rect x="8" y="5" width="16" height="3" rx="1.5" fill="white" opacity="0.9"/>
-    <rect x="8" y="10" width="12" height="3" rx="1.5" fill="white" opacity="0.6"/>
-    <rect x="8" y="15" width="14" height="3" rx="1.5" fill="white" opacity="0.6"/>
-    <path d="M37,0 L39,5 L44,3 L40,7 L43,12 L38,8.5 L33,12 L36,7 L31,3 L36,5 Z" fill="#6c5ce7" transform="scale(0.7) translate(20,-3)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48">
+  <g transform="translate(0, 11)">
+    <rect x="8" y="5" width="34" height="21" rx="4" fill="none" stroke="#6c5ce7" stroke-width="2.5" opacity="0.4"/>
+    <rect x="2" y="0" width="34" height="21" rx="4" fill="#6c5ce7"/>
+    <rect x="7" y="5" width="15" height="2.5" rx="1.2" fill="white" opacity="0.9"/>
+    <rect x="7" y="9.5" width="11" height="2.5" rx="1.2" fill="white" opacity="0.6"/>
+    <rect x="7" y="14" width="13" height="2.5" rx="1.2" fill="white" opacity="0.6"/>
+    <path d="M35,0 L36.5,4.5 L41,2.5 L37.5,6 L40,10.5 L35.5,7.5 L31,10.5 L33.5,6 L30,2.5 L34.5,4.5 Z" fill="#6c5ce7"/>
   </g>
-  <text x="56" y="24" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif"
-        font-size="22" font-weight="800" letter-spacing="-0.5"
-        dominant-baseline="central" fill="#1a1a2e">Notion<tspan fill="#6c5ce7">Templa</tspan>Fix</text>
+  <text x="50" y="24" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="20" font-weight="800" letter-spacing="-0.4" dominant-baseline="central" fill="#1a1a2e">Notion<tspan fill="#6c5ce7">Templa</tspan>Fix</text>
 </svg>
