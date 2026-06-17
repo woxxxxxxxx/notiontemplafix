@@ -22,7 +22,7 @@ const CACHE_FILE  = path.join(__dirname, 'deploy-cache.json');
 // Dev/operational files that should NOT be uploaded to the web server
 const EXCLUDE_NAMES = new Set([
   'node_modules', '.git', '.gitignore', 'deploy-ftp.js', 'deploy-cache.json',
-  'pinterest', 'package.json', 'package-lock.json',
+  'package.json', 'package-lock.json',
   'buffer-upload-report.json', 'purchased.json',
   'free_links.txt', 'new_links.txt', 'payhip_links.txt', 'payhip_setup.txt',
   'task.txt', 'task2.txt', 'task3.txt', 'products.txt', 'pinterest_pins.txt',

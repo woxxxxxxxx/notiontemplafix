@@ -1,1 +1,49 @@
+node_modules/
+deploy-cache.json
+
+# scripts with secrets
 webhook_config.php
+create_templates.py
+payhip_create.py
+payhip_setup.txt
+
+# utility / automation scripts
+buffer-*.js
+buffer-*.sh
+buffer-*.png
+buffer-*.json
+buffer_*.py
+ftp_*.py
+gen_*.py
+record_demo.*
+screenshot*.py
+take_screenshots*.py
+seo-batch.ps1
+inject_trial.py
+regen_bt.py
+update_links.py
+update_pages.py
+audit_full.py
+fix_all.py
+fix_faq.py
+fix_svg_refs.py
+fix_apostrophe.py
+scan_apostrophe.py
+patch_*.py
+
+# data files
+pinterest/
+pinterest_demo.mp4
+pinterest_pins.txt
+free_links.txt
+new_links.txt
+products.txt
+purchased.json
+task.txt
+task2.txt
+task3.txt
+payhip_links.txt
+
+# build artifacts
+__pycache__/
+*.pyc
