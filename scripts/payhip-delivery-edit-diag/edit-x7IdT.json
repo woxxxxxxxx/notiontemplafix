@@ -1,0 +1,2074 @@
+{
+  "url": "https://payhip.com/product/edit/x7IdT",
+  "title": "Edit Digital Product - Payhip",
+  "text": " Dashboard\n Products\n Store\n Analytics\n Marketing\n Customers\n 0\n Account \nLife OS Dashboard\n\nYou can edit all properties of your product here such as files, title, price, cover image etc.\n\nProduct\n Category & Tags\nBeta content editor\n\nFile(s) - you can add multiple product files here\n\n \nlife-os-app.html (64 kb)\n Delete \n\nUpload another product file\n\nTitle - edit the title for your product\n\nPrice (?) - choose a price\n\nUSD\n\nCover - add images or embed audio/video. Up to 9 items.\nEmbed audio/video\n\n Upload another product image\nRecommended minimum image width is 1000 pixels\n\nDescription - edit the description for your product\n\n \n \n \n \n \n \n \n \n\nYour complete life management system — goals, habits, tasks, journal, health and weekly reviews in one dark-themed web app. No sign-up required, works in any browser, data saved locally.\n\nVisibility - should your store visitors be able to see this product?\n\nVisible — Everyone can see this product\nInvisible — Nobody except you can see this product\nUnlisted — Only people who know the direct link to this product can see it. Won't be listed alongside other products on your store.\n\nCollection - choose which collection this product should be listed under\n\nNotion Templates\nContract Templates\nAdvanced options\n\n This product has different variations (eg format, version)\n\n This product is tax exempt\n\n Product is an ebook (?)\n\n Upload a preview file for your customers (eg a few pages as a teaser)\n\n Limit the number of times this product can be sold\n\n Automatically subscribe customers to mailing list\n\n Generate unique license keys for each sale (only for software products)\n\n To list your product on the marketplace add your category here\n Delete Product\nBlog\nSupport\nContact us\nPartner Program\nTerms of use\nPrivacy policy\n\n© 2026 Payhip, Made with ♥ in London, UK",
+  "forms": [
+    {
+      "index": 0,
+      "action": "https://payhip.com/product/editit",
+      "method": "post",
+      "enctype": "application/x-www-form-urlencoded",
+      "id": "addproduct",
+      "cls": "js-main-form",
+      "text": "Product\n Category & Tags\nBeta content editor\n\nFile(s) - you can add multiple product files here\n\n \nlife-os-app.html (64 kb)\n Delete \n\nUpload another product file\n\nTitle - edit the title for your product\n\nPrice (?) - choose a price\n\nUSD\n\nCover - add images or embed audio/video. Up to 9 items.\nEmbed audio/video\n\n Upload another product image\nRecommended minimum image width is 1000 pixels\n\nDescription - edit the description for your product\n\n \n \n \n \n \n \n \n \n\nYour complete life management system — goals, habits, tasks, journal, health and weekly reviews in one dark-themed web app. No sign-up required, works in any browser, data saved locally.\n\nVisibility - should your store visitors be able to see this product?\n\nVisible — Everyone can see this product\nInvisible — Nobody except you can see this product\nUnlisted — Only people who know the direct link to this product can see it. Won't be listed alongside other products on your store.\n\nCollection - choose which collection this product should be listed under\n\nNotion Templates\nContract Templates\nAdvanced options\n\n This product has different variations (eg format, version)\n\n This product is tax exempt\n\n Product is an ebook (?)\n\n Upload a prev"
+    },
+    {
+      "index": 1,
+      "action": "https://payhip.com/product/edit/x7IdT",
+      "method": "get",
+      "enctype": "application/x-www-form-urlencoded",
+      "id": "",
+      "cls": "js-text-editor-link-modal-form",
+      "text": "\n        \n\n            \n\n              \n\n                \n                  Text\n                  \n                \n\n              \n\n            \n\n            \n\n              \n\n                \n                  To what URL should this link go?\n                  \n                \n\n              \n\n            \n\n            \n\n              \n\n                \n                   Open link in new tab\n                \n\n                                \n              \n\n            \n\n        \n        \n\n          \n                      \n\n                        \n                  Cancel\n              \n          \n          \n            Save\n          \n\n        \n      "
+    },
+    {
+      "index": 2,
+      "action": "https://payhip.com/product/edit/x7IdT",
+      "method": "get",
+      "enctype": "application/x-www-form-urlencoded",
+      "id": "",
+      "cls": "form-inline text-editor-add-image-modal-url-form js-text-editor-add-image-modal-url-form",
+      "text": "\n                                \n                                    \n                                    \n                                        Submit\n                                    \n                                \n                            "
+    },
+    {
+      "index": 3,
+      "action": "https://payhip.com/product/edit/x7IdT",
+      "method": "get",
+      "enctype": "application/x-www-form-urlencoded",
+      "id": "",
+      "cls": "js-text-editor-link-modal-form",
+      "text": "\n        \n\n            \n\n              \n\n                \n                  Text\n                  \n                \n\n              \n\n            \n\n            \n\n              \n\n                \n                  To what URL should this link go?\n                  \n                \n\n              \n\n            \n\n            \n\n              \n\n                \n                   Open link in new tab\n                \n\n                                \n              \n\n            \n\n        \n        \n\n          \n                      \n\n                        \n                  Cancel\n              \n          \n          \n            Save\n          \n\n        \n      "
+    },
+    {
+      "index": 4,
+      "action": "https://payhip.com/product/edit/x7IdT",
+      "method": "get",
+      "enctype": "application/x-www-form-urlencoded",
+      "id": "",
+      "cls": "form-inline text-editor-add-image-modal-url-form js-text-editor-add-image-modal-url-form",
+      "text": "\n                                \n                                    \n                                    \n                                        Submit\n                                    \n                                \n                            "
+    }
+  ],
+  "inputs": [
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "csrf_token",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "4f11b64ff596e06345e6cda165db72229000a61a",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "csrf_current_page_url",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "https://payhip.com/product/edit/x7IdT",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "enabled_product_advanced_content_editor",
+      "id": "",
+      "cls": "pretty-toggle js-enabled-product-advanced-content-editor-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "product_type",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "digital",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "",
+      "id": "",
+      "cls": "js-assign-file-to-variant-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "on",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control file-name-input js-file-name-input form-control-custom",
+      "accept": "",
+      "placeholder": "",
+      "value": "life-os-app",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "tt-hint",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "tt-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-multiple",
+      "name": "",
+      "id": "",
+      "cls": "js-upload-digital-file-row-variants-tag-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc09129lauv1i0t1ilbdcp9",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "p_name",
+      "id": "p_name",
+      "cls": "form-control-custom js-product-name-input-main",
+      "accept": "",
+      "placeholder": "",
+      "value": "Life OS Dashboard",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "p_price",
+      "id": "p_price",
+      "cls": "js-global-price-input form-control-custom",
+      "accept": "",
+      "placeholder": "",
+      "value": "19.00",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "p_currency",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "USD",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "on_sale",
+      "id": "",
+      "cls": "js-main-product-is-on-sale-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "on",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "sale_price",
+      "id": "",
+      "cls": "form-control-custom",
+      "accept": "",
+      "placeholder": "",
+      "value": "5.00",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "embed_url",
+      "id": "embed_url",
+      "cls": "js-embed-product-media-input form-control-custom-inverted",
+      "accept": "",
+      "placeholder": "Paste link here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc061b417us1v5l1l11i836",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": true
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "ql-header",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "ql-color",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "ql-background",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "ql-align",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "p_desc",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "<p>Your complete life management system — goals, habits, tasks, journal, health and weekly reviews in one dark-themed web app. No sign-up required, works in any",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "product_status",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "visible",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "product_status",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "invisible",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "product_status",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "unlisted",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "associated_collections[]",
+      "id": "",
+      "cls": "js-collection-checkbox js-do-not-alter-checkbox-value",
+      "accept": "",
+      "placeholder": "",
+      "value": "APzDepDLBE",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "associated_collections[]",
+      "id": "",
+      "cls": "js-collection-checkbox js-do-not-alter-checkbox-value",
+      "accept": "",
+      "placeholder": "",
+      "value": "N9G8eDweWV",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "has_variants",
+      "id": "advanced-section-has-variants-checkbox",
+      "cls": "js-advanced-section-has-variants-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "tax_exempt",
+      "id": "advanced-section-tax-exempt-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "apply_reduced_ebook_eu_vat",
+      "id": "advanced-section-apply-reduced-ebook-eu-vat-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "addpreview",
+      "id": "number-of-preview-pages-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc0a1gk6n61pivu6116cc",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "limitebookcopies",
+      "id": "limit-ebook-copies-sold-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "limitebookcopies-name",
+      "id": "limitebookcopies-id",
+      "cls": "form-control-custom",
+      "accept": "",
+      "placeholder": "",
+      "value": "10000",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "digital_inventory_alert_type",
+      "id": "",
+      "cls": "form-control-custom-select",
+      "accept": "",
+      "placeholder": "",
+      "value": "3-or-less",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "subscribe_to_mailing_list",
+      "id": "subscribe-customers-to-mailing-list-checkbox",
+      "cls": "js-subscribe-customers-to-mailing-list-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "enable_pwyw_suggested_price",
+      "id": "enable-pwyw-suggested-price-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "pwyw_suggested_price",
+      "id": "",
+      "cls": "form-control js-pwyw-suggested-price-input",
+      "accept": "",
+      "placeholder": "19.00",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "license-checkbox",
+      "id": "advanced-section-license-checkbox",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "key",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "x7IdT",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc1311u8hqgo1s11d6b84i",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "marketplaceData[category]",
+      "id": "",
+      "cls": "js-marketplace-category-select select2-hidden-accessible",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "tt-hint",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "tt-input",
+      "accept": "",
+      "placeholder": "Add tags...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-multiple",
+      "name": "marketplaceData[tags][]",
+      "id": "",
+      "cls": "js-marketplace-tag-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "is_nsfw",
+      "id": "nsfw-checkbox",
+      "cls": "js-advanced-section-has-variants-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "safeToMakeChangesToMarketplaceTags",
+      "id": "",
+      "cls": "js-safe-to-make-changes-to-marketplace-tags-hidden-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "0",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "submit",
+      "name": "edit",
+      "id": "addsubmit",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "Save Changes",
+      "visible": true
+    },
+    {
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "name": "seo_description",
+      "id": "",
+      "cls": "js-seo-description-hidden-textarea",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gbvs114u144o1piv16561kji3",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "tinymce_upload_image_modal_hidden_image_input",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "name": "",
+      "id": "",
+      "cls": "form-control js-text-editor-add-video-modal-textarea",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-digital-variants-advanced-options-modal-label-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "form-control-custom-select js-digital-variants-advanced-options-modal-display-type-select",
+      "accept": "",
+      "placeholder": "",
+      "value": "radio",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "Some Text Here",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-url-input",
+      "accept": "",
+      "placeholder": "Type URL here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "",
+      "id": "",
+      "cls": "js-open-link-in-new-tab-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "hidden_input_text_editor_uploaded_image",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc1u10rj10kf1jlg1paa1c3tl",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-add-image-modal-url-input",
+      "accept": "",
+      "placeholder": "Paste your image URL here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-alt-text-input",
+      "accept": "",
+      "placeholder": "Type description here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "js-text-editor-upload-image-size-select form-control-custom-select",
+      "accept": "",
+      "placeholder": "",
+      "value": "recommended",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-alt-text-input",
+      "accept": "",
+      "placeholder": "Type description here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "name": "",
+      "id": "",
+      "cls": "js-text-editor-upload-image-size-select form-control-custom-select",
+      "accept": "",
+      "placeholder": "",
+      "value": "recommended",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "text-editor-upload-image-alignment-radio",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "left",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "text-editor-upload-image-alignment-radio",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "center",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "name": "text-editor-upload-image-alignment-radio",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "right",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "",
+      "id": "",
+      "cls": "js-text-editor-upload-image-wrap-text-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-spacing-top-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "0",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-spacing-left-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "0",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-spacing-right-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "0",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-upload-image-spacing-bottom-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "0",
+      "visible": false
+    },
+    {
+      "tag": "TEXTAREA",
+      "type": "textarea",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-add-video-modal-textarea",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-input",
+      "accept": "",
+      "placeholder": "",
+      "value": "Some Text Here",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-url-input",
+      "accept": "",
+      "placeholder": "Type URL here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "name": "",
+      "id": "",
+      "cls": "js-open-link-in-new-tab-checkbox",
+      "accept": "",
+      "placeholder": "",
+      "value": "1",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "hidden",
+      "name": "hidden_input_text_editor_uploaded_image",
+      "id": "",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "file",
+      "name": "",
+      "id": "html5_1jre7gc121bvv1lhucuhlc87hjf",
+      "cls": "",
+      "accept": "",
+      "placeholder": "",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-add-image-modal-url-input",
+      "accept": "",
+      "placeholder": "Paste your image URL here...",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom js-text-editor-add-video-modal-input",
+      "accept": "",
+      "placeholder": "https://www.youtube.com/watch?v=h_D3VFfhvs4",
+      "value": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "name": "",
+      "id": "",
+      "cls": "form-control form-control-custom search-input js-search-input",
+      "accept": "",
+      "placeholder": "Search by product name...",
+      "value": "",
+      "visible": false
+    }
+  ],
+  "buttons": [
+    {
+      "tag": "A",
+      "text": "",
+      "href": "https://payhip.com/dashboard",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Dashboard",
+      "href": "https://payhip.com/dashboard",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Products",
+      "href": "https://payhip.com/products",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Store",
+      "href": "https://payhip.com/store",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Analytics",
+      "href": "https://payhip.com/analytics",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Marketing",
+      "href": "https://payhip.com/marketing",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Customers",
+      "href": "https://payhip.com/customers",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "0",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "header-notifications-main-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Learn more now",
+      "href": "https://help.payhip.com/",
+      "type": "",
+      "id": "",
+      "cls": "standard-btn",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "header-notifications-main-link\n                    header-darkmode-link\n                    js-header-darkmode-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Enable Dark Mode",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-default js-toggle-creator-darkmode",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Enable Light Mode",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-default js-toggle-creator-darkmode",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Settings",
+      "href": "https://payhip.com/settings",
+      "type": "",
+      "id": "",
+      "cls": "settings-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Store Builder",
+      "href": "https://payhip.com/builder/public",
+      "type": "",
+      "id": "",
+      "cls": "design-editor-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Collaborators",
+      "href": "https://payhip.com/collaborators",
+      "type": "",
+      "id": "",
+      "cls": "header-collaborators-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Explore Marketplace",
+      "href": "https://payhip.com/marketplace",
+      "type": "",
+      "id": "",
+      "cls": "explore-marketplace-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Logout",
+      "href": "https://payhip.com/auth/logout",
+      "type": "",
+      "id": "",
+      "cls": "logout-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Creator mode",
+      "href": "https://payhip.com/dashboard",
+      "type": "",
+      "id": "",
+      "cls": "account-type-switcher-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Customer mode",
+      "href": "https://payhip.com/NotionTemplaFix/b-account",
+      "type": "",
+      "id": "",
+      "cls": "account-type-switcher-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Product",
+      "href": "https://payhip.com/product/edit/x7IdT#product-tab-panel",
+      "type": "",
+      "id": "",
+      "cls": "js-product-tab-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Contents",
+      "href": "https://payhip.com/product/edit/x7IdT#product-contents-tab-panel",
+      "type": "",
+      "id": "",
+      "cls": "js-contents-tab-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Category & Tags",
+      "href": "https://payhip.com/product/edit/x7IdT#category-and-tags-tab-panel",
+      "type": "",
+      "id": "",
+      "cls": "category-and-tags-tab-link js-category-and-tags-tab-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "",
+      "href": "https://payhip.com/product/download/KBPMaa7mGN",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-default download-digital-file-link js-download-digital-file-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Delete",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-default uploaddelete js-uploaddelete",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Upload another product file",
+      "href": "javascript:;",
+      "type": "",
+      "id": "files",
+      "cls": "add_page_upload_ebook_btn",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "(?)",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "js-custom-tooltip",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "(?)",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "js-custom-tooltip",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Embed audio/video",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "display-filter-section-button js-display-embed-product-media-popover-button",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Add",
+      "href": "https://payhip.com/product/edit/x7IdT#",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-primary add-embed-link-btn js-add-embed-product-media-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "bullet",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "ql-list",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "ordered",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "ql-list",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "-1",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "ql-indent",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "+1",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "ql-indent",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "",
+      "href": "about:blank",
+      "type": "",
+      "id": "",
+      "cls": "ql-preview",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Advanced options",
+      "href": "https://payhip.com/product/edit/x7IdT#",
+      "type": "",
+      "id": "",
+      "cls": "js-advanced-options-link",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Add Variations",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-stage-1-add-variations-button",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Learn more",
+      "href": "https://help.payhip.com/article/202-variants-for-digital-products",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Add new variant",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-primary js-add-new-variant-button",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Learn more",
+      "href": "https://help.payhip.com/article/202-variants-for-digital-products",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "(?)",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "js-custom-tooltip",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Upload Preview File",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "preview",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "marketing page",
+      "href": "https://payhip.com/marketing?tab=mailing-lists-section",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "settings",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "js-trigger-showing-license-key-settings-modal-button",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "add your category here",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "",
+      "cls": "js-show-category-and-tags-tab-link",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Text",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button js-tiptap-toolbar-dropdown-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Text",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Heading 1",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Heading 2",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Heading 3",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Bullet list",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Numbered list",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Code block",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button js-is-text-formatting-dropdown-menu-item",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button js-tiptap-toolbar-dropdown-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Image",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Video",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Horizontal line",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "License key",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Upload File",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button js-tiptap-toolbar-dropdown-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Upload computer files",
+      "href": "",
+      "type": "button",
+      "id": "advanced-content-editor-upload-file-button",
+      "cls": "tiptap-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Existing product files",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button tiptap-toolbar-dropdown-menu-item js-tiptap-toolbar-command-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Add Page",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "tiptap-button js-advanced-editor-add-new-page-item-button",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Visit marketplace",
+      "href": "https://payhip.com/marketplace",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Learn more",
+      "href": "https://help.payhip.com/article/307-marketplace",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "bulk editor",
+      "href": "https://payhip.com/bulk-editor",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "INPUT",
+      "text": "Save Changes",
+      "href": "",
+      "type": "submit",
+      "id": "addsubmit",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Delete Product",
+      "href": "https://payhip.com/product/edit/x7IdT#",
+      "type": "",
+      "id": "deletesubmit",
+      "cls": "edit-page-delete-btn js-edit-page-delete-button",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Upload image",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "upload-description-image-button",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert Video Inserting...",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Apply changes",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-primary js-digital-variants-advanced-options-modal-apply-changes-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Apply settings",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-primary js-apply-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Apply Settings",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-primary js-save-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Save",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-save-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Upload",
+      "href": "https://payhip.com/product/edit/x7IdT#text-editor-add-image-modal-upload-tab",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "URL",
+      "href": "https://payhip.com/product/edit/x7IdT#text-editor-add-image-modal-url-tab",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Upload image",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "upload-text-editor-image-button",
+      "cls": "btn btn-lg\n\n                                                                    btn-default\n                                \n                                ",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Submit",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn \n                                                                            btn-default\n                                                                        ",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-lg\n\n                                    btn-default\n                \n                ",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert Image Inserting...",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Edit Image",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-edit-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert Video Inserting...",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Save",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-save-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Upload",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "nav-link active",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "URL",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "nav-link",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Upload image",
+      "href": "https://payhip.com/product/edit/x7IdT#!",
+      "type": "",
+      "id": "upload-text-editor-image-button-tiptap-advanced",
+      "cls": "btn btn-lg btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Submit",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-lg btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert Image Inserting...",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default btn-lg",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Insert Video Inserting...",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-lg btn-default",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Add selected files",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "btn btn-primary btn-lg js-final-insert-button",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "×",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "close",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Close",
+      "href": "",
+      "type": "button",
+      "id": "",
+      "cls": "btn btn-default",
+      "visible": false
+    },
+    {
+      "tag": "A",
+      "text": "Blog",
+      "href": "https://payhip.com/blog",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Support",
+      "href": "https://help.payhip.com/",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Contact us",
+      "href": "mailto:contact@payhip.com",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Partner Program",
+      "href": "https://payhip.com/partner-program?utm_source=payhip&utm_medium=banner&utm_campaign=footer_partner",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Terms of use",
+      "href": "https://payhip.com/terms",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Privacy policy",
+      "href": "https://payhip.com/privacy",
+      "type": "",
+      "id": "",
+      "cls": "",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cancel",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "cancel",
+      "visible": false
+    },
+    {
+      "tag": "BUTTON",
+      "text": "OK",
+      "href": "",
+      "type": "submit",
+      "id": "",
+      "cls": "confirm",
+      "visible": false
+    }
+  ]
+}

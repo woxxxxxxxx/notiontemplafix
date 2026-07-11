@@ -1,0 +1,386 @@
+[
+  {
+    "product": {
+      "key": "x7IdT",
+      "name": "Life OS Dashboard",
+      "slug": "life-os",
+      "appFile": "life-os-app.html",
+      "notionFile": "life-os-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "yBbwkYq8GD",
+        "text": "life-os-app.html (64 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "VGJjPrZjGD",
+        "text": "life-os-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "3jXDd",
+      "name": "Second Brain",
+      "slug": "second-brain",
+      "appFile": "second-brain-app.html",
+      "notionFile": "second-brain-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "8B15pK6lBZ",
+        "text": "second-brain-app.html (29 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "KBPQ1O8KGN",
+        "text": "second-brain-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "bPxcu",
+      "name": "Business OS",
+      "slug": "business-os",
+      "appFile": "business-os-app.html",
+      "notionFile": "business-os-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "VBrnev5LB8",
+        "text": "business-os-app.html (45 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "KGvx5m3Lzb",
+        "text": "business-os-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "ClqYb",
+      "name": "Student OS",
+      "slug": "student-os",
+      "appFile": "student-os-app.html",
+      "notionFile": "student-os-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "Kzy61x0xBX",
+        "text": "student-os-app.html (36 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "8B15pKg2BZ",
+        "text": "student-os-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "37Ua0",
+      "name": "Finance Tracker Pro",
+      "slug": "finance-tracker-pro",
+      "appFile": "finance-tracker-app.html",
+      "notionFile": "finance-tracker-pro-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "ABmKxyPpW1",
+        "text": "finance-tracker-app.html (36 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "9zO54mERGx",
+        "text": "finance-tracker-pro-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "qQLj2",
+      "name": "Content Creator OS",
+      "slug": "content-creator-os",
+      "appFile": "content-creator-app.html",
+      "notionFile": "content-creator-os-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "jWlKN81qGv",
+        "text": "content-creator-app.html (35 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "Nzp0e7vdzX",
+        "text": "content-creator-os-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "CeA5t",
+      "name": "Freelancer Hub",
+      "slug": "freelancer-hub",
+      "appFile": "freelancer-hub-app.html",
+      "notionFile": "freelancer-hub-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "jBLYX02AGm",
+        "text": "freelancer-hub-app.html (46 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "jznKN17xB7",
+        "text": "freelancer-hub-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "TRndY",
+      "name": "Personal Dashboard",
+      "slug": "personal-dashboard",
+      "appFile": "personal-dashboard-app.html",
+      "notionFile": "personal-dashboard-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "0zAX92O2Wr",
+        "text": "personal-dashboard-app.html (39 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "3Bema965B5",
+        "text": "personal-dashboard-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "4kUJT",
+      "name": "Weekly Planner",
+      "slug": "weekly-planner",
+      "appFile": "weekly-planner-app.html",
+      "notionFile": "weekly-planner-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "rW6d9XE5BN",
+        "text": "weekly-planner-app.html (29 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "Zz2M0k60Wr",
+        "text": "weekly-planner-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "yt30b",
+      "name": "Study Planner",
+      "slug": "study-planner",
+      "appFile": "study-planner-app.html",
+      "notionFile": "study-planner-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "rGElk8D7Bn",
+        "text": "study-planner-app.html (40 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "9G845pyRGV",
+        "text": "study-planner-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "yM0lP",
+      "name": "Meeting Notes",
+      "slug": "meeting-notes",
+      "appFile": "meeting-notes-app.html",
+      "notionFile": "meeting-notes-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "KGvx5mMLzb",
+        "text": "meeting-notes-app.html (30 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "XB0RE4kXWL",
+        "text": "meeting-notes-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "q0wOL",
+      "name": "Project Manager",
+      "slug": "project-manager",
+      "appFile": "project-manager-app.html",
+      "notionFile": "project-manager-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "NzM4Y5lrW7",
+        "text": "project-manager-app.html (34 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "ABmKxy8pW1",
+        "text": "project-manager-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "Nwc9x",
+      "name": "Budget Tracker",
+      "slug": "budget-tracker",
+      "appFile": "budget-tracker-app.html",
+      "notionFile": "budget-tracker-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "PzDPlEx5zE",
+        "text": "budget-tracker-app.html (33 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "oWV5KdlmGA",
+        "text": "budget-tracker-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "1qG4n",
+      "name": "Content Calendar",
+      "slug": "content-calendar",
+      "appFile": "content-calendar-app.html",
+      "notionFile": "content-calendar-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "3Wd1Mwgozw",
+        "text": "content-calendar-app.html (37 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "yz495jbnBp",
+        "text": "content-calendar-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "PtdkO",
+      "name": "Job Tracker",
+      "slug": "job-tracker",
+      "appFile": "job-tracker-app.html",
+      "notionFile": "job-tracker-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "ZGX9LKRrWq",
+        "text": "job-tracker-app.html (39 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "jWlKN8EqGv",
+        "text": "job-tracker-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  },
+  {
+    "product": {
+      "key": "kZMFo",
+      "name": "CRM Template",
+      "slug": "crm-template",
+      "appFile": "crm-template-app.html",
+      "notionFile": "crm-template-notion-template-link.html"
+    },
+    "status": "ok",
+    "files": [
+      {
+        "id": "0zAX92m2Wr",
+        "text": "crm-template-app.html (32 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      },
+      {
+        "id": "3Bema9l5B5",
+        "text": "crm-template-notion-template-link.html (3 kb) Delete",
+        "cls": "upload_ebook_file_row js-upload-digital-file-row collapsed",
+        "deleted": false
+      }
+    ]
+  }
+]

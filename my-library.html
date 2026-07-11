@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>App Library | NotionTemplaFix</title>
-<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -55,7 +55,31 @@ button{cursor:pointer;font-family:inherit}
 .sec-badge{padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700}
 .sec-badge.free{background:#dcfce7;color:#16a34a}
 .sec-badge.premium{background:#f0f0ff;color:#6c5ce7}
+.sec-badge.unlocked{background:#dcfce7;color:#15803d}
+.sec-badge.locked{background:#f0f0ff;color:#6c5ce7}
 .sec-divider{flex:1;height:1px;background:#eef0f5}
+.empty-state{display:none;background:#fff;border:1.5px dashed #ded9ff;border-radius:14px;padding:28px;margin:-24px 0 44px;text-align:center;color:#777}
+.empty-state.show{display:block}
+.empty-state strong{display:block;color:#1a1a2e;font-size:15px;margin-bottom:6px}
+
+/* LIBRARY STATUS */
+.library-status-wrap{background:#fff;border-bottom:1px solid #eef0f5;padding:18px 24px}
+.delivery-card{max-width:900px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:linear-gradient(135deg,#fff,#f5f3ff);border:1.5px solid #ded9ff;border-radius:14px;padding:18px 20px;box-shadow:0 10px 30px rgba(108,92,231,.07)}
+.delivery-icon{width:44px;height:44px;border-radius:12px;background:#6c5ce7;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;letter-spacing:.4px;box-shadow:0 8px 18px rgba(108,92,231,.22)}
+.delivery-title{font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:5px}
+.delivery-text{font-size:13px;color:#555;line-height:1.55}
+.delivery-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.delivery-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#fff;color:#6c5ce7;border:1px solid #e3ddff;font-size:11px;font-weight:800}
+.delivery-card .btn-dl{white-space:nowrap}
+.library-notice{display:none;max-width:900px;margin:12px auto 0;border-radius:13px;padding:14px 16px;border:1.5px solid #e8e9ed;background:#fff;box-shadow:0 8px 24px rgba(26,26,46,.06)}
+.library-notice.show{display:flex;align-items:flex-start;gap:12px}
+.library-notice::before{content:"i";width:28px;height:28px;border-radius:9px;background:#f0f0ff;color:#6c5ce7;display:flex;align-items:center;justify-content:center;font-weight:900;flex:0 0 auto}
+.library-notice.success{border-color:#bbf7d0;background:#f7fef9}
+.library-notice.success::before{content:"OK";background:#dcfce7;color:#15803d;font-size:10px}
+.library-notice.warn{border-color:#fde68a;background:#fffaf0}
+.library-notice.warn::before{content:"!";background:#fef3c7;color:#b45309}
+.library-notice-title{font-size:13px;font-weight:800;color:#1a1a2e;margin-bottom:3px}
+.library-notice-text{font-size:13px;color:#666;line-height:1.45}
 
 /* PRODUCT GRID */
 .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:48px}
@@ -90,9 +114,17 @@ button{cursor:pointer;font-family:inherit}
 .btn-open.free-open:hover{background:#15803d}
 .btn-dl{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border:1.5px solid #6c5ce7;color:#6c5ce7;border-radius:7px;font-size:13px;font-weight:700;background:#fff;cursor:pointer;transition:all .2s;text-decoration:none}
 .btn-dl:hover{background:#6c5ce7;color:#fff}
+.btn-template{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border:1.5px solid #16a34a;color:#15803d;border-radius:7px;font-size:13px;font-weight:800;background:#f0fdf4;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-template:hover{background:#16a34a;color:#fff}
 .btn-buy{display:inline-flex;align-items:center;gap:5px;padding:8px 16px;background:#1a1a2e;color:#fff;border-radius:7px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:background .2s;text-decoration:none}
 .btn-buy:hover{background:#6c5ce7}
 .btn-coming{padding:8px 16px;background:#f1f5f9;color:#94a3b8;border-radius:7px;font-size:13px;font-weight:700;border:none;cursor:default}
+.purchase-note{width:100%;display:flex;align-items:center;gap:10px;background:#f7fef9;border:1.5px solid #bbf7d0;color:#166534;border-radius:10px;padding:10px 12px;margin-bottom:2px}
+.purchase-note span{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:#22c55e;color:#fff;font-size:11px;font-weight:900;flex:0 0 auto}
+.purchase-note strong{display:block;font-size:13px;color:#14532d}
+.purchase-note small{display:block;font-size:11px;color:#3f7d54;margin-top:1px}
+.purchase-note.free{background:#f0fdf4;border-color:#86efac}
+.purchase-note.free span{background:#16a34a}
 
 /* SIGN IN MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
@@ -103,6 +135,12 @@ button{cursor:pointer;font-family:inherit}
 .modal-sub{font-size:13px;color:#888;margin-bottom:20px;line-height:1.5}
 .modal-input{width:100%;border:1.5px solid #e8e9ed;border-radius:8px;padding:11px 14px;font-size:14px;outline:none;transition:border-color .2s;font-family:inherit}
 .modal-input:focus{border-color:#6c5ce7}
+.restore-field{margin-top:10px;background:#f8f7ff;border:1.5px solid #e0d9ff;border-radius:12px;padding:12px}
+.restore-label{display:block;font-size:11px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;color:#6c5ce7;margin-bottom:7px}
+.restore-select{width:100%;border:1.5px solid #d7d0ff;border-radius:9px;background:#fff;color:#1a1a2e;padding:11px 12px;font-size:14px;font-weight:700;outline:none;font-family:inherit}
+.restore-select:focus{border-color:#6c5ce7;box-shadow:0 0 0 3px rgba(108,92,231,.12)}
+.access-note{display:flex;gap:10px;align-items:flex-start;margin-top:10px;background:#fff;border:1px solid #eceaff;border-radius:10px;padding:10px 12px;color:#666;font-size:12px;line-height:1.45}
+.access-note::before{content:"LOCAL";display:inline-flex;align-items:center;justify-content:center;border-radius:99px;background:#f0f0ff;color:#6c5ce7;font-size:9px;font-weight:900;padding:3px 7px;flex:0 0 auto}
 .modal-error{font-size:12px;color:#ef4444;min-height:16px;margin:6px 0 12px}
 .modal-btn{width:100%;padding:12px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s}
 .modal-btn:hover{background:#5a4bd6}
@@ -132,6 +170,9 @@ button{cursor:pointer;font-family:inherit}
   .hero h1{font-size:26px}
   .main{padding:28px 16px}
   .prod-grid{grid-template-columns:1fr}
+  .library-status-wrap{padding:14px 16px}
+  .delivery-card{grid-template-columns:1fr;gap:12px}
+  .delivery-icon{width:38px;height:38px}
 }
 </style>
 </head>
@@ -145,88 +186,94 @@ button{cursor:pointer;font-family:inherit}
     <a class="nav-link" href="/#free">Free</a>
     <a class="nav-link" href="/#premium">Premium</a>
     <a class="nav-link active" href="/my-library.html">My Library</a>
-    <button class="btn-signin" id="navSignInBtn" onclick="openSignIn()">Restore Access</button>
+    <button class="btn-signin" id="navSignInBtn" onclick="openSignIn()">Purchase help</button>
   </div>
 </nav>
-<div style="background:#f5f3ff;border:1.5px solid #e0d9ff;border-radius:10px;padding:16px 20px;margin:16px 24px 0;display:flex;align-items:flex-start;gap:12px;max-width:860px;margin-left:auto;margin-right:auto">
-  <span style="font-size:22px">&#128238;</span>
+<div class="library-status-wrap">
+<div class="delivery-card">
+  <div class="delivery-icon">PAY</div>
   <div>
-    <div style="font-weight:700;color:#1a1a2e;margin-bottom:4px">Your purchased templates are delivered via email by Payhip</div>
-    <div style="font-size:13px;color:#555;line-height:1.6">Check your inbox for the download link after purchase, or visit your Payhip account to re-download anytime.</div>
-    <a href="https://payhip.com" target="_blank" rel="noopener"
-       style="display:inline-block;margin-top:10px;padding:8px 20px;background:#6c5ce7;color:#fff;font-size:13px;font-weight:700;border-radius:7px;text-decoration:none">
-      Go to Payhip Account &#8599;
-    </a>
+    <div class="delivery-title">PayHip handles delivery. This page controls app access.</div>
+    <div class="delivery-text">Free apps are always available. Premium apps move into Unlocked Apps only after PayHip checkout succeeds on this site or after a verified purchase redirect.</div>
+    <div class="delivery-chips">
+      <span class="delivery-chip">Email receipt</span>
+      <span class="delivery-chip">Browser unlock</span>
+      <span class="delivery-chip">No site account</span>
+    </div>
   </div>
+  <a class="btn-dl" href="https://payhip.com" target="_blank" rel="noopener">Open PayHip</a>
+</div>
+<div class="library-notice" id="libraryNotice"></div>
 </div>
 
 <!-- USER BAR -->
 <div class="user-bar" id="userBar">
   <div class="user-left">
-    <div class="avatar" id="userAvatar">?</div>
+    <div class="avatar" id="userAvatar">A</div>
     <div>
-      <div class="user-email-text" id="userEmailText">–</div>
-      <div class="verified-badge" style="margin-top:3px">✓ Verified Buyer</div>
+      <div class="user-email-text" id="userEmailText">Purchase email saved</div>
+      <div class="verified-badge" style="margin-top:3px">Email saved only</div>
     </div>
   </div>
-  <button class="btn-signout" onclick="signOut()">Sign Out</button>
+  <button class="btn-signout" onclick="signOut()">Clear local access</button>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Your <span>App Library</span></h1>
-  <p>Free tools for everyone. Premium apps unlocked after purchase — open directly in browser or download for offline use.</p>
+  <p>Buy premium Notion templates through PayHip, then open the matching web apps from this browser. No site account is required.</p>
   <div class="hero-actions" id="heroActions">
-    <button class="btn-hero-primary" onclick="openBundleCheckout()">Unlock All Premium Apps — $49</button>
-    <button class="btn-hero-outline" onclick="openSignIn()">Already Purchased? Restore Access</button>
+    <button class="btn-hero-primary" onclick="openBundleCheckout()">Buy Bundle - $49</button>
+    <button class="btn-hero-outline" onclick="openSignIn()">Purchase help</button>
   </div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
-  <!-- FREE APPS -->
+  <!-- UNLOCKED APPS -->
   <div class="sec-label">
-    <span class="sec-title">Free Apps</span>
-    <span class="sec-badge free">Free for everyone</span>
+    <span class="sec-title">Unlocked Apps</span>
+    <span class="sec-badge unlocked" id="unlockedCount">0 unlocked</span>
     <span class="sec-divider"></span>
   </div>
-  <div class="prod-grid" id="freeGrid"></div>
+  <div class="prod-grid" id="unlockedGrid"></div>
+  <div class="empty-state" id="unlockedEmpty"><strong>No premium apps unlocked on this device yet.</strong>Buy a product or restore access from your PayHip receipt email.</div>
 
-  <!-- PREMIUM APPS -->
+  <!-- LOCKED APPS -->
   <div class="sec-label">
-    <span class="sec-title">Premium Apps</span>
-    <span class="sec-badge premium">Purchase to unlock</span>
+    <span class="sec-title">Locked Apps</span>
+    <span class="sec-badge locked" id="lockedCount">16 locked</span>
     <span class="sec-divider"></span>
   </div>
-  <div class="prod-grid" id="premiumGrid"></div>
-
-  <!-- NOTION TEMPLATES -->
-  <div class="sec-label" style="margin-top:12px">
-    <span class="sec-title">More Apps</span>
-    <span class="sec-badge premium">Unlock with purchase</span>
-    <span class="sec-divider"></span>
-  </div>
-  <div class="prod-grid" id="templatesGrid"></div>
+  <div class="prod-grid" id="lockedGrid"></div>
+  <div class="empty-state" id="lockedEmpty"><strong>Everything is unlocked.</strong>All premium apps are ready to open from this browser.</div>
 
 </div>
 
-<!-- SIGN IN MODAL -->
+<!-- RESTORE MODAL -->
 <div class="modal-overlay" id="signinModal">
   <div class="modal-box" style="position:relative">
-    <button class="modal-close" onclick="closeSignIn()">×</button>
-    <div class="modal-title">Restore Access</div>
-    <div class="modal-sub" id="signinModalSub">Enter the email address you used when purchasing on Payhip. Your apps will unlock instantly in this browser.</div>
-    <input class="modal-input" type="email" id="signinEmail" placeholder="your@email.com" autocomplete="email">
+    <button class="modal-close" onclick="closeSignIn()">x</button>
+    <div class="modal-title">Purchase help & verified restore</div>
+    <div class="modal-sub" id="signinModalSub">Enter the exact email from your PayHip receipt and choose the product you bought. We will verify it before restoring app access.</div>
+    <input class="modal-input" type="email" id="signinEmail" placeholder="purchase@email.com" autocomplete="email">
+    <div class="restore-field">
+      <label class="restore-label" for="restoreProduct">Purchased item</label>
+      <select class="restore-select" id="restoreProduct">
+        <option value="bundle">Bundle - all 16 premium apps</option>
+      </select>
+      <div class="access-note">Email alone is not enough. Access restores only when the server finds a matching PayHip purchase record.</div>
+    </div>
     <div class="modal-error" id="signinError"></div>
-    <button class="modal-btn" id="signinBtn" onclick="doSignIn()">Restore My Access</button>
+    <button class="modal-btn" id="signinBtn" onclick="doSignIn()">Verify Purchase</button>
     <div style="display:flex;align-items:center;gap:8px;margin:16px 0 12px">
       <div style="flex:1;height:1px;background:#eef0f5"></div>
       <span style="font-size:11px;color:#bbb">OR</span>
       <div style="flex:1;height:1px;background:#eef0f5"></div>
     </div>
-    <button onclick="openBundleCheckout();closeSignIn();" style="width:100%;padding:11px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Buy Bundle — $49 (All 16 Apps)</button>
-    <div class="modal-footer" style="margin-top:12px">Secure checkout via Payhip · Instant access</div>
+    <button onclick="openBundleCheckout();closeSignIn();" style="width:100%;padding:11px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Buy Bundle - $49</button>
+    <div class="modal-footer" style="margin-top:12px">Secure checkout via PayHip. Instant local unlock after payment.</div>
   </div>
 </div>
 
@@ -275,7 +322,7 @@ var PREMIUM_APPS = [
     desc: 'Your complete personal OS — goals, habits, tasks, journal, health and weekly reviews in one dark-themed web app.',
     thumb: '/images/previews/life-os-app.png',
     appUrl: '/life-os-app.html',
-    downloadUrl: '/life-os-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Life-OS-Dashboard-Single-Delivery-3839846f2bc38119b57ff2babfea3f5a',
     unlockKey: 'lib_unlocked_life-os',
     status: 'live',
     buyUrl: 'https://payhip.com/b/x7IdT'
@@ -287,7 +334,7 @@ var PREMIUM_APPS = [
     desc: 'Capture, organise and connect every idea, note and project using the PARA method.',
     thumb: '/images/previews/second-brain-app.png',
     appUrl: '/second-brain-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Second-Brain-Single-Delivery-3839846f2bc38106987fc3639f50da50',
     unlockKey: 'lib_unlocked_second-brain',
     status: 'live',
     buyUrl: 'https://payhip.com/b/3jXDd'
@@ -299,7 +346,7 @@ var PREMIUM_APPS = [
     desc: 'Run your entire business from one workspace — KPIs, projects, CRM, team, and operations.',
     thumb: '/images/previews/business-os-app.png',
     appUrl: '/business-os-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Business-OS-Single-Delivery-3839846f2bc3811cb526f36ff9761ec6',
     unlockKey: 'lib_unlocked_business-os',
     status: 'live',
     buyUrl: 'https://payhip.com/b/bPxcu'
@@ -311,7 +358,7 @@ var PREMIUM_APPS = [
     desc: 'Stay on top of every course, assignment, exam and study session — designed for stress-free studying.',
     thumb: '/images/previews/student-os-app.png',
     appUrl: '/student-os-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Student-OS-Single-Delivery-3839846f2bc38189a72dfa4ae58a7c4b',
     unlockKey: 'lib_unlocked_student-os',
     status: 'live',
     buyUrl: 'https://payhip.com/b/ClqYb'
@@ -323,7 +370,7 @@ var PREMIUM_APPS = [
     desc: 'Track income, expenses, budgets and savings goals — see exactly where your money goes.',
     thumb: '/images/previews/finance-tracker-app.png',
     appUrl: '/finance-tracker-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Finance-Tracker-Pro-Single-Delivery-3839846f2bc3816fa9d6e70986fc6027',
     unlockKey: 'lib_unlocked_finance-tracker-pro',
     status: 'live',
     buyUrl: 'https://payhip.com/b/37Ua0'
@@ -335,7 +382,7 @@ var PREMIUM_APPS = [
     desc: 'Plan, produce and publish content across every platform — from idea to analytics.',
     thumb: '/images/previews/content-creator-app.png',
     appUrl: '/content-creator-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Content-Creator-OS-Single-Delivery-3839846f2bc381728980d51eeefcfad2',
     unlockKey: 'lib_unlocked_content-creator-os',
     status: 'live',
     buyUrl: 'https://payhip.com/b/qQLj2'
@@ -347,7 +394,7 @@ var PREMIUM_APPS = [
     desc: 'Manage every client, project, invoice and deadline from one hub — spend less time organising.',
     thumb: '/images/previews/freelancer-hub-app.png',
     appUrl: '/freelancer-hub-app.html',
-    downloadUrl: null,
+    templateUrl: 'https://great-respect-f0e.notion.site/Freelancer-Hub-Single-Delivery-3839846f2bc381f3951df92bf90cc156',
     unlockKey: 'lib_unlocked_freelancer-hub',
     status: 'live',
     buyUrl: 'https://payhip.com/b/CeA5t'
@@ -362,6 +409,8 @@ var NOTION_TEMPLATES = [
     desc: 'All-in-one personal command center with calendar, tasks, notes, and quick links.',
     thumb: '/images/previews/personal-dashboard-app.png',
     appUrl: '/personal-dashboard-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Personal-Dashboard-Single-Delivery-3839846f2bc381cf90ffd79fb2f7909c',
+    unlockKey: 'lib_unlocked_personal-dashboard',
     status: 'live',
     buyUrl: 'https://payhip.com/b/TRndY'
   },
@@ -372,6 +421,8 @@ var NOTION_TEMPLATES = [
     desc: 'Plan your week ahead with priorities, tasks, meals, and reflection notes.',
     thumb: '/images/previews/weekly-planner-app.png',
     appUrl: '/weekly-planner-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Weekly-Planner-Single-Delivery-3839846f2bc381ebb742f9c65b2a63c9',
+    unlockKey: 'lib_unlocked_weekly-planner',
     status: 'live',
     buyUrl: 'https://payhip.com/b/4kUJT'
   },
@@ -382,6 +433,8 @@ var NOTION_TEMPLATES = [
     desc: 'Organize courses, assignments, exams, and study sessions all in one place.',
     thumb: '/images/previews/study-planner-app.png',
     appUrl: '/study-planner-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Study-Planner-Single-Delivery-3839846f2bc3814c9558e40fa952c0ba',
+    unlockKey: 'lib_unlocked_study-planner',
     status: 'live',
     buyUrl: 'https://payhip.com/b/yt30b'
   },
@@ -392,6 +445,8 @@ var NOTION_TEMPLATES = [
     desc: 'Capture agendas, action items, and decisions to keep every meeting organized.',
     thumb: '/images/previews/meeting-notes-app.png',
     appUrl: '/meeting-notes-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Meeting-Notes-Single-Delivery-3839846f2bc381e58bfcc2fadafd15b9',
+    unlockKey: 'lib_unlocked_meeting-notes',
     status: 'live',
     buyUrl: 'https://payhip.com/b/yM0lP'
   },
@@ -402,6 +457,8 @@ var NOTION_TEMPLATES = [
     desc: 'Full project management with milestones, tasks, timelines, and team views.',
     thumb: '/images/previews/project-manager-app.png',
     appUrl: '/project-manager-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Project-Manager-Single-Delivery-3839846f2bc38170ae67e836856bc9b0',
+    unlockKey: 'lib_unlocked_project-manager',
     status: 'live',
     buyUrl: 'https://payhip.com/b/q0wOL'
   },
@@ -412,6 +469,8 @@ var NOTION_TEMPLATES = [
     desc: 'Track income, expenses, savings goals, and view monthly financial reports.',
     thumb: '/images/previews/budget-tracker-app.png',
     appUrl: '/budget-tracker-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Budget-Tracker-Single-Delivery-3839846f2bc3815a8995c4fd42508dd6',
+    unlockKey: 'lib_unlocked_budget-tracker',
     status: 'live',
     buyUrl: 'https://payhip.com/b/Nwc9x'
   },
@@ -422,6 +481,8 @@ var NOTION_TEMPLATES = [
     desc: 'Plan, schedule, and manage your content strategy with a visual calendar.',
     thumb: '/images/previews/content-calendar-app.png',
     appUrl: '/content-calendar-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Content-Calendar-Single-Delivery-3839846f2bc38132a9e9e4367c6156e7',
+    unlockKey: 'lib_unlocked_content-calendar',
     status: 'live',
     buyUrl: 'https://payhip.com/b/1qG4n'
   },
@@ -432,6 +493,8 @@ var NOTION_TEMPLATES = [
     desc: 'Track job applications, interviews, offers, and follow-ups in one board.',
     thumb: '/images/previews/job-tracker-app.png',
     appUrl: '/job-tracker-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/Job-Tracker-Single-Delivery-3839846f2bc3819ba96ad550618be25e',
+    unlockKey: 'lib_unlocked_job-tracker',
     status: 'live',
     buyUrl: 'https://payhip.com/b/PtdkO'
   },
@@ -442,6 +505,8 @@ var NOTION_TEMPLATES = [
     desc: 'Manage clients, deals, contacts, and pipeline with a full CRM system.',
     thumb: '/images/previews/crm-template-app.png',
     appUrl: '/crm-template-app.html',
+    templateUrl: 'https://great-respect-f0e.notion.site/CRM-Template-Single-Delivery-3839846f2bc3815a97e3faf773ae2a36',
+    unlockKey: 'lib_unlocked_crm-template',
     status: 'live',
     buyUrl: 'https://payhip.com/b/kZMFo'
   }
@@ -449,6 +514,19 @@ var NOTION_TEMPLATES = [
 
 var EMAIL_KEY = 'lib_email';
 var BUNDLE_KEY = 'lib_bundle_unlocked';
+var BUNDLE_TEMPLATE_URL = 'https://great-respect-f0e.notion.site/NotionTemplaFix-Templates-3839846f2bc380d39755e7a17f3f0925';
+
+// ===================== NOTICE =====================
+function showNotice(kind, title, text){
+  var box = document.getElementById('libraryNotice');
+  if(!box) return;
+  box.className = 'library-notice show ' + (kind || '');
+  box.innerHTML = '<div class="library-notice-title">'+esc(title)+'</div><div class="library-notice-text">'+esc(text)+'</div>';
+}
+function hideNotice(){
+  var box = document.getElementById('libraryNotice');
+  if(box){ box.className = 'library-notice'; box.innerHTML = ''; }
+}
 
 // ===================== STATE =====================
 function getEmail(){ return localStorage.getItem(EMAIL_KEY) || ''; }
@@ -458,148 +536,190 @@ function isUnlocked(key){ return localStorage.getItem(BUNDLE_KEY) === '1' || loc
 function renderAll(){
   var email = getEmail();
   updateNav(email);
-  renderFreeGrid();
-  renderPremiumGrid(email);
-  renderTemplatesGrid();
+  renderLibraryGrids();
+  repairBundleAccess(email);
 }
 
 function updateNav(email){
   var btn = document.getElementById('navSignInBtn');
   var bar = document.getElementById('userBar');
   var heroActions = document.getElementById('heroActions');
-  if(email){
-    btn.style.display = 'none';
+  var hasBundle = localStorage.getItem(BUNDLE_KEY) === '1';
+  if(email || hasBundle){
+    btn.style.display = '';
     bar.classList.add('show');
-    var initials = email.charAt(0).toUpperCase();
-    document.getElementById('userAvatar').textContent = initials;
-    document.getElementById('userEmailText').textContent = email;
-    heroActions.innerHTML = '<span style="font-size:14px;color:#22c55e;font-weight:600">✓ Signed in as '+esc(email)+'</span><a class="btn-hero-outline" href="/#premium">Browse More Templates</a>';
+    var label = email || 'This browser';
+    document.getElementById('userAvatar').textContent = (email ? email.charAt(0) : 'A').toUpperCase();
+    document.getElementById('userEmailText').textContent = hasBundle ? 'Bundle access unlocked' : 'Purchase email saved: '+label;
+    heroActions.innerHTML = hasBundle ? '<a class="btn-hero-primary" href="'+BUNDLE_TEMPLATE_URL+'" target="_blank" rel="noopener">Open Bundle Notion Library</a><button class="btn-hero-outline" onclick="openSignIn()">Purchase help</button>' : '<button class="btn-hero-primary" onclick="openBundleCheckout()">Buy Bundle - $49</button><button class="btn-hero-outline" onclick="openSignIn()">Purchase help</button>';
   } else {
     btn.style.display = '';
     bar.classList.remove('show');
-    heroActions.innerHTML = '<button class="btn-hero-primary" onclick="openSignIn()">Sign In to Unlock Premium Apps</button><a class="btn-hero-outline" href="/#premium">Browse Premium Templates</a>';
+    heroActions.innerHTML = '<button class="btn-hero-primary" onclick="openBundleCheckout()">Buy Bundle - $49</button><button class="btn-hero-outline" onclick="openSignIn()">Purchase help</button>';
   }
 }
 
-function renderFreeGrid(){
-  var grid = document.getElementById('freeGrid');
-  grid.innerHTML = '';
-  FREE_APPS.forEach(function(p){
-    var soon = p.status === 'soon';
-    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">';
-    if(soon) thumbHtml += '<div class="prod-thumb-soon"><span>Coming Soon</span></div>';
-    thumbHtml += '<div class="corner-tag '+(soon?'tag-soon':'tag-free')+'">'+(soon?'Coming Soon':'Free')+'</div>';
+function renderLibraryGrids(){
+  var unlockedGrid = document.getElementById('unlockedGrid');
+  var lockedGrid = document.getElementById('lockedGrid');
+  var unlockedEmpty = document.getElementById('unlockedEmpty');
+  var lockedEmpty = document.getElementById('lockedEmpty');
+  var unlockedCount = document.getElementById('unlockedCount');
+  var lockedCount = document.getElementById('lockedCount');
+  var unlocked = FREE_APPS.slice();
+  var locked = [];
 
-    var actions = '';
-    if(soon){
-      actions = '<span class="btn-coming">Coming Soon</span>';
-    } else {
-      actions = '<a class="btn-open free-open" href="'+p.appUrl+'">▶ Open App</a>';
-    }
-
-    var card = document.createElement('div');
-    card.className = 'prod-card';
-    card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
-      +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
-      +'<div class="prod-actions">'+actions+'</div></div>';
-    grid.appendChild(card);
+  getAllPaidProducts().forEach(function(p){
+    if(isUnlocked(p.unlockKey)) unlocked.push(p);
+    else locked.push(p);
   });
+
+  unlockedGrid.innerHTML = '';
+  lockedGrid.innerHTML = '';
+  unlocked.forEach(function(p){ unlockedGrid.appendChild(createProductCard(p, true)); });
+  locked.forEach(function(p){ lockedGrid.appendChild(createProductCard(p, false)); });
+
+  unlockedCount.textContent = unlocked.length + ' unlocked';
+  lockedCount.textContent = locked.length + ' locked';
+  unlockedEmpty.classList.toggle('show', unlocked.length === 0);
+  lockedEmpty.classList.toggle('show', locked.length === 0);
 }
 
-function renderPremiumGrid(email){
-  var grid = document.getElementById('premiumGrid');
-  grid.innerHTML = '';
-  PREMIUM_APPS.forEach(function(p){
-    var unlocked = email && isUnlocked(p.unlockKey);
-    var soon = p.status === 'soon';
-    var locked = !unlocked;
+function createProductCard(p, unlocked){
+  var soon = p.status === 'soon';
+  var isFree = !p.price;
+  var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">';
+  if(unlocked && soon){
+    thumbHtml += '<div class="prod-thumb-soon"><span>Coming Soon</span></div><div class="corner-tag tag-soon">Coming Soon</div>';
+  } else if(isFree){
+    thumbHtml += '<div class="corner-tag tag-free">Free</div>';
+  } else if(unlocked){
+    thumbHtml += '<div class="corner-tag tag-unlocked">Unlocked</div>';
+  } else {
+    thumbHtml += '<div class="lock-shade">Locked</div><div class="corner-tag tag-paid">$'+p.price+'</div>';
+  }
 
-    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">';
-    if(soon && unlocked){
-      thumbHtml += '<div class="prod-thumb-soon"><span>Coming Soon</span></div>';
-      thumbHtml += '<div class="corner-tag tag-soon">Coming Soon</div>';
-    } else if(locked){
-      thumbHtml += '<div class="lock-shade">🔒</div>';
-      thumbHtml += '<div class="corner-tag tag-paid">$'+p.price+'</div>';
-    } else {
-      thumbHtml += '<div class="corner-tag tag-unlocked">✓ Unlocked</div>';
-    }
+  var actions = '';
+  if(!unlocked){
+    actions = '<button class="btn-buy" type="button" onclick="openProductCheckoutBySlug(\''+esc(p.slug)+'\')">Buy Now - $'+p.price+'</button>';
+  } else if(isFree){
+    actions = '<div class="purchase-note free"><span>OK</span><div><strong>Free app</strong><small>Available without purchase</small></div></div><a class="btn-open free-open" href="'+p.appUrl+'">Open App</a>';
+  } else if(soon){
+    actions = '<div class="purchase-note"><span>OK</span><div><strong>Purchased</strong><small>Access saved in this browser</small></div></div><span class="btn-coming">Coming Soon</span>';
+  } else {
+    actions = '<div class="purchase-note"><span>OK</span><div><strong>Purchased</strong><small>Access saved in this browser</small></div></div><a class="btn-open" href="'+p.appUrl+'">Open App</a>';
+    if(p.templateUrl) actions += '<a class="btn-template" href="'+p.templateUrl+'" target="_blank" rel="noopener">Open Notion Template</a>';
+  }
 
-    var actions = '';
-    if(locked){
-      actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Try App</a>'
-        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy — $'+p.price+'</a>';
-    } else if(soon){
-      actions = '<span class="btn-coming">Coming Soon</span>';
-      if(email) actions += ' <span style="font-size:11px;color:#22c55e;font-weight:600;display:block;margin-top:6px">✓ You own this</span>';
-    } else {
-      actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Open App</a>';
-      if(p.downloadUrl) actions += '<a class="btn-dl" href="'+p.downloadUrl+'" download="'+esc(p.slug)+'-app.html">⬇ Download</a>';
-    }
-
-    var card = document.createElement('div');
-    card.className = 'prod-card'+(unlocked?' unlocked':'')+(locked?' locked-card':'');
-    card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
-      +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
-      +'<div class="prod-actions">'+actions+'</div></div>';
-    grid.appendChild(card);
-  });
+  var card = document.createElement('div');
+  card.className = 'prod-card'+(unlocked?' unlocked':' locked-card');
+  card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
+    +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
+    +'<div class="prod-actions">'+actions+'</div></div>';
+  return card;
 }
 
-function renderTemplatesGrid(){
-  var grid = document.getElementById('templatesGrid');
-  grid.innerHTML = '';
-  NOTION_TEMPLATES.forEach(function(p){
-    var live = p.status === 'live' && p.appUrl;
-    var thumbHtml = '<img src="'+p.thumb+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">';
-    if(live){
-      thumbHtml += '<div class="corner-tag tag-unlocked">▶ Try Free</div>';
-    } else {
-      thumbHtml += '<div class="lock-shade">🔒</div><div class="corner-tag tag-paid">$'+p.price+'</div>';
-    }
-    var actions = '<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener">Buy — $'+p.price+'</a>';
-    if(live){
-      actions = '<a class="btn-open" href="'+p.appUrl+'">▶ Try App</a>'
-        +'<a class="btn-buy" href="'+p.buyUrl+'" target="_blank" rel="noopener" style="font-size:12px;padding:7px 12px">Buy — $'+p.price+'</a>';
-    }
-    var card = document.createElement('div');
-    card.className = 'prod-card'+(live?'':' locked-card');
-    card.innerHTML = '<div class="prod-thumb">'+thumbHtml+'</div>'
-      +'<div class="prod-body"><div class="prod-name">'+esc(p.name)+'</div><div class="prod-desc">'+esc(p.desc)+'</div>'
-      +(live?'':'<div class="prod-price">$'+p.price+'</div>')
-      +'<div class="prod-actions">'+actions+'</div></div>';
-    grid.appendChild(card);
+// ===================== PURCHASE HELPERS =====================
+function getAllPaidProducts(){ return PREMIUM_APPS.concat(NOTION_TEMPLATES); }
+function findPaidProduct(slug){
+  var items = getAllPaidProducts();
+  for(var i=0;i<items.length;i++){ if(items[i].slug === slug) return items[i]; }
+  return null;
+}
+function getPayhipLinkId(url){
+  var parts = String(url||'').split('/b/');
+  if(parts.length < 2) return '';
+  return parts[1].split(/[/?#]/)[0];
+}
+function unlockProduct(p, email){
+  if(!p) return;
+  if(email) localStorage.setItem(EMAIL_KEY, email);
+  localStorage.setItem(p.unlockKey, '1');
+  toast(p.name + ' unlocked. Open it from your library.', 'success');
+  showNotice('success', 'Purchase complete', p.name + ' is unlocked in this browser. Your Notion download link is in your PayHip email receipt.');
+  renderAll();
+}
+function recordPurchase(email, productSlug, isBundle){
+  if(!email) return;
+  var body = new URLSearchParams();
+  body.set('email', email);
+  body.set('product', isBundle ? 'bundle' : productSlug);
+  if(isBundle) body.set('bundle', '1');
+  fetch('/record-purchase.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: body.toString()
+  }).catch(function(){});
+}
+var bundleRepairRunning = false;
+function restoreServerProducts(email, products){
+  (products || []).forEach(function(slug){
+    if(slug === 'bundle') return;
+    var p = findPaidProduct(slug);
+    if(p && p.unlockKey) localStorage.setItem(p.unlockKey, '1');
   });
+}
+function repairBundleAccess(email){
+  if(bundleRepairRunning || !email || localStorage.getItem(BUNDLE_KEY) !== '1') return;
+  bundleRepairRunning = true;
+  verifyPurchase(email, 'bundle').then(function(result){
+    if(!result || !result.bundle){
+      localStorage.removeItem(BUNDLE_KEY);
+      restoreServerProducts(email, result && result.products);
+      showNotice('warn', 'Bundle access corrected', 'Bundle was not found for this receipt email. Only purchased single apps remain unlocked.');
+      renderLibraryGrids();
+      updateNav(email);
+    }
+  }).catch(function(){}).finally(function(){
+    bundleRepairRunning = false;
+  });
+}
+function verifyPurchase(email, productSlug){
+  var body = new URLSearchParams();
+  body.set('email', email);
+  body.set('product', productSlug || 'bundle');
+  return fetch('/check-purchase.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: body.toString()
+  }).then(function(res){ return res.json(); });
+}
+function openProductCheckoutBySlug(slug, attempt){
+  var p = findPaidProduct(slug);
+  if(!p) return;
+  window.open(p.buyUrl.replace('/b/', '/buy?link='), '_blank');
 }
 
 // ===================== UNLOCK ALL =====================
 function unlockAll(email){
   email = email || '';
   if(email) localStorage.setItem(EMAIL_KEY, email);
+  else if(!localStorage.getItem(EMAIL_KEY)) localStorage.setItem(EMAIL_KEY, 'bundle-purchase@payhip.local');
   localStorage.setItem(BUNDLE_KEY, '1');
-  PREMIUM_APPS.forEach(function(p){ localStorage.setItem(p.unlockKey, '1'); });
+  getAllPaidProducts().forEach(function(p){ if(p.unlockKey) localStorage.setItem(p.unlockKey, '1'); });
   toast('Premium apps unlocked! Enjoy your library.', 'success');
+  showNotice('success', 'Bundle unlocked', 'All premium apps are now unlocked in this browser. Your Notion download links are in your PayHip email receipt.');
   renderAll();
 }
 
 // ===================== PAYHIP CHECKOUT =====================
 function openBundleCheckout(){
-  if(typeof Payhip === 'undefined'){
-    window.open('https://payhip.com/order?link=NdT6c', '_blank');
-    return;
-  }
-  Payhip.Checkout.open({
-    product: 'NdT6c',
-    successCallback: function(data){
-      var email = (data && (data.email || data.buyer_email || data.customer_email)) || '';
-      unlockAll(email);
-    },
-    closeCallback: function(){}
-  });
+  window.open('https://payhip.com/order?link=NdT6c', '_blank');
 }
 
-// ===================== SIGN IN (RESTORE) =====================
-function openSignIn(){
+// ===================== RESTORE ACCESS =====================
+function populateRestoreOptions(selectedSlug){
+  var sel = document.getElementById('restoreProduct');
+  if(!sel) return;
+  var html = '<option value="bundle">Bundle - all 16 premium apps</option>';
+  getAllPaidProducts().forEach(function(p){
+    html += '<option value="'+esc(p.slug)+'">'+esc(p.name)+' - $'+p.price+'</option>';
+  });
+  sel.innerHTML = html;
+  if(selectedSlug) sel.value = selectedSlug;
+}
+function openSignIn(selectedSlug){
+  populateRestoreOptions(selectedSlug);
   document.getElementById('signinModal').classList.add('open');
   setTimeout(function(){ document.getElementById('signinEmail').focus(); }, 100);
 }
@@ -619,30 +739,49 @@ function doSignIn(){
   var emailEl = document.getElementById('signinEmail');
   var errEl = document.getElementById('signinError');
   var btn = document.getElementById('signinBtn');
+  var choice = document.getElementById('restoreProduct').value;
+  var product = choice === 'bundle' ? null : findPaidProduct(choice);
   var email = emailEl.value.trim().toLowerCase();
   errEl.textContent = '';
   if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    errEl.textContent = 'Please enter a valid email address.';
+    errEl.textContent = 'Please enter the email from your PayHip receipt.';
     return;
   }
   btn.disabled = true;
-  btn.textContent = 'Restoring…';
-  // Trust-based restore: Payhip has no frontend purchase-check API.
-  // We unlock locally on email entry — consistent with all static-site Payhip integrations.
-  setTimeout(function(){
+  btn.textContent = 'Checking purchase...';
+  verifyPurchase(email, choice).then(function(result){
     closeSignIn();
-    unlockAll(email);
+    localStorage.setItem(EMAIL_KEY, email);
+    if(result && result.unlocked){
+      if((choice === 'bundle' && result.bundle) || result.bundle) unlockAll(email);
+      else unlockProduct(product, email);
+      showNotice('success', 'Purchase verified', 'Access restored for '+(choice === 'bundle' ? 'your bundle' : (product ? product.name : 'this app'))+'.');
+    } else {
+      if(choice === 'bundle'){
+        showNotice('warn', 'Bundle purchase not found', 'Bundle access unlocks only after the server finds a matching Bundle purchase record. Choose the single product from your PayHip receipt instead.');
+        toast('Bundle purchase not found for that email.', 'error');
+        renderAll();
+      } else {
+        showNotice('warn', 'Purchase not synced yet', 'No '+(product ? product.name : 'matching product')+' purchase was found for this receipt email. PayHip webhook may still be syncing; try again in a minute.');
+        toast('Purchase not found for that email yet.', 'error');
+        renderAll();
+      }
+    }
+  }).catch(function(){
+    errEl.textContent = 'Could not reach purchase verification. Please try again.';
+  }).finally(function(){
     btn.disabled = false;
-    btn.textContent = 'Restore My Access';
-  }, 700);
+    btn.textContent = 'Verify Purchase';
+  });
 }
 
 // ===================== SIGN OUT =====================
 function signOut(){
   localStorage.removeItem(EMAIL_KEY);
   localStorage.removeItem(BUNDLE_KEY);
-  PREMIUM_APPS.forEach(function(p){ localStorage.removeItem(p.unlockKey); });
-  toast('Signed out.', 'success');
+  getAllPaidProducts().forEach(function(p){ if(p.unlockKey) localStorage.removeItem(p.unlockKey); });
+  toast('Local access cleared.', 'success');
+  hideNotice();
   renderAll();
 }
 
@@ -660,12 +799,26 @@ function toast(msg, type){
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 // ===================== BOOT =====================
+populateRestoreOptions();
 renderAll();
-// Auto-open restore modal when redirected from a locked premium app
-if(new URLSearchParams(location.search).get('need')==='1'){
-  var sub = document.getElementById('signinModalSub');
-  if(sub) sub.textContent = 'This app requires a purchase. Enter your Payhip purchase email to restore access, or buy the bundle below.';
-  setTimeout(openSignIn, 400);
+var params = new URLSearchParams(location.search);
+if(params.get('paid')==='1' || params.get('bundle')==='NdT6c'){
+  showNotice('warn', 'Verify purchase', 'Use Purchase help with your PayHip receipt email to restore access on this device.');
+  if(history.replaceState) history.replaceState(null, '', location.pathname);
+}
+if(params.get('buy')){
+  var buySlug = params.get('buy');
+  var product = findPaidProduct(buySlug);
+  if(product) showNotice('warn', 'Opening PayHip checkout', 'Complete payment for '+product.name+'. PayHip will email the download link, then Purchase help can restore app access.');
+  if(history.replaceState) history.replaceState(null, '', location.pathname);
+  setTimeout(function(){ openProductCheckoutBySlug(buySlug); }, 500);
+}
+if(params.get('need')){
+  var needSlug = params.get('need');
+  var needProduct = findPaidProduct(needSlug);
+  if(needProduct) showNotice('warn', needProduct.name + ' is locked', 'Buy it or restore access with your PayHip receipt email.');
+  else showNotice('warn', 'This app is locked', 'Buy it or restore access with your PayHip receipt email.');
+  setTimeout(function(){ openSignIn(needSlug && needSlug !== '1' ? needSlug : 'bundle'); }, 400);
 }
 </script>
 </body>

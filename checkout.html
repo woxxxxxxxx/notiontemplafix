@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Redirecting to PayHip | NotionTemplaFix</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f8f9fb;color:#1a1a2e}
+.box{text-align:center;padding:32px}.box strong{display:block;font-size:22px;margin-bottom:8px}.box a{color:#6c5ce7;font-weight:800}
+</style>
+</head>
+<body>
+<div class="box"><strong>Opening PayHip checkout...</strong><a id="fallback" href="https://payhip.com">Continue to PayHip</a></div>
+<script>
+var productLinks = {
+  'life-os':'x7IdT',
+  'second-brain':'3jXDd',
+  'business-os':'bPxcu',
+  'student-os':'ClqYb',
+  'finance-tracker-pro':'37Ua0',
+  'content-creator-os':'qQLj2',
+  'freelancer-hub':'CeA5t',
+  'personal-dashboard':'TRndY',
+  'weekly-planner':'4kUJT',
+  'study-planner':'yt30b',
+  'meeting-notes':'yM0lP',
+  'project-manager':'q0wOL',
+  'budget-tracker':'Nwc9x',
+  'content-calendar':'1qG4n',
+  'job-tracker':'PtdkO',
+  'crm-template':'kZMFo'
+};
+var params = new URLSearchParams(location.search);
+var url = 'https://payhip.com/order?link=NdT6c';
+var product = params.get('product');
+if(product && productLinks[product]){
+  url = 'https://payhip.com/buy?link=' + productLinks[product];
+} else if(params.get('bundle') !== '1') {
+  url = '/my-library.html';
+}
+document.getElementById('fallback').href = url;
+location.replace(url);
+</script>
+</body>
+</html>

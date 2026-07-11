@@ -1,0 +1,14 @@
+{
+  "url": "https://payhip.com/product/products",
+  "title": "404 Page Not Found",
+  "text": "404 Page Not Found\n\nThe page you requested was not found.",
+  "links": [
+    {
+      "text": "",
+      "href": "https://payhip.com/",
+      "visible": true
+    }
+  ],
+  "buttons": [],
+  "inputs": []
+}

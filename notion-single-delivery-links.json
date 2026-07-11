@@ -1,0 +1,477 @@
+{
+  "createdAt": "2026-06-18T19:20:24.127Z",
+  "parentPageId": "3839846f-2bc3-803b-9209-ce07f1c1f5ef",
+  "products": [
+    {
+      "slug": "life-os",
+      "name": "Life OS Dashboard",
+      "id": "3839846f-2bc3-8119-b57f-f2babfea3f5a",
+      "url": "https://app.notion.com/p/Life-OS-Dashboard-Single-Delivery-3839846f2bc38119b57ff2babfea3f5a",
+      "public_url": "https://great-respect-f0e.notion.site/Life-OS-Dashboard-Single-Delivery-3839846f2bc38119b57ff2babfea3f5a",
+      "databases": [
+        {
+          "name": "Goals",
+          "id": "3839846f-2bc3-8166-a044-fecc2decf49d",
+          "url": "https://app.notion.com/p/3839846f2bc38166a044fecc2decf49d",
+          "copiedRows": 2
+        },
+        {
+          "name": "Tasks",
+          "id": "3839846f-2bc3-813d-ac06-c609d480f850",
+          "url": "https://app.notion.com/p/3839846f2bc3813dac06c609d480f850",
+          "copiedRows": 2
+        },
+        {
+          "name": "Habits",
+          "id": "3839846f-2bc3-8181-bcd9-f017b42e5a4d",
+          "url": "https://app.notion.com/p/3839846f2bc38181bcd9f017b42e5a4d",
+          "copiedRows": 2
+        },
+        {
+          "name": "Journal",
+          "id": "3839846f-2bc3-81b9-bd22-e47d6c0d34ef",
+          "url": "https://app.notion.com/p/3839846f2bc381b9bd22e47d6c0d34ef",
+          "copiedRows": 3
+        },
+        {
+          "name": "Weekly Review",
+          "id": "3839846f-2bc3-812a-b400-fcad24f732ee",
+          "url": "https://app.notion.com/p/3839846f2bc3812ab400fcad24f732ee",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "second-brain",
+      "name": "Second Brain",
+      "id": "3839846f-2bc3-8106-987f-c3639f50da50",
+      "url": "https://app.notion.com/p/Second-Brain-Single-Delivery-3839846f2bc38106987fc3639f50da50",
+      "public_url": "https://great-respect-f0e.notion.site/Second-Brain-Single-Delivery-3839846f2bc38106987fc3639f50da50",
+      "databases": [
+        {
+          "name": "Capture Inbox",
+          "id": "3839846f-2bc3-81ab-acb7-e0251866557e",
+          "url": "https://app.notion.com/p/3839846f2bc381abacb7e0251866557e",
+          "copiedRows": 3
+        },
+        {
+          "name": "Projects",
+          "id": "3839846f-2bc3-8145-ab78-d0622fb0764a",
+          "url": "https://app.notion.com/p/3839846f2bc38145ab78d0622fb0764a",
+          "copiedRows": 3
+        },
+        {
+          "name": "Resources",
+          "id": "3839846f-2bc3-81c9-9e92-fa1931a56728",
+          "url": "https://app.notion.com/p/3839846f2bc381c99e92fa1931a56728",
+          "copiedRows": 3
+        },
+        {
+          "name": "Archive",
+          "id": "3839846f-2bc3-8127-9279-fd91eb2fe45f",
+          "url": "https://app.notion.com/p/3839846f2bc381279279fd91eb2fe45f",
+          "copiedRows": 2
+        }
+      ]
+    },
+    {
+      "slug": "business-os",
+      "name": "Business OS",
+      "id": "3839846f-2bc3-811c-b526-f36ff9761ec6",
+      "url": "https://app.notion.com/p/Business-OS-Single-Delivery-3839846f2bc3811cb526f36ff9761ec6",
+      "public_url": "https://great-respect-f0e.notion.site/Business-OS-Single-Delivery-3839846f2bc3811cb526f36ff9761ec6",
+      "databases": [
+        {
+          "name": "KPI Dashboard",
+          "id": "3839846f-2bc3-8180-a523-fe0df4d4276c",
+          "url": "https://app.notion.com/p/3839846f2bc38180a523fe0df4d4276c",
+          "copiedRows": 3
+        },
+        {
+          "name": "Projects",
+          "id": "3839846f-2bc3-812c-9fb3-ead99aa02291",
+          "url": "https://app.notion.com/p/3839846f2bc3812c9fb3ead99aa02291",
+          "copiedRows": 2
+        },
+        {
+          "name": "CRM",
+          "id": "3839846f-2bc3-81fc-b3b3-eea18cb04b1e",
+          "url": "https://app.notion.com/p/3839846f2bc381fcb3b3eea18cb04b1e",
+          "copiedRows": 3
+        },
+        {
+          "name": "Operations",
+          "id": "3839846f-2bc3-81e1-ae83-fd5727939cb8",
+          "url": "https://app.notion.com/p/3839846f2bc381e1ae83fd5727939cb8",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "student-os",
+      "name": "Student OS",
+      "id": "3839846f-2bc3-8189-a72d-fa4ae58a7c4b",
+      "url": "https://app.notion.com/p/Student-OS-Single-Delivery-3839846f2bc38189a72dfa4ae58a7c4b",
+      "public_url": "https://great-respect-f0e.notion.site/Student-OS-Single-Delivery-3839846f2bc38189a72dfa4ae58a7c4b",
+      "databases": [
+        {
+          "name": "Courses",
+          "id": "3839846f-2bc3-814d-b890-fd54cac54f69",
+          "url": "https://app.notion.com/p/3839846f2bc3814db890fd54cac54f69",
+          "copiedRows": 2
+        },
+        {
+          "name": "Assignments",
+          "id": "3839846f-2bc3-812d-a361-e3bed9b678f9",
+          "url": "https://app.notion.com/p/3839846f2bc3812da361e3bed9b678f9",
+          "copiedRows": 2
+        },
+        {
+          "name": "Exams",
+          "id": "3839846f-2bc3-815d-bef1-eaafc49d92c1",
+          "url": "https://app.notion.com/p/3839846f2bc3815dbef1eaafc49d92c1",
+          "copiedRows": 2
+        },
+        {
+          "name": "Study Sessions",
+          "id": "3839846f-2bc3-8105-a802-eb778285016c",
+          "url": "https://app.notion.com/p/3839846f2bc38105a802eb778285016c",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "finance-tracker-pro",
+      "name": "Finance Tracker Pro",
+      "id": "3839846f-2bc3-816f-a9d6-e70986fc6027",
+      "url": "https://app.notion.com/p/Finance-Tracker-Pro-Single-Delivery-3839846f2bc3816fa9d6e70986fc6027",
+      "public_url": "https://great-respect-f0e.notion.site/Finance-Tracker-Pro-Single-Delivery-3839846f2bc3816fa9d6e70986fc6027",
+      "databases": [
+        {
+          "name": "Transactions",
+          "id": "3839846f-2bc3-81cd-a5c3-fa0c45e97cce",
+          "url": "https://app.notion.com/p/3839846f2bc381cda5c3fa0c45e97cce",
+          "copiedRows": 2
+        },
+        {
+          "name": "Budgets",
+          "id": "3839846f-2bc3-81eb-9c8a-f9b291869b9d",
+          "url": "https://app.notion.com/p/3839846f2bc381eb9c8af9b291869b9d",
+          "copiedRows": 3
+        },
+        {
+          "name": "Savings Goals",
+          "id": "3839846f-2bc3-814d-8f26-cd78dd200e0d",
+          "url": "https://app.notion.com/p/3839846f2bc3814d8f26cd78dd200e0d",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "content-creator-os",
+      "name": "Content Creator OS",
+      "id": "3839846f-2bc3-8172-8980-d51eeefcfad2",
+      "url": "https://app.notion.com/p/Content-Creator-OS-Single-Delivery-3839846f2bc381728980d51eeefcfad2",
+      "public_url": "https://great-respect-f0e.notion.site/Content-Creator-OS-Single-Delivery-3839846f2bc381728980d51eeefcfad2",
+      "databases": [
+        {
+          "name": "Content Calendar",
+          "id": "3839846f-2bc3-816a-af45-da6380a305dc",
+          "url": "https://app.notion.com/p/3839846f2bc3816aaf45da6380a305dc",
+          "copiedRows": 2
+        },
+        {
+          "name": "Ideas",
+          "id": "3839846f-2bc3-817f-a3cb-ed6cf7d23004",
+          "url": "https://app.notion.com/p/3839846f2bc3817fa3cbed6cf7d23004",
+          "copiedRows": 3
+        },
+        {
+          "name": "Analytics",
+          "id": "3839846f-2bc3-81fc-a414-cbb6a8135415",
+          "url": "https://app.notion.com/p/3839846f2bc381fca414cbb6a8135415",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "freelancer-hub",
+      "name": "Freelancer Hub",
+      "id": "3839846f-2bc3-81f3-951d-f92bf90cc156",
+      "url": "https://app.notion.com/p/Freelancer-Hub-Single-Delivery-3839846f2bc381f3951df92bf90cc156",
+      "public_url": "https://great-respect-f0e.notion.site/Freelancer-Hub-Single-Delivery-3839846f2bc381f3951df92bf90cc156",
+      "databases": [
+        {
+          "name": "Clients",
+          "id": "3839846f-2bc3-8135-95d0-d362793bad26",
+          "url": "https://app.notion.com/p/3839846f2bc3813595d0d362793bad26",
+          "copiedRows": 3
+        },
+        {
+          "name": "Projects",
+          "id": "3839846f-2bc3-81f2-8adb-d47c4c1d4153",
+          "url": "https://app.notion.com/p/3839846f2bc381f28adbd47c4c1d4153",
+          "copiedRows": 3
+        },
+        {
+          "name": "Invoices",
+          "id": "3839846f-2bc3-8110-a6eb-e481368e8163",
+          "url": "https://app.notion.com/p/3839846f2bc38110a6ebe481368e8163",
+          "copiedRows": 2
+        },
+        {
+          "name": "Time Log",
+          "id": "3839846f-2bc3-81e2-80fc-fdee575f7307",
+          "url": "https://app.notion.com/p/3839846f2bc381e280fcfdee575f7307",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "personal-dashboard",
+      "name": "Personal Dashboard",
+      "id": "3839846f-2bc3-81cf-90ff-d79fb2f7909c",
+      "url": "https://app.notion.com/p/Personal-Dashboard-Single-Delivery-3839846f2bc381cf90ffd79fb2f7909c",
+      "public_url": "https://great-respect-f0e.notion.site/Personal-Dashboard-Single-Delivery-3839846f2bc381cf90ffd79fb2f7909c",
+      "databases": [
+        {
+          "name": "Today Tasks",
+          "id": "3839846f-2bc3-81c0-b557-eebe2382f254",
+          "url": "https://app.notion.com/p/3839846f2bc381c0b557eebe2382f254",
+          "copiedRows": 2
+        },
+        {
+          "name": "Notes",
+          "id": "3839846f-2bc3-8181-b168-c79dadb0b3f3",
+          "url": "https://app.notion.com/p/3839846f2bc38181b168c79dadb0b3f3",
+          "copiedRows": 2
+        },
+        {
+          "name": "Links",
+          "id": "3839846f-2bc3-811d-9cb1-d25653d59b6b",
+          "url": "https://app.notion.com/p/3839846f2bc3811d9cb1d25653d59b6b",
+          "copiedRows": 2
+        }
+      ]
+    },
+    {
+      "slug": "weekly-planner",
+      "name": "Weekly Planner",
+      "id": "3839846f-2bc3-81eb-b742-f9c65b2a63c9",
+      "url": "https://app.notion.com/p/Weekly-Planner-Single-Delivery-3839846f2bc381ebb742f9c65b2a63c9",
+      "public_url": "https://great-respect-f0e.notion.site/Weekly-Planner-Single-Delivery-3839846f2bc381ebb742f9c65b2a63c9",
+      "databases": [
+        {
+          "name": "Weekly Priorities",
+          "id": "3839846f-2bc3-819e-b98b-d56868d86049",
+          "url": "https://app.notion.com/p/3839846f2bc3819eb98bd56868d86049",
+          "copiedRows": 3
+        },
+        {
+          "name": "Week Tasks",
+          "id": "3839846f-2bc3-81e0-824f-f0d6bfd1710f",
+          "url": "https://app.notion.com/p/3839846f2bc381e0824ff0d6bfd1710f",
+          "copiedRows": 3
+        },
+        {
+          "name": "Meal Plan",
+          "id": "3839846f-2bc3-8117-99c0-f3baccd754d6",
+          "url": "https://app.notion.com/p/3839846f2bc3811799c0f3baccd754d6",
+          "copiedRows": 2
+        },
+        {
+          "name": "Reflection",
+          "id": "3839846f-2bc3-81c6-b631-c0450ea33a0b",
+          "url": "https://app.notion.com/p/3839846f2bc381c6b631c0450ea33a0b",
+          "copiedRows": 2
+        }
+      ]
+    },
+    {
+      "slug": "study-planner",
+      "name": "Study Planner",
+      "id": "3839846f-2bc3-814c-9558-e40fa952c0ba",
+      "url": "https://app.notion.com/p/Study-Planner-Single-Delivery-3839846f2bc3814c9558e40fa952c0ba",
+      "public_url": "https://great-respect-f0e.notion.site/Study-Planner-Single-Delivery-3839846f2bc3814c9558e40fa952c0ba",
+      "databases": [
+        {
+          "name": "Courses",
+          "id": "3839846f-2bc3-8112-8c42-c7ebcd5c3955",
+          "url": "https://app.notion.com/p/3839846f2bc381128c42c7ebcd5c3955",
+          "copiedRows": 2
+        },
+        {
+          "name": "Assignments",
+          "id": "3839846f-2bc3-8159-80a3-dc639a808617",
+          "url": "https://app.notion.com/p/3839846f2bc3815980a3dc639a808617",
+          "copiedRows": 2
+        },
+        {
+          "name": "Exam Schedule",
+          "id": "3839846f-2bc3-81a7-9747-e2e2ea1345da",
+          "url": "https://app.notion.com/p/3839846f2bc381a79747e2e2ea1345da",
+          "copiedRows": 2
+        }
+      ]
+    },
+    {
+      "slug": "meeting-notes",
+      "name": "Meeting Notes",
+      "id": "3839846f-2bc3-81e5-8bfc-c2fadafd15b9",
+      "url": "https://app.notion.com/p/Meeting-Notes-Single-Delivery-3839846f2bc381e58bfcc2fadafd15b9",
+      "public_url": "https://great-respect-f0e.notion.site/Meeting-Notes-Single-Delivery-3839846f2bc381e58bfcc2fadafd15b9",
+      "databases": [
+        {
+          "name": "Meetings",
+          "id": "3839846f-2bc3-81cc-9f22-f7d56f09a815",
+          "url": "https://app.notion.com/p/3839846f2bc381cc9f22f7d56f09a815",
+          "copiedRows": 2
+        },
+        {
+          "name": "Action Items",
+          "id": "3839846f-2bc3-81d8-baf8-eca160dd2f18",
+          "url": "https://app.notion.com/p/3839846f2bc381d8baf8eca160dd2f18",
+          "copiedRows": 3
+        },
+        {
+          "name": "Decisions",
+          "id": "3839846f-2bc3-815e-98cd-f99dac98f53a",
+          "url": "https://app.notion.com/p/3839846f2bc3815e98cdf99dac98f53a",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "project-manager",
+      "name": "Project Manager",
+      "id": "3839846f-2bc3-8170-ae67-e836856bc9b0",
+      "url": "https://app.notion.com/p/Project-Manager-Single-Delivery-3839846f2bc38170ae67e836856bc9b0",
+      "public_url": "https://great-respect-f0e.notion.site/Project-Manager-Single-Delivery-3839846f2bc38170ae67e836856bc9b0",
+      "databases": [
+        {
+          "name": "Projects",
+          "id": "3839846f-2bc3-81f0-8c79-c0aaaff6d102",
+          "url": "https://app.notion.com/p/3839846f2bc381f08c79c0aaaff6d102",
+          "copiedRows": 2
+        },
+        {
+          "name": "Tasks",
+          "id": "3839846f-2bc3-810f-9e0e-cf717959651c",
+          "url": "https://app.notion.com/p/3839846f2bc3810f9e0ecf717959651c",
+          "copiedRows": 3
+        },
+        {
+          "name": "Milestones",
+          "id": "3839846f-2bc3-81e5-ba00-f736c44df319",
+          "url": "https://app.notion.com/p/3839846f2bc381e5ba00f736c44df319",
+          "copiedRows": 2
+        }
+      ]
+    },
+    {
+      "slug": "budget-tracker",
+      "name": "Budget Tracker",
+      "id": "3839846f-2bc3-815a-8995-c4fd42508dd6",
+      "url": "https://app.notion.com/p/Budget-Tracker-Single-Delivery-3839846f2bc3815a8995c4fd42508dd6",
+      "public_url": "https://great-respect-f0e.notion.site/Budget-Tracker-Single-Delivery-3839846f2bc3815a8995c4fd42508dd6",
+      "databases": [
+        {
+          "name": "Income",
+          "id": "3839846f-2bc3-817c-a5dc-e86ccb3ab951",
+          "url": "https://app.notion.com/p/3839846f2bc3817ca5dce86ccb3ab951",
+          "copiedRows": 3
+        },
+        {
+          "name": "Expenses",
+          "id": "3839846f-2bc3-8158-b67a-f07fbdba1a6e",
+          "url": "https://app.notion.com/p/3839846f2bc38158b67af07fbdba1a6e",
+          "copiedRows": 3
+        },
+        {
+          "name": "Savings",
+          "id": "3839846f-2bc3-81d8-93eb-e3b2f72ab3fb",
+          "url": "https://app.notion.com/p/3839846f2bc381d893ebe3b2f72ab3fb",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "content-calendar",
+      "name": "Content Calendar",
+      "id": "3839846f-2bc3-8132-a9e9-e4367c6156e7",
+      "url": "https://app.notion.com/p/Content-Calendar-Single-Delivery-3839846f2bc38132a9e9e4367c6156e7",
+      "public_url": "https://great-respect-f0e.notion.site/Content-Calendar-Single-Delivery-3839846f2bc38132a9e9e4367c6156e7",
+      "databases": [
+        {
+          "name": "Content Pipeline",
+          "id": "3839846f-2bc3-81df-b8cf-daffb53af62f",
+          "url": "https://app.notion.com/p/3839846f2bc381dfb8cfdaffb53af62f",
+          "copiedRows": 2
+        },
+        {
+          "name": "Campaigns",
+          "id": "3839846f-2bc3-81a3-9d3f-ee7e497c068f",
+          "url": "https://app.notion.com/p/3839846f2bc381a39d3fee7e497c068f",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "job-tracker",
+      "name": "Job Tracker",
+      "id": "3839846f-2bc3-819b-a96a-d550618be25e",
+      "url": "https://app.notion.com/p/Job-Tracker-Single-Delivery-3839846f2bc3819ba96ad550618be25e",
+      "public_url": "https://great-respect-f0e.notion.site/Job-Tracker-Single-Delivery-3839846f2bc3819ba96ad550618be25e",
+      "databases": [
+        {
+          "name": "Applications",
+          "id": "3839846f-2bc3-81ff-a18d-f95aa347f2e3",
+          "url": "https://app.notion.com/p/3839846f2bc381ffa18df95aa347f2e3",
+          "copiedRows": 2
+        },
+        {
+          "name": "Interviews",
+          "id": "3839846f-2bc3-81a6-8e72-f89024f92849",
+          "url": "https://app.notion.com/p/3839846f2bc381a68e72f89024f92849",
+          "copiedRows": 2
+        },
+        {
+          "name": "Contacts",
+          "id": "3839846f-2bc3-8159-b8d5-d0a41d013715",
+          "url": "https://app.notion.com/p/3839846f2bc38159b8d5d0a41d013715",
+          "copiedRows": 3
+        }
+      ]
+    },
+    {
+      "slug": "crm-template",
+      "name": "CRM Template",
+      "id": "3839846f-2bc3-815a-97e3-faf773ae2a36",
+      "url": "https://app.notion.com/p/CRM-Template-Single-Delivery-3839846f2bc3815a97e3faf773ae2a36",
+      "public_url": "https://great-respect-f0e.notion.site/CRM-Template-Single-Delivery-3839846f2bc3815a97e3faf773ae2a36",
+      "databases": [
+        {
+          "name": "Contacts",
+          "id": "3839846f-2bc3-8131-8db1-df300b9be47e",
+          "url": "https://app.notion.com/p/3839846f2bc381318db1df300b9be47e",
+          "copiedRows": 3
+        },
+        {
+          "name": "Deals",
+          "id": "3839846f-2bc3-8152-a16f-d70c73864fcf",
+          "url": "https://app.notion.com/p/3839846f2bc38152a16fd70c73864fcf",
+          "copiedRows": 2
+        },
+        {
+          "name": "Follow Ups",
+          "id": "3839846f-2bc3-816d-a64d-c064f75b6a3d",
+          "url": "https://app.notion.com/p/3839846f2bc3816da64dc064f75b6a3d",
+          "copiedRows": 3
+        }
+      ]
+    }
+  ],
+  "checkedAt": "2026-06-18T19:21:15.301Z",
+  "checkedPublicAt": "2026-06-18T19:56:14.709Z",
+  "refreshedAt": "2026-06-18T19:59:23.771Z"
+}
